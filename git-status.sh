@@ -5,7 +5,7 @@ declare -a repos=(
   "dapla-noterepo"
 )
 
-printf '\nrawdata-converter-project'
+printf '\ndapla-project'
 echo "----------------------------------------------------------------"
 git status --short
 
