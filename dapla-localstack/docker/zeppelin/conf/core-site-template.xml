@@ -1,0 +1,10 @@
+<configuration>
+  <property>
+    <name>fs.default.name</name>
+    <value>$YARN_DEFAULT_FS</value>
+  </property>
+  <property>
+    <name>fs.defaultFS</name>
+    <value>$YARN_DEFAULT_FS</value>
+  </property>
+</configuration>

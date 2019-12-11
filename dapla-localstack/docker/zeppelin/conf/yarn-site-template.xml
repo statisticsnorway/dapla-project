@@ -1,0 +1,10 @@
+<configuration>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>$YARN_RESOURCE_MANAGER</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.hostname</name>
+    <value>$YARN_TIMELINE_SERVICE</value>
+  </property>
+</configuration>

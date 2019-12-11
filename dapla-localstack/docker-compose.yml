@@ -1,0 +1,62 @@
+version: "3.7"
+services:
+  hadoop:
+    image: hadoop
+    hostname: hadoop
+    build:
+      context: ${PWD}
+      dockerfile: ${PWD}/docker/spark-yarn/Dockerfile
+    volumes:
+      - hadoop_volume:/data:delegated
+    ports:
+      # Spark
+      - 8080:8080
+      - 5040:4040
+      - 9088:8088
+      - 7077:7077
+      - 6066:6066
+      # Hdfs ports
+      - 50010:50010
+      - 50020:50020
+      - 50070:50070
+      - 50075:50075
+      - 50090:50090
+      # Mapred ports
+      - 9000:9000
+      - 9001:9001
+      # Yarn ports
+      - 8030:8030
+      - 8031:8031
+      - 8032:8032
+      - 8033:8033
+      - 8040:8040
+      - 8042:8042
+      - 8088:8088
+      - 2122:2122
+      - 19888:19888
+    environment:
+      - SPARK_LOCAL_IP=hadoop
+      - SPARK_MASTER_OPTS="-Dspark.deploy.defaultCores=1"
+      - SPARK_MASTER_HOST=spark://hadoop
+  zeppelin:
+    image: lds-zeppelin-composed
+    container_name: zeppelin
+    hostname: zeppelin
+    volumes:
+      - ./data:/data
+    build:
+      context: ${PWD}
+      dockerfile: ${PWD}/docker/zeppelin/Dockerfile
+    depends_on:
+      - hadoop
+    ports:
+      - 8008:8080
+      - 4040:4040
+      - 8998:8998
+    environment:
+      - ZEPPELIN_ADDR=0.0.0.0
+      - YARN_DEFAULT_FS=hdfs://hadoop:9000
+      - YARN_RESOURCE_MANAGER=hadoop
+      - YARN_TIMELINE_SERVICE=hadoop
+volumes:
+  hadoop_volume:
