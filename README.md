@@ -1,4 +1,4 @@
-# Dapla Project (Statistics Norway Dataplatform)
+# Dapla Project (Statistics Norway Data Platform)
 
 ![DAPLA logo](media/dapla-white.png)
 
