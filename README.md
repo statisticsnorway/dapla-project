@@ -1,6 +1,6 @@
 # Dapla Project (Statistics Norway Data Platform)
 
-![DAPLA logo](doc/img/dapla-white.png)
+<img src="doc/img/dapla-white.png" width="256">
 
 This project aggregates dapla sources into a common development context.
 
