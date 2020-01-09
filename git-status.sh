@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
 declare -a repos=(
-  "dapla-spark-plugin"
+  "dapla-catalog"
+  "dapla-dlp-pseudo-func"
   "dapla-noterepo"
+  "dapla-spark"
+  "dapla-spark-plugin"
+  "dataset-access"
 )
 
 printf '\ndapla-project'

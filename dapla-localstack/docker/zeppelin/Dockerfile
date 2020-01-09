@@ -1,25 +1,31 @@
-FROM apache/zeppelin:0.8.2
+FROM apache/zeppelin:0.8.1
 
-WORKDIR /zeppelin
-ADD docker/zeppelin/scripts/create-python-env.bash /root/create-python-env.bash
-RUN /root/create-python-env.bash
+# Copy the latest dapla specific jars
+COPY dapla-spark-plugin/target/dapla-spark-plugin-*-shaded.jar /zeppelin/lib/dapla-spark-plugin.jar
+COPY dapla-dlp-pseudo-func/target/dapla-dlp-pseudo-func-*-shaded.jar /zeppelin/lib/dapla-dlp-pseudo-func.jar
 
-ADD docker/zeppelin/scripts/install.sh /root/install.sh
-RUN /root/install.sh
+# Copy zeppelin settings. This includes the library.
+# docker exec ID-OF-CONTAINER cat /zeppelin/conf/interpreter.json > interpreter.json
+COPY dapla-localstack/docker/zeppelin/interpreter-template.json /zeppelin/conf/interpreter-template.json
+COPY dapla-localstack/docker/zeppelin/zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
+COPY dapla-localstack/docker/zeppelin/env.sh /env.sh
 
-ADD docker/zeppelin/conf/interpreter.json /zeppelin/conf/interpreter.json
-ADD docker/zeppelin/conf/zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
-ADD docker/zeppelin/conf/shiro.ini /zeppelin/conf/shiro.ini
-
+# Add the GCS connector.
+# https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md#configure-spark
+# https://github.com/GoogleCloudPlatform/bigdata-interop/issues/188
+# https://github.com/GoogleCloudPlatform/bigdata-interop/pull/180/files
 RUN wget https://storage.googleapis.com/hadoop-lib/gcs/gcs-connector-hadoop2-latest.jar
 RUN mv gcs-connector-hadoop2-latest.jar lib/gcs-connector-hadoop.jar
 
-COPY docker/zeppelin/conf/core-site-template.xml /core-site-template.xml
-COPY docker/zeppelin/conf/yarn-site-template.xml /yarn-site-template.xml
-COPY docker/zeppelin/scripts/env.sh /env.sh
+VOLUME ["/gcloud/key.json"]
 
-ENV HADOOP_CONF_DIR /usr/lib/hadoop/etc/hadoop
-ENV SPARK_HOME=/usr/lib/spark
+# Add some examples:
+# val test = spark.read.parquet("gs://ssb-data-a/data/b9c10b86-5867-4270-b56e-ee7439fe381e")
+# test.show()
+#
+# val test = spark.read.format("no.ssb.gsim.spark")
+#     .load("lds+gsim://b9c10b86-5867-4270-b56e-ee7439fe381e")
+# test.show()
 
-WORKDIR /zeppelin
+WORKDIR /dapla-localstack/docker/zeppelin
 CMD ["/env.sh"]

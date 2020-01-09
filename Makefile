@@ -1,16 +1,12 @@
 .PHONY: default
 default: | help
 
-.PHONY: install
-install: ## Checkout all related dapla repos
-	./git-checkout.sh
-
 .PHONY: update-all
-update-all: ## Pull all changes from remote repos
-	./git-pull.sh
+update-all: ## Checkout or update all related dapla repos
+	./git-update.sh
 
-.PHONY: status-all
-status-all: ## Show a brief summary of local changes
+.PHONY: print-local-changes
+print-local-changes: ## Show a brief summary of local changes
 	./git-status.sh
 
 .PHONY: help

@@ -1,25 +1,57 @@
+DATABASE_CONTAINERS = postgres bigtable
+SERVICE_CONTAINERS = dapla-catalog-service dapla-catalog-bigtable dapla-noterepo-service dapla-spark-service dapla-auth-dataset-service
+
 .PHONY: default
 default: | help
 
+.PHONY: update-all
+update-all: ## Update all repos from github (checkout/pull)
+#	@make -f ../Makefile update
+	(cd .. && make update-all)
+
 .PHONY: build-all
-build-all: ## Build all services (docker containers)
+build-all: ## Build all
+	@make build-all-mvn build-all-docker 
+
+.PHONY: build-all-docker
+build-all-docker: ## Build all docker containers
 	docker-compose build
 
+.PHONY: build-all-mvn
+build-all-mvn: ## Build all maven projects
+	mvn -f ../pom.xml clean install -Dmaven.test.skip=true
+
 .PHONY: start-all
-start-all: ## Start all services (docker containers)
+start-all: ## Start all docker containers
 	docker-compose up
 
 .PHONY: start-all-recreate
 start-all-recreate: ## Recreate and start docker containers even if their configuration and image haven't changed
 	docker-compose up --force-recreate
 
+.PHONY: start-services
+start-services: ## Start all services (excluding spark, etc)
+	docker-compose up ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
+
 .PHONY: stop-all
-stop-all: ## Stop and remove all services (docker containers)
+stop-all: ## Stop and remove all docker containers
 	docker-compose down
 
-.PHONY: test-mapreduce
-test-mapreduce: ## Execute the mapreduce yarn example job
-	docker-compose exec hadoop /usr/local/hadoop/bin/yarn jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.1.jar pi 16 1000
+.PHONY: stop-services
+stop-services: ## Stop all services (excluding spark, etc)
+	docker-compose stop ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
+
+.PHONY: open-db-admin
+open-db-admin: ## Open a DB admin tool in your browser
+	open http://localhost:15433/?pgsql=172.17.0.1:15432&username=rdc&db=rdc
+
+.PHONY: open-zeppelin
+open-zeppelin: ## Open Zeppelin in your browser
+	open http://localhost:18010
+
+.PHONY: open-hadoop-cluster
+open-hadoop-cluster: ## Open Hadoop cluster browser
+	open http://localhost:18000/cluster
 
 .PHONY: help
 help:

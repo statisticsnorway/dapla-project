@@ -1,62 +1,124 @@
 version: "3.7"
 services:
-  hadoop:
-    image: hadoop
-    hostname: hadoop
-    build:
-      context: ${PWD}
-      dockerfile: ${PWD}/docker/spark-yarn/Dockerfile
+  spark-master:
+    container_name: spark-master
+    image: bde2020/spark-master:2.4.4-hadoop2.7
     volumes:
-      - hadoop_volume:/data:delegated
+      - ./data:/data
     ports:
-      # Spark
-      - 8080:8080
-      - 5040:4040
-      - 9088:8088
-      - 7077:7077
-      - 6066:6066
-      # Hdfs ports
-      - 50010:50010
-      - 50020:50020
-      - 50070:50070
-      - 50075:50075
-      - 50090:50090
-      # Mapred ports
-      - 9000:9000
-      - 9001:9001
-      # Yarn ports
-      - 8030:8030
-      - 8031:8031
-      - 8032:8032
-      - 8033:8033
-      - 8040:8040
-      - 8042:8042
-      - 8088:8088
-      - 2122:2122
-      - 19888:19888
+      - 18000:8080
+      - 18007:7077
     environment:
-      - SPARK_LOCAL_IP=hadoop
-      - SPARK_MASTER_OPTS="-Dspark.deploy.defaultCores=1"
-      - SPARK_MASTER_HOST=spark://hadoop
+      - INIT_DAEMON_STEP=setup_spark
+
+  spark-worker-1:
+    container_name: spark-worker-1
+    image: bde2020/spark-worker:2.4.4-hadoop2.7
+    volumes:
+      - ./data:/data
+    depends_on:
+      - spark-master
+    ports:
+      - 18001:8081
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+
+  spark-worker-2:
+    container_name: spark-worker-2
+    image: bde2020/spark-worker:2.4.4-hadoop2.7
+    volumes:
+      - ./data:/data
+    depends_on:
+      - spark-master
+    ports:
+      - 18002:8081
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+
   zeppelin:
-    image: lds-zeppelin-composed
-    container_name: zeppelin
-    hostname: zeppelin
+    container_name: zeppelin-notebook
+    image: lds-zeppelin
     volumes:
       - ./data:/data
     build:
-      context: ${PWD}
+      context: ../
       dockerfile: ${PWD}/docker/zeppelin/Dockerfile
     depends_on:
-      - hadoop
+      - spark-master
     ports:
-      - 8008:8080
-      - 4040:4040
-      - 8998:8998
+      - 18010:8080
+    env_file:
+      - .env
     environment:
-      - ZEPPELIN_ADDR=0.0.0.0
-      - YARN_DEFAULT_FS=hdfs://hadoop:9000
-      - YARN_RESOURCE_MANAGER=hadoop
-      - YARN_TIMELINE_SERVICE=hadoop
-volumes:
-  hadoop_volume:
+      - SPARK_MASTER_HOST=spark://spark-master
+
+  db-admin:
+    container_name: db-admin
+    image: adminer
+    ports:
+      - 15433:8080
+
+  postgres:
+    container_name: postgres
+    image: postgres:12-alpine
+    ports:
+      - 15432:5432
+    volumes:
+      - ../dataset-access/init-db.sql:/docker-entrypoint-initdb.d/init.sql  
+
+  bigtable:
+    container_name: bigtable
+    image: statisticsnorway/bigtable-emulator
+    ports:
+      - 19035:9035
+
+  dapla-noterepo-service:
+    container_name: dapla-noterepo-service
+    build: 
+        context: ../dapla-noterepo
+        dockerfile: service/Dockerfile
+    image: dapla-noterepo-service:dev
+    ports:
+      - 18050:8080
+      - 18052:1408
+
+  dapla-spark-service:
+    container_name: dapla-spark-service
+    build: 
+        context: ../dapla-spark
+        dockerfile: service/Dockerfile
+    image: dapla-spark-service:dev
+    ports:
+      - 18060:8060
+      - 18062:1408
+
+  dapla-catalog-service:
+    container_name: dapla-catalog-service
+    build: 
+        context: ../dapla-catalog
+        dockerfile: Dockerfile  
+    image: dapla-catalog-service:dev
+    ports:
+      - 18070:8070
+      - 18072:1408
+    environment:
+      BIGTABLE_HOST: bigtable
+
+  dapla-auth-dataset-service:
+    container_name: dapla-auth-dataset-service
+    build: 
+        context: ../dataset-access
+        dockerfile: Dockerfile
+    image: dapla-auth-dataset-service:dev
+    ports:
+      - 18080:8080
+      - 18082:7070
+    environment:
+      PGPOOL_CONNECT_dash_OPTIONS_HOST: 172.17.0.1
+      PGPOOL_CONNECT_dash_OPTIONS_PORT: 15432
+      FLYWAY_URL: jdbc:postgresql://172.17.0.1:15432/rdc
+    depends_on:
+      - postgres
+
+    
+  
