@@ -1417,7 +1417,7 @@
           "local": false
         },
         {
-          "groupArtifactVersion": "/zeppelin/lib/dapla-dlp-pseudo-config.jar",
+          "groupArtifactVersion": "/zeppelin/lib/dapla-dlp-pseudo-func.jar",
           "local": false
         },
         {
