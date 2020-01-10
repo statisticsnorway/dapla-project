@@ -43,7 +43,7 @@ stop-services: ## Stop all services (excluding spark, etc)
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
-	open http://localhost:15433/?pgsql=172.17.0.1:15432&username=rdc&db=rdc
+	open http://localhost:18020/?pgsql=172.17.0.1:15432&username=rdc&db=rdc
 
 .PHONY: open-zeppelin
 open-zeppelin: ## Open Zeppelin in your browser

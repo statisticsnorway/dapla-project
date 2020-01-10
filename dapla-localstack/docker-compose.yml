@@ -56,7 +56,7 @@ services:
     container_name: db-admin
     image: adminer
     ports:
-      - 15433:8080
+      - 18020:8080
 
   postgres:
     container_name: postgres
