@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 declare -a repos=(
   "dapla-catalog"
+  "dapla-catalog-protobuf"
   "dapla-dlp-pseudo-func"
   "dapla-noterepo"
   "dapla-spark"
