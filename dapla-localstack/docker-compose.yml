@@ -103,6 +103,8 @@ services:
       - 18072:1408
     environment:
       BIGTABLE_HOST: bigtable
+    depends_on:
+      - bigtable
 
   dapla-auth-dataset-service:
     container_name: dapla-auth-dataset-service
