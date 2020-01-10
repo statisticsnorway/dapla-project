@@ -7,6 +7,7 @@ declare -a repos=(
   "dapla-spark"
   "dapla-spark-plugin"
   "dataset-access"
+  "dapla-auth-dataset-protobuf"
 )
 
 for repo in "${repos[@]}"

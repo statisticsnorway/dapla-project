@@ -16,6 +16,7 @@
         <module>dapla-spark</module>
         <module>dapla-spark-plugin</module>
         <module>dataset-access</module>
+        <module>dapla-auth-dataset-protobuf</module>
     </modules>
 
 </project>

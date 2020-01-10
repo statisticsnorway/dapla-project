@@ -19,5 +19,6 @@ dapla-noterepo/
 dapla-spark/
 dapla-spark-plugin/
 dataset-access/
+dapla-auth-dataset-protobuf/
 rawdata-converter-app-freg/
 rawdata-converter-app-sirius/
