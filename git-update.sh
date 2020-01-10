@@ -10,6 +10,9 @@ declare -a repos=(
   "dapla-auth-dataset-protobuf"
 )
 
+echo git pull --rebase
+git pull --rebase
+
 for repo in "${repos[@]}"
 do
   if [ -d ${repo} ]; then
