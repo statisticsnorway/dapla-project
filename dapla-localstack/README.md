@@ -49,9 +49,11 @@ stop-services                                 Stop all services (excluding spark
 open-db-admin                                 Open a DB admin tool in your browser
 open-zeppelin                                 Open Zeppelin in your browser
 open-hadoop-cluster                           Open Hadoop cluster browser
+open-hadoop-hdfs                              Open web UI for Hadoop nameserver/dataserver
 ```
 
 ## Services
 
 * Hadoop cluster (http://localhost:18088/cluster)
+* Hadoop web UI for nameserver/dataserver (http://localhost:50070)
 * Zeppelin (http://localhost:18008)

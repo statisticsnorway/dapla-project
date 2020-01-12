@@ -53,6 +53,10 @@ open-zeppelin: ## Open Zeppelin in your browser
 open-hadoop-cluster: ## Open Hadoop cluster browser
 	open http://localhost:18000/cluster
 
+.PHONY: open-hadoop-hdfs
+open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
+	open http://localhost:50070
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-45s\033[0m %s\n", $$1, $$2}'
