@@ -1,5 +1,5 @@
-DATABASE_CONTAINERS = postgres bigtable
-SERVICE_CONTAINERS = dapla-catalog-service dapla-noterepo-service dapla-spark-service dapla-auth-dataset-service
+DATABASE_CONTAINERS := postgres bigtable
+SERVICE_CONTAINERS := dapla-catalog-service dapla-noterepo-service dapla-spark-service dapla-auth-dataset-service
 
 .PHONY: default
 default: | help
@@ -43,6 +43,18 @@ stop-all: ## Stop and remove all docker containers
 .PHONY: stop-services
 stop-services: ## Stop all services (excluding spark, etc)
 	docker-compose stop ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
+
+.PHONY: redeploy-spark-plugin
+redeploy-spark-plugin: ## Build and redeploy the spark plugin and/or associated libs
+ifndef skipPlugin
+	@make --directory ../dapla-spark-plugin build-mvn skipTest=true
+	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/lds-gsim-spark.jar
+endif
+ifndef skipPseudo
+	@make --directory ../dapla-dlp-pseudo-func build-mvn skipTest=true
+	docker cp ../dapla-dlp-pseudo-func/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/dapla-dlp-pseudo-func.jar
+endif
+	docker restart zeppelin-notebook
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
