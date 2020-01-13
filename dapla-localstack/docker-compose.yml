@@ -82,8 +82,8 @@ services:
   dapla-noterepo-service:
     container_name: dapla-noterepo-service
     build: 
-        context: ../dapla-noterepo
-        dockerfile: service/Dockerfile
+        context: ../dapla-noterepo/service
+        dockerfile: Dockerfile
     image: dapla-noterepo-service:dev
     ports:
       - 18050:8080
@@ -92,8 +92,8 @@ services:
   dapla-spark-service:
     container_name: dapla-spark-service
     build: 
-        context: ../dapla-spark
-        dockerfile: service/Dockerfile
+        context: ../dapla-spark/service
+        dockerfile: Dockerfile
     image: dapla-spark-service:dev
     ports:
       - 18060:8060
