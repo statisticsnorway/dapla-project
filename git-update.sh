@@ -3,6 +3,7 @@ declare -a repos=(
   "dapla-catalog"
   "dapla-catalog-protobuf"
   "dapla-dlp-pseudo-func"
+  "dapla-helidon-testing"
   "dapla-noterepo"
   "dapla-spark"
   "dapla-spark-plugin"
