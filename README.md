@@ -13,7 +13,7 @@ Run `make help` to see common commands.
 
 ```
 update-all                     Checkout or update all related dapla repos
-status-all                     Show a brief summary of local changes
+print-local-changes            Show a brief summary of local changes
 ```
 
 ## Development Environment
