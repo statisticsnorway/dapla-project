@@ -6,7 +6,6 @@ default: | help
 
 .PHONY: update-all
 update-all: ## Update all repos from github (checkout/pull)
-#	@make -f ../Makefile update
 	(cd .. && make update-all)
 
 .PHONY: build-all
@@ -23,15 +22,19 @@ build-all-mvn: ## Build all maven projects
 
 .PHONY: start-all
 start-all: ## Start all docker containers
+	docker-compose up -d
+
+.PHONY: start-all-with-console
+start-all-with-console: ## Start all docker containers with output to existing console
 	docker-compose up
 
 .PHONY: start-all-recreate
 start-all-recreate: ## Recreate and start docker containers even if their configuration and image haven't changed
-	docker-compose up --force-recreate
+	docker-compose up -d --force-recreate
 
 .PHONY: start-services
 start-services: ## Start all services (excluding spark, etc)
-	docker-compose up ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
+	docker-compose up -d ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
 
 .PHONY: stop-all
 stop-all: ## Stop and remove all docker containers
