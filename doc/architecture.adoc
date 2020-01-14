@@ -12,7 +12,13 @@ endif::[]
 
 == Sequence Diagram
 
+ifdef::env-github[]
+. link:sequence-diagram.puml[View diagram]
+endif::[]
+
+ifndef::env-github[]
 plantuml::sequence-diagram.puml[format=svg, alt="Class diagram", width=300, height=200]
+endif::[]
 
 
 |===
