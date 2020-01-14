@@ -1,0 +1,80 @@
+// Asciidoc Cheat Sheet: https://github.com/powerman/asciidoc-cheatsheet
+// Asciidoc Manual: https://asciidoctor.org/docs/user-manual/
+// Asciidoc PlantUML: https://asciidoctor.org/news/2014/02/18/plain-text-diagrams-in-asciidoctor/
+
+
+:doctitle: Data Platform (Dapla)
+
+ifndef::env-github[]
+:doctype: book
+:page-layout: docs
+:numbered:
+:toc: left
+:toclevels: 3
+:factory-ref: https://github.com/asciidoctor/asciidoctor-stylesheet-factory
+:uri-svgo: https://github.com/svg/svgo
+//:source-highlighter: highlightjs
+:source-highlighter: coderay
+:coderay-linenums-mode: inline
+:coderay-css: class
+:icons: font
+endif::[]
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:toc-placement: preamble
+endif::[]
+
+[NOTE]
+====
+This documentation is immature and work in progress!
+====
+
+
+== Dapla Project (Statistics Norway Data Platform)
+
+image::doc/img/dapla-white.png[Dalpa,256]
+
+This project aggregates dapla sources into a common development context.
+
+Refer to the link:dapla-localstack/README.md[localstack] for more information about how to spin up a local dapla runtime environment.
+
+
+ifdef::env-github[]
+. link:doc/architecture.adoc[Architecture]
+endif::[]
+
+ifndef::env-github[]
+:leveloffset: +1
+include::doc/architecture.adoc[]
+:leveloffset: -1
+endif::[]
+
+
+== Make targets
+
+Run `make help` to see common commands.
+
+```
+update-all                     Checkout or update all related dapla repos
+print-local-changes            Show a brief summary of local changes
+```
+
+== Development Environment
+
+The provided "umbrella" `pom.xml` in this project allows you to conveniently open all dapla projects in your IDE.
+
+
+==  References
+
+* link:dapla-localstack/README.md[localstack]
+* https://github.com/statisticsnorway/dapla-catalog[dapla-catalog]
+* https://github.com/statisticsnorway/dataset-access[dapla-dataset-access]
+* https://github.com/statisticsnorway/dapla-dlp-project[dapla-dlp-project]
+* https://github.com/statisticsnorway/dapla-noterepo[dapla-noterepo]
+* https://github.com/statisticsnorway/dapla-spark[dapla-spark]
+* https://github.com/statisticsnorway/dapla-spark-plugin[dapla-spark-plugin]

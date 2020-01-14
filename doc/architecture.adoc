@@ -9,17 +9,15 @@ ifdef::env-github[]
 :toc-placement: preamble
 endif::[]
 
-
 == Sequence Diagram
 
 ifdef::env-github[]
-. link:sequence-diagram.puml[View diagram]
+image::img/sequence_diagram.png[Sequence Diagram,512]
 endif::[]
 
 ifndef::env-github[]
 plantuml::sequence-diagram.puml[format=svg, alt="Class diagram", width=300, height=200]
 endif::[]
-
 
 |===
 
