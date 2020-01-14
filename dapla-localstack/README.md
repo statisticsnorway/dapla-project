@@ -40,6 +40,31 @@ make redeploy-spark-plugin
 You can further customize this with the `skipPseudo=true` and/or `skipPlugin=true` params.
 
 
+## Additional config
+
+### Maven config
+
+Some of the artifacts that this stack relies on are only available on SSBs internal nexus. Make sure
+your `settings.xml` is configured properly (see the SSB developer guide).
+
+### Secrets
+
+In order to run the tests for the full stack you will need to have a service account file available in your environment.
+Ask a friend to get hold of this.
+
+
+## Gotchas
+
+### Docker memory
+
+Serving "the world" requires memory. If you e.g. experience that "everything" hangs or becomes
+sluggy when running a command from Zeppelin, it might be because your Docker runtime needs more
+memory. You can configure the memory settings from "Docker preferences -> Advanced".
+
+
+
+
+
 ## Make targets
 
 There are many other convenience make tasks. Type `make help` to see the full list:
