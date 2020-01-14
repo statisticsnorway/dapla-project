@@ -1,27 +1,18 @@
 #!/usr/bin/env bash
-declare -a repos=(
-  "dapla-catalog"
-  "dapla-catalog-protobuf"
-  "dapla-dlp-pseudo-func"
-  "dapla-helidon-application"
-  "dapla-helidon-testing"
-  "dapla-noterepo"
-  "dapla-spark"
-  "dapla-spark-plugin"
-  "dataset-access"
-  "dapla-auth-dataset-protobuf"
-)
 
 echo git pull --rebase
 git pull --rebase
 
-for repo in "${repos[@]}"
+while read -r repo
 do
   if [ -d ${repo} ]; then
     echo git -C ${repo}/ pull --rebase
     git -C ${repo}/ pull --rebase
-	else
+  else
     echo git clone git@github.com:statisticsnorway/${repo}.git
     git clone git@github.com:statisticsnorway/${repo}.git
   fi
-done
+
+done < repos.txt
+
+
