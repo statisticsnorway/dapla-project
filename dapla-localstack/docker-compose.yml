@@ -48,6 +48,7 @@ services:
     image: lds-zeppelin
     volumes:
       - ./data:/data
+      - ./docker/zeppelin/notes:/notebook:delegated
     build:
       context: ../
       dockerfile: ${PWD}/docker/zeppelin/Dockerfile
@@ -59,6 +60,7 @@ services:
       - .env
     environment:
       - SPARK_MASTER_HOST=spark://spark-master
+      - ZEPPELIN_NOTEBOOK_DIR=/notebook
 
   db-admin:
     container_name: db-admin

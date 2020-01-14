@@ -1,0 +1,195 @@
+{
+  "paragraphs": [
+    {
+      "title": "Create dataset",
+      "text": "%spark\n\ncase class Person(fnr: String, navn: String, postnr: String, antall: Int)\n\nval raw_data \u003d sc.parallelize(Seq(\n        Person(\"23028700172\", \"Donald Duck\", \"3158\", 42),\n        Person(\"18098800057\", \"Dolly Duck\", \"3158\", 13),\n        Person(\"09039500121\", \"Mikke Mus\", \"0123\", 37)\n    )).toDF()\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-14 13:36:34.896",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import sqlContext.implicits._\ndefined class Person\nraw_data: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1579006588219_1968773283",
+      "id": "20200114-125628_902571226",
+      "dateCreated": "2020-01-14 12:56:28.219",
+      "dateStarted": "2020-01-14 13:36:34.911",
+      "dateFinished": "2020-01-14 13:36:36.058",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Pseudonymize",
+      "text": "%spark\nvar ns \u003d \"file:///data/pseudonymized-dataset\"\nvar pseudo_data \u003d raw_data.write\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-digits,navn\u003dfpe-alphanumeric,postnr\u003dfpe-digits\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(ns)\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-14 13:51:07.170",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Skriver datasett til: file:///data/pseudonymized-dataset\nOppretter datasett: gs://ssb-data-staging/datastore/facf8585-631a-4687-833b-41809b2a44e4.parquet\njava.lang.RuntimeException: GoogleCredentialsFactory failed\n  at no.ssb.dapla.gcs.token.broker.BrokerAccessTokenProvider.refresh(BrokerAccessTokenProvider.java:64)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.util.CredentialFromAccessTokenProviderClassFactory$GoogleCredentialWithAccessTokenProvider.executeRefreshToken(CredentialFromAccessTokenProviderClassFactory.java:66)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.auth.oauth2.Credential.refreshToken(Credential.java:494)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.auth.oauth2.Credential.intercept(Credential.java:217)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.http.HttpRequest.execute(HttpRequest.java:862)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:549)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:482)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.execute(AbstractGoogleClientRequest.java:599)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageImpl.getObject(GoogleCloudStorageImpl.java:1905)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageImpl.getItemInfo(GoogleCloudStorageImpl.java:1813)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageFileSystem.getFileInfoInternal(GoogleCloudStorageFileSystem.java:1127)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageFileSystem.getFileInfo(GoogleCloudStorageFileSystem.java:1095)\n  at com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystemBase.getFileStatus(GoogleHadoopFileSystemBase.java:1038)\n  at org.apache.hadoop.fs.FileSystem.exists(FileSystem.java:1426)\n  at org.apache.spark.sql.execution.datasources.InsertIntoHadoopFsRelationCommand.run(InsertIntoHadoopFsRelationCommand.scala:94)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:58)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:56)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:117)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:117)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:138)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:135)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:116)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:92)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:92)\n  at org.apache.spark.sql.execution.datasources.DataSource.writeInFileFormat(DataSource.scala:435)\n  at org.apache.spark.sql.execution.datasources.DataSource.write(DataSource.scala:471)\n  at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:50)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:58)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:56)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:117)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:117)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:138)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:135)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:116)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:92)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:92)\n  at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:609)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:233)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:217)\n  at org.apache.spark.sql.DataFrameWriter.parquet(DataFrameWriter.scala:508)\n  at no.ssb.dapla.spark.plugin.GsimDatasource.createRelation(GsimDatasource.java:63)\n  at org.apache.spark.sql.execution.datasources.DataSource.write(DataSource.scala:469)\n  at org.apache.spark.sql.execution.datasources.SaveIntoDataSourceCommand.run(SaveIntoDataSourceCommand.scala:50)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult$lzycompute(commands.scala:58)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.sideEffectResult(commands.scala:56)\n  at org.apache.spark.sql.execution.command.ExecutedCommandExec.doExecute(commands.scala:74)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:117)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$execute$1.apply(SparkPlan.scala:117)\n  at org.apache.spark.sql.execution.SparkPlan$$anonfun$executeQuery$1.apply(SparkPlan.scala:138)\n  at org.apache.spark.rdd.RDDOperationScope$.withScope(RDDOperationScope.scala:151)\n  at org.apache.spark.sql.execution.SparkPlan.executeQuery(SparkPlan.scala:135)\n  at org.apache.spark.sql.execution.SparkPlan.execute(SparkPlan.scala:116)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd$lzycompute(QueryExecution.scala:92)\n  at org.apache.spark.sql.execution.QueryExecution.toRdd(QueryExecution.scala:92)\n  at org.apache.spark.sql.DataFrameWriter.runCommand(DataFrameWriter.scala:609)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:233)\n  at org.apache.spark.sql.DataFrameWriter.save(DataFrameWriter.scala:217)\n  ... 51 elided\nCaused by: java.lang.RuntimeException: Failed to to get service account\n  at com.google.auth.oauth2.ComputeEngineCredentials.getAccount(ComputeEngineCredentials.java:276)\n  at no.ssb.dapla.gcs.oauth.GoogleCredentialsFactory.createCredentialsDetails(GoogleCredentialsFactory.java:50)\n  at no.ssb.dapla.gcs.token.broker.BrokerAccessTokenProvider.refresh(BrokerAccessTokenProvider.java:61)\n  ... 111 more\nCaused by: java.io.IOException: ComputeEngineCredentials cannot find the metadata server. This is likely because code is not running on Google Compute Engine.\n  at com.google.auth.oauth2.ComputeEngineCredentials.getMetadataResponse(ComputeEngineCredentials.java:169)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getDefaultServiceAccount(ComputeEngineCredentials.java:347)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getAccount(ComputeEngineCredentials.java:274)\n  ... 113 more\nCaused by: java.net.UnknownHostException: metadata.google.internal\n  at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)\n  at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n  at java.net.Socket.connect(Socket.java:589)\n  at sun.net.NetworkClient.doConnect(NetworkClient.java:175)\n  at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)\n  at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)\n  at sun.net.www.http.HttpClient.\u003cinit\u003e(HttpClient.java:242)\n  at sun.net.www.http.HttpClient.New(HttpClient.java:339)\n  at sun.net.www.http.HttpClient.New(HttpClient.java:357)\n  at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1220)\n  at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1156)\n  at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1050)\n  at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:984)\n  at com.google.api.client.http.javanet.NetHttpRequest.execute(NetHttpRequest.java:143)\n  at com.google.api.client.http.javanet.NetHttpRequest.execute(NetHttpRequest.java:79)\n  at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:995)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getMetadataResponse(ComputeEngineCredentials.java:167)\n  ... 115 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1579007287378_1127429804",
+      "id": "20200114-130807_128334940",
+      "dateCreated": "2020-01-14 13:08:07.378",
+      "dateStarted": "2020-01-14 13:37:00.350",
+      "dateFinished": "2020-01-14 13:37:01.490",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Read pseudonymized data",
+      "text": "%spark\nvar ns \u003d \"file:///data/pseudonymized-dataset\"\nvar data \u003d spark.read\n    .format(\"gsim\")\n    .load(ns)\ndata.show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-14 13:51:37.687",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Leser datasett fra: file:///data/pseudonymized-dataset\nBrukernavn: anonymous\nFant følgende datasett: gs://ssb-data-staging/datastore/facf8585-631a-4687-833b-41809b2a44e4.parquet\njava.lang.RuntimeException: GoogleCredentialsFactory failed\n  at no.ssb.dapla.gcs.token.broker.BrokerAccessTokenProvider.refresh(BrokerAccessTokenProvider.java:64)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.util.CredentialFromAccessTokenProviderClassFactory$GoogleCredentialWithAccessTokenProvider.executeRefreshToken(CredentialFromAccessTokenProviderClassFactory.java:66)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.auth.oauth2.Credential.refreshToken(Credential.java:494)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.auth.oauth2.Credential.intercept(Credential.java:217)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.http.HttpRequest.execute(HttpRequest.java:862)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:549)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:482)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.execute(AbstractGoogleClientRequest.java:599)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageImpl.getObject(GoogleCloudStorageImpl.java:1905)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageImpl.getItemInfo(GoogleCloudStorageImpl.java:1813)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageFileSystem.getFileInfoInternal(GoogleCloudStorageFileSystem.java:1127)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageFileSystem.getFileInfo(GoogleCloudStorageFileSystem.java:1095)\n  at com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystemBase.getFileStatus(GoogleHadoopFileSystemBase.java:1038)\n  at org.apache.hadoop.fs.FileSystem.exists(FileSystem.java:1426)\n  at org.apache.spark.sql.execution.datasources.DataSource$.org$apache$spark$sql$execution$datasources$DataSource$$checkAndGlobPathIfNecessary(DataSource.scala:625)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:350)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:350)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)\n  at scala.collection.immutable.List.flatMap(List.scala:344)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:349)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)\n  at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:559)\n  at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:558)\n  at no.ssb.dapla.spark.plugin.GsimRelation.schema(GsimRelation.java:55)\n  at org.apache.spark.sql.execution.datasources.LogicalRelation$.apply(LogicalRelation.scala:77)\n  at org.apache.spark.sql.SparkSession.baseRelationToDataFrame(SparkSession.scala:424)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:172)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:156)\n  ... 51 elided\nCaused by: java.lang.RuntimeException: Failed to to get service account\n  at com.google.auth.oauth2.ComputeEngineCredentials.getAccount(ComputeEngineCredentials.java:276)\n  at no.ssb.dapla.gcs.oauth.GoogleCredentialsFactory.createCredentialsDetails(GoogleCredentialsFactory.java:50)\n  at no.ssb.dapla.gcs.token.broker.BrokerAccessTokenProvider.refresh(BrokerAccessTokenProvider.java:61)\n  ... 81 more\nCaused by: java.io.IOException: ComputeEngineCredentials cannot find the metadata server. This is likely because code is not running on Google Compute Engine.\n  at com.google.auth.oauth2.ComputeEngineCredentials.getMetadataResponse(ComputeEngineCredentials.java:169)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getDefaultServiceAccount(ComputeEngineCredentials.java:347)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getAccount(ComputeEngineCredentials.java:274)\n  ... 83 more\nCaused by: java.net.UnknownHostException: metadata.google.internal\n  at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)\n  at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n  at java.net.Socket.connect(Socket.java:589)\n  at sun.net.NetworkClient.doConnect(NetworkClient.java:175)\n  at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)\n  at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)\n  at sun.net.www.http.HttpClient.\u003cinit\u003e(HttpClient.java:242)\n  at sun.net.www.http.HttpClient.New(HttpClient.java:339)\n  at sun.net.www.http.HttpClient.New(HttpClient.java:357)\n  at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1220)\n  at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1156)\n  at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1050)\n  at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:984)\n  at com.google.api.client.http.javanet.NetHttpRequest.execute(NetHttpRequest.java:143)\n  at com.google.api.client.http.javanet.NetHttpRequest.execute(NetHttpRequest.java:79)\n  at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:995)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getMetadataResponse(ComputeEngineCredentials.java:167)\n  ... 85 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1579008854847_334305658",
+      "id": "20200114-133414_2047283581",
+      "dateCreated": "2020-01-14 13:34:14.847",
+      "dateStarted": "2020-01-14 13:51:37.705",
+      "dateFinished": "2020-01-14 13:51:38.128",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Restore pseudonymized data",
+      "text": "%spark\nvar ns \u003d \"file:///data/pseudonymized-dataset\"\nvar restored_data \u003d spark.read\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-digits,navn\u003dfpe-alphanumeric,postnr\u003dfpe-digits\") // this will be fetched from catalog service\n    .load(ns)\nrestored_data.show()",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-14 13:51:41.237",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala",
+        "title": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Leser datasett fra: file:///data/pseudonymized-dataset\nBrukernavn: anonymous\nFant følgende datasett: gs://ssb-data-staging/datastore/facf8585-631a-4687-833b-41809b2a44e4.parquet\njava.lang.RuntimeException: GoogleCredentialsFactory failed\n  at no.ssb.dapla.gcs.token.broker.BrokerAccessTokenProvider.refresh(BrokerAccessTokenProvider.java:64)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.util.CredentialFromAccessTokenProviderClassFactory$GoogleCredentialWithAccessTokenProvider.executeRefreshToken(CredentialFromAccessTokenProviderClassFactory.java:66)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.auth.oauth2.Credential.refreshToken(Credential.java:494)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.auth.oauth2.Credential.intercept(Credential.java:217)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.http.HttpRequest.execute(HttpRequest.java:862)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:549)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.executeUnparsed(AbstractGoogleClientRequest.java:482)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.services.AbstractGoogleClientRequest.execute(AbstractGoogleClientRequest.java:599)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageImpl.getObject(GoogleCloudStorageImpl.java:1905)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageImpl.getItemInfo(GoogleCloudStorageImpl.java:1813)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageFileSystem.getFileInfoInternal(GoogleCloudStorageFileSystem.java:1127)\n  at com.google.cloud.hadoop.repackaged.gcs.com.google.cloud.hadoop.gcsio.GoogleCloudStorageFileSystem.getFileInfo(GoogleCloudStorageFileSystem.java:1095)\n  at com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystemBase.getFileStatus(GoogleHadoopFileSystemBase.java:1038)\n  at org.apache.hadoop.fs.FileSystem.exists(FileSystem.java:1426)\n  at org.apache.spark.sql.execution.datasources.DataSource$.org$apache$spark$sql$execution$datasources$DataSource$$checkAndGlobPathIfNecessary(DataSource.scala:625)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:350)\n  at org.apache.spark.sql.execution.datasources.DataSource$$anonfun$14.apply(DataSource.scala:350)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.TraversableLike$$anonfun$flatMap$1.apply(TraversableLike.scala:241)\n  at scala.collection.immutable.List.foreach(List.scala:381)\n  at scala.collection.TraversableLike$class.flatMap(TraversableLike.scala:241)\n  at scala.collection.immutable.List.flatMap(List.scala:344)\n  at org.apache.spark.sql.execution.datasources.DataSource.resolveRelation(DataSource.scala:349)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:178)\n  at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:559)\n  at org.apache.spark.sql.DataFrameReader.parquet(DataFrameReader.scala:558)\n  at no.ssb.dapla.spark.plugin.GsimRelation.schema(GsimRelation.java:55)\n  at org.apache.spark.sql.execution.datasources.LogicalRelation$.apply(LogicalRelation.scala:77)\n  at org.apache.spark.sql.SparkSession.baseRelationToDataFrame(SparkSession.scala:424)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:172)\n  at org.apache.spark.sql.DataFrameReader.load(DataFrameReader.scala:156)\n  ... 51 elided\nCaused by: java.lang.RuntimeException: Failed to to get service account\n  at com.google.auth.oauth2.ComputeEngineCredentials.getAccount(ComputeEngineCredentials.java:276)\n  at no.ssb.dapla.gcs.oauth.GoogleCredentialsFactory.createCredentialsDetails(GoogleCredentialsFactory.java:50)\n  at no.ssb.dapla.gcs.token.broker.BrokerAccessTokenProvider.refresh(BrokerAccessTokenProvider.java:61)\n  ... 81 more\nCaused by: java.io.IOException: ComputeEngineCredentials cannot find the metadata server. This is likely because code is not running on Google Compute Engine.\n  at com.google.auth.oauth2.ComputeEngineCredentials.getMetadataResponse(ComputeEngineCredentials.java:169)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getDefaultServiceAccount(ComputeEngineCredentials.java:347)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getAccount(ComputeEngineCredentials.java:274)\n  ... 83 more\nCaused by: java.net.UnknownHostException: metadata.google.internal\n  at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)\n  at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)\n  at java.net.Socket.connect(Socket.java:589)\n  at sun.net.NetworkClient.doConnect(NetworkClient.java:175)\n  at sun.net.www.http.HttpClient.openServer(HttpClient.java:463)\n  at sun.net.www.http.HttpClient.openServer(HttpClient.java:558)\n  at sun.net.www.http.HttpClient.\u003cinit\u003e(HttpClient.java:242)\n  at sun.net.www.http.HttpClient.New(HttpClient.java:339)\n  at sun.net.www.http.HttpClient.New(HttpClient.java:357)\n  at sun.net.www.protocol.http.HttpURLConnection.getNewHttpClient(HttpURLConnection.java:1220)\n  at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1156)\n  at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:1050)\n  at sun.net.www.protocol.http.HttpURLConnection.connect(HttpURLConnection.java:984)\n  at com.google.api.client.http.javanet.NetHttpRequest.execute(NetHttpRequest.java:143)\n  at com.google.api.client.http.javanet.NetHttpRequest.execute(NetHttpRequest.java:79)\n  at com.google.api.client.http.HttpRequest.execute(HttpRequest.java:995)\n  at com.google.auth.oauth2.ComputeEngineCredentials.getMetadataResponse(ComputeEngineCredentials.java:167)\n  ... 85 more\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1579009627022_-1634868698",
+      "id": "20200114-134707_1717651123",
+      "dateCreated": "2020-01-14 13:47:07.022",
+      "dateStarted": "2020-01-14 13:51:41.250",
+      "dateFinished": "2020-01-14 13:51:41.666",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-01-14 13:51:41.238",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1579009901237_2076850416",
+      "id": "20200114-135141_77159228",
+      "dateCreated": "2020-01-14 13:51:41.237",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "samples/pseudo",
+  "id": "sample-pseudo",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:anonymous:": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
