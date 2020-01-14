@@ -1335,13 +1335,21 @@
           "value": "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
           "type": "string"
         },
+        "fs.gs.impl.disable.cache": {
+          "value": "true",
+          "type": "string"
+        },
+        "spark.ssb.user": {
+          "value": "#{user}",
+          "type": "string"
+        },
+        "spark.hadoop.fs.gs.delegation.token.binding": {
+          "value": "no.ssb.dapla.gcs.token.delegation.BrokerDelegationTokenBinding",
+          "type": "string"
+        },
         "spark.hadoop.google.cloud.auth.service.account.enable": {
           "value": true,
           "type": "checkbox"
-        },
-        "spark.hadoop.google.cloud.auth.service.account.json.keyfile": {
-          "value": "/gcloud/key.json",
-          "type": "string"
         }
       },
       "status": "READY",
@@ -1429,7 +1437,7 @@
         "remote": true,
         "port": -1,
         "perNote": "shared",
-        "perUser": "shared",
+        "perUser": "isolated",
         "isExistingProcess": false,
         "setPermission": false,
         "owners": [],
