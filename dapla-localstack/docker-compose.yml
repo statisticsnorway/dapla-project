@@ -36,6 +36,7 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
 
   hadoop:
+    container_name: hadoop
     image: sequenceiq/hadoop-docker:2.7.1
     ports:
       - 50070:50070
