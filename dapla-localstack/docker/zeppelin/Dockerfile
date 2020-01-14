@@ -9,6 +9,7 @@ COPY dapla-dlp-pseudo-func/target/dapla-dlp-pseudo-func-*-shaded.jar /zeppelin/l
 COPY dapla-localstack/docker/zeppelin/interpreter-template.json /zeppelin/conf/interpreter-template.json
 COPY dapla-localstack/docker/zeppelin/zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
 COPY dapla-localstack/docker/zeppelin/env.sh /env.sh
+COPY dapla-spark-plugin/secret/gcs_sa_test.json /secret/gcs_sa_test.json
 
 # Add the GCS connector.
 # https://github.com/GoogleCloudPlatform/bigdata-interop/blob/master/gcs/INSTALL.md#configure-spark
