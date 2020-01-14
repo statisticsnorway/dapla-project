@@ -92,8 +92,8 @@ services:
   dapla-spark-service:
     container_name: dapla-spark-service
     build: 
-        context: ../dapla-spark/service
-        dockerfile: Dockerfile
+        context: ../dapla-spark
+        dockerfile: service/Dockerfile
     image: dapla-spark-service:dev
     ports:
       - 18060:8060
