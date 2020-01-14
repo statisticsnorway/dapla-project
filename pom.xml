@@ -9,14 +9,16 @@
     <name>Dapla Project</name>
 
     <modules>
+        <module>dapla-auth-dataset-protobuf</module>
         <module>dapla-catalog</module>
         <module>dapla-catalog-protobuf</module>
+        <module>dapla-helidon-application</module>
+        <module>dapla-helidon-testing</module>
         <module>dapla-dlp-pseudo-func</module>
         <module>dapla-noterepo</module>
         <module>dapla-spark</module>
         <module>dapla-spark-plugin</module>
         <module>dataset-access</module>
-        <module>dapla-auth-dataset-protobuf</module>
     </modules>
 
 </project>
