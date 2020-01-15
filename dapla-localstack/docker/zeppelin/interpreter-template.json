@@ -1347,6 +1347,10 @@
           "value": "#{user}",
           "type": "string"
         },
+        "spark.ssb.dapla.router.url": {
+          "value": "http://dapla-spark-service:8060/",
+          "type": "string"
+        },
         "spark.hadoop.fs.gs.delegation.token.binding": {
           "value": "no.ssb.dapla.gcs.token.delegation.BrokerDelegationTokenBinding",
           "type": "string"
