@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-. curl_wrapper.sh
-
 # dataset-access
 # create role for rawdata
 put $auth /role/skatt.person.rawdata '{

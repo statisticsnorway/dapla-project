@@ -33,4 +33,6 @@ else
   exit 1
 fi
 
+. curl_wrapper.sh
+
 . scenarios/"$2".sh
