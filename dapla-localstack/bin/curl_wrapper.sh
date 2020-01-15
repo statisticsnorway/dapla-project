@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ -z $TOKEN ]; then
-  TOKEN="i_forgot_to_set_token"
+  TOKEN="i_did_not_set_token"
 fi
 if [ -z $CURL_OPTIONS ]; then
   CURL_OPTIONS=""
