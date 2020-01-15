@@ -33,4 +33,4 @@ else
   exit 1
 fi
 
-. scenarios/demo1.sh
+. scenarios/"$2".sh
