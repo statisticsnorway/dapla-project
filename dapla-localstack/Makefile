@@ -48,7 +48,7 @@ stop-services: ## Stop all services (excluding spark, etc)
 redeploy-spark-plugin: ## Build and redeploy the spark plugin and/or associated libs
 ifndef skipPlugin
 	@make --directory ../dapla-spark-plugin build-mvn skipTest=true
-	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/lds-gsim-spark.jar
+	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/dapla-spark-plugin.jar
 endif
 ifndef skipPseudo
 	@make --directory ../dapla-dlp-pseudo-func build-mvn skipTest=true
