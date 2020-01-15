@@ -1331,6 +1331,10 @@
           "value": "$LDS_GSIM_SPARK_OAUTH_TOKEN_URL",
           "type": "string"
         },
+        "spark.ssb.dapla.gcs.storage": {
+          "value": "gs://dev-datalager-store",
+          "type": "string"
+        },
         "spark.hadoop.fs.gs.impl": {
           "value": "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
           "type": "string"
