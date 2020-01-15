@@ -52,6 +52,9 @@ your `settings.xml` is configured properly (see the SSB developer guide).
 In order to run the tests for the full stack you will need to have a service account file available in your environment.
 Ask a friend to get hold of this.
 
+- The project _dapla-spark-plugin_ needs a service account key file placed under`/secret/gcs_sa_test.json`.
+This is needed to build the docker image and to run integration tests against a GCS bucket.
+
 
 ## Gotchas
 
