@@ -4,7 +4,7 @@
       "title": "Create dataset",
       "text": "%spark\n\ncase class SomeRec(fnr: String, navn: String, postnr: String, antall: Int)\n\nval raw_data \u003d sc.parallelize(Seq(\n        SomeRec(\"23028700172\", \"Donald Duck\", \"3158\", 42),\n        SomeRec(\"18098800057\", \"Dolly Duck\", \"3158\", 13),\n        SomeRec(\"09039500121\", \"Mikke Mus\", \"0123\", 37)\n    )).toDF()\n    \nraw_data.show()\n",
       "user": "user1",
-      "dateUpdated": "2020-01-15 13:07:01.502",
+      "dateUpdated": "2020-01-15 15:02:26.857",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -36,8 +36,8 @@
       "jobName": "paragraph_1579006588219_1968773283",
       "id": "20200114-125628_902571226",
       "dateCreated": "2020-01-14 12:56:28.219",
-      "dateStarted": "2020-01-15 13:07:01.591",
-      "dateFinished": "2020-01-15 13:07:28.460",
+      "dateStarted": "2020-01-15 15:02:26.930",
+      "dateFinished": "2020-01-15 15:02:29.297",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -45,7 +45,7 @@
       "title": "Pseudonymize",
       "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar pseudo_data \u003d raw_data.write\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(ns)\n",
       "user": "user1",
-      "dateUpdated": "2020-01-15 13:09:00.418",
+      "dateUpdated": "2020-01-15 15:02:33.998",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -69,7 +69,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "Skriver datasett til: user1/pseudonymized-dataset\nOppretter datasett: file:///data/datastore/d79fdaf6-ef49-4014-b397-4de1e2907b8e.parquet\nns: String \u003d user1/pseudonymized-dataset\npseudo_data: Unit \u003d ()\n"
+            "data": "Skriver datasett til: user1/pseudonymized-dataset\nOppretter datasett: file:///data/a36340eb-cc21-403e-83cc-0ecaf09c40a4.parquet\nns: String \u003d user1/pseudonymized-dataset\npseudo_data: Unit \u003d ()\n"
           }
         ]
       },
@@ -77,8 +77,8 @@
       "jobName": "paragraph_1579007287378_1127429804",
       "id": "20200114-130807_128334940",
       "dateCreated": "2020-01-14 13:08:07.378",
-      "dateStarted": "2020-01-15 13:09:00.454",
-      "dateFinished": "2020-01-15 13:09:01.087",
+      "dateStarted": "2020-01-15 15:02:34.069",
+      "dateFinished": "2020-01-15 15:02:37.946",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -86,7 +86,7 @@
       "title": "Read pseudonymized data",
       "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar data \u003d spark.read\n    .format(\"gsim\")\n    .load(ns)\ndata.show()",
       "user": "user1",
-      "dateUpdated": "2020-01-15 13:09:03.444",
+      "dateUpdated": "2020-01-15 15:02:45.255",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -110,7 +110,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "Leser datasett fra: user1/pseudonymized-dataset\nBrukernavn: user1\nFant følgende datasett: file:///data/datastore/d79fdaf6-ef49-4014-b397-4de1e2907b8e.parquet\n+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|19577523264|#Æe4x.:0OÃJ|  6220|    42|\n|55733985586| ;x#Öö\u003ePX?v|  6220|    13|\n|67170806531|  BaÆÃ\u003dazUD|  0284|    37|\n+-----------+-----------+------+------+\n\nns: String \u003d user1/pseudonymized-dataset\ndata: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
+            "data": "Leser datasett fra: user1/pseudonymized-dataset\nBrukernavn: user1\nFant følgende datasett: file:///data/a36340eb-cc21-403e-83cc-0ecaf09c40a4.parquet\n+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|19577523264|nzIb7TNB30v|  6220|    42|\n|55733985586| 4lFJqGqLWÆ|  6220|    13|\n|67170806531|  ån1Öå90Pp|  0284|    37|\n+-----------+-----------+------+------+\n\nns: String \u003d user1/pseudonymized-dataset\ndata: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
           }
         ]
       },
@@ -118,8 +118,8 @@
       "jobName": "paragraph_1579008854847_334305658",
       "id": "20200114-133414_2047283581",
       "dateCreated": "2020-01-14 13:34:14.847",
-      "dateStarted": "2020-01-15 13:09:03.483",
-      "dateFinished": "2020-01-15 13:09:04.214",
+      "dateStarted": "2020-01-15 15:02:45.340",
+      "dateFinished": "2020-01-15 15:02:47.425",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -127,7 +127,7 @@
       "title": "Restore pseudonymized data",
       "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar restored_data \u003d spark.read\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\") // this will be fetched from catalog service\n    .load(ns)\nrestored_data.show()",
       "user": "user1",
-      "dateUpdated": "2020-01-15 13:11:00.701",
+      "dateUpdated": "2020-01-15 15:02:51.993",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -151,7 +151,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "Leser datasett fra: user1/pseudonymized-dataset\nBrukernavn: user1\nFant følgende datasett: file:///data/datastore/d79fdaf6-ef49-4014-b397-4de1e2907b8e.parquet\n+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|19577523264|#Æe4x.:0OÃJ|  6220|    42|\n|55733985586| ;x#Öö\u003ePX?v|  6220|    13|\n|67170806531|  BaÆÃ\u003dazUD|  0284|    37|\n+-----------+-----------+------+------+\n\nns: String \u003d user1/pseudonymized-dataset\nrestored_data: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
+            "data": "Leser datasett fra: user1/pseudonymized-dataset\nBrukernavn: user1\nFant følgende datasett: file:///data/a36340eb-cc21-403e-83cc-0ecaf09c40a4.parquet\n+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|23028700172|Donald Duck|  3158|    42|\n|18098800057| Dolly Duck|  3158|    13|\n|09039500121|  Mikke Mus|  0123|    37|\n+-----------+-----------+------+------+\n\nns: String \u003d user1/pseudonymized-dataset\nrestored_data: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
           }
         ]
       },
@@ -159,8 +159,8 @@
       "jobName": "paragraph_1579009627022_-1634868698",
       "id": "20200114-134707_1717651123",
       "dateCreated": "2020-01-14 13:47:07.022",
-      "dateStarted": "2020-01-15 13:09:51.994",
-      "dateFinished": "2020-01-15 13:09:52.700",
+      "dateStarted": "2020-01-15 15:02:52.053",
+      "dateFinished": "2020-01-15 15:02:53.305",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
