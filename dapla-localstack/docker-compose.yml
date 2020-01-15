@@ -85,8 +85,8 @@ services:
   dapla-noterepo-service:
     container_name: dapla-noterepo-service
     build: 
-        context: ../dapla-noterepo/service
-        dockerfile: Dockerfile
+        context: ../dapla-noterepo
+        dockerfile: service/Dockerfile
     image: dapla-noterepo-service:dev
     ports:
       - 18050:8080
