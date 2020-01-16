@@ -12,11 +12,17 @@ endif::[]
 == Sequence Diagram
 
 ifdef::env-github[]
-image::img/sequence_diagram.png[Sequence Diagram,512]
+=== Data read success
+image::img/data_read_success.png[Data Read Success,512]
+=== Data write success
+image::img/data_write_success.png[Data Write Success,512]
 endif::[]
 
 ifndef::env-github[]
-plantuml::sequence-diagram.puml[format=svg, alt="Class diagram", width=300, height=200]
+=== Data read success
+plantuml::data-read-success.puml[format=svg, alt="Data Read Success", width=1024]
+=== Data write success
+plantuml::data-write-success.puml[format=svg, alt="Data Write Success", width=1024]
 endif::[]
 
 |===

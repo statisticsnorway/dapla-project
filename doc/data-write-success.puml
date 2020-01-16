@@ -1,0 +1,54 @@
+@startuml
+hide footbox
+
+' Participants
+
+participant "Notebook" as Notebook
+participant "spark-plugin" as SparkPlugin
+participant "spark-service" as SparkService
+participant "catalog-service" as CatalogService
+participant "auth-service" as AuthService
+participant "dlp-secret-service" as SecretService
+database "GCS" as GCS
+
+' Write (and pseudonymize) data
+note left of SparkPlugin
+    write("skatt.person.2019.rawdata")
+end note
+
+Notebook->SparkPlugin: write(ns, options)
+
+SparkPlugin->SparkService:
+
+activate SparkService
+SparkService->CatalogService: mapNameToId(ns)
+activate CatalogService
+CatalogService-->SparkService: datasetId
+deactivate CatalogService
+SparkService->CatalogService: getMetadata(datasetId)
+activate CatalogService
+CatalogService-->SparkService: metadata
+deactivate CatalogService
+SparkService->SecretService: getPseudoKeys(pseudoConfig.keyIds)
+activate SecretService
+SecretService-->SparkService:
+deactivate SecretService
+SparkService->AuthService: hasAccess(ns, WRITE, userId)
+activate AuthService
+AuthService-->SparkService:
+deactivate AuthService
+SparkService-->SparkPlugin
+deactivate SparkService
+
+SparkPlugin->SparkPlugin: pseudoFunc.apply(data)
+
+SparkPlugin->GCS: write(data)
+SparkPlugin->SparkService:
+activate SparkService
+SparkService->SecretService: addNewKeys(keys)
+SparkService->CatalogService: createOrUpdate(metadata)
+SparkService-->SparkPlugin
+deactivate SparkService
+SparkPlugin-->Notebook
+
+@enduml

@@ -1,0 +1,51 @@
+@startuml
+hide footbox
+
+' Participants
+
+participant "Notebook" as Notebook
+participant "spark-plugin" as SparkPlugin
+participant "spark-service" as SparkService
+participant "catalog-service" as CatalogService
+participant "auth-service" as AuthService
+participant "dlp-secret-service" as SecretService
+database "GCS" as GCS
+
+' Read depseudonymized data
+
+note left of SparkPlugin
+    read("skatt.person.2019.rawdata")
+end note
+
+Notebook->SparkPlugin: read(ns, options)
+activate SparkPlugin
+SparkPlugin->SparkService:
+activate SparkService
+SparkService->CatalogService: mapNameToId(ns)
+activate CatalogService
+CatalogService-->SparkService: datasetId
+deactivate CatalogService
+SparkService->CatalogService: getMetadata(datasetId)
+activate CatalogService
+CatalogService-->SparkService: metadata
+deactivate CatalogService
+SparkService->AuthService: hasAccess(ns, READ, userId)
+activate AuthService
+AuthService-->SparkService:
+deactivate AuthService
+SparkService->SecretService: getPseudoKeys()
+activate SecretService
+SecretService-->SparkService:
+deactivate SecretService
+SparkService-->SparkPlugin:
+deactivate SparkService
+
+SparkPlugin->GCS: read
+activate GCS
+GCS-->SparkPlugin: data
+deactivate GCS
+
+SparkPlugin->SparkPlugin: pseudoFunc.restore(data)
+SparkPlugin-->Notebook
+
+@enduml
