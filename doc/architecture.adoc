@@ -13,9 +13,9 @@ endif::[]
 
 ifdef::env-github[]
 === Data read success
-image::img/data_read_success.png[Data Read Success,512]
+image::img/data_read_success.png[Data Read Success,1024]
 === Data write success
-image::img/data_write_success.png[Data Write Success,512]
+image::img/data_write_success.png[Data Write Success,1024]
 endif::[]
 
 ifndef::env-github[]
