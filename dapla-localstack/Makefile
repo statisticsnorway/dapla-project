@@ -58,7 +58,7 @@ endif
 
 .PHONY: spark-interpreter-restart
 spark-interpreter-restart: ## Restart the Zeppelin Spark interpreter
-	./bin/restart-spark-interpreter.sh
+	./bin/spark-interpreter-restart.sh
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
