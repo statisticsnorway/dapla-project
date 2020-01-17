@@ -1,41 +1,88 @@
 #!/usr/bin/env bash
 
-if [ -z $TOKEN ]; then
-  TOKEN="i_did_not_set_token"
-fi
-if [ -z $CURL_OPTIONS ]; then
-  CURL_OPTIONS=""
-fi
-
 function get {
-  URL="$1""$2"
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" $CURL_OPTIONS -H "Authorization: Bearer ${TOKEN}" "$URL")
-  if [ "$3" == "$http_code" ]; then
-    echo GET "$3" "$URL"
-  else
-    echo FAILED, actual code was "$http_code" != "$3". GET "$URL"
-    return 1
-  fi
+  curl_invoke $WRAPPER_CMD GET "$3" "$1" "$2"
 }
 
 function put {
-  URL="$1""$2"
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" $CURL_OPTIONS -X PUT -H "Authorization: Bearer ${TOKEN}" -H "Content-Type: application/json" --data-raw "$3" "$URL")
-  if [ "$4" == "$http_code" ]; then
-    echo PUT "$4" "$URL" "$3"
-  else
-    echo FAILED, actual code was "$http_code" != "$4". PUT "$URL"
-    return 1
-  fi
+  curl_invoke $WRAPPER_CMD PUT "$4" "$1" "$2" "$3"
 }
 
 function post {
-  URL="$1""$2"
-  http_code=$(curl -s -o /dev/null -w "%{http_code}" $CURL_OPTIONS -X POST -H "Authorization: Bearer ${TOKEN}" "$URL")
-  if [ "$3" == "$http_code" ]; then
-    echo POST "$3" "$URL"
-  else
-    echo FAILED, actual code was "$http_code" != "$3". POST "$URL"
-    return 1
+  curl_invoke $WRAPPER_CMD POST "$3" "$1" "$2"
+}
+
+function delete {
+  curl_invoke $WRAPPER_CMD DELETE "$3" "$1" "$2"
+}
+
+function curl_invoke {
+  local CURL_CMD="$1"
+  if [ "a"$TOKEN != "a" ]; then
+    local CURL_AUTH="-H 'Authorization: Bearer $TOKEN'"
   fi
+  if [ "$2" != "GET" ]; then
+    local CURL_METHOD="-X $2"
+  fi
+  local CURL_EXPECTED_HTTP_CODE="$3"
+  local CURL_URL="$4$5"
+  if [ "a"$TOKEN != "a" ]; then
+    if [ "a""$6" != "a" ]; then
+      REPRODUCE="curl -H 'Authorization: Bearer $TOKEN' -s $CURL_OPTIONS $CURL_METHOD -H 'Content-Type: application/json' --data-raw '$6' $CURL_URL"
+    else
+      REPRODUCE="curl -H 'Authorization: Bearer $TOKEN' -s $CURL_OPTIONS $CURL_METHOD $CURL_URL"
+    fi
+  else
+    if [ "a""$6" != "a" ]; then
+      REPRODUCE="curl -s $CURL_OPTIONS $CURL_METHOD -H 'Content-Type: application/json' --data-raw '$6' $CURL_URL"
+    else
+      REPRODUCE="curl -s $CURL_OPTIONS $CURL_METHOD $CURL_URL"
+    fi
+  fi
+  case $CURL_CMD in
+    print)
+      echo "$REPRODUCE"
+      ;;
+    exec)
+      echo $2 $CURL_EXPECTED_HTTP_CODE $CURL_URL "'$6'"
+      if [ "a""$CURL_EXPECTED_HTTP_CODE" != "a" ]; then
+        local CURL_OUTPUT="-o /dev/null -w %{http_code}"
+        if [ "a"$TOKEN != "a" ]; then
+          if [ "a""$6" != "a" ]; then
+            local output=$(curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL)
+          else
+            local output=$(curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL)
+          fi
+        else
+          if [ "a""$6" != "a" ]; then
+            local output=$(curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL)
+          else
+            local output=$(curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL)
+          fi
+        fi
+        if [ "ba"$CURL_EXPECTED_HTTP_CODE == "a""$output" ]; then
+          return 0
+        else
+          echo "FAILED, actual code was $output != $CURL_EXPECTED_HTTP_CODE. PUT $URL"
+          echo "Run the following command to reproduce:"
+          echo "$REPRODUCE"
+          exit 1
+        fi
+      else
+        if [ "a"$TOKEN != "a" ]; then
+          if [ "a""$6" != "a" ]; then
+            echo curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL
+          else
+            echo curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL
+          fi
+        else
+          if [ "a""$6" != "a" ]; then
+            echo curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL
+          else
+            echo curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL
+          fi
+        fi
+      fi
+      ;;
+  esac
 }
