@@ -78,7 +78,7 @@ open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
 
 .PHONY: print-local-changes
 print-local-changes: ## Show a brief summary of local changes
-	(cd .. && print-local-changes)
+	(cd .. && make print-local-changes)
 
 .PHONY: help
 help:
