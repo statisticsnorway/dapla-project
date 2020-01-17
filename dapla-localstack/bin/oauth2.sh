@@ -33,6 +33,7 @@ $0 -n|--service   <name>              (mandatory)
    -c|--cluster   <cluster name>      (default staging-bip-app)
    -p|--path      <service URL path>  (default health)
    -v|--verbose                       (default non-verbose)
+   -t|--print-token-only
    -h|--help"
 
 Example:
@@ -77,6 +78,8 @@ do
                          path=$1
                          ;;
         -v | --verbose ) verbose=1
+                         ;;
+        -t | --token-only ) verbose=2
                          ;;
         -h | --help )    usage
                          exit
@@ -150,6 +153,10 @@ then
     # Print example URL showing how to use the access token obtained from
     # Keycloak to query an API using curl.
     echo curl -H \"Authorization: Bearer "${access_token}"\" \""${url}${path}"\"
+elif [ $verbose -eq 2 ]
+then
+    access_token=$(echo "${response}"  | jq -r .access_token)
+    echo "${access_token}"
 fi
 
 exit 0

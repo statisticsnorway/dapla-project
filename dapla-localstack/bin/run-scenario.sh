@@ -30,14 +30,24 @@ case $2 in
     spark=http://localhost:18060
     TOKEN=
     ;;
-  staing)
-    if [ "a""" == "a""$TOKEN" ]; then
+  staging)
+    if [ "a" == "a$TOKEN" ]; then
+      echo
       echo Environment variable TOKEN must be set to a valid token.
+      echo
+      echo Run the following command using your own client-id and secret to obtain and set a valid token:
+      echo
+      echo "  TOKEN=\$($(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c staging-bip-app -n dataset-access -t)"
+      echo
       exit 1
     fi
     auth=https://dataset-access.staging-bip-app.ssb.no
     catalog=https://dapla-catalog.staging-bip-app.ssb.no
     spark=https://dapla-spark.staging-bip-app.ssb.no
+    ;;
+  *)
+    echo "Not a valid environment: '$2'"
+    exit 1
     ;;
 esac
 
