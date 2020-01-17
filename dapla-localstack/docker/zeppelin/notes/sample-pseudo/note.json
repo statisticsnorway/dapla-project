@@ -4,7 +4,7 @@
       "title": "Create dataset",
       "text": "%spark\n\ncase class SomeRec(fnr: String, navn: String, postnr: String, antall: Int)\n\nval raw_data \u003d sc.parallelize(Seq(\n        SomeRec(\"23028700172\", \"Donald Duck\", \"3158\", 42),\n        SomeRec(\"18098800057\", \"Dolly Duck\", \"3158\", 13),\n        SomeRec(\"09039500121\", \"Mikke Mus\", \"0123\", 37)\n    )).toDF()\n    \nraw_data.show()\n",
       "user": "user1",
-      "dateUpdated": "2020-01-15 15:02:26.857",
+      "dateUpdated": "2020-01-16 14:14:58.844",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -17,35 +17,28 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/scala",
-        "title": true
+        "title": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|23028700172|Donald Duck|  3158|    42|\n|18098800057| Dolly Duck|  3158|    13|\n|09039500121|  Mikke Mus|  0123|    37|\n+-----------+-----------+------+------+\n\nimport sqlContext.implicits._\ndefined class SomeRec\nraw_data: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
-          }
-        ]
       },
       "apps": [],
       "jobName": "paragraph_1579006588219_1968773283",
       "id": "20200114-125628_902571226",
       "dateCreated": "2020-01-14 12:56:28.219",
-      "dateStarted": "2020-01-15 15:02:26.930",
-      "dateFinished": "2020-01-15 15:02:29.297",
+      "dateStarted": "2020-01-16 14:14:58.901",
+      "dateFinished": "2020-01-16 14:15:01.404",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Pseudonymize",
-      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar pseudo_data \u003d raw_data.write\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(ns)\n",
+      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nraw_data.write\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(ns)\n",
       "user": "user1",
-      "dateUpdated": "2020-01-15 15:02:33.998",
+      "dateUpdated": "2020-01-16 14:30:45.361",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -58,35 +51,29 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/scala",
-        "title": true
+        "title": true,
+        "editorHide": false,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "Skriver datasett til: user1/pseudonymized-dataset\nOppretter datasett: file:///data/a36340eb-cc21-403e-83cc-0ecaf09c40a4.parquet\nns: String \u003d user1/pseudonymized-dataset\npseudo_data: Unit \u003d ()\n"
-          }
-        ]
       },
       "apps": [],
       "jobName": "paragraph_1579007287378_1127429804",
       "id": "20200114-130807_128334940",
       "dateCreated": "2020-01-14 13:08:07.378",
-      "dateStarted": "2020-01-15 15:02:34.069",
-      "dateFinished": "2020-01-15 15:02:37.946",
+      "dateStarted": "2020-01-16 14:30:45.401",
+      "dateFinished": "2020-01-16 14:30:47.234",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Read pseudonymized data",
-      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar data \u003d spark.read\n    .format(\"gsim\")\n    .load(ns)\ndata.show()",
+      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nspark.read\n    .format(\"gsim\")\n    .load(ns)\n    .show()\n",
       "user": "user1",
-      "dateUpdated": "2020-01-15 15:02:45.255",
+      "dateUpdated": "2020-01-16 14:31:03.400",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -99,35 +86,28 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/scala",
-        "title": true
+        "title": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
       },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "Leser datasett fra: user1/pseudonymized-dataset\nBrukernavn: user1\nFant følgende datasett: file:///data/a36340eb-cc21-403e-83cc-0ecaf09c40a4.parquet\n+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|19577523264|nzIb7TNB30v|  6220|    42|\n|55733985586| 4lFJqGqLWÆ|  6220|    13|\n|67170806531|  ån1Öå90Pp|  0284|    37|\n+-----------+-----------+------+------+\n\nns: String \u003d user1/pseudonymized-dataset\ndata: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
-          }
-        ]
-      },
       "apps": [],
       "jobName": "paragraph_1579008854847_334305658",
       "id": "20200114-133414_2047283581",
       "dateCreated": "2020-01-14 13:34:14.847",
-      "dateStarted": "2020-01-15 15:02:45.340",
-      "dateFinished": "2020-01-15 15:02:47.425",
+      "dateStarted": "2020-01-16 14:31:03.433",
+      "dateFinished": "2020-01-16 14:31:05.121",
       "status": "FINISHED",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Restore pseudonymized data",
       "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar restored_data \u003d spark.read\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\") // this will be fetched from catalog service\n    .load(ns)\nrestored_data.show()",
       "user": "user1",
-      "dateUpdated": "2020-01-15 15:02:51.993",
+      "dateUpdated": "2020-01-16 14:32:24.710",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -140,44 +120,21 @@
           "completionSupport": true
         },
         "editorMode": "ace/mode/scala",
-        "title": true
+        "title": true,
+        "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "Leser datasett fra: user1/pseudonymized-dataset\nBrukernavn: user1\nFant følgende datasett: file:///data/a36340eb-cc21-403e-83cc-0ecaf09c40a4.parquet\n+-----------+-----------+------+------+\n|        fnr|       navn|postnr|antall|\n+-----------+-----------+------+------+\n|23028700172|Donald Duck|  3158|    42|\n|18098800057| Dolly Duck|  3158|    13|\n|09039500121|  Mikke Mus|  0123|    37|\n+-----------+-----------+------+------+\n\nns: String \u003d user1/pseudonymized-dataset\nrestored_data: org.apache.spark.sql.DataFrame \u003d [fnr: string, navn: string ... 2 more fields]\n"
-          }
-        ]
       },
       "apps": [],
       "jobName": "paragraph_1579009627022_-1634868698",
       "id": "20200114-134707_1717651123",
       "dateCreated": "2020-01-14 13:47:07.022",
-      "dateStarted": "2020-01-15 15:02:52.053",
-      "dateFinished": "2020-01-15 15:02:53.305",
+      "dateStarted": "2020-01-16 14:32:24.756",
+      "dateFinished": "2020-01-16 14:32:26.618",
       "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%spark\n",
-      "user": "anonymous",
-      "dateUpdated": "2020-01-14 13:51:41.238",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1579009901237_2076850416",
-      "id": "20200114-135141_77159228",
-      "dateCreated": "2020-01-14 13:51:41.237",
-      "status": "READY",
+      "errorMessage": "",
       "progressUpdateIntervalMs": 500
     }
   ],
@@ -185,9 +142,7 @@
   "id": "sample-pseudo",
   "noteParams": {},
   "noteForms": {},
-  "angularObjects": {
-    "spark:user1:": []
-  },
+  "angularObjects": {},
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
