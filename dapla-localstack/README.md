@@ -35,7 +35,7 @@ docker-compose up dapla-auth-dataset-service postgres db-admin
 If you're working with the dapla-spark-plugin and want to see your latest changes applied
 to your running environment without having to rebuild everything:
 ```sh
-make redeploy-spark-plugin
+make spark-plugin-redploy
 ```
 You can further customize this with the `skipPseudo=true` and/or `skipPlugin=true` params.
 
@@ -65,9 +65,6 @@ sluggy when running a command from Zeppelin, it might be because your Docker run
 memory. You can configure the memory settings from "Docker preferences -> Advanced".
 
 
-
-
-
 ## Make targets
 
 There are many other convenience make tasks. Type `make help` to see the full list:
@@ -82,11 +79,13 @@ start-all-recreate                            Recreate and start docker containe
 start-services                                Start all services (excluding spark, etc)
 stop-all                                      Stop and remove all docker containers
 stop-services                                 Stop all services (excluding spark, etc)
-redeploy-spark-plugin                         Build and redeploy the spark plugin and/or associated libs
+spark-plugin-redeploy                         Build and redeploy the spark plugin and/or associated libs
+spark-interpreter-restart                     Restart the Zeppelin Spark interpreter
 open-db-admin                                 Open a DB admin tool in your browser
 open-zeppelin                                 Open Zeppelin in your browser
 open-hadoop-cluster                           Open Hadoop cluster browser
 open-hadoop-hdfs                              Open Hadoop nameserver/dataserver
+print-local-changes                           Show a brief summary of local changes
 ```
 
 ## Services

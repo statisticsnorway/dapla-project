@@ -44,8 +44,8 @@ stop-all: ## Stop and remove all docker containers
 stop-services: ## Stop all services (excluding spark, etc)
 	docker-compose stop ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
 
-.PHONY: redeploy-spark-plugin
-redeploy-spark-plugin: ## Build and redeploy the spark plugin and/or associated libs
+.PHONY: spark-plugin-redeploy
+spark-plugin-redeploy: ## Build and redeploy the spark plugin and/or associated libs
 ifndef skipPlugin
 	@make --directory ../dapla-spark-plugin build-mvn skipTest=true
 	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/dapla-spark-plugin.jar
@@ -54,7 +54,11 @@ ifndef skipPseudo
 	@make --directory ../dapla-dlp-pseudo-func build-mvn skipTest=true
 	docker cp ../dapla-dlp-pseudo-func/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/dapla-dlp-pseudo-func.jar
 endif
-	docker restart zeppelin-notebook
+	@make spark-interpreter-restart
+
+.PHONY: spark-interpreter-restart
+spark-interpreter-restart: ## Restart the Zeppelin Spark interpreter
+	./bin/restart-spark-interpreter.sh
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
@@ -71,6 +75,10 @@ open-hadoop-cluster: ## Open Hadoop cluster browser
 .PHONY: open-hadoop-hdfs
 open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
 	open http://localhost:50070
+
+.PHONY: print-local-changes
+print-local-changes: ## Show a brief summary of local changes
+	(cd .. && print-local-changes)
 
 .PHONY: help
 help:
