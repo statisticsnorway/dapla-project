@@ -60,7 +60,7 @@ function curl_invoke {
             local output=$(curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL)
           fi
         fi
-        if [ "ba"$CURL_EXPECTED_HTTP_CODE == "a""$output" ]; then
+        if [ "a"$CURL_EXPECTED_HTTP_CODE == "a""$output" ]; then
           return 0
         else
           echo "FAILED, actual code was $output != $CURL_EXPECTED_HTTP_CODE. PUT $URL"
@@ -71,15 +71,15 @@ function curl_invoke {
       else
         if [ "a"$TOKEN != "a" ]; then
           if [ "a""$6" != "a" ]; then
-            echo curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL
+            curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL
           else
-            echo curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL
+            curl -H "Authorization: Bearer $TOKEN" -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL
           fi
         else
           if [ "a""$6" != "a" ]; then
-            echo curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL
+            curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD -H "Content-Type: application/json" --data-raw "$6" $CURL_URL
           else
-            echo curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL
+            curl -s $CURL_OUTPUT $CURL_OPTIONS $CURL_METHOD $CURL_URL
           fi
         fi
       fi

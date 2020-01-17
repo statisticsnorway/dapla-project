@@ -35,9 +35,9 @@ case $2 in
       echo
       echo Environment variable TOKEN must be set to a valid token.
       echo
-      echo Run the following command using your own client-id and secret to obtain and set a valid token:
+      echo Run the following command using your own client-id and secret to obtain a valid token:
       echo
-      echo "  TOKEN=\$($(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c staging-bip-app -n dataset-access -t)"
+      echo "  $(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c staging-bip-app -n dataset-access -t"
       echo
       exit 1
     fi
@@ -51,6 +51,6 @@ case $2 in
     ;;
 esac
 
-. curl_wrapper.sh
+. "$(dirname $BASH_SOURCE)/curl_wrapper.sh"
 
-. scenarios/"$3".sh
+. "$(dirname $BASH_SOURCE)/scenarios/$3.sh"
