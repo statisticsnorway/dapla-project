@@ -12,6 +12,7 @@
         <module>dapla-catalog-protobuf</module>
         <module>dapla-catalog</module>
         <module>dapla-helidon-application</module>
+        <module>dapla-helidon-parent</module>
         <module>dapla-helidon-testing</module>
         <module>dapla-dlp-pseudo-func</module>
         <module>dapla-noterepo</module>

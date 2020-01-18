@@ -2,6 +2,7 @@ dapla-catalog
 dapla-catalog-protobuf
 dapla-dlp-pseudo-func
 dapla-helidon-application
+dapla-helidon-parent
 dapla-helidon-testing
 dapla-noterepo
 dapla-spark
