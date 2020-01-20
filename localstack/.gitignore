@@ -14,4 +14,3 @@ data/
 .classpath
 secret/
 docker/zeppelin/notes/*
-!docker/zeppelin/notes/sample-*

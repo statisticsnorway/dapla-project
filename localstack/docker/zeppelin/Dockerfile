@@ -6,10 +6,12 @@ COPY dapla-dlp-pseudo-func/target/dapla-dlp-pseudo-func-*-shaded.jar /zeppelin/l
 
 # Copy zeppelin settings. This includes the library.
 # docker exec ID-OF-CONTAINER cat /zeppelin/conf/interpreter.json > interpreter.json
-COPY dapla-localstack/docker/zeppelin/interpreter-template.json /zeppelin/conf/interpreter-template.json
-COPY dapla-localstack/docker/zeppelin/zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
-COPY dapla-localstack/docker/zeppelin/env.sh /env.sh
-COPY dapla-localstack/docker/zeppelin/shiro.ini /zeppelin/conf/shiro.ini
+COPY localstack/docker/zeppelin/interpreter-template.json /zeppelin/conf/interpreter-template.json
+COPY localstack/docker/zeppelin/zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
+COPY localstack/docker/zeppelin/env.sh /env.sh
+COPY localstack/docker/zeppelin/shiro.ini /zeppelin/conf/shiro.ini
+COPY localstack/docker/zeppelin/notes-samples/* /notebook/
+
 COPY dapla-spark-plugin/secret/gcs_sa_test.json /secret/gcs_sa_test.json
 
 # Add the GCS connector.
@@ -29,5 +31,5 @@ VOLUME ["/gcloud/key.json"]
 #     .load("lds+gsim://b9c10b86-5867-4270-b56e-ee7439fe381e")
 # test.show()
 
-WORKDIR /dapla-localstack/docker/zeppelin
+WORKDIR /localstack/docker/zeppelin
 CMD ["/env.sh"]

@@ -41,7 +41,7 @@ image::doc/img/dapla-white.png[Dalpa,256]
 
 This project aggregates dapla sources into a common development context.
 
-Refer to the link:dapla-localstack/README.md[localstack] for more information about how to spin up a local dapla runtime environment.
+Refer to the link:localstack/README.md[localstack] for more information about how to spin up a local dapla runtime environment.
 
 
 ifdef::env-github[]
@@ -71,7 +71,7 @@ The provided "umbrella" `pom.xml` in this project allows you to conveniently ope
 
 ==  References
 
-* link:dapla-localstack/README.md[localstack]
+* link:localstack/README.md[localstack]
 * https://github.com/statisticsnorway/dapla-catalog[dapla-catalog]
 * https://github.com/statisticsnorway/dataset-access[dapla-dataset-access]
 * https://github.com/statisticsnorway/dapla-dlp-project[dapla-dlp-project]
