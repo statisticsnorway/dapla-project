@@ -1261,7 +1261,17 @@
         },
         "master": {
           "name": "master",
-          "value": "local[*]",
+          "value": "spark://spark-master:7077",
+          "type": "string"
+        },
+        "SPARK_HOME": {
+          "name": "SPARK_HOME",
+          "value": "/opt/spark",
+          "type": "string"
+        },
+        "spark.driver.host": {
+          "name": "spark.driver.host",
+          "value": "zeppelin",
           "type": "string"
         },
         "zeppelin.pyspark.python": {
@@ -1341,10 +1351,6 @@
         },
         "fs.gs.impl.disable.cache": {
           "value": "true",
-          "type": "string"
-        },
-        "spark.ssb.user": {
-          "value": "#{user}",
           "type": "string"
         },
         "spark.ssb.dapla.router.url": {
