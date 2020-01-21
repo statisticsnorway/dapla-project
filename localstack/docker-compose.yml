@@ -45,15 +45,15 @@ services:
 
   zeppelin:
     container_name: zeppelin-notebook
-    image: lds-zeppelin
+    image: lds-zeppelin:latest
     volumes:
       - ./data:/data
-      - ./docker/zeppelin/notes:/notebook:delegated
+      - ./docker/zeppelin/notebook:/notebook:delegated
     build:
       context: ../
       dockerfile: ${PWD}/docker/zeppelin/Dockerfile
     depends_on:
-      - spark-master
+    - spark-master
     ports:
       - 18010:8080
     env_file:
@@ -64,6 +64,7 @@ services:
       - SPARK_LOCAL_IP=zeppelin
       - SPARK_PRINT_LAUNCH_COMMAND=true
       - ZEPPELIN_ADDR=0.0.0.0
+
 
   db-admin:
     container_name: db-admin

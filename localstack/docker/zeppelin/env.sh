@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo "Reset notebook samples"
+cp -rf /notebook-samples/* /notebook
+
 echo "Replacing environment variables"
 envsubst \
 	' \

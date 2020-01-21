@@ -10,7 +10,7 @@ COPY localstack/docker/zeppelin/interpreter-template.json /zeppelin/conf/interpr
 COPY localstack/docker/zeppelin/zeppelin-site.xml /zeppelin/conf/zeppelin-site.xml
 COPY localstack/docker/zeppelin/env.sh /env.sh
 COPY localstack/docker/zeppelin/shiro.ini /zeppelin/conf/shiro.ini
-COPY localstack/docker/zeppelin/notes-samples/* /notebook/
+COPY localstack/docker/zeppelin/notebook-samples/ /notebook-samples/
 
 COPY dapla-spark-plugin/secret/gcs_sa_test.json /secret/gcs_sa_test.json
 
@@ -40,5 +40,5 @@ VOLUME ["/gcloud/key.json"]
 #     .load("lds+gsim://b9c10b86-5867-4270-b56e-ee7439fe381e")
 # test.show()
 
-WORKDIR /localstack/docker/zeppelin
+WORKDIR /zeppelin
 CMD ["/env.sh"]
