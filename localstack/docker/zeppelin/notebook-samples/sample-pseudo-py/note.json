@@ -228,8 +228,8 @@
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "samples-pseudo-py",
-  "id": "2F1J6CFT3",
+  "name": "samples/pseudo-py",
+  "id": "sample-pseudo-py",
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
