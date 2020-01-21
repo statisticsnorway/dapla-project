@@ -11,7 +11,7 @@ put $auth /role/skatt.person.rawdata '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "skatt.person"
+    "/skatt.person"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
@@ -27,7 +27,7 @@ put $auth /role/skatt.person.inndata '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "skatt.person"
+    "/skatt.person"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT","OTHER"]

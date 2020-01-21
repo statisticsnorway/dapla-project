@@ -9,7 +9,7 @@ put $auth /role/demo.pseudo.before '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "demo.pseudo.before"
+    "/demo.pseudo.before"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
@@ -24,7 +24,7 @@ put $auth /role/demo.pseudo.after '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "demo.pseudo.after"
+    "/demo.pseudo.after"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
