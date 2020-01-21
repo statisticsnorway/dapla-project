@@ -104,6 +104,11 @@ services:
     ports:
       - 18060:8060
       - 18062:1408
+    environment:
+      CATALOG_dash_SERVICE_HOST: dapla-catalog-service
+      CATALOG_dash_SERVICE_PORT: 1408
+      AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
+      AUTH_dash_SERVICE_PORT: 7070
 
   dapla-catalog-service:
     container_name: dapla-catalog-service
