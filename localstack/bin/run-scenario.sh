@@ -24,6 +24,12 @@ case $1 in
 esac
 
 case $2 in
+  dev)
+    auth=http://localhost:8080
+    catalog=http://localhost:8070
+    spark=http://localhost:8060
+    TOKEN=
+    ;;
   local)
     auth=http://localhost:18080
     catalog=http://localhost:18070
