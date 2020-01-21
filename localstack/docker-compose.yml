@@ -48,7 +48,7 @@ services:
     image: lds-zeppelin:latest
     volumes:
       - ./data:/data
-      - ./docker/zeppelin/notebook:/notebook:delegated
+      - ./notebook:/notebook:delegated
     build:
       context: ../
       dockerfile: ${PWD}/docker/zeppelin/Dockerfile
