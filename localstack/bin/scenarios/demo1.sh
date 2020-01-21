@@ -64,7 +64,7 @@ get $auth '/access/user2?privilege=READ&namespace=skatt.person&valuation=SENSITI
 ## dapla-catalog
 #
 ## map name to id
-post $catalog '/name/skatt.person.2019.rawdata/341b03d6-5be6-4c9b-b381-8cf692aa8830' 200
+post $catalog '/name/skatt.person.2019.rawdata' '{"proposedId":"341b03d6-5be6-4c9b-b381-8cf692aa8830"}' 200
 
 ## check mapping
 get $catalog '/name/skatt.person.2019.rawdata' 200

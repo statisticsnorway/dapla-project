@@ -9,7 +9,7 @@ function put {
 }
 
 function post {
-  curl_invoke $WRAPPER_CMD POST "$3" "$1" "$2"
+  curl_invoke $WRAPPER_CMD POST "$4" "$1" "$2" "$3"
 }
 
 function delete {
