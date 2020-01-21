@@ -65,7 +65,6 @@ services:
       - SPARK_PRINT_LAUNCH_COMMAND=true
       - ZEPPELIN_ADDR=0.0.0.0
 
-
   db-admin:
     container_name: db-admin
     image: adminer
