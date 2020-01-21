@@ -28,15 +28,15 @@ function curl_invoke {
   local CURL_URL="$4$5"
   if [ "a"$TOKEN != "a" ]; then
     if [ "a""$6" != "a" ]; then
-      REPRODUCE="curl -H 'Authorization: Bearer $TOKEN' -s $CURL_OPTIONS $CURL_METHOD -H 'Content-Type: application/json' --data-raw '$6' $CURL_URL"
+      REPRODUCE="curl -H 'Authorization: Bearer $TOKEN' -s $CURL_OPTIONS $CURL_METHOD -H 'Content-Type: application/json' --data-raw '$6' \"$CURL_URL\""
     else
-      REPRODUCE="curl -H 'Authorization: Bearer $TOKEN' -s $CURL_OPTIONS $CURL_METHOD $CURL_URL"
+      REPRODUCE="curl -H 'Authorization: Bearer $TOKEN' -s $CURL_OPTIONS $CURL_METHOD \"$CURL_URL\""
     fi
   else
     if [ "a""$6" != "a" ]; then
-      REPRODUCE="curl -s $CURL_OPTIONS $CURL_METHOD -H 'Content-Type: application/json' --data-raw '$6' $CURL_URL"
+      REPRODUCE="curl -s $CURL_OPTIONS $CURL_METHOD -H 'Content-Type: application/json' --data-raw '$6' \"$CURL_URL\""
     else
-      REPRODUCE="curl -s $CURL_OPTIONS $CURL_METHOD $CURL_URL"
+      REPRODUCE="curl -s $CURL_OPTIONS $CURL_METHOD \"$CURL_URL\""
     fi
   fi
   case $CURL_CMD in
