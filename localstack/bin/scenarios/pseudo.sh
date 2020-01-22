@@ -9,7 +9,7 @@ put $auth /role/demo.pseudo.raw '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "demo.pseudo"
+    "/demo.pseudo"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
@@ -24,7 +24,7 @@ put $auth /role/demo.pseudo.input '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "demo.pseudo"
+    "/demo.pseudo"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
@@ -52,6 +52,9 @@ get $auth '/access/user2?privilege=READ&namespace=demo.pseudo.raw&valuation=SENS
 ## dapla-catalog
 #
 ## map name to id
+get $catalog '/name/demo.pseudo.input'
+
+
 post $catalog '/name/demo.pseudo.input/e1aa16a0-73ab-47de-a301-6079618a4172' 200
 
 ## check mapping
@@ -68,7 +71,7 @@ put $catalog '/dataset/e1aa16a0-73ab-47de-a301-6079618a4172?userId=user1' '{
   },
   "valuation": "SHIELDED",
   "state": "INPUT",
-  "locations": ["gs://dev-datalager-store/datastore/skatt/person/rawdata-2019"]
+  "locations": ["file:///data/datastore/demo.pseudo.input"]
 }' 201
 
 ## dapla-catalog
