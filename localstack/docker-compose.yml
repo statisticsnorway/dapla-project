@@ -124,6 +124,7 @@ services:
       - 20118:10118
     environment:
       BIGTABLE_HOST: bigtable
+      BIGTABLE_PORT: 9035
       AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
       AUTH_dash_SERVICE_PORT: 10108
     depends_on:
