@@ -57,7 +57,7 @@ services:
       context: ../
       dockerfile: ${PWD}/docker/zeppelin/Dockerfile
     depends_on:
-    - spark-master
+      - spark-master
     ports:
       - 28010:8080
     env_file:
@@ -91,18 +91,18 @@ services:
 
   dapla-noterepo-service:
     container_name: dapla-noterepo-service
-    build: 
-        context: ../dapla-noterepo
-        dockerfile: service/Dockerfile
+    build:
+      context: ../dapla-noterepo
+      dockerfile: service/Dockerfile
     image: dapla-noterepo-service:dev
     ports:
       - 20138:10138
 
   dapla-spark-service:
     container_name: dapla-spark-service
-    build: 
-        context: ../dapla-spark
-        dockerfile: service/Dockerfile
+    build:
+      context: ../dapla-spark
+      dockerfile: service/Dockerfile
     image: dapla-spark-service:dev
     ports:
       - 20120:10120
@@ -115,9 +115,9 @@ services:
 
   dapla-catalog-service:
     container_name: dapla-catalog-service
-    build: 
-        context: ../dapla-catalog
-        dockerfile: Dockerfile  
+    build:
+      context: ../dapla-catalog
+      dockerfile: Dockerfile
     image: dapla-catalog-service:dev
     ports:
       - 20110:10110
@@ -133,8 +133,8 @@ services:
   dapla-auth-dataset-service:
     container_name: dapla-auth-dataset-service
     build:
-        context: ../dataset-access
-        dockerfile: Dockerfile
+      context: ../dataset-access
+      dockerfile: Dockerfile
     image: dapla-auth-dataset-service:dev
     ports:
       - 20100:10100
