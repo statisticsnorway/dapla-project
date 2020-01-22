@@ -1364,6 +1364,10 @@
         "spark.hadoop.google.cloud.auth.service.account.enable": {
           "value": true,
           "type": "checkbox"
+        },
+        "spark.jars": {
+          "value": "/zeppelin/lib/dapla-spark-plugin.jar,/zeppelin/lib/dapla-dlp-pseudo-func.jar,/zeppelin/lib/gcs-connector-hadoop.jar",
+          "type": "string"
         }
       },
       "status": "READY",
@@ -1431,20 +1435,6 @@
             "editOnDblClick": false,
             "completionSupport": false
           }
-        }
-      ],
-      "dependencies": [
-        {
-          "groupArtifactVersion": "/zeppelin/lib/dapla-spark-plugin.jar",
-          "local": false
-        },
-        {
-          "groupArtifactVersion": "/zeppelin/lib/dapla-dlp-pseudo-func.jar",
-          "local": false
-        },
-        {
-          "groupArtifactVersion": "/zeppelin/lib/gcs-connector-hadoop.jar",
-          "local": false
         }
       ],
       "option": {
