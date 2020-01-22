@@ -73,7 +73,7 @@ get $catalog '/name/skatt.person.2019.rawdata' 200
 get $catalog '/prefix/skatt' 200
 
 ## create dataset
-put $catalog '/dataset/341b03d6-5be6-4c9b-b381-8cf692aa8830?userId=user1' '{
+put $spark '/dataset-meta?userId=user1' '{
   "id": {
     "id": "341b03d6-5be6-4c9b-b381-8cf692aa8830",
     "name": ["skatt.person.2019.rawdata"]
@@ -81,7 +81,7 @@ put $catalog '/dataset/341b03d6-5be6-4c9b-b381-8cf692aa8830?userId=user1' '{
   "valuation": "SHIELDED",
   "state": "RAW",
   "locations": ["gs://dev-datalager-store/datastore/skatt/person/rawdata-2019"]
-}' 201
+}' 200
 
 ## dapla-catalog
 ## read dataset
