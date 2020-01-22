@@ -1342,7 +1342,7 @@
           "type": "string"
         },
         "spark.ssb.dapla.gcs.storage": {
-          "value": "gs://dev-datalager-store",
+          "value": "$DAPLA_GCS_STORAGE",
           "type": "string"
         },
         "spark.hadoop.fs.gs.impl": {
