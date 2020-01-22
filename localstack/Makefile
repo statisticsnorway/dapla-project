@@ -62,7 +62,7 @@ spark-interpreter-restart: ## Restart the Zeppelin Spark interpreter
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
-	open http://localhost:25430/?pgsql=172.17.0.1:15432&username=rdc&db=rdc
+	open http://localhost:25430/?pgsql=172.17.0.1:25432&username=rdc&db=rdc
 
 .PHONY: open-zeppelin
 open-zeppelin: ## Open Zeppelin in your browser
