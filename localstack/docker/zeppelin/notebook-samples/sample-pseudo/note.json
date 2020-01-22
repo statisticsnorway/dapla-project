@@ -1,139 +1,178 @@
 {
   "paragraphs": [
     {
-      "title": "Create dataset",
-      "text": "%spark\n\ncase class SomeRec(fnr: String, navn: String, postnr: String, antall: Int)\n\nval raw_data \u003d sc.parallelize(Seq(\n        SomeRec(\"23028700172\", \"Donald Duck\", \"3158\", 42),\n        SomeRec(\"18098800057\", \"Dolly Duck\", \"3158\", 13),\n        SomeRec(\"09039500121\", \"Mikke Mus\", \"0123\", 37)\n    )).toDF()\n    \nraw_data.show()\n",
+      "text": "%md\n### Prerequisites\n\n* Run the \"pseudo\" scenario:  `./bin/run-scenario.sh exec local pseudo`",
       "user": "user1",
-      "dateUpdated": "2020-01-16 14:14:58.844",
+      "dateUpdated": "2020-01-22 15:03:51.340",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
         "enabled": true,
         "results": {},
         "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
+          "language": "markdown",
+          "editOnDblClick": true,
           "completionKey": "TAB",
-          "completionSupport": true
+          "completionSupport": false
         },
-        "editorMode": "ace/mode/scala",
-        "title": true,
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
         "tableHide": false
       },
       "settings": {
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003ePrerequisites\u003c/h3\u003e\n\u003cul\u003e\n  \u003cli\u003eRun the \u0026ldquo;pseudo\u0026rdquo; scenario: \u003ccode\u003e./bin/run-scenario.sh exec local pseudo\u003c/code\u003e\u003c/li\u003e\n\u003c/ul\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
       "apps": [],
-      "jobName": "paragraph_1579006588219_1968773283",
-      "id": "20200114-125628_902571226",
-      "dateCreated": "2020-01-14 12:56:28.219",
-      "dateStarted": "2020-01-16 14:14:58.901",
-      "dateFinished": "2020-01-16 14:15:01.404",
+      "jobName": "paragraph_1579695115481_-908279208",
+      "id": "20200122-121155_939537377",
+      "dateCreated": "2020-01-22 12:11:55.482",
+      "dateStarted": "2020-01-22 15:03:51.340",
+      "dateFinished": "2020-01-22 15:03:51.401",
       "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Create dataset",
+      "text": "%spark\n\ncase class SomeRec(fnr: String, navn: String, postnr: String, antall: Int)\n\nval raw_data \u003d sc.parallelize(Seq(\n        SomeRec(\"23028700172\", \"Donald Duck\", \"3158\", 42),\n        SomeRec(\"18098800057\", \"Dolly Duck\", \"3158\", 13),\n        SomeRec(\"09039500121\", \"Mikke Mus\", \"0123\", 37)\n    )).toDF()\n    \nraw_data.show()\n",
+      "user": "user1",
+      "dateUpdated": "2020-01-22 15:00:55.774",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1579609718244_-488593326",
+      "id": "20200114-125628_902571226",
+      "dateCreated": "2020-01-21 12:28:38.244",
+      "dateStarted": "2020-01-22 15:00:55.985",
+      "dateFinished": "2020-01-22 15:05:40.335",
+      "status": "ABORT",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Pseudonymize",
-      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nraw_data.write\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(ns)\n",
+      "text": "%spark\nraw_data.write\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(\"demo.pseudo.input\")\n",
       "user": "user1",
-      "dateUpdated": "2020-01-16 14:30:45.361",
+      "dateUpdated": "2020-01-22 15:06:50.163",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/scala",
-        "title": true,
+        "fontSize": 9.0,
         "editorHide": false,
-        "tableHide": false
+        "title": true,
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1579007287378_1127429804",
+      "jobName": "paragraph_1579609718253_-393338016",
       "id": "20200114-130807_128334940",
-      "dateCreated": "2020-01-14 13:08:07.378",
-      "dateStarted": "2020-01-16 14:30:45.401",
-      "dateFinished": "2020-01-16 14:30:47.234",
-      "status": "FINISHED",
+      "dateCreated": "2020-01-21 12:28:38.253",
+      "dateStarted": "2020-01-22 15:04:53.548",
+      "dateFinished": "2020-01-22 15:05:40.377",
+      "status": "ERROR",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Read pseudonymized data",
-      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nspark.read\n    .format(\"gsim\")\n    .load(ns)\n    .show()\n",
+      "text": "%spark\nspark.read\n    .format(\"gsim\")\n    .load(\"demo.pseudo.input\")\n    .show()\n",
       "user": "user1",
-      "dateUpdated": "2020-01-16 14:31:03.400",
+      "dateUpdated": "2020-01-22 15:07:10.521",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
         "title": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1579008854847_334305658",
+      "jobName": "paragraph_1579609718253_-638925578",
       "id": "20200114-133414_2047283581",
-      "dateCreated": "2020-01-14 13:34:14.847",
-      "dateStarted": "2020-01-16 14:31:03.433",
-      "dateFinished": "2020-01-16 14:31:05.121",
-      "status": "FINISHED",
+      "dateCreated": "2020-01-21 12:28:38.253",
+      "dateStarted": "2020-01-22 14:57:43.889",
+      "dateFinished": "2020-01-22 14:57:46.356",
+      "status": "ERROR",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     },
     {
       "title": "Restore pseudonymized data",
-      "text": "%spark\nvar ns \u003d \"user1/pseudonymized-dataset\"\nvar restored_data \u003d spark.read\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\") // this will be fetched from catalog service\n    .load(ns)\nrestored_data.show()",
+      "text": "%spark\nvar restored_data \u003d spark.read\n    .format(\"gsim\")\n    .option(\"pseudo\", \"fnr\u003dfpe-fnr,navn\u003dfpe-text,postnr\u003dfpe-digits\") // this will be fetched from catalog service\n    .load(\"demo.pseudo.input\")\nrestored_data.show()",
       "user": "user1",
-      "dateUpdated": "2020-01-16 14:32:24.710",
+      "dateUpdated": "2020-01-22 15:07:34.336",
       "config": {
-        "colWidth": 12.0,
-        "fontSize": 9.0,
-        "enabled": true,
-        "results": {},
+        "tableHide": false,
         "editorSetting": {
           "language": "scala",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
+        "colWidth": 12.0,
         "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
         "title": true,
-        "tableHide": false
+        "results": {},
+        "enabled": true
       },
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1579009627022_-1634868698",
+      "jobName": "paragraph_1579609718254_1517719727",
       "id": "20200114-134707_1717651123",
-      "dateCreated": "2020-01-14 13:47:07.022",
-      "dateStarted": "2020-01-16 14:32:24.756",
-      "dateFinished": "2020-01-16 14:32:26.618",
-      "status": "FINISHED",
+      "dateCreated": "2020-01-21 12:28:38.254",
+      "status": "READY",
       "errorMessage": "",
       "progressUpdateIntervalMs": 500
     }
@@ -142,7 +181,10 @@
   "id": "sample-pseudo",
   "noteParams": {},
   "noteForms": {},
-  "angularObjects": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:user1:": []
+  },
   "config": {
     "isZeppelinNotebookCronEnable": false
   },
