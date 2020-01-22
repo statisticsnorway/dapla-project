@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-zeppelin_host=http://localhost:18010
+zeppelin_host=http://localhost:28010
 cookie_file=zeppelin-cookies.txt
 
 printf "Zeppelin login... "
