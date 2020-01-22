@@ -62,15 +62,15 @@ spark-interpreter-restart: ## Restart the Zeppelin Spark interpreter
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
-	open http://localhost:18020/?pgsql=172.17.0.1:15432&username=rdc&db=rdc
+	open http://localhost:25430/?pgsql=172.17.0.1:15432&username=rdc&db=rdc
 
 .PHONY: open-zeppelin
 open-zeppelin: ## Open Zeppelin in your browser
-	open http://localhost:18010
+	open http://localhost:28010
 
 .PHONY: open-hadoop-cluster
 open-hadoop-cluster: ## Open Hadoop cluster browser
-	open http://localhost:18000/cluster
+	open http://localhost:28000/cluster
 
 .PHONY: open-hadoop-hdfs
 open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver

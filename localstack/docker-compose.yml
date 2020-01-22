@@ -6,8 +6,8 @@ services:
     volumes:
       - ./data:/data
     ports:
-      - 18000:8080
-      - 18007:7077
+      - 28000:8080
+      - 28007:7077
     environment:
       - INIT_DAEMON_STEP=setup_spark
 
@@ -19,7 +19,7 @@ services:
     depends_on:
       - spark-master
     ports:
-      - 18001:8081
+      - 28011:8081
     environment:
       - SPARK_MASTER=spark://spark-master:7077
 
@@ -31,7 +31,7 @@ services:
     depends_on:
       - spark-master
     ports:
-      - 18002:8081
+      - 28021:8081
     environment:
       - SPARK_MASTER=spark://spark-master:7077
 
@@ -55,7 +55,7 @@ services:
     depends_on:
     - spark-master
     ports:
-      - 18010:8080
+      - 28010:8080
     env_file:
       - .env
     environment:
@@ -69,13 +69,13 @@ services:
     container_name: db-admin
     image: adminer
     ports:
-      - 18020:8080
+      - 25430:8080
 
   postgres:
     container_name: postgres
     image: postgres:12-alpine
     ports:
-      - 15432:5432
+      - 25432:5432
     volumes:
       - ../dataset-access/init-db.sql:/docker-entrypoint-initdb.d/init.sql
 
@@ -83,7 +83,7 @@ services:
     container_name: bigtable
     image: statisticsnorway/bigtable-emulator
     ports:
-      - 19035:9035
+      - 29035:9035
 
   dapla-noterepo-service:
     container_name: dapla-noterepo-service
