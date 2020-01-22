@@ -1354,7 +1354,7 @@
           "type": "string"
         },
         "spark.ssb.dapla.router.url": {
-          "value": "http://dapla-spark-service:20120/",
+          "value": "http://dapla-spark-service:10120/",
           "type": "string"
         },
         "spark.hadoop.fs.gs.delegation.token.binding": {
