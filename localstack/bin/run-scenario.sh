@@ -25,15 +25,15 @@ esac
 
 case $2 in
   dev)
-    auth=http://localhost:8080
-    catalog=http://localhost:8070
-    spark=http://localhost:8060
+    auth=http://localhost:10100
+    catalog=http://localhost:10110
+    spark=http://localhost:10120
     TOKEN=
     ;;
   local)
-    auth=http://localhost:18080
-    catalog=http://localhost:18070
-    spark=http://localhost:18060
+    auth=http://localhost:20100
+    catalog=http://localhost:20110
+    spark=http://localhost:20120
     TOKEN=
     ;;
   staging)

@@ -1,0 +1,64 @@
+= Development environments
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:toc-placement: preamble
+endif::[]
+
+=== Port mappings
+
+[cols="4,4,1,1", options="header"]
+.Staging (BIP staging environment)
+|===
+| External DNS
+| Internal DNS (K8S)
+| http cont
+| grpc cont
+
+| dataset-access.staging-bip-app.ssb.no
+| dataset-access.dapla.svc.cluster.local
+| 10100
+| 10108
+
+| dapla-catalog.staging-bip-app.ssb.no
+| dapla-catalog.dapla.svc.cluster.local
+| 10110
+| 10118
+
+| dapla-spark.staging-bip-app.ssb.no
+| dapla-spark.dapla.svc.cluster.local
+| 10120
+| 10128
+|===
+
+[cols="4,1,1,1,1", options="header"]
+.Local (localstack configuration)
+|===
+| DNS
+| http cont
+| grpc cont
+| http host
+| grpc host
+
+| dapla-auth-dataset-service
+| 10100
+| 10108
+| 20100
+| 20108
+
+| dapla-catalog-service
+| 10110
+| 10118
+| 20110
+| 20118
+
+| dapla-spark-service
+| 10120
+| 10128
+| 20120
+| 20128
+|===

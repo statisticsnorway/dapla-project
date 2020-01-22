@@ -77,7 +77,7 @@ services:
     ports:
       - 15432:5432
     volumes:
-      - ../dataset-access/init-db.sql:/docker-entrypoint-initdb.d/init.sql  
+      - ../dataset-access/init-db.sql:/docker-entrypoint-initdb.d/init.sql
 
   bigtable:
     container_name: bigtable
@@ -92,8 +92,8 @@ services:
         dockerfile: service/Dockerfile
     image: dapla-noterepo-service:dev
     ports:
-      - 18050:8080
-      - 18052:1408
+      - 20110:10110
+      - 20118:10118
 
   dapla-spark-service:
     container_name: dapla-spark-service
@@ -102,13 +102,13 @@ services:
         dockerfile: service/Dockerfile
     image: dapla-spark-service:dev
     ports:
-      - 18060:8060
-      - 18062:1408
+      - 20120:10120
+      - 20128:10128
     environment:
       CATALOG_dash_SERVICE_HOST: dapla-catalog-service
-      CATALOG_dash_SERVICE_PORT: 1408
+      CATALOG_dash_SERVICE_PORT: 10118
       AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
-      AUTH_dash_SERVICE_PORT: 7070
+      AUTH_dash_SERVICE_PORT: 10108
 
   dapla-catalog-service:
     container_name: dapla-catalog-service
@@ -117,24 +117,24 @@ services:
         dockerfile: Dockerfile  
     image: dapla-catalog-service:dev
     ports:
-      - 18070:8070
-      - 18072:1408
+      - 20110:10110
+      - 20118:10118
     environment:
       BIGTABLE_HOST: bigtable
       AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
-      AUTH_dash_SERVICE_PORT: 7070
+      AUTH_dash_SERVICE_PORT: 10108
     depends_on:
       - bigtable
 
   dapla-auth-dataset-service:
     container_name: dapla-auth-dataset-service
-    build: 
+    build:
         context: ../dataset-access
         dockerfile: Dockerfile
     image: dapla-auth-dataset-service:dev
     ports:
-      - 18080:8080
-      - 18082:7070
+      - 20100:10100
+      - 20108:10108
     environment:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: 172.17.0.1
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 15432
