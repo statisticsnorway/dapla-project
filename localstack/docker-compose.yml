@@ -135,11 +135,9 @@ services:
       - 20100:10100
       - 20108:10108
     environment:
-      PGPOOL_CONNECT_dash_OPTIONS_HOST: 172.17.0.1
-      PGPOOL_CONNECT_dash_OPTIONS_PORT: 15432
-      FLYWAY_URL: jdbc:postgresql://172.17.0.1:15432/rdc
+      PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
+      PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/rdc
     depends_on:
       - postgres
 
-    
-  
