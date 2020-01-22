@@ -11,30 +11,6 @@ endif::[]
 
 === Port mappings
 
-[cols="4,4,1,1", options="header"]
-.Staging (BIP staging environment)
-|===
-| External DNS
-| Internal DNS (K8S)
-| http cont
-| grpc cont
-
-| dataset-access.staging-bip-app.ssb.no
-| dataset-access.dapla.svc.cluster.local
-| 10100
-| 10108
-
-| dapla-catalog.staging-bip-app.ssb.no
-| dapla-catalog.dapla.svc.cluster.local
-| 10110
-| 10118
-
-| dapla-spark.staging-bip-app.ssb.no
-| dapla-spark.dapla.svc.cluster.local
-| 10120
-| 10128
-|===
-
 [cols="4,1,1,1,1", options="header"]
 .Local (localstack configuration)
 |===
@@ -61,4 +37,39 @@ endif::[]
 | 10128
 | 20120
 | 20128
+
+| dapla-noterepo-service
+|
+| 10138
+|
+| 20138
+|===
+
+[cols="4,4,1,1", options="header"]
+.Staging (BIP staging environment)
+|===
+| External DNS
+| Internal DNS (K8S)
+| http cont
+| grpc cont
+
+| dataset-access.staging-bip-app.ssb.no
+| dataset-access.dapla.svc.cluster.local
+| 10100
+| 10108
+
+| dapla-catalog.staging-bip-app.ssb.no
+| dapla-catalog.dapla.svc.cluster.local
+| 10110
+| 10118
+
+| dapla-spark.staging-bip-app.ssb.no
+| dapla-spark.dapla.svc.cluster.local
+| 10120
+| 10128
+
+| dapla-notes.staging-bip-app.ssb.no
+| dapla-notes.dapla.svc.cluster.local
+|
+| 10138
 |===

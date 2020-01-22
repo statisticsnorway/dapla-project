@@ -92,8 +92,8 @@ services:
         dockerfile: service/Dockerfile
     image: dapla-noterepo-service:dev
     ports:
-      - 20110:10110
-      - 20118:10118
+      - 20130:10130
+      - 20138:10138
 
   dapla-spark-service:
     container_name: dapla-spark-service
