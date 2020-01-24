@@ -23,7 +23,7 @@ function die() {
     exit 1
 }
 
-validate_env DAPLA_PROJECT "Should be the absolute path to your dapla-project directory"
+validate_env DAPLA_PROJECT_HOME "Should be the absolute path to your dapla-project directory"
 validate "make --version" "make is not installed"
-validate "ls $DAPLA_PROJECT/dapla-spark-plugin/secret/gcs_sa_test.json" "Missing GCS service account file. Expected to find in $DAPLA_PROJECT/dapla-spark-plugin/secret/gcs_sa_test.json"
+validate "ls $DAPLA_PROJECT_HOME/dapla-spark-plugin/secret/gcs_sa_test.json" "Missing GCS service account file. Expected to find in $DAPLA_PROJECT/dapla-spark-plugin/secret/gcs_sa_test.json"
 echo "Localstack environment settings seems to be healthy ✅"
