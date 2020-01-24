@@ -4,6 +4,10 @@ SERVICE_CONTAINERS := dapla-catalog-service dapla-noterepo-service dapla-spark-s
 .PHONY: default
 default: | help
 
+.PHONY: sanity-check
+sanity-check: ## Perform sanity check of localstack environment settings
+	./bin/validate_localstack_env.sh
+
 .PHONY: update-all
 update-all: ## Update all repos from github (checkout/pull)
 	(cd .. && make update-all)
