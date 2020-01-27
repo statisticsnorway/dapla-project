@@ -22,7 +22,7 @@ build-all-docker: ## Build all docker containers
 
 .PHONY: build-all-mvn
 build-all-mvn: ## Build all maven projects
-	mvn -f ../pom.xml clean install -Dmaven.test.skip=true
+	mvn -f ../pom.xml clean install -U -Dmaven.test.skip=true
 
 .PHONY: start-all
 start-all: ## Start all docker containers

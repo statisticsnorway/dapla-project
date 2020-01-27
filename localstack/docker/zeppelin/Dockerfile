@@ -31,7 +31,5 @@ COPY dapla-spark-plugin/secret/gcs_sa_test.json /secret/gcs_sa_test.json
 COPY dapla-dlp-pseudo-func/target/dapla-dlp-pseudo-func-*-shaded.jar /zeppelin/lib/dapla-dlp-pseudo-func.jar
 COPY dapla-spark-plugin/target/dapla-spark-plugin-*-shaded.jar /zeppelin/lib/dapla-spark-plugin.jar
 
-VOLUME ["/gcloud/key.json"]
-
 WORKDIR /zeppelin
 CMD ["/env.sh"]

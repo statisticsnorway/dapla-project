@@ -80,7 +80,7 @@ put $spark '/dataset-meta?userId=user1' '{
   },
   "valuation": "SHIELDED",
   "state": "RAW",
-  "locations": ["gs://dev-datalager-store/datastore/skatt/person/rawdata-2019"]
+  "locations": ["file:///data/datastore/skatt/person/rawdata-2019"]
 }' 200
 
 ## dapla-catalog
@@ -90,3 +90,10 @@ get $catalog '/dataset/341b03d6-5be6-4c9b-b381-8cf692aa8830' 200
 ## dapla-spark
 ## read dataset meta
 get $spark '/dataset-meta?name=skatt.person.2019.rawdata&operation=READ&userId=user1' 200
+
+## Copy testdata to datastore folder
+target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019
+mkdir -p $target
+cp $(dirname $BASH_SOURCE)/../../../dapla-spark-plugin/data/dataset.parquet $target/.
+
+

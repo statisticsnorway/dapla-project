@@ -1309,40 +1309,8 @@
           "value": "out.format \u003d \u0027html\u0027, comment \u003d NA, echo \u003d FALSE, results \u003d \u0027asis\u0027, message \u003d F, warning \u003d F, fig.retina \u003d 2",
           "type": "textarea"
         },
-        "spark.ssb.gsim.ldsUrl": {
-          "value": "$LDS_GSIM_SPARK_LDS_URL",
-          "type": "string"
-        },
-        "spark.ssb.gsim.oauth.grantType": {
-          "value": "$LDS_GSIM_SPARK_OAUTH_GRANT_TYPE",
-          "type": "textarea"
-        },
-        "spark.ssb.gsim.oauth.clientId": {
-          "value": "$LDS_GSIM_SPARK_OAUTH_CLIENT_ID",
-          "type": "textarea"
-        },
-        "spark.ssb.gsim.oauth.clientSecret": {
-          "value": "$LDS_GSIM_SPARK_OAUTH_CLIENT_SECRET",
-          "type": "textarea"
-        },
-        "spark.ssb.gsim.oauth.userName": {
-          "value": "$LDS_GSIM_SPARK_OAUTH_USERNAME",
-          "type": "string"
-        },
-        "spark.ssb.gsim.location": {
-          "value": "$LDS_GSIM_SPARK_LOCATION",
-          "type": "string"
-        },
-        "spark.ssb.gsim.oauth.password": {
-          "value": "$LDS_GSIM_SPARK_OAUTH_PASSWORD",
-          "type": "password"
-        },
-        "spark.ssb.gsim.oauth.tokenUrl": {
-          "value": "$LDS_GSIM_SPARK_OAUTH_TOKEN_URL",
-          "type": "string"
-        },
-        "spark.ssb.dapla.gcs.storage": {
-          "value": "$DAPLA_GCS_STORAGE",
+       "spark.ssb.dapla.gcs.storage": {
+          "value": "$DAPLA_SPARK_GCS_STORAGE",
           "type": "string"
         },
         "spark.hadoop.fs.gs.impl": {
@@ -1354,8 +1322,24 @@
           "type": "string"
         },
         "spark.ssb.dapla.router.url": {
-          "value": "http://dapla-spark-service:10120/",
+          "value": "$DAPLA_SPARK_ROUTER_URL",
           "type": "string"
+        },
+        "spark.ssb.dapla.oauth.credentials.file": {
+          "value": "$DAPLA_SPARK_OAUTH_CREDENTIALS_FILE",
+          "type": "string"
+        },
+        "spark.ssb.dapla.oauth.tokenUrl": {
+          "value": "$DAPLA_SPARK_OAUTH_TOKEN_URL",
+          "type": "string"
+        },
+        "spark.ssb.dapla.oauth.clientId": {
+          "value": "$DAPLA_SPARK_OAUTH_CLIENT_ID",
+          "type": "string"
+        },
+        "spark.ssb.dapla.oauth.clientSecret": {
+          "value": "$DAPLA_SPARK_OAUTH_CLIENT_SECRET",
+          "type": "password"
         },
         "spark.hadoop.fs.gs.delegation.token.binding": {
           "value": "no.ssb.dapla.gcs.token.delegation.BrokerDelegationTokenBinding",

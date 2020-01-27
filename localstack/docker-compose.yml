@@ -68,6 +68,8 @@ services:
       - SPARK_LOCAL_IP=zeppelin
       - SPARK_PRINT_LAUNCH_COMMAND=true
       - ZEPPELIN_ADDR=0.0.0.0
+      - DAPLA_SPARK_GCS_STORAGE=file:///data/datastore
+      - DAPLA_SPARK_ROUTER_URL=http://dapla-spark-service:10120/
 
   jaeger:
     container_name: jaeger
