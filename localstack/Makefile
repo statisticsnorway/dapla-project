@@ -6,7 +6,7 @@ default: | help
 
 .PHONY: sanity-check
 sanity-check: ## Perform sanity check of localstack environment settings
-	./bin/validate_localstack_env.sh
+	./bin/validate-localstack-env.sh
 
 .PHONY: update-all
 update-all: ## Update all repos from github (checkout/pull)
