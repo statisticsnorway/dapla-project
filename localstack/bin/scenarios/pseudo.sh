@@ -55,7 +55,7 @@ get $auth '/access/user2?privilege=READ&namespace=demo.pseudo.raw&valuation=SENS
 get $catalog '/name/demo.pseudo.input'
 
 
-post $catalog '/name/demo.pseudo.input/e1aa16a0-73ab-47de-a301-6079618a4172' 200
+post $catalog '/name/demo.pseudo.input' '{"proposedId":"e1aa16a0-73ab-47de-a301-6079618a4172"}' 200
 
 ## check mapping
 get $catalog '/name/demo.pseudo.input' 200
