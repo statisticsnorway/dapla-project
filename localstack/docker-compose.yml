@@ -128,7 +128,9 @@ services:
       CATALOG_dash_SERVICE_PORT: 10118
       AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
       AUTH_dash_SERVICE_PORT: 10108
-      JAEGER_ENDPOINT: http://jaeger:14268/api/traces
+      TRACING_HOST: jaeger
+    depends_on:
+      - jaeger
 
   dapla-catalog-service:
     container_name: dapla-catalog-service
@@ -144,9 +146,10 @@ services:
       BIGTABLE_PORT: 9035
       AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
       AUTH_dash_SERVICE_PORT: 10108
-      JAEGER_ENDPOINT: http://jaeger:14268/api/traces
+      TRACING_HOST: jaeger
     depends_on:
       - bigtable
+      - jaeger
 
   dapla-auth-dataset-service:
     container_name: dapla-auth-dataset-service
@@ -161,7 +164,8 @@ services:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
       FLYWAY_URL: jdbc:postgresql://postgres:5432/rdc
-      JAEGER_ENDPOINT: http://jaeger:14268/api/traces
+      TRACING_HOST: jaeger
     depends_on:
       - postgres
+      - jaeger
 
