@@ -94,6 +94,4 @@ get $spark '/dataset-meta?name=skatt.person.2019.rawdata&operation=READ&userId=u
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019
 mkdir -p $target
-cp $(dirname $BASH_SOURCE)/../../../dapla-spark-plugin/data/dataset.parquet $target/.
-
-
+cp $(dirname $BASH_SOURCE)/../testdata/*.parquet $target/.
