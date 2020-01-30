@@ -1,0 +1,64 @@
+@startuml
+
+  package "dataset-access" {
+    () "GRPC" as da_proto
+    [dataset-access-service] as da_s
+    da_s - da_proto
+    da_s --> da_pg
+    database "Postgres" as da_pg {
+    }
+  }
+
+  package "catalog" {
+    () "GRPC" as ca_proto
+    [catalog-service] as ca_s
+    ca_s - ca_proto
+    ca_s -> da_proto
+    ca_s --> ca_bt
+    database "Bigtable" as ca_bt {
+    }
+  }
+
+  package "pseudo-keys" {
+    () "GRPC" as pk_proto
+    [secret-service] as ss_s
+    pk_proto - ss_s
+  }
+
+  package "spark-service" {
+    () "HTTP" as ss_http
+    [spark-service] as sp_s
+    sp_s - ss_http
+    sp_s --> ca_proto
+    sp_s --> da_proto
+    sp_s --> pk_proto
+  }
+
+  package "data-access" {
+    () "HTTP" as broker_http
+    [broker] as br_s
+    br_s - broker_http
+    br_s --> da_proto
+  }
+
+  database "Cloud Storage" as gcs {
+  }
+
+  package "hadoop" as pkg_haadop {
+    [yarn] as yarn
+    frame [spark] {
+      [gcs connector] as gcs_connector
+      [datasource] as datasource
+      datasource --> ss_http
+      gcs_connector ------> gcs
+      gcs_connector ----> broker_http
+      datasource --> broker_http
+    }
+  }
+
+  package "zeppelin" {
+    [Zeppelin] --> yarn
+  }
+
+
+@enduml

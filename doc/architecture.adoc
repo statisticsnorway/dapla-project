@@ -9,6 +9,18 @@ ifdef::env-github[]
 :toc-placement: preamble
 endif::[]
 
+== Component Diagram
+
+ifdef::env-github[]
+=== Components Overview
+image::img/components.png[Components Overview,1024]
+endif::[]
+
+ifndef::env-github[]
+=== Components Overview
+plantuml::components.puml[format=svg, alt="Components Overview", width=1024]
+endif::[]
+
 == Sequence Diagram
 
 ifdef::env-github[]
