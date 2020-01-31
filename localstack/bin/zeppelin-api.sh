@@ -1,15 +1,17 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+
+. $DAPLA_PROJECT_HOME/localstack/bin/validate.sh
 
 zeppelin_cookie_file=zeppelin-cookies.txt
 zeppelin_host=http://localhost:28010
 
-# $1 zeppelin username
-# $2 zeppelin password
+# $1: zeppelin username
+# $2: zeppelin password
 function zeppelin_login {
     status=$(curl -X POST -s -c "$zeppelin_cookie_file" -d "userName=$1&password=$2" "$zeppelin_host/api/login" | jq -r '.status')
     if [ "$status" != "OK" ]
     then
-        die ERROR "Zeppelin login failed for user '$1' ($status)."
+        fail ERROR "Zeppelin login failed for user '$1' ($status)." || return 1
     fi
 }
 
@@ -18,38 +20,34 @@ function zeppelin_logout {
 }
 
 function zeppelin_get {
-    zeppelin_request 'GET' $1
+    zeppelin_request 'GET' "$1" || return 1
 }
 
 function zeppelin_put {
-    zeppelin_request 'PUT' $1 $2
+    zeppelin_request 'PUT' "$1" "$2" || return 1
 }
 
 function zeppelin_post {
-    zeppelin_request 'POST' $1 $2
+    zeppelin_request 'POST' "$1" "$2" || return 1
 }
 
-function green {
-    printf '\e[32m%s\e[0m' $1
-}
-
-function red {
-    printf '\e[31m%s\e[0m' $1
-}
-
-function die() {
-    if [ "$1" = "ERROR" ]
+# $1: response json from zeppelin api
+function response_status {
+    local res="$1"
+    validate_json "$res"
+    # if [ $? -eq 0 $(validate_json ${res}) ]
+    if [ $? -eq 0 ]
     then
-        echo "$(red 'ERROR: ') $2" 1>&2 
+        local status=$(echo $res | jq -r '.status')
+        echo "$status"
     else
-        echo "$1$2" 1>&2 
+        echo "N/A"
     fi
-    exit 1
 }
 
-# $1 method
-# $2 api path, e.g "/api/interpreter"
-# $3 body (optional)
+# $1: method
+# $2: api path, e.g "/api/interpreter"
+# $3: body (optional)
 function zeppelin_request {
     local api_path=${2#/}
     if [ -z $3 ]
@@ -58,12 +56,21 @@ function zeppelin_request {
     else
         local curl_command="curl -X $1 -s -b $zeppelin_cookie_file -d '$3' $zeppelin_host/$api_path"
     fi
+
     local response=$(eval $curl_command)
-    local status=$(jq -r '.status' <<< $response)
-    if [ "$status" != "OK" ]
+
+    if [ -n "$response" ]
     then
-        die ERROR "Zeppelin request failed. Curl to reproduce:\n$curl_command"
+        echo "$response"
     fi
 
-    printf "%s" $response
+    status=$(response_status "${response}")
+    if [ "$status" = "OK" ]
+    then
+        return 0
+    else
+        fail ERROR "Zeppelin request failed. Curl to reproduce:\n$curl_command"
+        return 1
+    fi
+
 }
