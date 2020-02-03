@@ -11,4 +11,5 @@ dataset-access
 dapla-auth-dataset-protobuf
 dapla-secret-service
 dapla-secret-service-protobuf
+dapla-dlp-pseudo-conf-service
 dapla-dlp-pseudo-conf-protobuf
