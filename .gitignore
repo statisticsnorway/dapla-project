@@ -25,3 +25,5 @@ certs/
 /dapla-auth-dataset-protobuf/
 rawdata-converter-app-freg/
 rawdata-converter-app-sirius/
+/dapla-secret-service/
+/dapla-secret-service-protobuf/

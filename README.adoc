@@ -78,3 +78,5 @@ The provided "umbrella" `pom.xml` in this project allows you to conveniently ope
 * https://github.com/statisticsnorway/dapla-noterepo[dapla-noterepo]
 * https://github.com/statisticsnorway/dapla-spark[dapla-spark]
 * https://github.com/statisticsnorway/dapla-spark-plugin[dapla-spark-plugin]
+* https://github.com/statisticsnorway/dapla-secret-service[dapla-secret-service]
+* https://github.com/statisticsnorway/dapla-secret-service-protobuf[dapla-secret-service-protobuf]

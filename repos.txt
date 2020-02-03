@@ -9,3 +9,5 @@ dapla-spark
 dapla-spark-plugin
 dataset-access
 dapla-auth-dataset-protobuf
+dapla-secret-service
+dapla-secret-service-protobuf

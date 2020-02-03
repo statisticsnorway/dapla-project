@@ -20,6 +20,8 @@
         <module>dapla-spark-plugin</module>
         <module>dapla-auth-dataset-protobuf</module>
         <module>dataset-access</module>
+        <module>dapla-secret-service</module>
+        <module>dapla-secret-service-protobuf</module>
     </modules>
 
 </project>
