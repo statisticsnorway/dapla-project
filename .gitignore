@@ -29,3 +29,5 @@ rawdata-converter-app-sirius/
 /dapla-secret-service-protobuf/
 /dapla-dlp-pseudo-conf-service/
 /dapla-dlp-pseudo-conf-protobuf/
+/data-access/
+/data-access-protobuf/

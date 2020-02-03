@@ -169,3 +169,21 @@ services:
       - postgres
       - jaeger
 
+  data-access-service:
+    container_name: data-access-service
+    build:
+      context: ../data-access
+      dockerfile: Dockerfile
+    image: data-access-service:dev
+    ports:
+      - 20140:10140
+      - 20148:10148
+    volumes:
+      - ../dapla-spark-plugin/secret:/secret
+    environment:
+      TRACING_HOST: jaeger
+      DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json
+    depends_on:
+      - postgres
+      - jaeger
+
