@@ -22,6 +22,7 @@
         <module>dataset-access</module>
         <module>dapla-secret-service</module>
         <module>dapla-secret-service-protobuf</module>
+        <module>dapla-dlp-pseudo-conf-protobuf</module>
     </modules>
 
 </project>
