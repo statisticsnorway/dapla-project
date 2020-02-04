@@ -1,0 +1,31 @@
+@startuml
+
+[yarn] as yarn
+[Zeppelin] as zeppelin
+[dataset-access-service] as da_s
+[catalog-service] as catalog
+[spark-service] as sp_s
+[broker] as broker
+database "Cloud Storage" as gcs {
+}
+frame "Spark Worker" as worker {
+  [datasource] as datasource
+  [gcs connector] as gcs_connector
+}
+
+zeppelin -u-> yarn : 1. submit job\n (user-token)
+yarn -> worker : 2. distribute job\n (user-token)
+datasource --> sp_s : 3. prepare write\n (user-token)
+sp_s --> catalog : 4. get metadata\n (user-token)
+catalog --> da_s : 5. has access?\n (user-token)
+sp_s --> da_s : 6. has-access-to-gcs?\n (user-token)
+gcs_connector --> broker : 7. get access-token\n (user-token)
+broker --> catalog : 8. get metadata\n (user-token)
+catalog --> da_s : 9. has access?\n (user-token)
+broker --> da_s : 10. has-access?\n (user-token)
+gcs_connector --> gcs : 11. write dataset\n (access-token)
+datasource --> sp_s : 12. write metadata\n (user-token)
+sp_s --> catalog : 13. write metadata\n (user-token)
+catalog --> da_s : 14. has access?\n (user-token)
+
+@enduml
