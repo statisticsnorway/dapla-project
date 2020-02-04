@@ -9,19 +9,20 @@
 database "Cloud Storage" as gcs {
 }
 frame "Spark Worker" as worker {
-  [datasource] as datasource
-  [gcs connector] as gcs_connector
+  frame "Spark-plugin" {
+    [datasource] as datasource
+    [gcs connector] as gcs_connector
+  }
 }
 
 zeppelin -u-> yarn : 1. submit job\n (user-token)
 yarn -> worker : 2. distribute job\n (user-token)
 datasource --> sp_s : 3. prepare read\n (user-token)
 sp_s --> catalog : 4. get metadata\n (user-token)
-sp_s --> da_s : 5. has-access?\n (user-token)
-gcs_connector --> broker : 6. get access-token\n (user-token)
-broker --> catalog : 7. get metadata\n (user-token)
-broker --> da_s : 8. has-access?\n (user-token)
-gcs_connector --> gcs : 9. read dataset\n (access-token)
+gcs_connector --> broker : 5. get access-token\n (user-token)
+broker --> catalog : 6. get metadata\n (user-token)
+broker --> da_s : 7. has-access?\n (user-token)
+gcs_connector --> gcs : 8. read dataset\n (access-token)
 
 
 @enduml

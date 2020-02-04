@@ -7,7 +7,7 @@
 * All services must have a seperat keycloak client-id and pass the correlating token when integrating with other services
 * All integrations must pass the token in order to identify the user
   * all services must validate incoming the user token
-*  
+*  Remove access-check in spark-service on prepare-read and prepare-write. This check is redundant, as it is also done by broker before revealing GCS access-key.
 
 ## Documentation topics
 
