@@ -22,8 +22,6 @@
         <module>dataset-access</module>
         <module>dapla-secret-service</module>
         <module>dapla-secret-service-protobuf</module>
-        <module>dapla-dlp-pseudo-conf-service</module>
-        <module>dapla-dlp-pseudo-conf-protobuf</module>
         <module>data-access-protobuf</module>
         <module>data-access</module>
     </modules>
