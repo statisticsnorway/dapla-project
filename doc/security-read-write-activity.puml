@@ -1,0 +1,25 @@
+@startuml
+
+start
+:Execute Job;
+:Get metadata;
+if () then (read)
+  :Get access-token;
+  if (read allowed) then (yes)
+    :Read data;
+  else (no)
+    stop
+  endif
+  stop
+else (write)
+  :Get access-token;
+  if (write allowed) then (yes)
+    :Write data;
+    :Update metadata;
+  else (no)
+    stop
+  endif
+  stop
+endif
+
+@enduml
