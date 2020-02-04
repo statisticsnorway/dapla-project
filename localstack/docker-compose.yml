@@ -183,6 +183,7 @@ services:
     environment:
       TRACING_HOST: jaeger
       DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json
+      DATA_ACCESS_SERVICE_DEFAULT_LOCATION: gs://dev-datalager-store
     depends_on:
       - postgres
       - jaeger
