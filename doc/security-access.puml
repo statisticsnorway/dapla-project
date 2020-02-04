@@ -1,8 +1,20 @@
 @startuml
 
 start
-:Zeppelin;
-:Yarn/Spark;
+:Execute Job;
+:Get metadata;
+if (execute allowed) then (yes)
+  if () then (read)
+    :Get GCS\nread-access-token;
+    :Read data;
+  else (write)
+    :Get GCS\nwrite-access-token;
+    :Write data;
+    :Update metadata;
+  endif
+else (no)
+  stop
+endif
 stop
 
 

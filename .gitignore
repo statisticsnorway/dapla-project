@@ -23,6 +23,8 @@ certs/
 /dapla-spark-plugin/
 /dataset-access/
 /dapla-auth-dataset-protobuf/
+/data-access-protobuf/
+/data-access/
 rawdata-converter-app-freg/
 rawdata-converter-app-sirius/
 /dapla-secret-service/
