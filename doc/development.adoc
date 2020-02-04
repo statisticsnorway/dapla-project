@@ -43,6 +43,12 @@ endif::[]
 | 10138
 |
 | 20138
+
+| data-access-service
+| 10140
+| 10148
+| 20140
+| 20148
 |===
 
 [cols="4,4,1,1", options="header"]
@@ -72,4 +78,10 @@ endif::[]
 | dapla-notes.dapla.svc.cluster.local
 |
 | 10138
+
+| data-access.staging-bip-app.ssb.no
+| data-access.dapla.svc.cluster.local
+|
+| 10140
+| 10148
 |===
