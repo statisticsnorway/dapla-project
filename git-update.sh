@@ -12,12 +12,32 @@ function clone {
     handle_response
 }
 
+function green {
+    printf '\e[32m%s\e[0m' "$1"
+}
+
+function red {
+    printf '\e[31m%s\e[0m' "$1"
+}
+
 function handle_response {
     if [ $? -eq 0 ]
     then
-        printf '\e[32m%s\e[0m\n' OK
+        case "$output" in
+            *"up-to-date"*)
+                echo $(green "Already up-to-date")
+                ;;
+            *"Cloning"*)
+                echo $(green "OK")
+                ;;
+            *)
+                echo $(green "OK")
+                printf "$output\n\n"
+                ;;
+        esac
     else
-        printf '\e[31m%s\e[0m\n%s\n\n' ERROR "$output"
+        echo $(red "ERROR")
+        printf "$output\n\n"
     fi
 }
 
