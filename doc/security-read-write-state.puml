@@ -1,0 +1,25 @@
+@startuml
+
+state "Consistent" as c {
+}
+
+state "Inconsistent" as i {
+  state "uuid\nassigned" as mni
+  state "parquet\nwritten" as pw
+  state "catalog\nupdated" as mu
+  state "lineage\nupdated" as lin
+  state "failed" as f
+  state "saga\nstarted" as ss
+  mni -> pw : write\nparquet
+  mni -l-> f : failed to write parquet
+  f -> c : cleanup
+  pw --> ss : saga start
+  pw -l-> f : failed to start saga
+  ss -l-> mu : update\ncatalog
+  mu -l-> lin : update\nlineage
+  lin -u-> c : saga end
+}
+
+c -> mni : write
+
+@enduml
