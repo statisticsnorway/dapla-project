@@ -16,7 +16,6 @@ function validate_silently {
 }
 
 function validate {
-echo "KEN>"
     echo "$1"
     eval $1
     if [ $? -ne 0 ]; then
