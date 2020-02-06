@@ -23,6 +23,20 @@
     () "GRPC" as pk_proto
     [secret-service] as ss_s
     pk_proto - ss_s
+    ss_s --> ss_pg
+    ss_s --> da_proto
+    database "Postgres" as ss_pg {
+    }
+  }
+
+  package "lineage" {
+    () "GRPC" as lin_proto
+    [lineage] as lin_s
+    lin_s - lin_proto
+    lin_s --> lin_neo
+    lin_s --> da_proto
+    database "Neo4j" as lin_neo {
+    }
   }
 
   package "spark-service" {
@@ -30,8 +44,9 @@
     [spark-service] as sp_s
     sp_s - ss_http
     sp_s --> ca_proto
-    sp_s --> da_proto
+    sp_s ---> da_proto
     sp_s --> pk_proto
+    sp_s --> lin_proto
   }
 
   package "data-access" {
@@ -41,23 +56,33 @@
     br_s --> da_proto
   }
 
-  database "Cloud Storage" as gcs {
+  database "Google\nCloud Storage" as gcs {
   }
 
-  package "hadoop" as pkg_haadop {
-    [yarn] as yarn
-    frame [spark] {
-      [gcs connector] as gcs_connector
-      [datasource] as datasource
-      datasource --> ss_http
-      gcs_connector ------> gcs
-      gcs_connector ----> broker_http
-      datasource --> broker_http
+  cloud "dataproc" as pkg_haadop {
+    [Yarn\nResource-\nManager] as yarn
+    node "Master" as masternode {
+      frame "Zeppelin\nSpark\nInterpreter" as interpreter {
+        frame "Job" as job {
+        }
+      }
+    }
+    node "Worker" as worker {
+      frame "Spark Executor" as executor {
+        frame "Spark Task" as task {
+          [datasource] as datasource
+          datasource --> ss_http
+          [gcs connector] as gcs_connector_w
+          gcs_connector_w ---> gcs
+          gcs_connector_w ----> broker_http
+          datasource --> broker_http
+        }
+      }
     }
   }
 
   package "zeppelin" {
-    [Zeppelin] --> yarn
+    [Zeppelin] -- interpreter
   }
 
 
