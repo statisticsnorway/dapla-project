@@ -1,5 +1,5 @@
 DATABASE_CONTAINERS := postgres bigtable
-SERVICE_CONTAINERS := dapla-catalog-service dapla-noterepo-service dapla-spark-service dapla-auth-dataset-service
+SERVICE_CONTAINERS := dapla-catalog-service dapla-noterepo-service dapla-spark-service dapla-auth-dataset-service dapla-secret-service
 
 .PHONY: default
 default: | help

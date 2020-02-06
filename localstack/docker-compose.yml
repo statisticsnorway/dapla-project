@@ -169,6 +169,27 @@ services:
       - postgres
       - jaeger
 
+  dapla-secret-service:
+    container_name: dapla-secret-service
+    build:
+      context: ../dapla-secret-service
+      dockerfile: Dockerfile
+    image: dapla-secret-service:dev
+    ports:
+      - 20150:10150
+      - 20158:10158
+    environment:
+      PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
+      PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
+      PGPOOL_CONNECT_dash_OPTIONS_DATABASE: rdc
+      PGPOOL_CONNECT_dash_OPTIONS_USER: rdc
+      PGPOOL_CONNECT_dash_OPTIONS_PASSWORD: rdc
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/rdc
+      FLYWAY_USER: rdc
+      FLYWAY_PASSWORD: rdc
+    depends_on:
+      - postgres
+
   data-access-service:
     container_name: data-access-service
     build:
