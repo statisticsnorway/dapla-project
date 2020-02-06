@@ -49,6 +49,12 @@ endif::[]
 | 10148
 | 20140
 | 20148
+
+| dapla-secret-service
+| 10150
+| 10158
+| 20150
+| 20158
 |===
 
 [cols="4,4,1,1", options="header"]
