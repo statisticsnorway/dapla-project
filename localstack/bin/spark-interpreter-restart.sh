@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source $DAPLA_PROJECT_HOME/localstack/bin/_zeppelin-api.sh
+source $DAPLA_PROJECT_HOME/localstack/bin/zeppelin-api.sh
 
 zeppelin_login admin password1 || exit 1
 printf "Restarting Spark interpreter... "
