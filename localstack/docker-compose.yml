@@ -97,7 +97,7 @@ services:
     ports:
       - 25432:5432
     volumes:
-      - ../dataset-access/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./docker/postgres/init-db.sql:/docker-entrypoint-initdb.d/init.sql
 
   bigtable:
     container_name: bigtable
