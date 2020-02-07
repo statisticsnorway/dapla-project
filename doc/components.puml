@@ -13,7 +13,7 @@
     () "GRPC" as ca_proto
     [catalog-service] as ca_s
     ca_s - ca_proto
-    ca_s -> da_proto
+    ca_s --> da_proto
     ca_s --> ca_bt
     database "Bigtable" as ca_bt {
     }
@@ -25,6 +25,7 @@
     pk_proto - ss_s
     ss_s --> ss_pg
     ss_s --> da_proto
+    ss_s --> ca_proto
     database "Postgres" as ss_pg {
     }
   }
@@ -33,6 +34,7 @@
     () "GRPC" as lin_proto
     [lineage] as lin_s
     lin_s - lin_proto
+    lin_s --> ca_proto
     lin_s --> lin_neo
     lin_s --> da_proto
     database "Neo4j" as lin_neo {
@@ -44,8 +46,6 @@
     [spark-service] as sp_s
     sp_s - ss_http
     sp_s --> ca_proto
-    sp_s ---> da_proto
-    sp_s --> pk_proto
     sp_s --> lin_proto
   }
 
@@ -54,6 +54,8 @@
     [broker] as br_s
     br_s - broker_http
     br_s --> da_proto
+    database "Key Vault" as broker_pg {
+    }
   }
 
   database "Google\nCloud Storage" as gcs {
@@ -76,6 +78,7 @@
           gcs_connector_w ---> gcs
           gcs_connector_w ----> broker_http
           datasource --> broker_http
+          datasource --> ca_proto
         }
       }
     }
