@@ -181,12 +181,12 @@ services:
     environment:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
-      PGPOOL_CONNECT_dash_OPTIONS_DATABASE: rdc
-      PGPOOL_CONNECT_dash_OPTIONS_USER: rdc
-      PGPOOL_CONNECT_dash_OPTIONS_PASSWORD: rdc
-      FLYWAY_URL: jdbc:postgresql://postgres:5432/rdc
-      FLYWAY_USER: rdc
-      FLYWAY_PASSWORD: rdc
+      PGPOOL_CONNECT_dash_OPTIONS_DATABASE: secret_service
+      PGPOOL_CONNECT_dash_OPTIONS_USER: secret_service
+      PGPOOL_CONNECT_dash_OPTIONS_PASSWORD: secret_service
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/secret_service
+      FLYWAY_USER: secret_service
+      FLYWAY_PASSWORD: secret_service
     depends_on:
       - postgres
 
