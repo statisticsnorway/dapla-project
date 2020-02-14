@@ -2,7 +2,7 @@
 
 component "User Access" as user_access
 component "Catalog" as catalog
-component "Secret Service" as secret_service
+component "Pseudonymization" as pseudo
 component "Lineage" as lineage
 component "Data Access" as data_access
 database "Linked Data Store" as lds {
@@ -25,24 +25,24 @@ dataproc ----> gcs
 dataproc ----> data_access
 
 component "External\nDatasource" as source
-component [Meta Governor] as governor
+component [Governor] as governor
 queue "Google\nPubSub" as pubsub {
 }
 queue "Saga Log" as sagalog {
 }
 cloud Collection {
-    frame "Nginx\nSecure proxy" as sec_proxy {
-        file "Client Certificate" as client_cert
+    component "Secure proxy" as sec_proxy {
+        card "Client Certificate" as client_cert
     }
-    component "Data Collector" as collector
+    component "Collector" as collector
     queue "Rawdata" as rawdata {
     }
     component "Converter" as converter
     collector -u-> sec_proxy
     collector ..> rawdata : payload-\nencryption
     converter ..> rawdata
-    converter -> gcs : "    write"
-    converter --> secret_service
+    converter -> gcs : "      write"
+    converter --> pseudo
 }
 
 governor --> gcs
