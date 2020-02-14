@@ -1,0 +1,35 @@
+@startuml
+database "Google\nCloud Storage" as gcs {
+}
+component "Data Access" as data_access
+cloud "dataproc" as pkg_haadop {
+    [Yarn\nResource-\nManager] as yarn
+    node "Master" as masternode {
+        frame "Zeppelin\nSpark\nInterpreter" as interpreter {
+            entity "Job" as job
+        }
+    }
+    node "Worker" as worker {
+        frame "Spark Executor" as executor {
+            frame "Spark Task" as task {
+                component [datasource] as datasource
+                component [gcs connector] as gcs_connector_w
+                gcs_connector_w -----> gcs
+                gcs_connector_w ---> data_access : user-\ntoken
+            }
+        }
+    }
+    yarn --> executor
+}
+component "Zeppelin" as zeppelin
+zeppelin -- interpreter
+
+component [Meta Governor] as governor
+queue "Google\nPubSub" as pubsub {
+}
+
+governor --> gcs
+gcs .> pubsub : object-created
+governor .> pubsub : subscribe
+
+@enduml
