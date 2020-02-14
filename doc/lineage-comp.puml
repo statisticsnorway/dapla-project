@@ -1,0 +1,14 @@
+@startuml
+component "Catalog" as ca_s
+component "Dataset Access" as da_s
+package "lineage" {
+    () "GRPC" as lin_proto
+    component [lineage] as lin_s
+    lin_s - lin_proto
+    lin_s --> ca_s
+    lin_s --> lin_neo
+    lin_s --> da_s
+    database "Neo4j" as lin_neo {
+    }
+}
+@enduml

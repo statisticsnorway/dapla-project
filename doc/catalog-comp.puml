@@ -1,0 +1,12 @@
+@startuml
+component "Dataset Access" as da_s
+package "catalog" {
+    () "GRPC" as ca_proto
+    component [catalog-service] as ca_s
+    ca_s - ca_proto
+    ca_s --> da_s
+    ca_s --> ca_bt
+    database "Bigtable" as ca_bt {
+    }
+}
+@enduml

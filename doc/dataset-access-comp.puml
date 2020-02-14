@@ -1,0 +1,10 @@
+@startuml
+package "dataset-access" {
+    () "GRPC" as da_proto
+    component [dataset-access-service] as da_s
+    da_s - da_proto
+    da_s --> da_pg
+    database "Postgres" as da_pg {
+    }
+}
+@enduml

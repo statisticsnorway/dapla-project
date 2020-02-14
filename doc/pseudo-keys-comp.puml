@@ -1,0 +1,10 @@
+@startuml
+package "pseudo-keys" {
+    () "GRPC" as pk_proto
+    component [secret-service] as ss_s
+    pk_proto - ss_s
+    ss_s --> ss_pg
+    database "Postgres" as ss_pg {
+    }
+}
+@enduml

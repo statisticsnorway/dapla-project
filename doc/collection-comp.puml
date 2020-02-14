@@ -1,0 +1,36 @@
+@startuml
+
+component "External\nDatasource" as source
+component [Meta Governor] <<Saga Execution Coordinator>> as governor
+component [Catalog] as catalog
+component [Lineage] as lineage
+database "Google\nCloud Storage" as gcs
+queue "Google\nPubSub" as pubsub {
+}
+queue "Saga Log" as sagalog {
+}
+cloud Collection {
+  frame "Nginx\nSecure proxy" as sec_proxy {
+    file "Client Certificate" as client_cert
+  }
+  component [Data Collector] as collector
+  queue "Rawdata" as rawdata {
+  }
+  component [Converter] as converter
+  component [Pseudo Keys] as pseudokeys
+}
+
+collector -u-> sec_proxy
+collector ..> rawdata : publish with\npayload-\nencryption
+converter ..> rawdata : subscribe with\npayload-\ndecryption
+converter --> gcs : create-\nonly
+converter --> pseudokeys
+governor --> gcs : read-\nonly
+governor --> lineage
+governor --> catalog
+gcs .> pubsub : object-created\nevent
+governor .> pubsub : subscribe
+governor -> sagalog : append
+sec_proxy -u-> source
+
+@enduml
