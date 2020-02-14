@@ -2,7 +2,7 @@
 
   package "dataset-access" {
     () "GRPC" as da_proto
-    [dataset-access-service] as da_s
+    component [dataset-access-service] as da_s
     da_s - da_proto
     da_s --> da_pg
     database "Postgres" as da_pg {
@@ -11,7 +11,7 @@
 
   package "catalog" {
     () "GRPC" as ca_proto
-    [catalog-service] as ca_s
+    component [catalog-service] as ca_s
     ca_s - ca_proto
     ca_s --> da_proto
     ca_s --> ca_bt
@@ -21,7 +21,7 @@
 
   package "pseudo-keys" {
     () "GRPC" as pk_proto
-    [secret-service] as ss_s
+    component [secret-service] as ss_s
     pk_proto - ss_s
     ss_s --> ss_pg
     ss_s --> da_proto
@@ -32,7 +32,7 @@
 
   package "lineage" {
     () "GRPC" as lin_proto
-    [lineage] as lin_s
+    component [lineage] as lin_s
     lin_s - lin_proto
     lin_s --> ca_proto
     lin_s --> lin_neo
@@ -43,7 +43,7 @@
 
   package "spark-service" {
     () "HTTP" as ss_http
-    [spark-service] as sp_s
+    component [spark-service] as sp_s
     sp_s - ss_http
     sp_s --> ca_proto
     sp_s --> lin_proto
@@ -51,7 +51,7 @@
 
   package "data-access" {
     () "HTTP" as broker_http
-    [broker] as br_s
+    component [broker] as br_s
     br_s - broker_http
     br_s --> da_proto
     database "Key Vault" as broker_pg {
@@ -72,9 +72,9 @@
     node "Worker" as worker {
       frame "Spark Executor" as executor {
         frame "Spark Task" as task {
-          [datasource] as datasource
+          component [datasource] as datasource
+          component [gcs connector] as gcs_connector_w
           datasource --> ss_http
-          [gcs connector] as gcs_connector_w
           gcs_connector_w ---> gcs
           gcs_connector_w ----> broker_http
           datasource --> broker_http
