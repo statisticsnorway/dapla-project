@@ -21,14 +21,18 @@ data_access --> catalog
 data_access --> user_access
 
 zeppelin -- dataproc
-dataproc ----> gcs
-dataproc ----> data_access
+dataproc ----> gcs : \n\nread/\nwrite
+dataproc ----> data_access : get GCS\ntoken
 
 component "External\nDatasource" as source
-component [Governor] as governor
-queue "Google\nPubSub" as pubsub {
+component "Metadata\nDistributor" as distributor
+queue "GCS\nEvents" as gcsevents {
 }
-queue "Saga Log" as sagalog {
+queue "Catalog\nMetadata" as catalogQ {
+}
+queue "LDS\nMetadata" as ldsQ {
+}
+queue "Lineage\nMetadata" as lineageQ {
 }
 cloud Collection {
     component "Secure proxy" as sec_proxy {
@@ -45,13 +49,15 @@ cloud Collection {
     converter --> pseudo
 }
 
-governor --> gcs
-governor --> lineage
-governor --> catalog
-gcs .> pubsub : object-created
-governor .> pubsub : subscribe
-governor -> sagalog : append
-governor ---> lds
-sec_proxy -u-> source
+distributor --> gcs : read
+distributor ..> lineageQ : pub
+distributor ..> catalogQ : pub
+distributor ..> ldsQ : pub
+gcs .> gcsevents : object-created
+distributor .> gcsevents : sub
+lds .u.> ldsQ : sub
+catalog .u.> catalogQ : sub
+lineage .u.> lineageQ : sub
+sec_proxy .u.> source
 
 @enduml
