@@ -163,7 +163,7 @@ services:
     environment:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
-      FLYWAY_URL: jdbc:postgresql://postgres:5432/rdc
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/dataset_access
       TRACING_HOST: jaeger
     depends_on:
       - postgres
