@@ -16,12 +16,9 @@
         <module>dapla-helidon-testing</module>
         <module>dapla-dlp-pseudo-func</module>
         <module>dapla-noterepo</module>
-        <module>dapla-spark</module>
         <module>dapla-spark-plugin</module>
         <module>dapla-auth-dataset-protobuf</module>
         <module>dataset-access</module>
-        <module>dapla-secret-service</module>
-        <module>dapla-secret-service-protobuf</module>
         <module>data-access-protobuf</module>
         <module>data-access</module>
         <module>dapla-readiness</module>

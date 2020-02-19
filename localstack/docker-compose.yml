@@ -99,33 +99,6 @@ services:
     volumes:
       - ./docker/postgres/init-db.sql:/docker-entrypoint-initdb.d/init.sql
 
-  dapla-noterepo-service:
-    container_name: dapla-noterepo-service
-    build:
-      context: ../dapla-noterepo
-      dockerfile: service/Dockerfile
-    image: dapla-noterepo-service:dev
-    ports:
-      - 20138:10138
-
-  dapla-spark-service:
-    container_name: dapla-spark-service
-    build:
-      context: ../dapla-spark
-      dockerfile: service/Dockerfile
-    image: dapla-spark-service:dev
-    ports:
-      - 20120:10120
-      - 20128:10128
-    environment:
-      CATALOG_dash_SERVICE_HOST: dapla-catalog-service
-      CATALOG_dash_SERVICE_PORT: 10118
-      AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
-      AUTH_dash_SERVICE_PORT: 10108
-      TRACING_HOST: jaeger
-    depends_on:
-      - jaeger
-
   dapla-catalog-service:
     container_name: dapla-catalog-service
     build:
@@ -164,27 +137,6 @@ services:
       - postgres
       - jaeger
 
-  dapla-secret-service:
-    container_name: dapla-secret-service
-    build:
-      context: ../dapla-secret-service
-      dockerfile: Dockerfile
-    image: dapla-secret-service:dev
-    ports:
-      - 20150:10150
-      - 20158:10158
-    environment:
-      PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
-      PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
-      PGPOOL_CONNECT_dash_OPTIONS_DATABASE: secret_service
-      PGPOOL_CONNECT_dash_OPTIONS_USER: secret_service
-      PGPOOL_CONNECT_dash_OPTIONS_PASSWORD: secret_service
-      FLYWAY_URL: jdbc:postgresql://postgres:5432/secret_service
-      FLYWAY_USER: secret_service
-      FLYWAY_PASSWORD: secret_service
-    depends_on:
-      - postgres
-
   data-access-service:
     container_name: data-access-service
     build:
@@ -202,5 +154,19 @@ services:
       DATA_ACCESS_SERVICE_DEFAULT_LOCATION: gs://dev-datalager-store
     depends_on:
       - postgres
+      - jaeger
+
+  metadata-distributor:
+    container_name: metadata-distributor
+    build:
+      context: ../metadata-distributor
+      dockerfile: Dockerfile
+    image: metadata-distributor:dev
+    ports:
+      - 20160:10160
+      - 20168:10168
+    environment:
+      TRACING_HOST: jaeger
+    depends_on:
       - jaeger
 

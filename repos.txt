@@ -5,12 +5,9 @@ dapla-helidon-application
 dapla-helidon-parent
 dapla-helidon-testing
 dapla-noterepo
-dapla-spark
 dapla-spark-plugin
 dataset-access
 dapla-auth-dataset-protobuf
-dapla-secret-service
-dapla-secret-service-protobuf
 dapla-readiness
 data-access-protobuf
 data-access
