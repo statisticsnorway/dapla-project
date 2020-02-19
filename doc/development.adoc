@@ -55,6 +55,12 @@ endif::[]
 | 10158
 | 20150
 | 20158
+
+| metadata-distributor
+| 10160
+| 10168
+| 20160
+| 20168
 |===
 
 [cols="4,4,1,1", options="header"]

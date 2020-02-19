@@ -25,6 +25,9 @@
         <module>data-access-protobuf</module>
         <module>data-access</module>
         <module>dapla-readiness</module>
+        <module>dataset-api</module>
+        <module>metadata-distributor</module>
+        <module>metadata-distributor-protobuf</module>
     </modules>
 
 </project>

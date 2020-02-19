@@ -32,3 +32,6 @@ rawdata-converter-app-sirius/
 /data-access/
 /data-access-protobuf/
 /dapla-readiness/
+/dataset-api/
+/metadata-distributor-protobuf/
+/metadata-distributor/

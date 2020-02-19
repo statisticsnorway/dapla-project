@@ -14,3 +14,6 @@ dapla-secret-service-protobuf
 dapla-readiness
 data-access-protobuf
 data-access
+dataset-api
+metadata-distributor
+metadata-distributor-protobuf
