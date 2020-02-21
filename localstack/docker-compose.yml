@@ -71,6 +71,15 @@ services:
       - DAPLA_SPARK_GCS_STORAGE=file:///data/datastore
       - DAPLA_SPARK_ROUTER_URL=http://dapla-spark-service:10120/
 
+  pubsub:
+    container_name: pubsub
+    image: pubsub-emulator:latest
+    build:
+      context: docker/pubsub-emulator
+      dockerfile: docker/pubsub-emulator/Dockerfile
+    ports:
+      - 8538:8538
+
   jaeger:
     container_name: jaeger
     image: jaegertracing/all-in-one:1.16
@@ -166,6 +175,7 @@ services:
       - 20160:10160
       - 20168:10168
     environment:
+      PUBSUB_EMULATOR_HOST: pubsub:8538
       TRACING_HOST: jaeger
     depends_on:
       - jaeger
