@@ -20,7 +20,10 @@ catalog -> user_access
 data_access --> catalog
 data_access --> user_access
 
+database "GitHub" as github
+
 zeppelin -- dataproc
+zeppelin -> github
 dataproc ----> gcs : \n\nread/\nwrite
 dataproc ----> data_access : get GCS\ntoken
 
