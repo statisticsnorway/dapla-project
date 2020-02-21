@@ -76,7 +76,7 @@ services:
     image: pubsub-emulator:latest
     build:
       context: docker/pubsub-emulator
-      dockerfile: docker/pubsub-emulator/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - 8538:8538
 
