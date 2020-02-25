@@ -6,7 +6,7 @@ FROM apache/zeppelin:0.8.2
 # (Build flags: -B -e -Dhadoop.version=2.9.2 -Dyarn.version=2.9.2 -Dzookeeper.version=3.4.13
 #   -Dprotobuf.version=2.5.0 -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pscala-2.11 -Pflume -Phive -Phive-thriftserver -Pkubernetes)
 #RUN wget http://archive.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz \
-RUN wget https://apache.uib.no/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz \
+RUN wget https://downloads.apache.org/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz \
 &&  tar -xzf spark-2.4.5-bin-hadoop2.7.tgz \
 &&  mv spark-2.4.5-bin-hadoop2.7 /opt/spark
 
