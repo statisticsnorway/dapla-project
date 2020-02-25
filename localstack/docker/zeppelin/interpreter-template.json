@@ -1321,8 +1321,8 @@
           "value": "true",
           "type": "string"
         },
-        "spark.ssb.dapla.router.url": {
-          "value": "$DAPLA_SPARK_ROUTER_URL",
+        "spark.ssb.dapla.data.access.url": {
+          "value": "$DAPLA_SPARK_DATA_ACCESS_URL",
           "type": "string"
         },
         "spark.ssb.dapla.oauth.credentials.file": {
