@@ -85,6 +85,6 @@ post $catalog '/rpc/CatalogService/listByPrefix' '{
 }' 200
 
 ## Copy testdata to datastore folder
-target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019
+target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019/0
 mkdir -p $target
 cp $(dirname $BASH_SOURCE)/../testdata/*.parquet $target/.
