@@ -127,6 +127,8 @@ services:
     depends_on:
       - postgres
       - jaeger
+      - pubsub
+      - dapla-auth-dataset-service
 
   dapla-auth-dataset-service:
     container_name: dapla-auth-dataset-service
@@ -162,8 +164,9 @@ services:
       DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json
       DATA_ACCESS_SERVICE_DEFAULT_LOCATION: gs://dev-datalager-store
     depends_on:
-      - postgres
       - jaeger
+      - dapla-auth-dataset-service
+      - dapla-catalog-service
 
   metadata-distributor:
     container_name: metadata-distributor
@@ -179,4 +182,5 @@ services:
       TRACING_HOST: jaeger
     depends_on:
       - jaeger
+      - pubsub
 
