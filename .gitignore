@@ -29,9 +29,8 @@ rawdata-converter-app-freg/
 rawdata-converter-app-sirius/
 /dapla-secret-service/
 /dapla-secret-service-protobuf/
-/data-access/
-/data-access-protobuf/
 /dapla-readiness/
 /dataset-api/
 /metadata-distributor-protobuf/
 /metadata-distributor/
+/google-pubsub-client/
