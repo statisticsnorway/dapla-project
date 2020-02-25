@@ -60,10 +60,6 @@ get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITI
 ## should not have access
 get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=RAW' 403
 
-
-## check listing
-#post $catalog '/rpc/CatalogService/listByPrefix' 200
-
 ## create dataset
 post $catalog '/rpc/CatalogService/save' '{
   "dataset": {
@@ -81,6 +77,12 @@ post $catalog '/rpc/CatalogService/save' '{
 ## dapla-catalog
 ## read dataset
 post $catalog '/rpc/CatalogService/get' '{"path": "/skatt/person/rawdata-2019"}' 200
+
+## check listing
+post $catalog '/rpc/CatalogService/listByPrefix' '{
+  "prefix": "/skatt/person",
+  "limit": 10
+}' 200
 
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019
