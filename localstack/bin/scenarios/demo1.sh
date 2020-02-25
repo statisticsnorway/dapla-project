@@ -2,7 +2,7 @@
 
 # dataset-access
 # create role for rawdata
-put $auth /role/skatt.person.rawdata '{
+post $auth /rpc/RoleService/putRole '{"role":{
   "roleId": "skatt.person.rawdata",
   "privileges": [
     "CREATE",
@@ -15,10 +15,10 @@ put $auth /role/skatt.person.rawdata '{
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
-}' 201
+}}' 200
 
 # create role for indata
-put $auth /role/skatt.person.inndata '{
+post $auth /rpc/RoleService/putRole '{"role":{
   "roleId": "skatt.person.inndata",
   "privileges": [
     "CREATE",
@@ -31,12 +31,12 @@ put $auth /role/skatt.person.inndata '{
   ],
   "maxValuation": "SENSITIVE",
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT","OTHER"]
-}' 201
+}}' 200
 
 ## dataset-access
 ## get roles
-get $auth /role/skatt.person.rawdata 200
-get $auth /role/skatt.person.inndata 200
+post $auth /rpc/RoleService/getRole '{"roleId": "skatt.person.rawdata"}' 200
+post $auth /rpc/RoleService/getRole '{"roleId": "skatt.person.inndata"}' 200
 
 
 #
@@ -62,13 +62,13 @@ get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITI
 
 
 ## check listing
-#post $catalog '/rpc/CatalogService/ListByPrefix' 200
+#post $catalog '/rpc/CatalogService/listByPrefix' 200
 
 ## create dataset
 post $catalog '/rpc/CatalogService/save' '{
   "dataset": {
     "id": {
-      "path": "skatt/person/rawdata-2019"
+      "path": "/skatt/person/rawdata-2019"
     },
     "type": "BOUNDED",
     "valuation": "SHIELDED",
@@ -80,11 +80,7 @@ post $catalog '/rpc/CatalogService/save' '{
 
 ## dapla-catalog
 ## read dataset
-get $catalog '/dataset/341b03d6-5be6-4c9b-b381-8cf692aa8830' 200
-
-## dapla-spark
-## read dataset meta
-get $spark '/dataset-meta?name=skatt.person.2019.rawdata&operation=READ&userId=user1' 200
+post $catalog '/rpc/CatalogService/get' '{"path": "/skatt/person/rawdata-2019"}' 200
 
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019
