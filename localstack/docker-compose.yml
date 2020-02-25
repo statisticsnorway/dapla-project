@@ -123,6 +123,7 @@ services:
       FLYWAY_URL: jdbc:postgresql://postgres:5432/catalog
       AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
       AUTH_dash_SERVICE_PORT: 10108
+      PUBSUB_EMULATOR_HOST: pubsub:8538
       TRACING_HOST: jaeger
     depends_on:
       - postgres
