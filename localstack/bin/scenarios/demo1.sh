@@ -11,7 +11,7 @@ put $auth /role/skatt.person.rawdata '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "/skatt.person"
+    "/skatt/person"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
@@ -27,7 +27,7 @@ put $auth /role/skatt.person.inndata '{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "/skatt.person"
+    "/skatt/person"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT","OTHER"]
@@ -54,33 +54,28 @@ get $auth '/user/user2' 200
 ## dataset-access
 ## get access
 ## should have access
-get $auth '/access/user1?privilege=READ&namespace=skatt.person&valuation=SENSITIVE&state=RAW' 200
-get $auth '/access/user2?privilege=READ&namespace=skatt.person&valuation=SENSITIVE&state=INPUT' 200
+get $auth '/access/user1?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=RAW' 200
+get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=INPUT' 200
 
 ## should not have access
-get $auth '/access/user2?privilege=READ&namespace=skatt.person&valuation=SENSITIVE&state=RAW' 403
+get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=RAW' 403
 
-
-## dapla-catalog
-#
-## map name to id
-post $catalog '/name/skatt.person.2019.rawdata' '{"proposedId":"341b03d6-5be6-4c9b-b381-8cf692aa8830"}' 200
-
-## check mapping
-get $catalog '/name/skatt.person.2019.rawdata' 200
 
 ## check listing
-get $catalog '/prefix/skatt' 200
+#post $catalog '/rpc/CatalogService/ListByPrefix' 200
 
 ## create dataset
-put $spark '/dataset-meta?userId=user1' '{
-  "id": {
-    "id": "341b03d6-5be6-4c9b-b381-8cf692aa8830",
-    "name": ["skatt.person.2019.rawdata"]
+post $catalog '/rpc/CatalogService/save' '{
+  "dataset": {
+    "id": {
+      "path": "skatt/person/rawdata-2019"
+    },
+    "type": "BOUNDED",
+    "valuation": "SHIELDED",
+    "state": "RAW",
+    "parentUri": "file:///data/datastore/"
   },
-  "valuation": "SHIELDED",
-  "state": "RAW",
-  "locations": ["file:///data/datastore/skatt/person/rawdata-2019"]
+  "userId": "user1"
 }' 200
 
 ## dapla-catalog
