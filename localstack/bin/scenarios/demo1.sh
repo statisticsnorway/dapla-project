@@ -69,7 +69,7 @@ post $catalog '/rpc/CatalogService/save' '{
     "type": "BOUNDED",
     "valuation": "SHIELDED",
     "state": "RAW",
-    "parentUri": "file:///data/datastore/"
+    "parentUri": "file:///data/datastore"
   },
   "userId": "user1"
 }' 200
