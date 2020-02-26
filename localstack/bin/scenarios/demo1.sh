@@ -64,7 +64,8 @@ get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITI
 post $catalog '/rpc/CatalogService/save' '{
   "dataset": {
     "id": {
-      "path": "/skatt/person/rawdata-2019"
+      "path": "/skatt/person/rawdata-2019",
+      "timestamp": "1582719098762"
     },
     "type": "BOUNDED",
     "valuation": "SHIELDED",
@@ -85,6 +86,6 @@ post $catalog '/rpc/CatalogService/listByPrefix' '{
 }' 200
 
 ## Copy testdata to datastore folder
-target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019/0
+target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019/1582719098762
 mkdir -p $target
 cp $(dirname $BASH_SOURCE)/../testdata/*.parquet $target/.
