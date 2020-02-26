@@ -1313,8 +1313,12 @@
           "value": "$DAPLA_SPARK_GCS_STORAGE",
           "type": "string"
         },
+       "spark.ssb.dapla.metadata.writer": {
+          "value": "no.ssb.dapla.spark.plugin.metadata.NoOpMetadataWriter",
+          "type": "string"
+        },
         "spark.hadoop.fs.gs.impl": {
-          "value": "com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem",
+          "value": "no.ssb.dapla.gcs.connector.GoogleHadoopFileSystemExt",
           "type": "string"
         },
         "fs.gs.impl.disable.cache": {
