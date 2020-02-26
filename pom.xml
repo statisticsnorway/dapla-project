@@ -26,6 +26,7 @@
         <module>metadata-distributor</module>
         <module>metadata-distributor-protobuf</module>
         <module>google-pubsub-client</module>
+        <module>dataset-uri</module>
     </modules>
 
 </project>

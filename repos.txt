@@ -15,3 +15,4 @@ dataset-api
 metadata-distributor
 metadata-distributor-protobuf
 google-pubsub-client
+dataset-uri
