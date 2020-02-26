@@ -29,6 +29,8 @@ dataproc ----> data_access : get GCS\ntoken
 
 component "External\nDatasource" as source
 component "Metadata\nDistributor" as distributor
+queue "DatasetMeta\nEvents" as datasetmetaevents {
+}
 queue "GCS\nEvents" as gcsevents {
 }
 queue "Catalog\nMetadata" as catalogQ {
@@ -57,7 +59,9 @@ distributor ..> lineageQ : pub
 distributor ..> catalogQ : pub
 distributor ..> ldsQ : pub
 gcs .> gcsevents : object-created
+dataproc ..> datasetmetaevents : dataset-meta.json\ncreated
 distributor .> gcsevents : sub
+distributor .u-> datasetmetaevents : sub
 lds .u.> ldsQ : sub
 catalog .u.> catalogQ : sub
 lineage .u.> lineageQ : sub
