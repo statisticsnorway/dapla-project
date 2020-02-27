@@ -183,10 +183,14 @@ services:
     ports:
       - 20160:10160
       - 20168:10168
+    volumes:
+      - ../dapla-spark-plugin/secret:/secret
     environment:
       PUBSUB_EMULATOR_HOST: pubsub
       PUBSUB_EMULATOR_PORT: 8538
       TRACING_HOST: jaeger
+      CLOUD_dash_STORAGE_ENABLED: "true"
+      CLOUD_dash_STORAGE_CREDENTIALS_SERVICE_dash_ACCOUNT_PATH: /secret/gcs_sa_test.json
     depends_on:
       - jaeger
       - pubsub
