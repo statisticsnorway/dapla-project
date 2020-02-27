@@ -1314,7 +1314,7 @@
           "type": "string"
         },
        "spark.ssb.dapla.metadata.writer": {
-          "value": "no.ssb.dapla.spark.plugin.metadata.NoOpMetadataWriter",
+          "value": "no.ssb.dapla.spark.plugin.metadata.FilesystemMetaDataWriter",
           "type": "string"
         },
        "spark.ssb.dapla.metadata.publisher.url": {
