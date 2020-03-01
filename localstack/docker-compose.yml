@@ -169,6 +169,7 @@ services:
       TRACING_HOST: jaeger
       DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json
       DATA_ACCESS_SERVICE_DEFAULT_LOCATION: gs://dev-datalager-store
+      DATA_dash_ACCESS_PROVIDER: no.ssb.dapla.data.access.service.GoogleDataAccessService
     depends_on:
       - jaeger
       - dapla-auth-dataset-service
