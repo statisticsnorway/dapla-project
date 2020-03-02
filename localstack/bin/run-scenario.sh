@@ -27,13 +27,13 @@ case $2 in
   dev)
     auth=http://localhost:10100
     catalog=http://localhost:10110
-    spark=http://localhost:10120
+    distributor=http://localhost:10160
     TOKEN=
     ;;
   local)
     auth=http://localhost:20100
     catalog=http://localhost:20110
-    spark=http://localhost:20120
+    distributor=http://localhost:20160
     TOKEN=
     ;;
   staging)
