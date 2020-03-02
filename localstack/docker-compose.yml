@@ -50,16 +50,16 @@ services:
       - 9000:9000
 
   zeppelin:
-    container_name: zeppelin-notebook
-    image: lds-zeppelin:latest
+    container_name: zeppelin
+    image: dapla-zeppelin:latest
     volumes:
       - ./data:/data:delegated
       - ../dapla-spark-plugin/secret:/secret
       - ./notebook:/notebook:delegated
       - ./docker/zeppelin/shiro-localstack.ini:/zeppelin/conf/shiro.ini
     build:
-      context: ../dapla-noterepo
-      dockerfile: docker/Dockerfile
+      context: ../
+      dockerfile: ${PWD}/docker/zeppelin/Dockerfile
     depends_on:
       - spark-master
       - keycloak

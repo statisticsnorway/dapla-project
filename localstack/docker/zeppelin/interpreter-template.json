@@ -1266,7 +1266,7 @@
         },
         "SPARK_HOME": {
           "name": "SPARK_HOME",
-          "value": "/opt/spark",
+          "value": "/usr/lib/spark",
           "type": "string"
         },
         "spark.driver.host": {
