@@ -58,8 +58,8 @@ services:
       - ./notebook:/notebook:delegated
       - ./docker/zeppelin/shiro-localstack.ini:/zeppelin/conf/shiro.ini
     build:
-      context: ../dapla-noterepo/docker
-      dockerfile: Dockerfile
+      context: ../dapla-noterepo
+      dockerfile: docker/Dockerfile
     depends_on:
       - spark-master
       - keycloak
