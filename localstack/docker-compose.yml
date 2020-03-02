@@ -56,11 +56,13 @@ services:
       - ./data:/data:delegated
       - ../dapla-spark-plugin/secret:/secret
       - ./notebook:/notebook:delegated
+      - ./docker/zeppelin/shiro-localstack.ini:/zeppelin/conf/shiro.ini
     build:
-      context: ../
-      dockerfile: ${PWD}/docker/zeppelin/Dockerfile
+      context: ../dapla-noterepo/docker
+      dockerfile: Dockerfile
     depends_on:
       - spark-master
+      - keycloak
     ports:
       - 28010:8080
     env_file:
@@ -111,6 +113,16 @@ services:
       - 25432:5432
     volumes:
       - ./docker/postgres/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak
+    ports:
+      - 28081:8080
+    environment:
+      DB_VENDOR: h2
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
 
   dapla-catalog-service:
     container_name: dapla-catalog-service
