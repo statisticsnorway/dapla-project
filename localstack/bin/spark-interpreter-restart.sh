@@ -2,7 +2,7 @@
 
 source $DAPLA_PROJECT_HOME/localstack/bin/zeppelin-api.sh
 
-zeppelin_login admin password1 || exit 1
+zeppelin_login admin admin || exit 1
 printf "Restarting Spark interpreter... "
 response=$(zeppelin_put "/api/interpreter/setting/restart/spark")
 

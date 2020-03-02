@@ -1,4 +1,4 @@
-DATABASE_CONTAINERS := postgres bigtable
+DATABASE_CONTAINERS := postgres pubsub
 SERVICE_CONTAINERS := dapla-catalog-service dapla-noterepo-service dapla-spark-service dapla-auth-dataset-service dapla-secret-service
 
 .PHONY: default
@@ -52,11 +52,11 @@ stop-services: ## Stop all services (excluding spark, etc)
 spark-plugin-redeploy: ## Build and redeploy the spark plugin and/or associated libs
 ifndef skipPlugin
 	@make --directory ../dapla-spark-plugin build-mvn skipTest=true
-	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/dapla-spark-plugin.jar
+	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin:/zeppelin/lib/dapla-spark-plugin.jar
 endif
 ifndef skipPseudo
 	@make --directory ../dapla-dlp-pseudo-func build-mvn skipTest=true
-	docker cp ../dapla-dlp-pseudo-func/target/*-shaded.jar zeppelin-notebook:/zeppelin/lib/dapla-dlp-pseudo-func.jar
+	docker cp ../dapla-dlp-pseudo-func/target/*-shaded.jar zeppelin:/zeppelin/lib/dapla-dlp-pseudo-func.jar
 endif
 	@make spark-interpreter-restart
 
