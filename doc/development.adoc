@@ -20,41 +20,23 @@ endif::[]
 | http host
 | grpc host
 
-| dapla-auth-dataset-service
+| user-access
 | 10100
 | 10108
 | 20100
 | 20108
 
-| dapla-catalog-service
+| catalog
 | 10110
 | 10118
 | 20110
 | 20118
 
-| dapla-spark-service
-| 10120
-| 10128
-| 20120
-| 20128
-
-| dapla-noterepo-service
-|
-| 10138
-|
-| 20138
-
-| data-access-service
+| data-access
 | 10140
 | 10148
 | 20140
 | 20148
-
-| dapla-secret-service
-| 10150
-| 10158
-| 20150
-| 20158
 
 | metadata-distributor
 | 10160

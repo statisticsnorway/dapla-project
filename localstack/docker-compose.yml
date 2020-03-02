@@ -74,7 +74,7 @@ services:
       - SPARK_PRINT_LAUNCH_COMMAND=true
       - ZEPPELIN_ADDR=0.0.0.0
       - DAPLA_SPARK_GCS_STORAGE=file:///data/datastore
-      - DAPLA_SPARK_DATA_ACCESS_URL=http://data-access-service:10140
+      - DAPLA_SPARK_DATA_ACCESS_URL=http://data-access:10140
       - DAPLA_SPARK_METADATA_PUBLISHER_URL=http://metadata-distributor:10160
 
   pubsub:
@@ -129,8 +129,8 @@ services:
       KEYCLOAK_PASSWORD: admin
       KEYCLOAK_IMPORT: /tmp/ssb_realm.json
 
-  dapla-catalog-service:
-    container_name: dapla-catalog-service
+  catalog:
+    container_name: catalog
     build:
       context: ../dapla-catalog
       dockerfile: Dockerfile
@@ -142,7 +142,7 @@ services:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
       FLYWAY_URL: jdbc:postgresql://postgres:5432/catalog
-      AUTH_dash_SERVICE_HOST: dapla-auth-dataset-service
+      AUTH_dash_SERVICE_HOST: user-access
       AUTH_dash_SERVICE_PORT: 10108
       PUBSUB_EMULATOR_HOST: pubsub
       PUBSUB_EMULATOR_PORT: 8538
@@ -151,32 +151,32 @@ services:
       - postgres
       - jaeger
       - pubsub
-      - dapla-auth-dataset-service
+      - user-access
 
-  dapla-auth-dataset-service:
-    container_name: dapla-auth-dataset-service
+  user-access:
+    container_name: user-access
     build:
       context: ../dataset-access
       dockerfile: Dockerfile
-    image: dapla-auth-dataset-service:dev
+    image: user-access:dev
     ports:
       - 20100:10100
       - 20108:10108
     environment:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
-      FLYWAY_URL: jdbc:postgresql://postgres:5432/dataset_access
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/user_access
       TRACING_HOST: jaeger
     depends_on:
       - postgres
       - jaeger
 
-  data-access-service:
-    container_name: data-access-service
+  data-access:
+    container_name: data-access
     build:
       context: ../data-access
       dockerfile: Dockerfile
-    image: data-access-service:dev
+    image: data-access:dev
     ports:
       - 20140:10140
       - 20148:10148
@@ -185,12 +185,16 @@ services:
     environment:
       TRACING_HOST: jaeger
       DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json
-      DATA_ACCESS_SERVICE_DEFAULT_LOCATION: gs://dev-datalager-store
+      DATA_ACCESS_SERVICE_DEFAULT_LOCATION: file:///data/datastore
       DATA_dash_ACCESS_PROVIDER: no.ssb.dapla.data.access.service.GoogleDataAccessService
+      AUTH_dash_SERVICE_HOST: user-access
+      AUTH_dash_SERVICE_PORT: 10108
+      CATALOG_dash_SERVICE_HOST: catalog
+      CATALOG_dash_SERVICE_PORT: 10118
     depends_on:
       - jaeger
-      - dapla-auth-dataset-service
-      - dapla-catalog-service
+      - user-access
+      - catalog
 
   metadata-distributor:
     container_name: metadata-distributor
@@ -213,4 +217,3 @@ services:
     depends_on:
       - jaeger
       - pubsub
-
