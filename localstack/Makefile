@@ -76,6 +76,11 @@ open-jaeger: ## Open Jaeger in your browser
 open-zeppelin: ## Open Zeppelin in your browser
 	open http://localhost:28010
 
+.PHONY: keycloak-export-realm
+keycloak-export-realm: ## Export keycloak realm
+	docker exec -it keycloak /opt/jboss/keycloak/bin/standalone.sh -Djboss.socket.binding.port-offset=100 -Dkeycloak.migration.action=export -Dkeycloak.migration.provider=singleFile -Dkeycloak.migration.realmName=ssb -Dkeycloak.migration.usersExportStrategy=REALM_FILE -Dkeycloak.migration.file=/tmp/my_realm.json
+	docker cp keycloak:/tmp/my_realm.json keycloak_ssb_realm.json
+
 .PHONY: open-hadoop-cluster
 open-hadoop-cluster: ## Open Hadoop cluster browser
 	open http://localhost:28000/cluster
