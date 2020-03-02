@@ -1,47 +1,14 @@
-FROM alpine AS build-env
+FROM apache/zeppelin:0.8.2
 
-ENV Z_VERSION="0.8.2"
-ENV Z_HOME="/zeppelin"
-
-RUN wget -O zeppelin-bin-netinst.tgz https://archive.apache.org/dist/zeppelin/zeppelin-${Z_VERSION}/zeppelin-${Z_VERSION}-bin-netinst.tgz && \
-    tar -zxvf zeppelin-bin-netinst.tgz && \
-    rm -rf zeppelin-bin-netinst.tgz && \
-    mv /zeppelin-${Z_VERSION}-bin-netinst ${Z_HOME}/
-
-FROM openjdk:8-alpine
-
-# Copy zeppelin
-COPY --from=build-env /zeppelin /zeppelin
-
-# Required by the interpreter and launch script.
-RUN apk --no-cache add bash
-
-ENV BUILD_DEPS="gettext"  \
-    RUNTIME_DEPS="libintl"
-
-RUN set -x && \
-    apk add --update $RUNTIME_DEPS && \
-    apk add --virtual build_deps $BUILD_DEPS &&  \
-    cp /usr/bin/envsubst /usr/local/bin/envsubst && \
-    apk del build_deps
-
-RUN mkdir /zeppelin/logs/ \
-          /zeppelin/run
-
-# Install hadoop
-ENV HADOOP_HOME="/opt/hadoop"
-RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
-    tar -zxpf hadoop-2.7.7.tar.gz -C /tmp && \
-    mv /tmp/hadoop-2.7.7 ${HADOOP_HOME} && \
-    rm -rf hadoop-2.7.7.tar.gz
-ENV HADOOP_CONF_DIR="${HADOOP_HOME}/etc/hadoop"
-
-# Intall spark.
-ENV SPARK_HOME "/usr/lib/spark"
-RUN wget http://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-without-hadoop-scala-2.12.tgz && \
-    tar -zxpf spark-2.4.4-bin-without-hadoop-scala-2.12.tgz -C /tmp && \
-    mv /tmp/spark-2.4.4-bin-without-hadoop-scala-2.12 ${SPARK_HOME} && \
-    rm -rf spark-2.4.4-bin-without-hadoop-scala-2.12.tgz
+# Add standalone spark
+# Using same version as dataproc
+# Spark 2.4.3 (git revision f60fb14) built for Hadoop 2.9.2
+# (Build flags: -B -e -Dhadoop.version=2.9.2 -Dyarn.version=2.9.2 -Dzookeeper.version=3.4.13
+#   -Dprotobuf.version=2.5.0 -Dscala.version=2.11.12 -Dscala.binary.version=2.11 -Pscala-2.11 -Pflume -Phive -Phive-thriftserver -Pkubernetes)
+#RUN wget http://archive.apache.org/dist/spark/spark-2.4.3/spark-2.4.3-bin-hadoop2.7.tgz \
+RUN wget https://archive.apache.org/dist/spark/spark-2.4.4/spark-2.4.4-bin-hadoop2.7.tgz \
+&&  tar -xzf spark-2.4.4-bin-hadoop2.7.tgz \
+&&  mv spark-2.4.4-bin-hadoop2.7 /opt/spark
 
 # Output log to console
 COPY localstack/docker/zeppelin/log4j.properties /zeppelin/conf/log4j.properties
@@ -76,11 +43,5 @@ COPY dapla-spark-plugin/secret/gcs_sa_test.json /secret/gcs_sa_test.json
 COPY dapla-dlp-pseudo-func/target/dapla-dlp-pseudo-func-*-shaded.jar /zeppelin/lib/dapla-dlp-pseudo-func.jar
 COPY dapla-spark-plugin/target/dapla-spark-plugin-*-shaded.jar /zeppelin/lib/dapla-spark-plugin.jar
 
-RUN chown -R 2100:2100 /zeppelin
-USER 2100:2100
-
 WORKDIR /zeppelin
-
 CMD ["/env.sh"]
-
-
