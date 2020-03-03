@@ -1,5 +1,9 @@
 @startuml
 
+skinparam queue {
+	backgroundColor<<events>> LightBlue
+}
+
 component "User Access" as user_access
 component "Catalog" as catalog
 component "Pseudonymization" as pseudo
@@ -29,9 +33,9 @@ dataproc ----> data_access : get GCS\ntoken
 
 component "External\nDatasource" as source
 component "Metadata\nDistributor" as distributor
-queue "DatasetMeta\nEvents" as datasetmetaevents {
+queue "DatasetMeta" as datasetmetaevents <<events>> {
 }
-queue "GCS\nEvents" as gcsevents {
+queue "GCS" as gcsevents <<events>> {
 }
 queue "Catalog\nMetadata" as catalogQ {
 }
