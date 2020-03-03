@@ -105,7 +105,7 @@ cp -r $(dirname $BASH_SOURCE)/../testdata/skatt/person/rawdata-2019/158271909876
 
 rm -rf $target/ske/sirius-person-utkast/2018v19/1583156472183
 mkdir -p $target/ske/sirius-person-utkast/2018v19/1583156472183
-cp -r $(dirname $BASH_SOURCE)/../testdata/ske/sirius-person-utkast/2018v19/1583156472183 $target/ske/sirius-person-utkast/2018v19/1583156472183
+cp -r $(dirname $BASH_SOURCE)/../testdata/ske/sirius-person-utkast/2018v19/1583156472183 $target/ske/sirius-person-utkast/2018v19
 
 ## create dataset
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
@@ -114,5 +114,14 @@ post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "parentUri": "file:///data/datastore",
   "path": "/skatt/person/rawdata-2019",
   "version": 1582719098762,
+  "filename": ".dataset-meta.json"
+}' 200
+
+post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
+  "projectId": "dapla",
+  "topicName": "file-events-1",
+  "parentUri": "file:///data/datastore",
+  "path": "/ske/sirius-person-utkast/2018v19",
+  "version": 1583156472183,
   "filename": ".dataset-meta.json"
 }' 200
