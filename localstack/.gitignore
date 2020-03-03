@@ -13,4 +13,6 @@ data/
 .settings
 .classpath
 secret/
-notebook/*
+notebook/
+
+
