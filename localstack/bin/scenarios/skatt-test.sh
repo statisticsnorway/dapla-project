@@ -3,6 +3,21 @@
 # dataset-access
 # create role for rawdata
 post $auth /rpc/RoleService/putRole '{"role":{
+  "roleId": "ske.rawdata",
+  "privileges": [
+    "CREATE",
+    "UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "namespacePrefixes": [
+    "/ske/"
+  ],
+  "maxValuation": "SENSITIVE",
+  "states": ["RAW"]
+}}' 200
+
+post $auth /rpc/RoleService/putRole '{"role":{
   "roleId": "skatt.person.rawdata",
   "privileges": [
     "CREATE",
@@ -73,7 +88,7 @@ for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvin
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
 }}' 200
-  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public", "skatt.person.rawdata", "skatt.person.inndata" ] }' 201
+  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public", "ske.rawdata", "skatt.person.rawdata", "skatt.person.inndata" ] }' 201
   get $auth '/user/'$user 200
   get $auth '/access/'$user'?privilege=READ&namespace=/skatt/person/some-dataset&valuation=SENSITIVE&state=RAW' 200
   get $auth '/access/'$user'?privilege=READ&namespace=/tmp/public/any-dataset&valuation=SENSITIVE&state=RAW' 200
@@ -87,6 +102,10 @@ target=$(dirname $BASH_SOURCE)/../../data/datastore
 rm -rf $target/skatt/person/rawdata-2019/1582719098762
 mkdir -p $target/skatt/person/rawdata-2019/1582719098762
 cp -r $(dirname $BASH_SOURCE)/../testdata/skatt/person/rawdata-2019/1582719098762 $target/skatt/person/rawdata-2019
+
+rm -rf $target/ske/sirius-person-utkast/2018v19/1583156472183
+mkdir -p $target/ske/sirius-person-utkast/2018v19/1583156472183
+cp -r $(dirname $BASH_SOURCE)/../testdata/ske/sirius-person-utkast/2018v19/1583156472183 $target/ske/sirius-person-utkast/2018v19/1583156472183
 
 ## create dataset
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{

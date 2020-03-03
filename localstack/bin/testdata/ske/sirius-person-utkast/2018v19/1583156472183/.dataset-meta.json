@@ -1,12 +1,12 @@
 {
   "id": {
-    "path": "/converted/ske/sirius-person-utkast/2018v19",
+    "path": "/ske/sirius-person-utkast/2018v19",
     "version": 1583156472183
   },
   "type": "UNBOUNDED",
   "valuation": "INTERNAL",
   "state": "RAW",
-  "parentUri": "gs://dev-rawdata-store/data-dev",
+  "parentUri": "file:///data/datastore",
   "pseudoConfig": {
     "vars": [
       {
