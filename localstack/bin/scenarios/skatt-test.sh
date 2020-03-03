@@ -11,10 +11,10 @@ post $auth /rpc/RoleService/putRole '{"role":{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "/skatt/person"
+    "/skatt/person/"
   ],
   "maxValuation": "SENSITIVE",
-  "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
+  "states": ["RAW"]
 }}' 200
 
 # create role for indata
@@ -27,7 +27,7 @@ post $auth /rpc/RoleService/putRole '{"role":{
     "DELETE"
   ],
   "namespacePrefixes": [
-    "/skatt/person"
+    "/skatt/person/"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
@@ -58,19 +58,29 @@ post $auth /rpc/RoleService/getRole '{"roleId": "tmp.public"}' 200
 #
 ## dataset-access
 ## create and read users
-for user in "arlid" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve"; do
-  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "skatt.person.rawdata", "tmp.public" ] }' 201
+for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve"; do
+  post $auth /rpc/RoleService/putRole '{"role":{
+  "roleId": "tmp.'$user'",
+  "privileges": [
+    "CREATE",
+    "UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "namespacePrefixes": [
+    "/tmp/'$user'/"
+  ],
+  "maxValuation": "SENSITIVE",
+  "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
+}}' 200
+  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public", "skatt.person.rawdata", "skatt.person.inndata" ] }' 201
   get $auth '/user/'$user 200
+  get $auth '/access/'$user'?privilege=READ&namespace=/skatt/person/some-dataset&valuation=SENSITIVE&state=RAW' 200
+  get $auth '/access/'$user'?privilege=READ&namespace=/tmp/public/any-dataset&valuation=SENSITIVE&state=RAW' 200
 done
 
-## dataset-access
-## get access
-## should have access
-get $auth '/access/arlid?privilege=READ&namespace=/skatt/person&valuation=SENSITIVE&state=RAW' 200
-get $auth '/access/trygve?privilege=READ&namespace=/skatt/person&valuation=SENSITIVE&state=INPUT' 200
-
-## should not have access
-get $auth '/access/arlid?privilege=READ&namespace=/noaccess&valuation=SENSITIVE&state=RAW' 403
+## a user should not have access to another user's private tmp area
+get $auth '/access/arlid?privilege=READ&namespace=/tmp/trygve/trygves-private-dataset&valuation=OPEN&state=PROCESSED' 403
 
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore
