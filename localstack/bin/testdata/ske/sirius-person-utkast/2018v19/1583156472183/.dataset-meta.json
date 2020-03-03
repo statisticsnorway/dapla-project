@@ -1,0 +1,23 @@
+{
+  "id": {
+    "path": "/converted/ske/sirius-person-utkast/2018v19",
+    "version": 1583156472183
+  },
+  "type": "UNBOUNDED",
+  "valuation": "INTERNAL",
+  "state": "RAW",
+  "parentUri": "gs://dev-rawdata-store/data-dev",
+  "pseudoConfig": {
+    "vars": [
+      {
+        "var": "personidentifikator",
+        "pseudoFunc": "fpe-fnr(secret1)"
+      },
+      {
+        "var": "organisasjonsnummer",
+        "pseudoFunc": "fpe-digits(secret1)"
+      }
+    ]
+  },
+  "createdBy": "rawdata-converter-app-sirius"
+}
