@@ -1321,6 +1321,14 @@
           "value": "$DAPLA_SPARK_METADATA_PUBLISHER_URL",
           "type": "string"
         },
+       "spark.ssb.dapla.metadata.publisher.project.id": {
+          "value": "$DAPLA_SPARK_METADATA_PUBLISHER_PROJECT_ID",
+          "type": "string"
+        },
+       "spark.ssb.dapla.metadata.publisher.topic.name": {
+          "value": "$DAPLA_SPARK_METADATA_PUBLISHER_TOPIC_NAME",
+          "type": "string"
+        },
         "spark.hadoop.fs.gs.impl": {
           "value": "no.ssb.dapla.gcs.connector.GoogleHadoopFileSystemExt",
           "type": "string"

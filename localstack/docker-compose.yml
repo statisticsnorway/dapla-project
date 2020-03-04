@@ -76,6 +76,8 @@ services:
       - DAPLA_SPARK_GCS_STORAGE=file:///data/datastore
       - DAPLA_SPARK_DATA_ACCESS_URL=http://data-access:10140
       - DAPLA_SPARK_METADATA_PUBLISHER_URL=http://metadata-distributor:10160
+      - DAPLA_SPARK_METADATA_PUBLISHER_PROJECT_ID=dapla
+      - DAPLA_SPARK_METADATA_PUBLISHER_TOPIC_NAME=file-events-1
 
   pubsub:
     container_name: pubsub
