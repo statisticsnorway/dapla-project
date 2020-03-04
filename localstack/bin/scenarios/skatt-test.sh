@@ -73,7 +73,7 @@ post $auth /rpc/RoleService/getRole '{"roleId": "tmp.public"}' 200
 #
 ## dataset-access
 ## create and read users
-for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve"; do
+for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve" "rannveig" "marianne" "magnus"; do
   post $auth /rpc/RoleService/putRole '{"role":{
   "roleId": "tmp.'$user'",
   "privileges": [
