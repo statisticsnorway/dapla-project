@@ -456,7 +456,13 @@
     "emailVerified" : false,
     "firstName" : "Magnus",
     "email" : "dapla-magnus@ssb.no",
-    "credentials" : [ ],
+    "credentials" : [ {
+      "id" : "17a7c7ea-8580-44ef-8da8-fd12a354e204",
+      "type" : "password",
+      "createdDate" : 1583330054363,
+      "secretData" : "{\"value\":\"vsb3Q8EVAN4KhZfCb605vXDquw77LZ7EhNpsUWa/c/6ONK52mSTfoAp/9nXyCyS0bwfjBq+1SSa9syw+Dc2Pvw==\",\"salt\":\"OwocmIeFBn5yASFHJnp1Tw==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "uma_authorization", "offline_access" ],
@@ -474,7 +480,13 @@
     "emailVerified" : false,
     "firstName" : "Marianne",
     "email" : "dapla-marianne@ssb.no",
-    "credentials" : [ ],
+    "credentials" : [ {
+      "id" : "f4516cae-9bbb-4499-b702-0d8f762dcf26",
+      "type" : "password",
+      "createdDate" : 1583330112856,
+      "secretData" : "{\"value\":\"fypV7N8gn7u8I7J3MIORpwaX9qy6qmp9ZGO74SdJNM58Vh2jYtwuWGdKV9w7GKRpOhtfj6FKaXUFpAHhxoYhcQ==\",\"salt\":\"Oh9/iwaRdL9ELz7cysBJpQ==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "uma_authorization", "offline_access" ],
@@ -564,7 +576,13 @@
     "emailVerified" : false,
     "firstName" : "Rannveig",
     "email" : "dapla-rannveig@ssb.no",
-    "credentials" : [ ],
+    "credentials" : [ {
+      "id" : "16a4670f-b9d9-4700-a2df-b17ea9b5c515",
+      "type" : "password",
+      "createdDate" : 1583330084644,
+      "secretData" : "{\"value\":\"hyaAgIeKYUZW8TAGHq/AM9ZBhqNcES5ygrSeygsw4eH4pldF4qOJuhBySCN66xDgv78q8NVwXfl3FXnG9D0nTA==\",\"salt\":\"E9FEDcEkmbfjnQE392Y0uQ==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
     "disableableCredentialTypes" : [ ],
     "requiredActions" : [ ],
     "realmRoles" : [ "uma_authorization", "offline_access" ],
