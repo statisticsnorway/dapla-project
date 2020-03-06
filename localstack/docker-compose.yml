@@ -51,15 +51,15 @@ services:
 
   zeppelin:
     container_name: zeppelin
-    image: dapla-zeppelin:latest
+    image: eu.gcr.io/prod-bip/dapla-zeppelin
     volumes:
       - ./data:/data:delegated
       - ../dapla-spark-plugin/secret:/secret
       - ./notebook:/notebook:delegated
       - ./docker/zeppelin/shiro-localstack.ini:/zeppelin/conf/shiro.ini
     build:
-      context: ../
-      dockerfile: ${PWD}/docker/zeppelin/Dockerfile
+      context: ../dapla-spark-plugin
+      dockerfile: ${PWD}/../dapla-spark-plugin/docker/zeppelin/Dockerfile
     depends_on:
       - spark-master
       - keycloak
@@ -68,11 +68,14 @@ services:
     env_file:
       - .env
     environment:
-      - SPARK_MASTER_HOST=spark://spark-master
+      - ZEPPELIN_SSB_USE_TOKENS=true
       - ZEPPELIN_NOTEBOOK_DIR=/notebook
+      - ZEPPELIN_ADDR=0.0.0.0
+      - ZEPPELIN_SERVER_JETTY_REQUEST_HEADER_SIZE=16384
       - SPARK_LOCAL_IP=zeppelin
       - SPARK_PRINT_LAUNCH_COMMAND=true
-      - ZEPPELIN_ADDR=0.0.0.0
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_SUBMIT_DEPLOYMODE=client
       - DAPLA_SPARK_GCS_STORAGE=file:///data/datastore
       - DAPLA_SPARK_DATA_ACCESS_URL=http://data-access:10140
       - DAPLA_SPARK_METADATA_PUBLISHER_URL=http://metadata-distributor:10160
