@@ -18,6 +18,7 @@ build-all: ## Build all
 
 .PHONY: build-all-docker
 build-all-docker: ## Build all docker containers
+	(cd ../dapla-noterepo && docker build -t eu.gcr.io/prod-bip/dapla-zeppelin-base -f docker/Dockerfile .)
 	docker-compose build
 
 .PHONY: build-all-mvn
