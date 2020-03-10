@@ -9,6 +9,8 @@ services:
     ports:
       - 28000:8080
       - 28007:7077
+    expose:
+      - 7337
     environment:
       - INIT_DAEMON_STEP=setup_spark
       - DAPLA_SPARK_SERVICE_ACCOUNT_KEY_FILE=/secret/gcs_sa_test.json
@@ -23,6 +25,8 @@ services:
       - spark-master
     ports:
       - 28011:8081
+    expose:
+      - 7337
     environment:
       - SPARK_MASTER=spark://spark-master:7077
       - DAPLA_SPARK_SERVICE_ACCOUNT_KEY_FILE=/secret/gcs_sa_test.json
