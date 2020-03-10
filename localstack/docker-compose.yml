@@ -41,14 +41,6 @@ services:
       - SPARK_MASTER=spark://spark-master:7077
       - DAPLA_SPARK_SERVICE_ACCOUNT_KEY_FILE=/secret/gcs_sa_test.json
 
-  hadoop:
-    container_name: hadoop
-    image: sequenceiq/hadoop-docker:2.7.1
-    ports:
-      - 50070:50070
-      - 50010:50010
-      - 9000:9000
-
   zeppelin:
     container_name: zeppelin
     image: eu.gcr.io/prod-bip/dapla-zeppelin
