@@ -21,6 +21,7 @@ services:
     volumes:
       - ./data:/data:delegated
       - ../dapla-spark-plugin/secret:/secret
+      - ./docker/spark-worker/worker.sh:/worker.sh
     depends_on:
       - spark-master
     ports:
@@ -37,6 +38,7 @@ services:
     volumes:
       - ./data:/data:delegated
       - ../dapla-spark-plugin/secret:/secret
+      - ./docker/spark-worker/worker.sh:/worker.sh
     depends_on:
       - spark-master
     ports:
