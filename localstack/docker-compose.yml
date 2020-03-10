@@ -178,7 +178,7 @@ services:
       - 20140:10140
       - 20148:10148
     volumes:
-      - ../dapla-spark-plugin/secret:/secret
+      - ../data-access/secret:/app/secret
     environment:
       TRACING_HOST: jaeger
       DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json

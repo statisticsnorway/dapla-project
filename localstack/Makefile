@@ -98,6 +98,10 @@ print-local-changes: ## Show a brief summary of local changes
 run-scenario: ## Populate data for a given scenario specified by s=<scenario name>
 	./bin/run-scenario.sh exec local $s
 
+.PHONY: generate-keys
+generate-keys: ## Generate keys used to sign and verify metadata
+	./bin/generate-metadata-signer-keypair.sh
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-45s\033[0m %s\n", $$1, $$2}'
