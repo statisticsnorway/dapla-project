@@ -37,9 +37,25 @@ services:
       - spark-master
     ports:
       - 28021:8081
+    expose:
+      - 7337
     environment:
       - SPARK_MASTER=spark://spark-master:7077
       - DAPLA_SPARK_SERVICE_ACCOUNT_KEY_FILE=/secret/gcs_sa_test.json
+
+  jupyter:
+    container_name: jupyter
+    image: eu.gcr.io/prod-bip/dapla-jupyter
+    volumes:
+      - ./docker/jupyter/jupyterhub_config.py:/jupyter/jupyterhub_config.py
+    build:
+      context: ../dapla-spark-plugin
+      dockerfile: ${PWD}/../dapla-spark-plugin/docker/jupyter/Dockerfile
+    depends_on:
+      - spark-master
+      - keycloak
+    ports:
+      - 28012:8000
 
   zeppelin:
     container_name: zeppelin
