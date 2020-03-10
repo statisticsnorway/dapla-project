@@ -90,8 +90,8 @@ services:
       - SPARK_PRINT_LAUNCH_COMMAND=true
       - SPARK_MASTER=spark://spark-master:7077
       - SPARK_SUBMIT_DEPLOYMODE=client
-      - SPARK_DYNAMICALLOCATION_ENABLED=false
-      - SPARK_SHUFFLE_SERVICE_ENABLED=false
+      - SPARK_DYNAMICALLOCATION_ENABLED=true
+      - SPARK_SHUFFLE_SERVICE_ENABLED=true
       - DAPLA_SPARK_GCS_STORAGE=file:///data/datastore
       - DAPLA_SPARK_DATA_ACCESS_URL=http://data-access:10140
       - DAPLA_SPARK_METADATA_PUBLISHER_URL=http://metadata-distributor:10160
