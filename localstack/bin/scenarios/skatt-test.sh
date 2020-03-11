@@ -114,7 +114,7 @@ post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "parentUri": "file:///data/datastore",
   "path": "/skatt/person/rawdata-2019",
   "version": 1582719098762,
-  "filename": ".dataset-meta.json"
+  "filename": ".dataset-meta.json.sign"
 }' 200
 
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
@@ -123,5 +123,5 @@ post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "parentUri": "file:///data/datastore",
   "path": "/ske/sirius-person-utkast/2018v19",
   "version": 1583156472183,
-  "filename": ".dataset-meta.json"
+  "filename": ".dataset-meta.json.sign"
 }' 200
