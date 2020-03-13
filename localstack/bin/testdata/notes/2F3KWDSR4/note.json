@@ -1,0 +1,195 @@
+{
+  "paragraphs": [
+    {
+      "title": "Les inn rawdata ",
+      "text": "// NB! Denne noten bli overskrevet hvis man kjører make update-all\nval skattRawData \u003d spark.read.format(\"gsim\").load(\"/skatt/person/rawdata-2019\")",
+      "user": "demo",
+      "dateUpdated": "2020-03-10 14:09:22.083",
+      "config": {
+        "title": true,
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1583849331663_745701975",
+      "id": "20200310-140851_720099169",
+      "dateCreated": "2020-03-10 14:08:51.663",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "print schema",
+      "text": "skattRawData.printSchema()",
+      "user": "demo",
+      "dateUpdated": "2020-03-12 16:09:06.598",
+      "config": {
+        "title": true,
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1584029148747_641159586",
+      "id": "20200312-160548_70449768",
+      "dateCreated": "2020-03-12 16:05:48.747",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "hent ut konto",
+      "text": "var konto \u003d skattRawData\n    .select(\"personidentifikator\", \"konto\")\n    .withColumnRenamed(\"konto\", \"kontoer\")\n    .withColumn(\"konto\", explode($\"kontoer\"))\n    .select(\"personidentifikator\", \"konto.*\")\n",
+      "user": "demo",
+      "dateUpdated": "2020-03-10 14:09:44.199",
+      "config": {
+        "title": true,
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1583849362167_-317778172",
+      "id": "20200310-140922_757227951",
+      "dateCreated": "2020-03-10 14:09:22.167",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "save konto",
+      "text": "konto.write\n    .format(\"gsim\")\n    .option(\"valuation\", \"INTERNAL\")\n    .option(\"state\", \"INPUT\")\n    .mode(\"overwrite\")\n    .save(\"/skatt/person/2019/inndata/konto\")\n",
+      "user": "demo",
+      "dateUpdated": "2020-03-10 14:09:58.964",
+      "config": {
+        "title": true,
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1583849384275_-1017228447",
+      "id": "20200310-140944_1000575037",
+      "dateCreated": "2020-03-10 14:09:44.275",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "les konto",
+      "text": "var lessKonto \u003d spark.read.format(\"gsim\").load(\"/skatt/person/2019/inndata/konto\")",
+      "user": "rune",
+      "dateUpdated": "2020-03-12 16:10:08.554",
+      "config": {
+        "title": true,
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1584029364494_512048271",
+      "id": "20200312-160924_622197110",
+      "dateCreated": "2020-03-12 16:09:24.494",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "vis konto",
+      "text": "z.show(lessKonto)",
+      "user": "rune",
+      "dateUpdated": "2020-03-12 16:10:17.081",
+      "config": {
+        "title": true,
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1584029408646_-179655277",
+      "id": "20200312-161008_275190957",
+      "dateCreated": "2020-03-12 16:10:08.646",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "read-write-sample-note",
+  "id": "2F3KWDSR4",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:rune:": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

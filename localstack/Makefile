@@ -11,6 +11,7 @@ sanity-check: ## Perform sanity check of localstack environment settings
 .PHONY: update-all
 update-all: ## Update all repos from github (checkout/pull)
 	(cd .. && make update-all)
+	./bin/copy-sample-note.sh
 
 .PHONY: build-all
 build-all: ## Build all
