@@ -1,25 +1,75 @@
 @startuml
 
-state "Consistent" as c {
+[*] --> gcs
+
+state "GCS" as gcs {
+    [*] -> meta
+    state "metadata\nfile created" as meta
+    state "parquet\nfiles created" as data
+    state "signature\nfile created" as sign
+    meta -> data
+    data -> sign
+    sign -> [*]
 }
 
-state "Inconsistent" as i {
-  state "uuid\nassigned" as mni
-  state "parquet\nwritten" as pw
-  state "catalog\nupdated" as mu
-  state "lineage\nupdated" as lin
-  state "failed" as f
-  state "saga\nstarted" as ss
-  mni -> pw : write\nparquet
-  mni -l-> f : failed to write parquet
-  f -> c : cleanup
-  pw --> ss : saga start
-  pw -l-> f : failed to start saga
-  ss -l-> mu : update\ncatalog
-  mu -l-> lin : update\nlineage
-  lin -u-> c : saga end
+state "GCS event queue" as gcs_eq {
+    [*] -> pub_mc
+    state "published\nmetadata\ncreated" as pub_mc
+    state "consumed\nmetadata\ncreated" as con_mc
+    pub_mc -> con_mc
+    con_mc -> [*]
+    --
+    [*] -> pub_sc
+    state "published\nsignature\ncreated" as pub_sc
+    state "consumed\nsignature\ncreated" as con_sc
+    pub_sc -> con_sc
+    con_sc -> [*]
 }
 
-c -> mni : write
+meta --> gcs_eq
+sign --> gcs_eq
+
+state "Catalog queue" as catalog_q {
+    [*] -> cpub_m
+    state "published\nmetadata" as cpub_m
+    state "consumed\nmetadata" as ccon_m
+    cpub_m -> ccon_m
+    ccon_m -> [*]
+}
+
+state "Lineage queue" as lineage_q {
+    [*] -> lpub_m
+    state "published\nmetadata" as lpub_m
+    state "consumed\nmetadata" as lcon_m
+    lpub_m -> lcon_m
+    lcon_m -> [*]
+}
+
+state fork_q <<fork>>
+gcs_eq --> fork_q
+fork_q --> catalog_q
+fork_q --> lineage_q
+
+state "Catalog" as catalog {
+    [*] -> cmeta_u
+    state "metadata updated" as cmeta_u
+    cmeta_u -> [*]
+}
+
+state "Lineage" as lineage {
+    [*] -> lmeta_u
+    state "metadata updated" as lmeta_u
+    lmeta_u -> [*]
+}
+
+catalog_q --> catalog
+lineage_q --> lineage
+
+state join <<join>>
+
+catalog --> join
+lineage --> join
+
+join --> [*]
 
 @enduml

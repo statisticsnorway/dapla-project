@@ -2,19 +2,25 @@
 
 start
 :Execute Job;
-:Get catalog metadata;
-if (Get access-token) then (allowed)
-  if () then (read)
+if () then (read)
+    :Get metadata;
+    if (Get read \naccess-token) then
+    else (denied)
+        stop
+    endif
     :Read data;
-    stop
-  else (write)
-    :Write data;
+else (write)
+    if (Check access &\n sign metadata) then
+    else (denied)
+        stop
+    endif
+    :Write metadata;
     :Update catalog;
+    :Write data;
+    :Write signature;
+    :Commit catalog;
     :Update lineage;
-    stop
-  endif
-else (denied)
-  stop
 endif
+stop
 
 @enduml
