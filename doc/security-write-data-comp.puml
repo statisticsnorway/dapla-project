@@ -1,14 +1,31 @@
 @startuml
 
-[Zeppelin\nSpark\nInterpreter] as interpreter
-[Zeppelin] as zeppelin
-[dataset-access] as da_s
-[catalog] as catalog
-[lineage] as lineage
-[spark-service] as sp_s
-[broker] as broker
-database "Cloud Storage" as gcs {
+skinparam queue {
+	backgroundColor<<events>> LightBlue
 }
+component "Zeppelin" as zeppelin
+component "Zeppelin\nSpark\nInterpreter" as interpreter
+component "User Access" as user_access
+component "Catalog" as catalog
+component "Lineage" as lineage
+component "Data Access" as broker
+database "Linked Data Store" as lds {
+}
+database "Google\nCloud Storage" as gcs {
+}
+component "Metadata\nDistributor" as distributor
+
+queue "DatasetMeta" as datasetmetaevents <<events>> {
+}
+queue "GCS" as gcsevents <<events>> {
+}
+queue "Catalog\nMetadata" as catalogQ {
+}
+queue "LDS\nMetadata" as ldsQ {
+}
+queue "Lineage\nMetadata" as lineageQ {
+}
+
 frame "Executor" as worker {
   frame "Task" as task {
     [datasource] as datasource
@@ -16,18 +33,24 @@ frame "Executor" as worker {
   }
 }
 
-zeppelin -u-> interpreter : 1. submit job\n (user-token)
-interpreter -> worker : 2. distribute job\n (user-token)
-datasource --> sp_s : 3. prepare write\n (user-token)
-sp_s --> catalog : 4. get metadata\n (user-token)
-gcs_connector --> broker : 5. get access-token\n (user-token)
-broker --> catalog : 6. get metadata\n (user-token)
-broker --> da_s : 7. has-access?\n (user-token)
-gcs_connector ---> gcs : 8. write dataset\n (access-token)
-datasource -> sp_s : 9. write metadata\n (user-token)
-sp_s -> catalog : 10. write metadata\n (user-token)
-catalog -> da_s : 11. has access?\n (user-token)
-sp_s --> lineage : 12. write lineage?\n (user-token)
-lineage --> da_s : 13. has access?\n (user-token)
+zeppelin -> interpreter : 1. submit job
+interpreter --> worker : 2. distribute job
+datasource --> broker : 3. write-location
+broker --> user_access : 4. / 6. has-access?
+gcs_connector --> broker : 5. get gcs\naccess-token
+gcs_connector --> gcs : 6. write metadata\n8. write dataset\n9. write signature
+datasource ...> datasetmetaevents : 7.b. metadata event (localstack)\n10.b. signature event (localstack)
+
+
+distributor --> gcs : read metdata\nand signature
+distributor ..> lineageQ : pub
+distributor ..> catalogQ : pub
+distributor ..> ldsQ : pub
+gcs .> gcsevents : 7.a. metadata event\n10.a. signature event
+distributor .> gcsevents : sub
+distributor .u-> datasetmetaevents : sub
+lds .u.> ldsQ : sub
+catalog .u.> catalogQ : sub
+lineage .u.> lineageQ : sub
 
 @enduml

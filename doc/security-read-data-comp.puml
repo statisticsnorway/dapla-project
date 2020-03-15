@@ -1,11 +1,10 @@
 @startuml
 
-[Zeppelin\nSpark\nInterpreter] as interpreter
-[Zeppelin] as zeppelin
-[dataset-access-service] as da_s
-[catalog-service] as catalog
-[spark-service] as sp_s
-[broker] as broker
+component "Zeppelin" as zeppelin
+component "Zeppelin\nSpark\nInterpreter" as interpreter
+component "User Access" as da_s
+component "Catalog" as catalog
+component "Data Access" as broker
 database "Cloud Storage" as gcs {
 }
 frame "Executor" as worker {
@@ -15,14 +14,13 @@ frame "Executor" as worker {
   }
 }
 
-zeppelin -u-> interpreter : 1. submit job\n (user-token)
-interpreter -> worker : 2. distribute job\n (user-token)
-datasource --> sp_s : 3. prepare read\n (user-token)
-sp_s --> catalog : 4. get metadata\n (user-token)
-gcs_connector --> broker : 5. get access-token\n (user-token)
-broker --> catalog : 6. get metadata\n (user-token)
-broker --> da_s : 7. has-access?\n (user-token)
-gcs_connector --> gcs : 8. read dataset\n (access-token)
+zeppelin -u-> interpreter : 1. submit job
+interpreter -> worker : 2. distribute job
+datasource --> broker : 3. read-location
+broker --> catalog : 4. / 7. get metadata
+broker --> da_s : 5. / 8. has-access?
+gcs_connector --> broker : 6. get access-token
+gcs_connector --> gcs : 9. read dataset
 
 
 @enduml
