@@ -1,0 +1,12 @@
+{
+  "id": {
+    "path": "/skatt/person/rawdata-2018",
+    "version": "1583486170277"
+  },
+  "type": "BOUNDED",
+  "valuation": "SHIELDED",
+  "state": "RAW",
+  "parentUri": "file:///data/datastore",
+  "pseudoConfig": {},
+  "createdBy": "kenneth"
+}
