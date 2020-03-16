@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-JSON=$(jq '@json' <<< '{
+UNSIGNED_JSON=$(jq '@json' <<< '{
   "id": {
     "path": "/raw/ske/sirius/person/2018",
     "version": "1584361016731"
@@ -8,13 +8,11 @@ JSON=$(jq '@json' <<< '{
   "type": "UNBOUNDED",
   "valuation": "SENSITIVE",
   "state": "RAW",
-  "parentUri": "gs://bucket/path/that/will/be/replaced",
-  "pseudoConfig": {},
-  "createdBy": "jane-doe"
+  "pseudoConfig": {}
 }')
 
 mkdir -p tmp
-post $daccess '/rpc/DataAccessService/writeLocation' '{"metadataJson":'$JSON'}' > tmp/write-location.json
+post $daccess '/rpc/DataAccessService/writeLocation' '{"metadataJson":'$UNSIGNED_JSON'}' > tmp/write-location.json
 jq -r '.validMetadataJson' tmp/write-location.json | base64 -d > tmp/dataset-meta.json
 jq -r '.metadataSignature' tmp/write-location.json | base64 -d > tmp/dataset-meta.json.sign
 
