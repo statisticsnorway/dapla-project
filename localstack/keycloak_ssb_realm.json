@@ -593,6 +593,31 @@
     "notBefore" : 0,
     "groups" : [ ]
   }, {
+    "id" : "5edf401e-3775-4bcb-ae2a-307f5bdcc083",
+    "createdTimestamp" : 1584360391714,
+    "username" : "raw",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "Raw",
+    "lastName" : "Data",
+    "email" : "rawdata@ssb.no",
+    "credentials" : [ {
+      "id" : "4bbdb5c3-7def-4c2f-b9da-4f8380435b1d",
+      "type" : "password",
+      "createdDate" : 1584360450817,
+      "secretData" : "{\"value\":\"bemFtgvgOhKlJOmmjLMKshG4kP3NGQWBD5yPNhMYhnqBbfIhaB8JSE0sboM3R4SK/B5qTjay/uQo8zvR0lv08A==\",\"salt\":\"oiqXjjj6PLNApU6HxqhPXQ==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "uma_authorization", "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
     "id" : "06814e7f-7fe6-4004-98ef-42c15f4334dd",
     "createdTimestamp" : 1583151890830,
     "username" : "rune",
