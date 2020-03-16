@@ -13,8 +13,8 @@ UNSIGNED_JSON=$(jq '@json' <<< '{
 
 mkdir -p tmp
 post $daccess '/rpc/DataAccessService/writeLocation' '{"metadataJson":'$UNSIGNED_JSON'}' > tmp/write-location.json
-jq -r '.validMetadataJson' tmp/write-location.json | base64 -d > tmp/dataset-meta.json
-jq -r '.metadataSignature' tmp/write-location.json | base64 -d > tmp/dataset-meta.json.sign
+jq -r '.validMetadataJson' tmp/write-location.json | base64 -D > tmp/dataset-meta.json
+jq -r '.metadataSignature' tmp/write-location.json | base64 -D > tmp/dataset-meta.json.sign
 
 echo SIGNED META-DATA
 jq . tmp/dataset-meta.json
