@@ -111,6 +111,10 @@ get $auth '/access/arlid?privilege=READ&namespace=/tmp/trygve/trygves-private-da
 
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore
+rm -rf $target/skatt/person/rawdata-2018/1583486170277
+mkdir -p $target/skatt/person/rawdata-2018/1583486170277
+cp -r $(dirname $BASH_SOURCE)/../testdata/skatt/person/rawdata-2018/1583486170277 $target/skatt/person/rawdata-2018
+
 rm -rf $target/skatt/person/rawdata-2019/1582719098762
 mkdir -p $target/skatt/person/rawdata-2019/1582719098762
 cp -r $(dirname $BASH_SOURCE)/../testdata/skatt/person/rawdata-2019/1582719098762 $target/skatt/person/rawdata-2019
