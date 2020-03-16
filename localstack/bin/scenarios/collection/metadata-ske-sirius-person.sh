@@ -30,6 +30,9 @@ cp tmp/dataset-meta.json $DATASET_FOLDER/.dataset-meta.json
 cp tmp/dataset-meta.json.sign $DATASET_FOLDER/.dataset-meta.json.sign
 #rm tmp/dataset-meta.json tmp/dataset-meta.json.sign tmp/write-location.json
 
+## Copy parquet files
+cp -r $(dirname $BASH_SOURCE)/../../testdata/skatt/person/rawdata-2018/1583486170277/*.parquet $DATASET_FOLDER
+
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "projectId": "dapla",
   "topicName": "file-events-1",
