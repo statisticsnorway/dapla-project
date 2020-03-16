@@ -28,13 +28,21 @@ case $2 in
     auth=http://localhost:10100
     catalog=http://localhost:10110
     distributor=http://localhost:10160
+    daccess=http://localhost:10140
     TOKEN=
     ;;
   local)
+    if [ "a" == "a$LTOKEN" ]; then
+      echo
+      echo Environment variable LTOKEN must be set to a valid token.
+      echo
+      exit 1
+    fi
     auth=http://localhost:20100
     catalog=http://localhost:20110
     distributor=http://localhost:20160
-    TOKEN=
+    daccess=http://localhost:20140
+    TOKEN=$LTOKEN
     ;;
   staging)
     if [ "a" == "a$TOKEN" ]; then
@@ -49,7 +57,8 @@ case $2 in
     fi
     auth=https://dataset-access.staging-bip-app.ssb.no
     catalog=https://dapla-catalog.staging-bip-app.ssb.no
-    spark=https://dapla-spark.staging-bip-app.ssb.no
+    distributor=https://metadata-distributor.staging-bip-app.ssb.no
+    daccess=https://data-access.staging-bip-app.ssb.no
     ;;
   *)
     echo "Not a valid environment: '$2'"
