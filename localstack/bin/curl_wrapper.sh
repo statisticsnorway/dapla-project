@@ -44,8 +44,8 @@ function curl_invoke {
       echo "$REPRODUCE"
       ;;
     exec)
-      echo $2 $CURL_EXPECTED_HTTP_CODE $CURL_URL "'$6'"
       if [ "a""$CURL_EXPECTED_HTTP_CODE" != "a" ]; then
+        echo $2 $CURL_EXPECTED_HTTP_CODE $CURL_URL "'$6'"
         local CURL_OUTPUT="-o /dev/null -w %{http_code}"
         if [ "a"$TOKEN != "a" ]; then
           if [ "a""$6" != "a" ]; then
