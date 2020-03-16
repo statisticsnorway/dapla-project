@@ -49,6 +49,18 @@ post $auth /rpc/RoleService/putRole '{"role":{
 }}' 200
 
 post $auth /rpc/RoleService/putRole '{"role":{
+  "roleId": "raw_ro",
+  "privileges": [
+    "READ"
+  ],
+  "namespacePrefixes": [
+    "/raw/"
+  ],
+  "maxValuation": "SENSITIVE",
+  "states": ["RAW"]
+}}' 200
+
+post $auth /rpc/RoleService/putRole '{"role":{
   "roleId": "tmp.public",
   "privileges": [
     "CREATE",
@@ -88,7 +100,7 @@ for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvin
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
 }}' 200
-  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public", "ske.rawdata", "skatt.person.rawdata", "skatt.person.inndata" ] }' 201
+  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public", "raw_ro", "ske.rawdata", "skatt.person.rawdata", "skatt.person.inndata" ] }' 201
   get $auth '/user/'$user 200
   get $auth '/access/'$user'?privilege=READ&namespace=/skatt/person/some-dataset&valuation=SENSITIVE&state=RAW' 200
   get $auth '/access/'$user'?privilege=READ&namespace=/tmp/public/any-dataset&valuation=SENSITIVE&state=RAW' 200
