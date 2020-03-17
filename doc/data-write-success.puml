@@ -1,54 +1,86 @@
 @startuml
-hide footbox
 
 ' Participants
 
-participant "Notebook" as Notebook
-participant "spark-plugin" as SparkPlugin
-participant "spark-service" as SparkService
-participant "catalog-service" as CatalogService
-participant "auth-service" as AuthService
-participant "dlp-secret-service" as SecretService
-database "GCS" as GCS
+participant "Notebook" as notebook
+participant "Spark" as spark
+participant "DataAccess" as data_access
+database "GCS" as gcs
+queue "App events" as appQ
+queue "GCS events" as gcsQ
+participant "UserAccess" as user_access
+participant "MetadataDistributor" as distributor
+queue "Catalog" as catalogQ
+participant "Catalog" as catalog
+queue "Lineage" as lineageQ
+participant "Lineage" as lineage
 
-' Write (and pseudonymize) data
-note left of SparkPlugin
-    write("skatt.person.2019.rawdata")
+' Flow
+
+note left of spark
+    write("/path/to/dataset")
 end note
 
-Notebook->SparkPlugin: write(ns, options)
+activate notebook
+notebook->spark ++ : write( path, options )
 
-SparkPlugin->SparkService:
+== Metadata signing & access control ==
 
-activate SparkService
-SparkService->CatalogService: mapNameToId(ns)
-activate CatalogService
-CatalogService-->SparkService: datasetId
-deactivate CatalogService
-SparkService->CatalogService: getMetadata(datasetId)
-activate CatalogService
-CatalogService-->SparkService: metadata
-deactivate CatalogService
-SparkService->SecretService: getPseudoKeys(pseudoConfig.keyIds)
-activate SecretService
-SecretService-->SparkService:
-deactivate SecretService
-SparkService->AuthService: hasAccess(ns, WRITE, userId)
-activate AuthService
-AuthService-->SparkService:
-deactivate AuthService
-SparkService-->SparkPlugin
-deactivate SparkService
+spark->data_access ++ : writeLocation( options )
+spark-->notebook: logs
+data_access->user_access ++ : hasAccess( user, WRITE, path, valuation, state )
+return allowed
+return allowed, metadata, signature
+spark-->notebook: logs
 
-SparkPlugin->SparkPlugin: pseudoFunc.apply(data)
+== Write data and metadata to Cloud Storage ==
 
-SparkPlugin->GCS: write(data)
-SparkPlugin->SparkService:
-activate SparkService
-SparkService->SecretService: addNewKeys(keys)
-SparkService->CatalogService: createOrUpdate(metadata)
-SparkService-->SparkPlugin
-deactivate SparkService
-SparkPlugin-->Notebook
+spark->data_access ++ : writeAccessToken( path, version )
+return accessToken, ttl, parentUri, version
+|||
+spark->gcs ++ : write .dataset-meta.json
+return
+gcs-->gcsQ ++ : event: metadata file created
+gcsQ-->distributor ++
+distributor->distributor: ignore
+return ack
+deactivate gcsQ
+
+spark->gcs ++ : RDD write parquet files
+return
+
+gcs-->gcsQ ++ : events: parquet files created
+gcsQ-->distributor ++
+distributor->distributor: ignore
+return ack
+deactivate gcsQ
+
+spark->gcs ++ : write .dataset-meta.json.sign
+return
+return logs
+deactivate notebook
+
+== Metadata propagation ==
+
+gcs-->gcsQ ++ : event: signature file created
+gcsQ-->distributor ++
+distributor->gcs ++ : read metadata
+return .dataset-meta.json
+|||
+distributor->gcs ++ : read signature
+return .dataset-meta.json.sign
+distributor->distributor : validate metadata\nand signature
+distributor-->catalogQ: metadata
+distributor-->lineageQ: metadata
+return ack
+deactivate gcsQ
+
+catalogQ-->catalog ++
+catalog->catalog: update
+return ack
+
+lineageQ-->lineage ++
+lineage->lineage: update
+return ack
 
 @enduml
