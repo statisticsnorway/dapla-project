@@ -32,12 +32,18 @@ case $2 in
     TOKEN=
     ;;
   local)
-    if [ "a" == "a$LTOKEN" ]; then
-      echo
-      echo Environment variable LTOKEN must be set to a valid token.
-      echo
-      exit 1
-    fi
+
+  response=$(
+    curl -s -k -X POST 'http://localhost:28081/auth/realms/ssb/protocol/openid-connect/token' \
+      --header 'Content-Type: application/x-www-form-urlencoded' \
+      --data-urlencode 'grant_type=password' \
+      --data-urlencode 'client_id=zeppelin' \
+      --data-urlencode 'client_secret=ed48ee94-fe9d-4096-b069-9626a52877f2' \
+      --data-urlencode 'username=raw' \
+      --data-urlencode 'password=raw'
+  )
+  LTOKEN=$(jq -r .access_token <<< ${response})
+
     auth=http://localhost:20100
     catalog=http://localhost:20110
     distributor=http://localhost:20160
