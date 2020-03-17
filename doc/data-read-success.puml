@@ -3,49 +3,36 @@ hide footbox
 
 ' Participants
 
-participant "Notebook" as Notebook
-participant "spark-plugin" as SparkPlugin
-participant "spark-service" as SparkService
-participant "catalog-service" as CatalogService
-participant "auth-service" as AuthService
-participant "dlp-secret-service" as SecretService
-database "GCS" as GCS
+participant "Notebook" as notebook
+participant "Spark" as spark
+participant "DataAccess" as data_access
+database "GCS" as gcs
+participant "Catalog" as catalog
+participant "UserAccess" as user_access
 
-' Read depseudonymized data
+' Read data
 
-note left of SparkPlugin
-    read("skatt.person.2019.rawdata")
+note left of spark
+    read("/path/to/dataset")
 end note
 
-Notebook->SparkPlugin: read(ns, options)
-activate SparkPlugin
-SparkPlugin->SparkService:
-activate SparkService
-SparkService->CatalogService: mapNameToId(ns)
-activate CatalogService
-CatalogService-->SparkService: datasetId
-deactivate CatalogService
-SparkService->CatalogService: getMetadata(datasetId)
-activate CatalogService
-CatalogService-->SparkService: metadata
-deactivate CatalogService
-SparkService->AuthService: hasAccess(ns, READ, userId)
-activate AuthService
-AuthService-->SparkService:
-deactivate AuthService
-SparkService->SecretService: getPseudoKeys()
-activate SecretService
-SecretService-->SparkService:
-deactivate SecretService
-SparkService-->SparkPlugin:
-deactivate SparkService
-
-SparkPlugin->GCS: read
-activate GCS
-GCS-->SparkPlugin: data
-deactivate GCS
-
-SparkPlugin->SparkPlugin: pseudoFunc.restore(data)
-SparkPlugin-->Notebook
+activate notebook
+notebook->spark ++ : read( path, options )
+spark->data_access ++ : readLocation( path, snapshot )
+spark-->notebook: logs
+data_access->catalog ++ : getMetadata( path, snapshot )
+return metadata
+|||
+data_access->user_access ++ : hasAccess( user, READ, path, valuation, state )
+return allowed
+return allowed, parentUri, version
+spark-->notebook: logs
+spark->data_access ++ : readAccessToken( path, version )
+return accessToken, ttl, parentUri, version
+|||
+spark->gcs ++ : read( accessToken, URI.of( parentUri, path, version ) )
+return parquet files
+return logs
+deactivate notebook
 
 @enduml
