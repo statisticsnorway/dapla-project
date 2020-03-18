@@ -86,6 +86,11 @@ services:
       - ZEPPELIN_NOTEBOOK_DIR=/notebook
       - ZEPPELIN_ADDR=0.0.0.0
       - ZEPPELIN_SERVER_JETTY_REQUEST_HEADER_SIZE=16384
+      - ZEPPELIN_NOTEBOOK_STORAGE=org.apache.zeppelin.notebook.repo.GitHubNotebookRepo
+      - ZEPPELIN_NOTEBOOK_GIT_REMOTE_URL=https://github.com/statisticsnorway/dapla-notebooks.git
+      - ZEPPELIN_NOTEBOOK_GIT_REMOTE_USERNAME=<username>
+      - ZEPPELIN_NOTEBOOK_GIT_REMOTE_ACCESS_TOKEN=<token>
+      - ZEPPELIN_NOTEBOOK_GIT_REMOTE_ORIGIN=origin
       - SPARK_LOCAL_IP=zeppelin
       - SPARK_PRINT_LAUNCH_COMMAND=true
       - SPARK_MASTER=spark://spark-master:7077
