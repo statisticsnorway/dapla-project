@@ -9,6 +9,7 @@ function validate_localstack_env {
     validate_silently "make --version" "make is not installed" || return 1
     validate_silently "mvn --version" "mvn is not installed" || return 1
     validate_silently "jq --version" "jq is not installed" || return 1
+    validate_silently "base64 --help" "base64 is not installed" || return 1
     validate_silently "docker-compose --version" "docker-compose is not installed" || return 1
     validate_silently "ls $DAPLA_PROJECT_HOME/dapla-spark-plugin/secret/gcs_sa_test.json" "Missing GCS service account file. Expected to find in $DAPLA_PROJECT/dapla-spark-plugin/secret/gcs_sa_test.json" || return 1
 
