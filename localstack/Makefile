@@ -30,6 +30,10 @@ build-all-mvn: ## Build all maven projects
 start-all: ## Start all docker containers
 	docker-compose up -d
 
+.PHONY: start-all-lite
+start-all-lite:
+	docker-compose up -d --scale jupyter=0
+
 .PHONY: start-all-with-console
 start-all-with-console: ## Start all docker containers with output to existing console
 	docker-compose up
