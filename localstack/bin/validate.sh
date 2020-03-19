@@ -40,6 +40,14 @@ function red {
     printf '\e[31m%s\e[0m' "$1"
 }
 
+function bold {
+    printf '\e[1m%s\e[0m' "$1"
+}
+
+function underline {
+    printf '\e[4m%s\e[0m' "$1"
+}
+
 function print_exit_message {
     case $1 in
       ERROR)
