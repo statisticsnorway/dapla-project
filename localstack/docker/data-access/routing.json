@@ -76,7 +76,7 @@
         "uri": {
           "scheme": "file",
           "host": "",
-          "path-prefix": "/data/datastore/tmp"
+          "path-prefix": "/data/datastore"
         }
       }
     },
