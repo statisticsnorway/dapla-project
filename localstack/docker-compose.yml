@@ -204,10 +204,12 @@ services:
     ports:
       - 20140:10140
       - 20148:10148
+    volumes:
+      - ./docker/data-access:/data-access-conf
+      - ../dapla-spark-plugin/secret:/secret
     environment:
       TRACING_HOST: jaeger
-      DATA_ACCESS_SERVICE_ACCOUNT_KEY_FILE: /secret/gcs_sa_test.json
-      DATA_ACCESS_SERVICE_DEFAULT_LOCATION: file:///data/datastore
+      ROUTING_FILE: /data-access-conf/routing.json
       DATA_dash_ACCESS_PROVIDER: no.ssb.dapla.data.access.service.GoogleDataAccessService
       AUTH_dash_SERVICE_HOST: user-access
       AUTH_dash_SERVICE_PORT: 10108
