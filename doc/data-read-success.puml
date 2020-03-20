@@ -18,7 +18,7 @@ end note
 
 activate notebook
 notebook->spark ++ : read( path, options )
-spark->data_access ++ : readLocation( path, snapshot )
+spark->data_access ++ : readLocation( jwt, path, snapshot )
 spark-->notebook: logs
 data_access->catalog ++ : getMetadata( path, snapshot )
 return metadata
@@ -27,7 +27,12 @@ data_access->user_access ++ : hasAccess( user, READ, path, valuation, state )
 return allowed
 return allowed, parentUri, version
 spark-->notebook: logs
-spark->data_access ++ : readAccessToken( path, version )
+spark->data_access ++ : readAccessToken( jwt, path, version )
+data_access->catalog ++ : getMetadata( path, snapshot )
+return metadata
+|||
+data_access->user_access ++ : hasAccess( user, READ, path, valuation, state )
+return allowed
 return accessToken, ttl, parentUri, version
 |||
 spark->gcs ++ : read( accessToken, URI.of( parentUri, path, version ) )
