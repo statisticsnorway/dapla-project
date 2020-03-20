@@ -26,7 +26,7 @@ notebook->spark ++ : write( path, options )
 
 == Metadata signing & access control ==
 
-spark->data_access ++ : writeLocation( options )
+spark->data_access ++ : writeLocation( jwt, path, version, valuation, state )
 spark-->notebook: logs
 data_access->user_access ++ : hasAccess( user, WRITE, path, valuation, state )
 return allowed
@@ -35,8 +35,11 @@ spark-->notebook: logs
 
 == Write data and metadata to Cloud Storage ==
 
-spark->data_access ++ : writeAccessToken( path, version )
-return accessToken, ttl, parentUri, version
+spark->data_access ++ : writeAccessToken( jwt, metadata, signature )
+data_access -> data_access : validate \nmetadata & signature
+data_access->user_access ++ : hasAccess( user, WRITE, path, valuation, state )
+return allowed
+return accessToken, ttl
 |||
 spark->gcs ++ : write .dataset-meta.json
 return
