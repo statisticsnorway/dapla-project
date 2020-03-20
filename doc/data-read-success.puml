@@ -28,7 +28,7 @@ return allowed
 return allowed, parentUri, version
 spark-->notebook: logs
 spark->data_access ++ : readAccessToken( jwt, path, version )
-data_access->catalog ++ : getMetadata( path, snapshot )
+data_access->catalog ++ : getMetadata( path, version )
 return metadata
 |||
 data_access->user_access ++ : hasAccess( user, READ, path, valuation, state )
