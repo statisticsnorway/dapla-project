@@ -1,0 +1,76 @@
+@startuml
+
+card "/" as root
+
+card "/kilde" as kilde
+root --> kilde
+
+card "/kilde/ske" as ske
+kilde --> ske
+note left of ske
+    organisasjon
+    som eier kilde
+end note
+
+card "/kilde/ske/skatt" as ske_skatt
+ske --> ske_skatt
+note left of ske_skatt
+    gruppering
+end note
+database skeSkattBucket [
+    gs://ske_skatt
+]
+note right of skeSkattBucket
+    Alle datasett som lagres
+    med en sti som starter med
+    "/kilde/ske/skatt/" vil legges i
+    denne bøtta, med unntak der
+    hvor det rutes til en bøtte
+    for en mer spesifikk sti
+    slik som f.eks. rådata bøtta
+    som vist under.
+end note
+ske_skatt .> skeSkattBucket
+
+card "/kilde/ske/skatt/person" as ske_skatt_person
+note left of ske_skatt_person
+    undergruppe
+end note
+ske_skatt --> ske_skatt_person
+
+card "/kilde/ske/skatt/person/fastsatt" as ske_skatt_person_fastsatt
+note left of ske_skatt_person_fastsatt
+    undergruppe
+end note
+note right of ske_skatt_person_fastsatt
+    Under denne mappen vil det i tillegg
+    til rådata som er tegnet typisk ligge
+    bearbeidet data basert på samme kilde
+    F.eks. kan de som lager bearbeidede
+    data velge og her lage en mappe kalt
+    "/kilde/ske/skatt/person/fastsatt/klargjort"
+    hvor det legges datasett klartgjort
+    for videre bruk i andre produkter.
+end note
+ske_skatt_person --> ske_skatt_person_fastsatt
+
+card "/kilde/ske/skatt/person/fastsatt/rådata" as ske_skatt_person_fastsatt_raw
+note left of ske_skatt_person_fastsatt_raw
+    eget område
+    for innsamling
+end note
+ske_skatt_person_fastsatt --> ske_skatt_person_fastsatt_raw
+database skeSkattPersonRawFastsattBucket [
+    gs://kilde_ske_skatt_person_fastsatt_raw
+]
+ske_skatt_person_fastsatt_raw .> skeSkattPersonRawFastsattBucket
+
+card "/kilde/ske/skatt/person/fastsatt/rådata/2018v19" as ske_skatt_person_fastsatt_raw_fastsatt_2018
+note left of ske_skatt_person_fastsatt_raw_fastsatt_2018
+    spesifikk versjon
+    av datastrøm, typisk
+    konfigurert i converter
+end note
+ske_skatt_person_fastsatt_raw --> ske_skatt_person_fastsatt_raw_fastsatt_2018
+
+@enduml

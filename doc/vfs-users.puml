@@ -1,0 +1,33 @@
+@startuml
+
+card "/" as root
+
+card "/user" as user
+root --> user
+database usersBucket [
+    gs://users
+]
+note right of usersBucket
+    Fanger opp alle
+    private brukerdata
+    for brukere som
+    ikke har fått sin
+    egen bøtte.
+end note
+user .> usersBucket
+
+card "/user/kari" as userKari
+note left of userKari
+    Privatområde
+    for Kari
+end note
+user --> userKari
+database userKariBucket [
+    gs://user_kari
+]
+note right of userKariBucket
+    egen bøtte
+end note
+userKari .> userKariBucket
+
+@enduml

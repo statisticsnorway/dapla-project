@@ -1,0 +1,51 @@
+@startuml
+
+card "/" as root
+database default_bucket [
+    gs://default
+]
+root .> default_bucket
+note right of default_bucket
+    Fanger opp all
+    data som ikke
+    blir rutet via
+    en mer spesifikk
+    rute.
+end note
+
+card "/kilde" as kilde
+root --> kilde
+note bottom of kilde
+    Alle data tilknyttet
+    eksterne kilder.
+end note
+
+card "/produkt" as produkt
+root --> produkt
+note bottom of produkt
+    Alle data tilknyttet
+    statistikkprodukter,
+    unntatt det som er
+    tilknyttet kilder.
+end note
+
+card "/share" as share
+root --> share
+note bottom of share
+    Fellesområde for
+    datasett som skal
+    deles med alle
+end note
+database share_bucket [
+    gs://share
+]
+share .> share_bucket
+
+card "/user" as user
+root --> user
+note bottom of user
+    Private områder
+    for hver bruker
+end note
+
+@enduml

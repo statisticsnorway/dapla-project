@@ -1,0 +1,49 @@
+@startuml
+
+card "/" as root
+
+card "/produkt" as produkt
+root --> produkt
+database produktBucket [
+    gs://produkt
+]
+produkt .> produktBucket
+note right of produktBucket
+    fanger opp alle
+    produktgrupper
+    som ikke har fått
+    sin egen bøtte
+end note
+
+card "/produkt/skatt" as skatt
+note left of skatt
+    produkt-gruppe
+end note
+produkt --> skatt
+database skattBucket [
+    gs://produkt_skatt
+]
+skatt .> skattBucket
+note right of skattBucket
+    fanger opp alle
+    produkter som
+    ikke har fått
+    sin egen bøtte
+end note
+
+card "/produkt/skatt/person" as skatt_person
+note left of skatt_person
+    produkt
+end note
+skatt --> skatt_person
+database skattPersonBucket [
+    gs://produkt_skatt_person
+]
+skatt_person .> skattPersonBucket
+note right of skattPersonBucket
+    egen bøtte
+    for produktet
+    "skatt person"
+end note
+
+@enduml
