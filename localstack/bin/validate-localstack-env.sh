@@ -2,7 +2,7 @@
 
 # Sanity check of required localstack environment settings
 # This script exits with status code=0 if everything is aye-okay
-. $DAPLA_PROJECT_HOME/localstack/bin/validate.sh
+source "$(dirname "$0")/validate.sh"
 
 function validate_localstack_env {
     validate_env DAPLA_PROJECT_HOME "Should be the absolute path to your dapla-project directory" || return 1
