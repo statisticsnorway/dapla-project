@@ -55,6 +55,11 @@ Ask a friend to get hold of this.
 - The project _dapla-spark-plugin_ needs a service account key file placed under`/secret/gcs_sa_test.json`.
 This is needed to build the docker image and to run integration tests against a GCS bucket.
 
+### Intellij
+
+When pulling down repositories inside `dapla-project` intellij might not recognize these as separate repositories. To 
+make intellij recognize sub repos go to "Settings -> Version Control" and then add any repos listed as "Unregistered".
+
 
 ## Gotchas
 
