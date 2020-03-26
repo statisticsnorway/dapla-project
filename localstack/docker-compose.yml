@@ -97,6 +97,7 @@ services:
       - DAPLA_SPARK_METADATA_PUBLISHER_PROJECT_ID=dapla
       - DAPLA_SPARK_METADATA_PUBLISHER_TOPIC_NAME=file-events-1
       - DAPLA_SPARK_OAUTH_TOKEN_URL=http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/token
+      - DAPLA_SPARK_OAUTH_TRACING_URL=http://jaeger:14268/api/traces
       - DAPLA_SPARK_OAUTH_CLIENT_ID=zeppelin
       - DAPLA_SPARK_OAUTH_CLIENT_SECRET=ed48ee94-fe9d-4096-b069-9626a52877f2
 
