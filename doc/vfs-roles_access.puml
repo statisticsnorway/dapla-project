@@ -1,0 +1,103 @@
+@startuml
+
+legend right
+|<back:Gainsboro> </back>| None |
+|<back:Aqua>   </back>| Read |
+|<back:SpringGreen>   </back>| Write |
+endlegend
+
+hide stereotype
+
+skinparam backgroundColor White
+
+skinparam card {
+    BackgroundColor Gainsboro
+    BackgroundColor<<write>> SpringGreen
+    BackgroundColor<<read>> Aqua
+}
+
+card "/" as root
+note left of root
+    "Les Alle Kilder"
+
+    Privilege: READ
+    paths.include:
+      - /kilde/ske
+    states.exclude:
+      - RAW
+end note
+
+card "/" as root
+note left of root
+    "Les Alle Produkter
+    untatt kpi"
+
+    Privilege: READ
+    paths.include:
+      - /produkt
+    paths.exclude:
+      - /produkt/kpi
+end note
+
+card "/" as root
+note right of root
+    "Skriv Fellesområde"
+
+    Privilege: WRITE
+    paths.include:
+      - /felles
+end note
+
+card "/" as root
+note right of root
+    "Skriv brukerområdet"
+
+    Privilege: WRITE
+    paths.include:
+      - /user/me
+end note
+
+card "/" as root
+note top of root
+    "Skriv og les på TEMP state"
+
+    Privilege: WRITE, READ
+    states.include:
+      - TEMP
+end note
+
+note top of root
+    "Skriv produkt Skatt"
+
+    Privilege: WRITE
+    paths.include:
+      - /produkt/skatt
+end note
+
+card "/kilde" as kilde
+root --> kilde
+card "/kilde/ske" as ske <<read>>
+kilde --> ske
+card "/kilde/ske/skatt" as ske_skatt <<read>>
+ske --> ske_skatt
+card "/kilde/ske/freg" as ske_freg <<read>>
+ske --> ske_freg
+
+card "/produkt" as produkt <<read>>
+root --> produkt
+card "/produkt/skatt" as produkt_skatt <<write>>
+produkt --> produkt_skatt
+card "/produkt/kpi" as produkt_kpi
+produkt --> produkt_kpi
+
+card "/felles" as felles <<write>>
+root --> felles
+
+card "/user" as user
+root --> user
+card "/user/me" as user_me <<write>>
+user --> user_me
+card "/user/you" as user_you
+user --> user_you
+
+@enduml
