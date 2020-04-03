@@ -6,7 +6,6 @@
   "type": "BOUNDED",
   "valuation": "SHIELDED",
   "state": "RAW",
-  "parentUri": "file:///data/datastore",
   "pseudoConfig": {},
   "createdBy": "mehran"
 }

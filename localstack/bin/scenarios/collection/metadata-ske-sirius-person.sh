@@ -36,8 +36,5 @@ cp -r $(dirname $BASH_SOURCE)/../../testdata/skatt/person/rawdata-2018/158348617
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "projectId": "dapla",
   "topicName": "file-events-1",
-  "parentUri": '$(jq '.parentUri' tmp/dataset-meta.json)',
-  "path": '$(jq '.id.path' tmp/dataset-meta.json)',
-  "version": '$(jq '.id.version' tmp/dataset-meta.json)',
-  "filename": ".dataset-meta.json.sign"
+  "uri": "'$(jq '.parentUri' tmp/write-location.json)'/'$(jq '.id.path' tmp/.dataset-meta.json)'/'$(jq '.id.version' tmp/.dataset-meta.json)'/.dataset-meta.json.sign"
 }' 200
