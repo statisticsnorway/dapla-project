@@ -211,7 +211,7 @@ services:
     environment:
       TRACING_HOST: jaeger
       ROUTING_FILE: /data-access-conf/routing.json
-      DATA_dash_ACCESS_PROVIDER: no.ssb.dapla.data.access.service.GoogleDataAccessService
+      DATA_dash_ACCESS_PROVIDER: no.ssb.dapla.data.access.service.LocalstackDataAccessService
       AUTH_dash_SERVICE_HOST: user-access
       AUTH_dash_SERVICE_PORT: 10108
       CATALOG_dash_SERVICE_HOST: catalog

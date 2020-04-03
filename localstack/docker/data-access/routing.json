@@ -2,92 +2,12 @@
   "routing": [
     {
       "source": {
-        "paths": {
-          "includes": [
-            "/skatt/",
-            "/sirius/",
-            "/ske/"
-          ]
-        },
-        "valuations": {
-          "includes": [
-            "SENSITIVE"
-          ]
-        },
-        "states": {
-          "includes": [
-            "RAW"
-          ]
-        }
-      },
-      "target": {
-        "uri": {
-          "scheme": "gs",
-          "host": "dev-datalager-store",
-          "path-prefix": "/datastore/sensitive-data"
-        },
-        "auth": {
-          "read": "/secret/gcs_sa_test.json",
-          "write": "/secret/gcs_sa_test.json"
-        }
-      }
-    },
-    {
-      "source": {
-        "paths": {
-          "includes": [
-            "/skatt/",
-            "/sirius/",
-            "/ske/"
-          ]
-        },
-        "valuations": {
-          "excludes": [
-            "SENSITIVE"
-          ]
-        },
-        "states": {
-          "includes": [
-            "RAW"
-          ]
-        }
-      },
-      "target": {
-        "uri": {
-          "scheme": "gs",
-          "host": "dev-datalager-store",
-          "path-prefix": "/datastore/not-so-sensitive-data"
-        },
-        "auth": {
-          "read": "/secret/gcs_sa_test.json",
-          "write": "/secret/gcs_sa_test.json"
-        }
-      }
-    },
-    {
-      "source": {
-        "paths": {
-          "includes": [
-            "/tmp/"
-          ]
-        }
       },
       "target": {
         "uri": {
           "scheme": "file",
           "host": "",
-          "path-prefix": "/data/datastore/tmp"
-        }
-      }
-    },
-    {
-      "source": {
-      },
-      "target": {
-        "uri": {
-          "scheme": "file",
-          "host": "",
-          "path-prefix": "/data/datastore/catch-all"
+          "path-prefix": "/data/datastore"
         }
       }
     }
