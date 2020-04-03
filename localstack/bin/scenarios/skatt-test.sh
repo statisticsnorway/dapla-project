@@ -127,17 +127,11 @@ cp -r $(dirname $BASH_SOURCE)/../testdata/ske/sirius-person-utkast/2018v19/15831
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "projectId": "dapla",
   "topicName": "file-events-1",
-  "parentUri": "file:///data/datastore",
-  "path": "/skatt/person/rawdata-2019",
-  "version": 1582719098762,
-  "filename": ".dataset-meta.json.sign"
+  "uri": "file:///data/datastore/skatt/person/rawdata-2019/1582719098762/.dataset-meta.json.sign"
 }' 200
 
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "projectId": "dapla",
   "topicName": "file-events-1",
-  "parentUri": "file:///data/datastore",
-  "path": "/ske/sirius-person-utkast/2018v19",
-  "version": 1583156472183,
-  "filename": ".dataset-meta.json.sign"
+  "uri": "file:///data/datastore/ske/sirius-person-utkast/2018v19/1583156472183/.dataset-meta.json.sign"
 }' 200

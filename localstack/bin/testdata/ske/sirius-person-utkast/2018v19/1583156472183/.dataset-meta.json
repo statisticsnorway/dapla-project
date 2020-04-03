@@ -6,7 +6,6 @@
   "type": "UNBOUNDED",
   "valuation": "INTERNAL",
   "state": "RAW",
-  "parentUri": "file:///data/datastore",
   "pseudoConfig": {
     "vars": [
       {

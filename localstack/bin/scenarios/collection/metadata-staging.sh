@@ -52,7 +52,7 @@ echo "$(underline .dataset-meta.json)"
 cat tmp/.dataset-meta.json
 echo
 
-ds_parent_uri=$(jq -r '.parentUri' tmp/.dataset-meta.json)
+ds_parent_uri=$(jq -r '.parentUri' tmp/write-location.json)
 ds_path=$(jq -r '.id.path' tmp/.dataset-meta.json)
 ds_version=$(jq -r '.id.version' tmp/.dataset-meta.json)
 storage_path="$ds_parent_uri$ds_path/$ds_version"
@@ -67,8 +67,5 @@ echo $(bold "Notify metadata distributor")
 post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "projectId": "staging-bip",
   "topicName": "metadata-distributor-dataset-updates",
-  "parentUri": "'${ds_parent_uri}'",
-  "path": "'${ds_path}'",
-  "version": "'${ds_version}'",
-  "filename": ".dataset-meta.json.sign"
+  "uri": "'${ds_parent_uri}'/'${ds_path}'/'${ds_version}'/.dataset-meta.json.sign"
 }' 200
