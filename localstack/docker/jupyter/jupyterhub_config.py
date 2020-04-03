@@ -607,6 +607,8 @@ c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 #  documentation for your spawner to verify!
 #c.Spawner.args = []
 
+c.Spawner.default_url = '/lab'
+
 ## An optional hook function that you can implement to pass `auth_state` to the
 #  spawner after it has been initialized but before it starts. The `auth_state`
 #  dictionary may be set by the `.authenticate()` method of the authenticator.
