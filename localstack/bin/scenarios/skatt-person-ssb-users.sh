@@ -64,6 +64,22 @@ post $auth /rpc/RoleService/putRole '{"role":{
   "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
 }}' 200
 
+# /kilde/ske/skatt states: raw
+post $auth /rpc/RoleService/putRole '{"role":{
+  "roleId": "raw_skatt_full",
+  "privileges": [
+    "CREATE",
+    "UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "namespacePrefixes": [
+    "/kilde/ske/skatt"
+  ],
+  "maxValuation": "SENSITIVE",
+  "states": ["RAW"]
+}}' 200
+
 for user in "rune.lind" \
             "aleksander.berg" \
             "ole.vangen" \
@@ -73,6 +89,7 @@ for user in "rune.lind" \
             "ane.seierstad" \
             "rolf.rolfsen" \
             "oda.torgan" \
+            "ove.ranheim" \
             "matz.ivan.faldmo"
 do
   post $auth /rpc/RoleService/putRole '{"role":{
@@ -96,7 +113,8 @@ do
           "felles",
           "kilde.ske.skatt.person",
           "kilde.ske.skatt.person.rådata",
-          "produkt.skatt.person"
+          "produkt.skatt.person",
+          "raw_skatt_full"
         ]
       }' 201
 done
