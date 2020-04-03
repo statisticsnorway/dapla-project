@@ -90,6 +90,7 @@ for user in "rune.lind" \
             "rolf.rolfsen" \
             "oda.torgan" \
             "ove.ranheim" \
+            "kim.gaarder" \
             "matz.ivan.faldmo"
 do
   post $auth /rpc/RoleService/putRole '{"role":{
