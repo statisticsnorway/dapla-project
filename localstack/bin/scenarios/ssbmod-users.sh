@@ -1,37 +1,20 @@
 #!/usr/bin/env bash
 
 post $auth /rpc/RoleService/putRole '{"role":{
-  "roleId": "tmp.public",
+  "roleId": "read-all",
   "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
+    "READ"
   ],
   "namespacePrefixes": [
-    "/tmp/public/"
+    "/kilde",
+    "/produkt"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
 }}' 200
 
-for user in "kim.gaarder@ssbmod.net" \
-            "ove.ranheim@ssbmod.net" \
-            "hadrien.kohl@ssbmod.net" \
-            "trygve.falch@ssbmod.net" \
-            "mehran.raja@ssbmod.net" \
-            "ole.bredesen-vestby@ssbmod.net" \
-            "oyvind.strommen@ssbmod.net" \
-            "arild.takvam-borge@ssbmod.net" \
-            "kenneth.schulstad@ssbmod.net" \
-            "rune.lind@ssbmod.net" \
-            "rannveig.aasen@ssbmod.net" \
-            "magnus.myrdal.jenssen@ssbmod.net" \
-            "marianne.mellem@ssbmod.net" \
-            "bjorn-andre.skaar@ssbmod.net"
-do
-  post $auth /rpc/RoleService/putRole '{"role":{
-  "roleId": "tmp.'$user'",
+post $auth /rpc/RoleService/putRole '{"role":{
+  "roleId": "felles",
   "privileges": [
     "CREATE",
     "UPDATE",
@@ -39,10 +22,47 @@ do
     "DELETE"
   ],
   "namespacePrefixes": [
-    "/tmp/'$user'/"
+    "/felles/"
   ],
   "maxValuation": "SENSITIVE",
   "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
 }}' 200
-  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public" ] }' 201
+
+for user in "kim.gaarder" \
+            "ove.ranheim" \
+            "hadrien.kohl" \
+            "trygve.falch" \
+            "mehran.raja" \
+            "ole.bredesen-vestby" \
+            "oyvind.strommen" \
+            "arild.takvam-borge" \
+            "kenneth.schulstad" \
+            "rune.lind" \
+            "rannveig.aasen" \
+            "magnus.myrdal.jenssen" \
+            "marianne.mellem" \
+            "bjorn-andre.skaar"
+do
+  post $auth /rpc/RoleService/putRole '{"role":{
+  "roleId": "ssbmod.net.user.'$user'",
+  "privileges": [
+    "CREATE",
+    "UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "namespacePrefixes": [
+    "/user/'$user'@ssbmod.net/"
+  ],
+  "maxValuation": "SENSITIVE",
+  "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
+}}' 200
+  put $auth '/user/'$user'@ssbmod.net' '{
+    "userId" : "'$user'@ssbmod.net",
+    "roles" : [
+          "read-all",
+          "ssbmod.net.user.'$user'",
+          "felles"
+        ]
+      }' 201
 done
