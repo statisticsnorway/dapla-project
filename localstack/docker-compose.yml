@@ -237,8 +237,8 @@ services:
       PUBSUB_EMULATOR_HOST: pubsub
       PUBSUB_EMULATOR_PORT: 8538
       TRACING_HOST: jaeger
-      CLOUD_dash_STORAGE_ENABLED: "true"
-      CLOUD_dash_STORAGE_CREDENTIALS_SERVICE_dash_ACCOUNT_PATH: /secret/gcs_sa_test.json
+      STORAGE_CLOUD_dash_STORAGE_ENABLED: "true"
+      STORAGE_CLOUD_dash_STORAGE_CREDENTIALS_SERVICE_dash_ACCOUNT_PATH: /secret/gcs_sa_test.json
     depends_on:
       - jaeger
       - pubsub
