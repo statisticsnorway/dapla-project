@@ -1,10 +1,46 @@
 # Configuration file for jupyterhub.
 
+c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
+
+# Initialize environment
+c.Spawner.environment = {}
+
+# Keep Spark vars in notebooks
+c.Spawner.env_keep = ['PYSPARK_PYTHON','PYSPARK_SUBMIT_ARGS', 'PYSPARK_DRIVER_PYTHON', 'PYSPARK_DRIVER_PYTHON_OPTS', 'SPARK_HOME', 'PYTHONPATH']
+
+import os
+import warnings
 from oauthenticator.generic import GenericOAuthenticator
-c.JupyterHub.authenticator_class = GenericOAuthenticator
+
+# noinspection PyInterpreter
+# Pre-Spawn custom class to retrieve user access token
+class EnvGenericOAuthenticator(GenericOAuthenticator):
+    # Before spawning the notebook, we retrieve some information from Vault
+    async def pre_spawn_start(self, user, spawner):
+
+        # Retrieve user authentication info from JH
+        auth_state = await user.get_auth_state()
+        if not auth_state:
+            # user has no auth state
+            return
+
+        # update env var to pass to notebooks
+        spawner.environment['SSB_ACCESS'] = auth_state['access_token']
+        spawner.environment['SSB_REFRESH'] = auth_state['refresh_token']
+
+if 'JUPYTERHUB_CRYPT_KEY' not in os.environ:
+    warnings.warn(
+        "Need JUPYTERHUB_CRYPT_KEY env for persistent auth_state.\n"
+        "    export JUPYTERHUB_CRYPT_KEY=$(openssl rand -hex 32)"
+    )
+    c.CryptKeeper.keys = [ os.urandom(32) ]
+
+c.JupyterHub.authenticator_class = EnvGenericOAuthenticator
+c.Authenticator.enable_auth_state = True
 
 c.GenericOAuthenticator.client_id = 'jupyter'
 c.GenericOAuthenticator.client_secret = 'f506d183-77ec-446c-a51b-af4ec7daef81'
+c.JupyterHub.authenticator_class.login_handler._OAUTH_AUTHORIZE_URL = 'http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth'
 c.GenericOAuthenticator.authorize_url = 'http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth'
 c.GenericOAuthenticator.token_url =     'http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/token'
 c.GenericOAuthenticator.userdata_url =  'http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/userinfo'
@@ -13,8 +49,12 @@ c.GenericOAuthenticator.userdata_method = 'GET'
 c.GenericOAuthenticator.scope = ['openid', 'email']
 c.GenericOAuthenticator.userdata_params = {"Accept": "application/json"}
 c.GenericOAuthenticator.username_key = 'preferred_username'
+c.GenericOAuthenticator.tls_verify = False
 
-c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
+# Enable authentication state to store tokens
+c.GenericOAuthenticator.enable_auth_state = True
+# Force refresh of tokens before spawning
+c.GenericOAuthenticator.refresh_pre_spawn = True
 
 #------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
