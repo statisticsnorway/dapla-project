@@ -25,8 +25,100 @@ class EnvGenericOAuthenticator(GenericOAuthenticator):
             return
 
         # update env var to pass to notebooks
+        self.log.info('*** Passing credentials to notebook')
         spawner.environment['SSB_ACCESS'] = auth_state['access_token']
         spawner.environment['SSB_REFRESH'] = auth_state['refresh_token']
+
+    # Refresh user access and refresh tokens (called periodically)
+    async def refresh_user(self, user, handler=None):
+        import jwt
+        import time
+        import urllib
+        import json
+        from tornado.httpclient import HTTPRequest, AsyncHTTPClient
+        from tornado.httputil import url_concat
+        # Retrieve user authentication info, decode, and check if refresh is needed
+        self.log.info('*** Calling refresh_user')
+        auth_state = await user.get_auth_state()
+        access_token = jwt.decode(auth_state['access_token'], verify=False)
+        refresh_token = jwt.decode(auth_state['refresh_token'], verify=False)
+        diff_access=access_token['exp']-time.time()
+        diff_refresh=refresh_token['exp']-time.time()
+        if diff_access>0:
+            # Access token still valid, function returns True
+            refresh_user_return = True
+        elif diff_refresh<0:
+            # Refresh token not valid, need to completely reauthenticate
+            refresh_user_return = False
+        else:
+            # We need to refresh access token (which will also refresh the refresh token)
+            refresh_token = auth_state['refresh_token']
+            http_client = AsyncHTTPClient()
+            url = os.environ.get('OAUTH2_TOKEN_URL')
+            params = dict(
+                grant_type = 'refresh_token',
+                client_id = os.environ.get('OAUTH_CLIENT_ID'),
+                client_secret = os.environ.get('OAUTH_CLIENT_SECRET'),
+                refresh_token = refresh_token
+            )
+
+            headers = {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+
+            req = HTTPRequest(url,
+                              method="POST",
+                              headers=headers,
+                              validate_cert=self.tls_verify,
+                              body=urllib.parse.urlencode(params)  # Body is required for a POST...
+                              )
+            resp = await http_client.fetch(req)
+
+            resp_json = json.loads(resp.body.decode('utf8', 'replace'))
+
+            access_token = resp_json['access_token']
+            refresh_token = resp_json.get('refresh_token', None)
+            token_type = resp_json['token_type']
+            scope = resp_json.get('scope', '')
+            if (isinstance(scope, str)):
+                scope = scope.split(' ')
+
+            # Determine who the logged in user is
+            headers = {
+                "Accept": "application/json",
+                "User-Agent": "JupyterHub",
+                "Authorization": "{} {}".format(token_type, access_token)
+            }
+            if self.userdata_url:
+                url = url_concat(self.userdata_url, self.userdata_params)
+            else:
+                raise ValueError("Please set the OAUTH2_USERDATA_URL environment variable")
+
+            if self.userdata_token_method == "url":
+                url = url_concat(self.userdata_url, dict(access_token=access_token))
+
+            req = HTTPRequest(url,
+                              method=self.userdata_method,
+                              headers=headers,
+                              validate_cert=self.tls_verify,
+                              )
+            resp = await http_client.fetch(req)
+            resp_json = json.loads(resp.body.decode('utf8', 'replace'))
+
+            if not resp_json.get(self.username_key):
+                self.log.error("OAuth user contains no key %s: %s", self.username_key, resp_json)
+                return
+
+            refresh_user_return = {
+                'name': resp_json.get(self.username_key),
+                'auth_state': {
+                    'access_token': access_token,
+                    'refresh_token': refresh_token,
+                    'oauth_user': resp_json,
+                    'scope': scope,
+                }
+            }
+        return refresh_user_return
 
 if 'JUPYTERHUB_CRYPT_KEY' not in os.environ:
     warnings.warn(
@@ -38,13 +130,12 @@ if 'JUPYTERHUB_CRYPT_KEY' not in os.environ:
 c.JupyterHub.authenticator_class = EnvGenericOAuthenticator
 c.Authenticator.enable_auth_state = True
 
-c.GenericOAuthenticator.client_id = 'jupyter'
-c.GenericOAuthenticator.client_secret = 'f506d183-77ec-446c-a51b-af4ec7daef81'
-c.JupyterHub.authenticator_class.login_handler._OAUTH_AUTHORIZE_URL = 'http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth'
-c.GenericOAuthenticator.authorize_url = 'http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth'
-c.GenericOAuthenticator.token_url =     'http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/token'
-c.GenericOAuthenticator.userdata_url =  'http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/userinfo'
-c.GenericOAuthenticator.oauth_callback_url =  'http://localhost:28012/hub/oauth_callback'
+c.GenericOAuthenticator.client_id = os.environ.get('OAUTH_CLIENT_ID')
+c.GenericOAuthenticator.client_secret = os.environ.get('OAUTH_CLIENT_SECRET')
+c.GenericOAuthenticator.authorize_url = os.environ.get('OAUTH2_AUTH_URL')
+c.GenericOAuthenticator.token_url = os.environ.get('OAUTH2_TOKEN_URL')
+c.GenericOAuthenticator.userdata_url = os.environ.get('OAUTH2_USERDATA_URL')
+c.GenericOAuthenticator.oauth_callback_url = 'http://localhost:28012/hub/oauth_callback'
 c.GenericOAuthenticator.userdata_method = 'GET'
 c.GenericOAuthenticator.scope = ['openid', 'email']
 c.GenericOAuthenticator.userdata_params = {"Accept": "application/json"}
@@ -55,6 +146,7 @@ c.GenericOAuthenticator.tls_verify = False
 c.GenericOAuthenticator.enable_auth_state = True
 # Force refresh of tokens before spawning
 c.GenericOAuthenticator.refresh_pre_spawn = True
+c.Authenticator.auth_refresh_age = 60
 
 #------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
