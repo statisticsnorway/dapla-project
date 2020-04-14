@@ -66,6 +66,7 @@ services:
       - OAUTH2_AUTH_URL=http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth
       - OAUTH2_TOKEN_URL=http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/token
       - OAUTH2_USERDATA_URL=http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/userinfo
+      - OAUTH2_CALLBACK_URL=http://localhost:28012/hub/oauth_callback
       - OAUTH_CLIENT_ID=jupyter
       - OAUTH_CLIENT_SECRET=f506d183-77ec-446c-a51b-af4ec7daef81
 
