@@ -53,7 +53,9 @@ services:
     container_name: jupyter
     image: eu.gcr.io/prod-bip/dapla-jupyter
     volumes:
+      - ./data:/data:delegated
       - ./docker/jupyter/jupyterhub_config.py:/jupyter/jupyterhub_config.py
+      - ./docker/jupyter/spark-localstack.conf:/usr/lib/spark/conf/spark-defaults.conf
     build:
       context: ../dapla-spark-plugin
       dockerfile: ${PWD}/../dapla-spark-plugin/docker/jupyter/Dockerfile
