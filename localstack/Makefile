@@ -82,6 +82,10 @@ open-jaeger: ## Open Jaeger in your browser
 open-zeppelin: ## Open Zeppelin in your browser
 	open http://localhost:28010
 
+.PHONY: open-jupyter
+open-jupyter: ## Open Juphyterhub in your browser
+	open http://localhost:28012
+
 .PHONY: open-keycloak
 open-keycloak: ## Open Keycloak in your browser
 	open http://localhost:28081

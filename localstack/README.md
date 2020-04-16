@@ -88,6 +88,7 @@ spark-plugin-redeploy                         Build and redeploy the spark plugi
 spark-interpreter-restart                     Restart the Zeppelin Spark interpreter
 open-db-admin                                 Open a DB admin tool in your browser
 open-zeppelin                                 Open Zeppelin in your browser
+open-jupyter                                  Open Jupyter in your browser
 open-hadoop-cluster                           Open Hadoop cluster browser
 open-hadoop-hdfs                              Open Hadoop nameserver/dataserver
 print-local-changes                           Show a brief summary of local changes
@@ -95,6 +96,4 @@ print-local-changes                           Show a brief summary of local chan
 
 ## Services
 
-* Hadoop cluster (http://localhost:18088/cluster)
-* Hadoop web UI for nameserver/dataserver (http://localhost:50070)
-* Zeppelin (http://localhost:18008)
+See the [docker-compose](https://github.com/statisticsnorway/dapla-project/blob/master/localstack/docker-compose.yml) file for a list of al the services.
