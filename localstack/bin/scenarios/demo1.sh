@@ -1,65 +1,69 @@
 #!/usr/bin/env bash
 
 # dataset-access
-# create role for rawdata
-post $auth /rpc/RoleService/putRole '{"role":{
+## create role for rawdata
+put $auth '/role/skatt.person.rawdata' '{
   "roleId": "skatt.person.rawdata",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/skatt/person"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/skatt/person"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT"]
-}}' 200
+  "states": {
+    "excludes": ["OTHER"]
+  }
+}' 201
 
-# create role for indata
-post $auth /rpc/RoleService/putRole '{"role":{
+## create role for indata
+put $auth '/role/skatt.person.inndata' '{
   "roleId": "skatt.person.inndata",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/skatt/person"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/skatt/person"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT","OTHER"]
-}}' 200
+  "states": {
+    "excludes": ["RAW"]
+  }
+}' 201
 
-## dataset-access
 ## get roles
-post $auth /rpc/RoleService/getRole '{"roleId": "skatt.person.rawdata"}' 200
-post $auth /rpc/RoleService/getRole '{"roleId": "skatt.person.inndata"}' 200
+get $auth '/role/skatt.person.rawdata' 200
+get $auth '/role/skatt.person.inndata' 200
 
+## create groups
+put $auth '/group/skatt.person.collect' '{
+  "groupId": "skatt.person.collect",
+  "description": "",
+  "roles": ["skatt.person.rawdata"]
+}' 201
 
-#
-## dataset-access
+# get groups
+get $auth '/group/skatt.person.collect' 200
+
 ## create users
-put $auth '/user/user1' '{ "userId" : "user1", "roles" : [ "skatt.person.rawdata" ] }' 201
-
+put $auth '/user/user1' '{ "userId" : "user1", "groups" : [ "skatt.person.collect" ] }' 201
 put $auth '/user/user2' '{ "userId" : "user2", "roles" : [ "skatt.person.inndata" ] }' 201
 
-## dataset-access
 ## get user
 get $auth '/user/user1' 200
 get $auth '/user/user2' 200
 
-## dataset-access
 ## get access
 ## should have access
-get $auth '/access/user1?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=RAW' 200
-get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=INPUT' 200
+get $auth '/access/user1?privilege=READ&path=skatt/person&valuation=SENSITIVE&state=RAW' 200
+get $auth '/access/user2?privilege=READ&path=skatt/person&valuation=SENSITIVE&state=INPUT' 200
 
 ## should not have access
-get $auth '/access/user2?privilege=READ&namespace=skatt/person&valuation=SENSITIVE&state=RAW' 403
+get $auth '/access/user2?privilege=READ&path=skatt/person/inndata&valuation=SENSITIVE&state=RAW' 403
 
+## dapla-catalog
 ## create dataset
 post $catalog '/rpc/CatalogService/save' '{
   "dataset": {
@@ -88,4 +92,4 @@ post $catalog '/rpc/CatalogService/listByPrefix' '{
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore/skatt/person/rawdata-2019/1582719098762
 mkdir -p $target
-cp $(dirname $BASH_SOURCE)/../testdata/*.parquet $target/.
+cp $(dirname $BASH_SOURCE)/../testdata/skatt/person/rawdata-2019/1582719098762/*.parquet $target/.

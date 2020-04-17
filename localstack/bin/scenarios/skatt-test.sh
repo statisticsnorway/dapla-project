@@ -1,113 +1,138 @@
 #!/usr/bin/env bash
 
 # dataset-access
-# create role for rawdata
-post $auth /rpc/RoleService/putRole '{"role":{
+# create role for ske rawdata
+put $auth '/role/ske.rawdata' '{
   "roleId": "ske.rawdata",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/ske/"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/ske"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["RAW"]
-}}' 200
+  "states": {
+    "includes": ["RAW"]
+  }
+}' 201
 
-post $auth /rpc/RoleService/putRole '{"role":{
+# create role for skatt person rawdata
+put $auth '/role/skatt.person.rawdata' '{
   "roleId": "skatt.person.rawdata",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/skatt/person/"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/skatt/person"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["RAW"]
-}}' 200
+  "states": {
+    "includes": ["RAW"]
+  }
+}' 201
 
-# create role for indata
-post $auth /rpc/RoleService/putRole '{"role":{
+# create role for skatt person indata
+put $auth '/role/skatt.person.inndata' '{
   "roleId": "skatt.person.inndata",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/skatt/person/"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/skatt/person"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
-}}' 200
+  "states": {
+    "excludes": ["RAW"]
+  }
+}' 201
 
-post $auth /rpc/RoleService/putRole '{"role":{
+#create role for raw_ro
+put $auth '/role/raw_ro' '{
   "roleId": "raw_ro",
-  "privileges": [
-    "READ"
-  ],
-  "namespacePrefixes": [
-    "/raw/"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": ["READ"]
+  },
+  "paths": {
+    "includes": ["/raw"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["RAW"]
-}}' 200
+  "states": {
+    "includes": ["RAW"]
+  }
+}' 201
 
-post $auth /rpc/RoleService/putRole '{"role":{
+## create role for public
+put $auth '/role/tmp.public' '{
   "roleId": "tmp.public",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/tmp/public/"
-  ],
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/tmp/public"]
+  },
   "maxValuation": "SENSITIVE",
-  "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
-}}' 200
+  "states": {
+    "includes": []
+  }
+}' 201
 
-## dataset-access
 ## get roles
-post $auth /rpc/RoleService/getRole '{"roleId": "skatt.person.rawdata"}' 200
-post $auth /rpc/RoleService/getRole '{"roleId": "skatt.person.inndata"}' 200
-post $auth /rpc/RoleService/getRole '{"roleId": "tmp.public"}' 200
+get $auth '/role/ske.rawdata' 200
+get $auth '/role/skatt.person.rawdata' 200
+get $auth '/role/skatt.person.inndata' 200
+get $auth '/role/raw_ro' 200
+get $auth '/role/tmp.public' 200
 
+## create groups
+put $auth '/group/skatt-test' '{
+  "groupId": "skatt-test",
+  "description": "",
+  "roles": ["ske.rawdata", "skatt.person.rawdata", "skatt.person.inndata", "raw_ro"]
+}' 201
 
-#
-## dataset-access
+put $auth '/group/public' '{
+  "groupId": "public",
+  "description": "",
+  "roles": ["tmp.public"]
+}' 201
+
+# get groups
+get $auth '/group/skatt-test' 200
+get $auth '/group/public' 200
+
 ## create and read users
 for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve" "rannveig" "marianne" "magnus"; do
-  post $auth /rpc/RoleService/putRole '{"role":{
-  "roleId": "tmp.'$user'",
-  "privileges": [
-    "CREATE",
-    "UPDATE",
-    "READ",
-    "DELETE"
-  ],
-  "namespacePrefixes": [
-    "/tmp/'$user'/"
-  ],
-  "maxValuation": "SENSITIVE",
-  "states": ["RAW", "INPUT", "PROCESSED", "OUTPUT", "PRODUCT", "OTHER"]
-}}' 200
-  put $auth '/user/'$user '{ "userId" : "'$user'", "roles" : [ "tmp.'$user'", "tmp.public", "raw_ro", "ske.rawdata", "skatt.person.rawdata", "skatt.person.inndata" ] }' 201
+  put $auth "/user/$user" '{
+    "userId": "'$user'",
+    "groups": ["skatt-test", "public"],
+    "roles": ["tmp.'$user'"]
+  }' 201
+  put $auth "/role/tmp.$user" '{
+    "roleId": "tmp.'$user'",
+    "description": "",
+    "privileges": {
+      "includes": []
+    },
+    "paths": {
+      "includes": ["/tmp/'$user'"]
+    },
+    "maxValuation": "SENSITIVE",
+    "states": {
+      "includes": []
+    }
+  }' 201
   get $auth '/user/'$user 200
-  get $auth '/access/'$user'?privilege=READ&namespace=/skatt/person/some-dataset&valuation=SENSITIVE&state=RAW' 200
-  get $auth '/access/'$user'?privilege=READ&namespace=/tmp/public/any-dataset&valuation=SENSITIVE&state=RAW' 200
+  get $auth '/access/'$user'?privilege=READ&path=/skatt/person/some-dataset&valuation=SENSITIVE&state=RAW' 200
+  get $auth '/access/'$user'?privilege=READ&path=/tmp/public/any-dataset&valuation=SENSITIVE&state=RAW' 200
 done
 
 ## a user should not have access to another user's private tmp area
-get $auth '/access/arlid?privilege=READ&namespace=/tmp/trygve/trygves-private-dataset&valuation=OPEN&state=PROCESSED' 403
+get $auth '/access/arlid?privilege=READ&path=/tmp/trygve/trygves-private-dataset&valuation=OPEN&state=PROCESSED' 403
 
 ## Copy testdata to datastore folder
 target=$(dirname $BASH_SOURCE)/../../data/datastore
