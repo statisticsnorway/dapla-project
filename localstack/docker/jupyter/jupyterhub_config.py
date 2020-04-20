@@ -6,7 +6,9 @@ c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
 c.Spawner.environment = {}
 
 # Keep Spark vars in notebooks
-c.Spawner.env_keep = ['PYTHONSTARTUP', 'PYSPARK_PYTHON','PYSPARK_SUBMIT_ARGS', 'PYSPARK_DRIVER_PYTHON', 'PYSPARK_DRIVER_PYTHON_OPTS', 'SPARK_HOME', 'PYTHONPATH', 'HADOOP_CONF_DIR', 'YARN_CONF_DIR']
+c.Spawner.env_keep = ['PYSPARK_PYTHON','PYSPARK_SUBMIT_ARGS', 'PYSPARK_DRIVER_PYTHON', 'PYSPARK_DRIVER_PYTHON_OPTS',
+                      'SPARK_HOME', 'PYTHONPATH', 'HADOOP_CONF_DIR', 'YARN_CONF_DIR', 'PYTHON_KERNELS_PATH',
+                      'OAUTH2_TOKEN_URL', 'METADATA_PUBLISHER_URL', 'DATA_ACCESS_URL', 'CATALOG_URL']
 
 import os, sys, warnings
 from custom_auth.authenticator import EnvGenericOAuthenticator
