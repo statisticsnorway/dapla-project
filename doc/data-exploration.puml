@@ -1,0 +1,32 @@
+@startuml
+
+component "Concept" as concept
+component "Klass" as klass
+component "Catalog" as catalog
+component "Blueprint" as blueprint
+component "Lineage" as lineage
+component "Jupyter" as jupyter
+component "Data Exploration" as dx_service
+database "Data Exploration DB" as dx <<read-only index>>
+database "Git Repository" as gitrepo
+database "Google Cloud Storage" as gcs
+database "Execution Logs" as executionlogs
+database "Concept DB" as cdb
+
+dx_service --> dx
+
+dx .. concept
+dx .. catalog
+dx .. blueprint
+dx .. lineage
+
+jupyter ... gitrepo
+
+klass .> cdb
+
+blueprint .. gitrepo
+catalog .. gcs
+concept .. cdb
+lineage .. executionlogs
+
+@enduml
