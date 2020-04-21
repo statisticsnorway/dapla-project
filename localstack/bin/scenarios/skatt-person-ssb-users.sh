@@ -86,7 +86,7 @@ put $auth '/group/skatt.person' '{
 }' 201
 
 for user in "rune.lind" \
-  "aleksander.berg" \
+  "aleksander.berge" \
   "ole.vangen" \
   "remy.brathen" \
   "ole.bredesen-vestby" \
