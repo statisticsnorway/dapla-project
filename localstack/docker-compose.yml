@@ -71,6 +71,9 @@ services:
       - OAUTH2_CALLBACK_URL=http://localhost:28012/hub/oauth_callback
       - OAUTH_CLIENT_ID=jupyter
       - OAUTH_CLIENT_SECRET=f506d183-77ec-446c-a51b-af4ec7daef81
+      - METADATA_PUBLISHER_URL=http://metadata-distributor:10160
+      - DATA_ACCESS_URL=http://data-access:10140
+      - CATALOG_URL=http://catalog:10110
 
   zeppelin:
     container_name: zeppelin
