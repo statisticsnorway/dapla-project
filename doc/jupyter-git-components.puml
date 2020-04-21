@@ -1,0 +1,17 @@
+@startuml
+database GitHub as github
+Node "Jupyter\nUser 1" as j1 {
+  database "disk 1" as v1 {
+  }
+}
+Node "Jupyter\nUser 2" as j2 {
+  database "disk 2" as v2 {
+  }
+}
+Node "Jupyter Hub" as jhub {
+}
+jhub ..> j1
+jhub ..> j2
+v1 <..> github
+v2 <..> github
+@enduml
