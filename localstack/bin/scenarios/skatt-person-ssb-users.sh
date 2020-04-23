@@ -96,7 +96,7 @@ for user in "rune.lind" \
   "oda.torgan" \
   "ove.ranheim" \
   "kim.gaarder" \
-  "bjorn-andre.skaar" \
+  "bjorn.skaar" \
   "matz.ivan.faldmo"; do
   put $auth "/role/user.$user" '{
     "roleId": "user.'$user'",
