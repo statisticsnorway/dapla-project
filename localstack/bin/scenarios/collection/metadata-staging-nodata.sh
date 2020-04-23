@@ -12,8 +12,11 @@
 #   TOKEN -> API-user token used to access the dapla services
 #
 # Prerequisites:
-#   Your API user needs to have access to the path specified in DATASET_META_JSON in order
-#   for the metadata signing to work.
+#   - Your API user needs to have access to the path specified in DATASET_META_JSON in order
+#     for the metadata signing to work.
+#   - Make sure your gcloud account is being configured to your personal user in order for
+#     gsutil to execute successfully.
+#     e.g. cloud config set account mikke.mus@ssbmod.net
 #
 # Examples:
 #
@@ -23,6 +26,7 @@
 
 . $DAPLA_PROJECT_HOME/localstack/bin/validate.sh
 
+ds_parent_uri="gs://ssb-data-staging-kilde-ske-freg/datastore"
 ds_version=${DS_VERSION:-$(date +%s000)}
 
 DATASET_META_JSON=$(jq '@json' <<< '{
@@ -48,8 +52,7 @@ rm tmp/write-location.json
 echo "$(underline .dataset-meta.json)"
 cat tmp/.dataset-meta.json
 echo
-ds_parent_uri="gs://ssb-data-staging-kilde-ske-freg/datastore"
-#ds_parent_uri=$(jq -r '.parentUri' tmp/.dataset-meta.json)
+
 ds_path=$(jq -r '.id.path' tmp/.dataset-meta.json)
 ds_version=$(jq -r '.id.version' tmp/.dataset-meta.json)
 storage_path="$ds_parent_uri$ds_path/$ds_version"
