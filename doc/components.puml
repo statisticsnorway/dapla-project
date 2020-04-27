@@ -7,6 +7,7 @@ skinparam queue {
 component "User Access" as user_access
 component "Catalog" as catalog
 component "Pseudonymization" as pseudo
+component "Blueprint" as blueprint
 component "Lineage" as lineage
 component "Data Access" as data_access
 database "Linked Data Store" as lds {
@@ -19,15 +20,16 @@ node "Dataproc" <<Hadoop>> as dataproc {
   node "Worker" as worker3
   node "Worker" as worker4
 }
-component "Zeppelin" as zeppelin
+component "Jupyter" as jupyter
 catalog -> user_access
 data_access --> catalog
 data_access --> user_access
 
 database "GitHub" as github
 
-zeppelin -- dataproc
-zeppelin -> github
+jupyter -- dataproc
+jupyter --> github
+blueprint --> github : read-only
 dataproc ----> gcs : \n\nread/\nwrite
 dataproc ----> data_access : get GCS\ntoken
 
