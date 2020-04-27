@@ -66,6 +66,22 @@ case $2 in
     distributor=https://metadata-distributor.staging-bip-app.ssb.no
     daccess=https://data-access.staging-bip-app.ssb.no
     ;;
+  prod)
+    if [ "a" == "a$TOKEN" ]; then
+      echo
+      echo Environment variable TOKEN must be set to a valid token.
+      echo
+      echo Run the following command using your own client-id and secret to obtain a valid token:
+      echo
+      echo "  $(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c prod-bip-app -n dataset-access -t"
+      echo
+      exit 1
+    fi
+    auth=https://dataset-access.prod-bip-app.ssb.no
+    catalog=https://dapla-catalog.prod-bip-app.ssb.no
+    distributor=https://metadata-distributor.prod-bip-app.ssb.no
+    daccess=https://data-access.prod-bip-app.ssb.no
+    ;;
   *)
     echo "Not a valid environment: '$2'"
     exit 1
