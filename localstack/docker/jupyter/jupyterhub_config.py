@@ -39,7 +39,13 @@ c.GenericOAuthenticator.tls_verify = False
 c.GenericOAuthenticator.enable_auth_state = True
 # Force refresh of tokens before spawning
 c.GenericOAuthenticator.refresh_pre_spawn = True
-c.Authenticator.auth_refresh_age = 60
+c.GenericOAuthenticator.auth_refresh_age = 300
+
+from custom_auth.authextension import AuthHandler
+
+c.JupyterHub.extra_handlers = [
+    (r"/custom-api/user", AuthHandler)
+]
 
 #------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
