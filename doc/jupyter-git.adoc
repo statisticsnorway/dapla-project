@@ -25,7 +25,6 @@ The generated token is a secret and make sure store store this in a secure place
 == Set up your GitHub account with Jupyter
 
 1. Open up Jupyter at Staging/Production/other
-1. PS! You will see a warning dialog/message "Build Recommended -> @jupyterlab/git needs to be removed from build". Please Cancel this message and disregard this for now. It will be fixed shortly by the Dalpa team.
 1. Open up Terminal and issue: `git-config.sh` and type in your Fullname, Email and GitHub-username.
 
 Your git account is now setup up on a single notebook server.
