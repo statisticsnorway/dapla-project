@@ -8,7 +8,8 @@ c.Spawner.environment = {}
 # Keep Spark vars in notebooks
 c.Spawner.env_keep = ['PYSPARK_PYTHON','PYSPARK_SUBMIT_ARGS', 'PYSPARK_DRIVER_PYTHON', 'PYSPARK_DRIVER_PYTHON_OPTS',
                       'SPARK_HOME', 'PYTHONPATH', 'HADOOP_CONF_DIR', 'YARN_CONF_DIR', 'PYTHON_KERNELS_PATH',
-                      'OAUTH2_TOKEN_URL', 'METADATA_PUBLISHER_URL', 'DATA_ACCESS_URL', 'CATALOG_URL']
+                      'OAUTH2_TOKEN_URL', 'METADATA_PUBLISHER_URL', 'DATA_ACCESS_URL', 'CATALOG_URL',
+                      'JUPYTERHUB_HANDLER_CUSTOM_AUTH_URL', 'SPARK_USER_TOKEN_EXPIRY_BUFFER_SECS']
 
 import os, sys, warnings
 from custom_auth.authenticator import EnvGenericOAuthenticator
@@ -40,6 +41,9 @@ c.GenericOAuthenticator.enable_auth_state = True
 # Force refresh of tokens before spawning
 c.GenericOAuthenticator.refresh_pre_spawn = True
 c.GenericOAuthenticator.auth_refresh_age = 300
+
+c.JupyterHub.internal_ssl = True
+c.JupyterHub.internal_certs_location = "/jupyter/cert"
 
 from custom_auth.authextension import AuthHandler
 

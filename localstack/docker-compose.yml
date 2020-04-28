@@ -65,6 +65,8 @@ services:
     ports:
       - 28012:8000
     environment:
+      - JUPYTERHUB_HANDLER_CUSTOM_AUTH_URL=https://127.0.0.1:8081/hub/custom-api/user
+      - SPARK_USER_TOKEN_EXPIRY_BUFFER_SECS=10
       - OAUTH2_AUTH_URL=http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth
       - OAUTH2_TOKEN_URL=http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/token
       - OAUTH2_USERDATA_URL=http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/userinfo
