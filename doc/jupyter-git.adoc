@@ -1,4 +1,4 @@
-= Jupyter GIT
+= Jupyter and GitHub
 
 ifdef::env-github[]
 :tip-caption: :bulb:
