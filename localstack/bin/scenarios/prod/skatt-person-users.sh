@@ -78,7 +78,7 @@ for user in "aleksander.berge" \
       "includes": []
     },
     "paths": {
-      "includes": ["/user/'$user'"]
+      "includes": ["/user/'$user'/"]
     },
     "maxValuation": "SENSITIVE",
     "states": {

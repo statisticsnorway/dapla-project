@@ -8,7 +8,7 @@ put $auth '/role/felles' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/felles"]
+    "includes": ["/felles/"]
   },
   "maxValuation": "INTERNAL",
   "states": {
@@ -24,7 +24,7 @@ put $auth '/role/kilde.ske.skatt.person' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/kilde/ske/skatt/person"]
+    "includes": ["/kilde/ske/skatt/person/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -40,7 +40,7 @@ put $auth '/role/kilde.ske.skatt.person.raadata' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/kilde/ske/skatt/person/raadata"]
+    "includes": ["/kilde/ske/skatt/person/raadata/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -56,7 +56,7 @@ put $auth '/role/produkt.skatt.person' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/produkt/skatt/person"]
+    "includes": ["/produkt/skatt/person/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -71,7 +71,7 @@ put $auth '/role/raw_skatt_full' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/kilde/ske/skatt"]
+    "includes": ["/kilde/ske/skatt/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -105,7 +105,7 @@ for user in "rune.lind" \
       "includes": []
     },
     "paths": {
-      "includes": ["/user/'$user'"]
+      "includes": ["/user/'$user'/"]
     },
     "maxValuation": "SENSITIVE",
     "states": {

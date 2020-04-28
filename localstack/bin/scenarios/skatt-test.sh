@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 
 # dataset-access
+
+put $auth '/role/felles' '{
+  "roleId": "felles",
+  "description": "",
+  "privileges": {
+    "includes": []
+  },
+  "paths": {
+    "includes": ["/felles/"]
+  },
+  "maxValuation": "SENSITIVE"
+}' 201
+
 # create role for ske rawdata
 put $auth '/role/ske.rawdata' '{
   "roleId": "ske.rawdata",
@@ -9,7 +22,7 @@ put $auth '/role/ske.rawdata' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/ske"]
+    "includes": ["/ske/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -25,7 +38,7 @@ put $auth '/role/skatt.person.rawdata' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/skatt/person"]
+    "includes": ["/skatt/person/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -41,7 +54,7 @@ put $auth '/role/skatt.person.inndata' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/skatt/person"]
+    "includes": ["/skatt/person/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -57,7 +70,7 @@ put $auth '/role/raw_ro' '{
     "includes": ["READ"]
   },
   "paths": {
-    "includes": ["/raw"]
+    "includes": ["/raw/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -73,7 +86,7 @@ put $auth '/role/tmp.public' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/tmp/public"]
+    "includes": ["/tmp/public/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -89,6 +102,12 @@ get $auth '/role/raw_ro' 200
 get $auth '/role/tmp.public' 200
 
 ## create groups
+put $auth '/group/felles' '{
+  "groupId": "felles",
+  "description": "",
+  "roles": ["felles"]
+}' 201
+
 put $auth '/group/skatt-test' '{
   "groupId": "skatt-test",
   "description": "",
@@ -109,7 +128,7 @@ get $auth '/group/public' 200
 for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve" "rannveig" "marianne" "magnus"; do
   put $auth "/user/$user" '{
     "userId": "'$user'",
-    "groups": ["skatt-test", "public"],
+    "groups": ["felles", "skatt-test", "public"],
     "roles": ["tmp.'$user'"]
   }' 201
   put $auth "/role/tmp.$user" '{
@@ -119,7 +138,7 @@ for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvin
       "includes": []
     },
     "paths": {
-      "includes": ["/tmp/'$user'"]
+      "includes": ["/tmp/'$user'/"]
     },
     "maxValuation": "SENSITIVE",
     "states": {

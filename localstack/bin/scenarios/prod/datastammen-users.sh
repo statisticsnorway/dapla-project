@@ -27,7 +27,7 @@ for user in "trygve.falch" \
       "includes": []
     },
     "paths": {
-      "includes": ["/user/'$user'"]
+      "includes": ["/user/'$user'/"]
     },
     "maxValuation": "SENSITIVE",
     "states": {

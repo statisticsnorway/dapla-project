@@ -7,7 +7,7 @@ put $auth '/role/read-all' '{
     "includes": ["READ"]
   },
   "paths": {
-    "includes": ["/kilde", "/produkt"]
+    "includes": ["/kilde/", "/produkt/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -22,7 +22,7 @@ put $auth '/role/felles' '{
     "includes": []
   },
   "paths": {
-    "includes": ["/felles"]
+    "includes": ["/felles/"]
   },
   "maxValuation": "SENSITIVE",
   "states": {
@@ -51,7 +51,7 @@ for user in "kim.gaarder" \
       "includes": []
     },
     "paths": {
-      "includes": ["/user/'$user'@ssbmod.net"]
+      "includes": ["/user/'$user'@ssbmod.net/"]
     },
     "maxValuation": "SENSITIVE",
     "states": {
