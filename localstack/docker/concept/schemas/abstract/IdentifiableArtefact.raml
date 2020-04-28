@@ -1,0 +1,98 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+  MultilingualText: MultilingualText.raml
+  AdministrativeDetails: AdministrativeDetails.raml
+
+types:
+  IdentifiableArtefact:
+    description: IdentifiableArtefact is reusable abstract object (type). All identifiable objects inherits all attributes from this object (type).
+
+    properties:
+      id:
+        type: string
+        description: The global unique identifier (GUID) of the information object assigned by the owner agency.
+        displayName: Id
+
+      name:
+        type: MultilingualText.MultilingualText[]
+        description: A term which designates a concept, in this case an information object. The identifying name will be the preferred designation. There will be many terms to designate the same information object, such as synonyms and terms in other languages.
+        displayName: Name
+
+      description?:
+        type: MultilingualText.MultilingualText[]
+        description: The description of the information object
+        displayName: Description
+
+      shortName?:
+        type: string
+        description: A short technical name. (Avoid special characters not supported as variable names in common programming languages).
+        displayName: Short name
+
+      administrativeStatus?:
+        type: string
+        description: Indicator for access to an item.
+        displayName: Administrative status
+        enum:
+          - DRAFT
+          - INTERNAL
+          - OPEN
+          - DEPRECATED
+
+      createdDate:
+        type: datetime
+        description: The date on which the information object was created
+        displayName: Created date
+
+      createdBy:
+        type: string
+        description: Information object created by.
+        displayName: Created by
+        #TODO: link to Agent (id/guid)!
+
+      version?:
+        type: string
+        description: Formal versioning of the information object. The version designator of the information object assigned by the owner agency. "major.minor.patch", e.g. "1.12.5".
+        displayName: Version
+
+      versionValidFrom:
+        type: datetime
+        description: The date on which the current version of the infomation object is effective or valid.
+        displayName: Version valid from
+
+      versionRationale?:
+        type: MultilingualText.MultilingualText[]
+        description: The reason for making this version of the information object.
+        displayName: Version rationale
+
+      lastUpdatedDate?:
+        type: datetime
+        description: The date on which the object was last updated.
+        displayName: Last updated date
+
+      lastUpdatedBy?:
+        type: string
+        description: Last updated by.
+        displayName: Last updated by
+        #TODO: link to Agent (id/guid)!
+
+      validFrom:
+        type: datetime
+        description: The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
+        displayName: Valid from
+
+      validUntil?:
+        type: datetime
+        description: The date on which the information object is no longer effective or valid.
+        displayName: Valid until
+
+      administrativeDetails?:
+        type: AdministrativeDetails.AdministrativeDetails[]
+        description: Administrative details (e.g. default language, documentation, localID, ...).
+        displayName: Administrative details
+
+#      agentInRoles?:
+#        type: string[]
+#        description: Agent(s) acting in the Role(s) for this information object.
+#        displayName: Agent in roles
+#        (Link.types): [AgentInRole]

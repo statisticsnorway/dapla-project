@@ -10,3 +10,7 @@ CREATE USER catalog WITH PASSWORD 'catalog';
 CREATE DATABASE catalog;
 GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
 
+-- Linked Data Store
+CREATE USER concept WITH PASSWORD 'concept';
+CREATE DATABASE concept;
+GRANT ALL PRIVILEGES ON DATABASE concept TO concept;

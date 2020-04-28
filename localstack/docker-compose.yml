@@ -254,3 +254,26 @@ services:
     depends_on:
       - jaeger
       - pubsub
+
+  concept-lds:
+    container_name: concept-lds
+    image: statisticsnorway/lds-server:latest
+    ports:
+      - 29090:9090
+    volumes:
+      - ./docker/concept/jsonschemas:/jsonschemas
+      - ./docker/concept/graphqlschemas:/graphqlschemas
+    environment:
+      - LDS_persistence.provider=postgres
+      - LDS_persistence.initialization.max-wait-seconds=10
+      - LDS_postgres.driver.host=postgres
+      - LDS_postgres.driver.port=5432
+      - LDS_postgres.driver.user=concept
+      - LDS_postgres.driver.password=concept
+      - LDS_postgres.driver.database=concept
+      - LDS_txlog.rawdata.provider=discard
+      - LDS_specification.schema=/jsonschemas
+      - LDS_graphql.enabled=true
+      - LDS_graphql.schema=/graphqlschemas/schema.graphql
+    depends_on:
+      - postgres

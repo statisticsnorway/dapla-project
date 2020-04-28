@@ -1,0 +1,54 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  Concept: ./abstract/Concept.raml
+
+types:
+  Population:
+    description: The total membership of a defined class of people, objects or events.
+    displayName: Population
+    type: [ IdentifiableArtefact.IdentifiableArtefact, Concept.Concept ]
+
+    properties:
+      populationType:
+        type: string
+        description: The type og pupulation.
+        displayName: Population type
+        enum:
+        - TARGET
+        - SURVEY
+
+      referencePeriodStartDate:
+        type: datetime
+        description: The time period to which the population is associated.
+        displayName: Reference period start date
+
+      referencePeriodEndDate:
+        type: datetime
+        description: The time period to which the population is associated.
+        displayName: Reference period end date
+
+      geography?:
+        type: string
+        description: The geographical area to which the population is associated.
+        displayName: Geography
+        enum:
+         - CONTINENT
+         - COUNTRY
+         - REGION
+         - COUNTY
+         - MUNICIPALITY
+         - ADRESS
+         - CADASTRE
+         - GEOLOCATION
+
+      universes:
+        type: string[]
+        displayName: Universes
+        (Link.types): [Universe]
+
+      parentPopulations?:
+        type: string[]
+        displayName: Parent populations
+        (Link.types): [Population]

@@ -1,0 +1,33 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  InstanceVariableRelationship:
+    description: This reflects that there could be a structure within the Logical Record and Data Structure, for example several fields can together represent a structured field (e.g. an address), or the record can be structured as in the case of an XML file conformant to a schema. Another example is the relationship between attributes (source, quality, ..) and measures.
+    displayName: Component relationship
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      relationType:
+        type: string
+        description: The type of relation
+        displayName: Relation type
+        enum:
+          - PARENT  # The source object is the parent of the target object. The target object is a sub-part or member of the parent source.
+          - CHILD   # The source object is the child of the target object. The target object is the parent or contains the source object as a sub-part or member.
+          - SIBLING # The source object is the sibling of the target object. One object is not a member of or subsidiary to the other. They may be equal members of the same group.
+          - UNKNOWN # "Unknown" # The relationship between the source and target objects is unknown.
+
+      sourceComponents:
+        type: string[]
+        description: The relation source instance variables (components), e.g. "street", "zipCode" and "city".
+        displayName: Source components
+        (Link.types): [InstanceVariable]
+
+      targetComponents:
+        type: string[]
+        description: The relation target instance variables (components), e.g. "address"
+        displayName: Target components
+        (Link.types): [InstanceVariable]

@@ -1,0 +1,20 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ExchangeChannel: ./abstract/ExchangeChannel.raml
+
+types:
+  DataHarvesting:
+    description: A concrete and usable tool to gather information from the Internet.
+    displayName: DataHarvesting
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ExchangeChannel.ExchangeChannel ]
+
+    properties:
+      dataHarvestingType:
+        type: string
+        description: Method for harvesting data
+        displayName: Data harvester type
+        enum:
+          - API
+          - WEBSCRAPING

@@ -115,6 +115,9 @@ run-scenario: ## Populate data for a given scenario specified by s=<scenario nam
 generate-keys: ## Generate keys used to sign and verify metadata
 	./bin/generate-metadata-signer-keypair.sh
 
+.PHONY: generate-concept-schemas ## Generate concept schemas for use in Linked Data Store for Concept
+    ./bin/generate-concept-schemas.sh
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-45s\033[0m %s\n", $$1, $$2}'

@@ -39,6 +39,23 @@ make spark-plugin-redploy
 ```
 You can further customize this with the `skipPseudo=true` and/or `skipPlugin=true` params.
 
+### Setup Linked Data Store for Concept
+If you're working with linked-data-store, concept schemas for the service can be generated with:
+```
+make generate-concept-schemas
+```
+You will find the generated files in `localstack/docker/concept/jsonschemas` and `localstack/docker/concept/graphqlschemas`.
+
+If you wish to import some example concept domains you can clone https://github.com/statisticsnorway/gsim-raml-schema/tree/feature/concept,
+put the `examples/_main` folder in `localstack/bin/testdata/concept`, and run:
+```
+make run-scenario s=import-concept-examples
+```
+You may need to change the url for Linked Data store in this script if you changed the port.
+
+If you wish to also run the [Linked Data Store Client](https://github.com/statisticsnorway/linked-data-store-client)
+(**use the develop-branch**) follow the steps for local setup and change the environment variable or settings in the 
+application to reach the Linked Data Store you setup here.
 
 ## Additional config
 
@@ -92,6 +109,7 @@ open-jupyter                                  Open Jupyter in your browser
 open-hadoop-cluster                           Open Hadoop cluster browser
 open-hadoop-hdfs                              Open Hadoop nameserver/dataserver
 print-local-changes                           Show a brief summary of local changes
+generate-schemas                              Generate schemas from RAML files for setting up Linked Data Store
 ```
 
 ## Services

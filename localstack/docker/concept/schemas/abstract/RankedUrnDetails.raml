@@ -1,0 +1,16 @@
+#%RAML 1.0 Library
+
+types:
+ RankedUrnDetails:
+    description: An URN with rank property
+    type: object
+    
+    properties:
+      rank: 
+        type: integer
+        description: Position in the list
+        displayName: Position in the list
+      urn:
+        type: string
+        description: An URN
+        displayName: Resource urn

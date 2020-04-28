@@ -1,0 +1,17 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  Concept: ./abstract/Concept.raml
+
+types:
+  Variable:
+    description: The use of a Concept as a characteristic of a Population intended to be measured.
+    displayName: Variable
+    type: [ IdentifiableArtefact.IdentifiableArtefact, Concept.Concept ]
+
+    properties:
+      unitType:
+        type: string
+        displayName: Unit type
+        (Link.types): [UnitType]

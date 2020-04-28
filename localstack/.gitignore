@@ -15,4 +15,6 @@ data/
 secret/
 notebook/
 tmp/
-
+docker/concept/jsonschemas
+docker/concept/graphqlschemas
+bin/testdata/concept/examples/_main

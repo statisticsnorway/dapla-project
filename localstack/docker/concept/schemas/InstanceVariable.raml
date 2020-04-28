@@ -1,0 +1,84 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  InstanceVariable:
+    description: The use of a Represented Variable within a Data Set. It may include information about the source of the data.
+    displayName: Instance variable
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      representedVariable:
+        type: string
+        displayName: Represented variable
+        (Link.types): [RepresentedVariable]
+
+      population:
+        type: string
+        displayName: Population
+        (Link.types): [Population]
+
+      # COMMENT:
+      # This enumeraton is a simplification of the GSIM Logical Data Model (LDM) and replaces the IdentifierComponent,
+      # MeasureComponent and AttributeComponent objects in LDM.
+      dataStructureComponentType:
+          type: string
+          description: The data structure component type (identifier, measure or attribute) of the instance variable.
+          displayName: Data Structure Component Type
+          enum:
+            - IDENTIFIER
+            - MEASURE
+            - ATTRIBUTE
+
+      sentinelValueDomain?:
+        type: string
+        displayName: Sentinel value domain
+        (Link.types): [EnumeratedValueDomain, DescribedValueDomain]
+
+      formatMask?:
+        type: string
+        description: This attribute describes the data-format of the instance variable. For example a date-format-mask.
+        displayName: Format
+
+      identifierComponentIsUnique?:
+        type: boolean
+        description: For INDENTIFIER-components. Indicates if the key is unique.
+        displayName: Identifier component is unique
+
+      identifierComponentIsComposite?:
+        type: boolean
+        description: For INDENTIFIER-components. Indicates if the key is composite, e.g. person-identifier and date/time.
+        displayName: Identifier component is composite
+
+      dataStructureComponentRole?:
+        type: string
+        description: For INDENTIFIER-components or MEASURE-components. Specifies the type of role --> "entity", "count", "time", "geography" or "identity" (only INDENTIFIER-components).
+        displayName: Data structure component role
+        enum:
+          - ENTITY
+          - IDENTITY
+          - COUNT
+          - TIME
+          - GEO
+
+      geoType?:
+        type: string
+        description: If the component is a geolocation (dataStructureComponentRole is GEO) then there are different types
+        displayName: Geo type
+        enum:
+          - POINT
+          - POLYGON
+          - LINE
+
+      mandatory?:
+        type: boolean
+        default: false
+        description: Is the variable mandatory or not
+        displayName: Mandatory
+
+      physicalDataType?:
+        type: string
+        description: Data type of instance variable
+        displayName: Data type   
