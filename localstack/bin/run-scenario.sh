@@ -73,11 +73,11 @@ case $2 in
       echo
       echo Run the following command using your own client-id and secret to obtain a valid token:
       echo
-      echo "  $(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c prod-bip-app -n dataset-access -t"
+      echo "  $(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c prod-bip-app -n dapla-user-access -t"
       echo
       exit 1
     fi
-    auth=https://dataset-access.prod-bip-app.ssb.no
+    auth=https://dapla-user-access.prod-bip-app.ssb.no
     catalog=https://dapla-catalog.prod-bip-app.ssb.no
     distributor=https://metadata-distributor.prod-bip-app.ssb.no
     daccess=https://data-access.prod-bip-app.ssb.no
@@ -87,6 +87,19 @@ case $2 in
     exit 1
     ;;
 esac
+
+if [ "a" != "a$DAPLA_AUTH" ]; then
+  auth=$DAPLA_AUTH
+fi
+if [ "a" != "a$DAPLA_CATALOG" ]; then
+  catalog=$DAPLA_CATALOG
+fi
+if [ "a" != "a$DAPLA_DISTRIBUTOR" ]; then
+  distributor=$DAPLA_DISTRIBUTOR
+fi
+if [ "a" != "a$DAPLA_DACCESS" ]; then
+  daccess=$DAPLA_DACCESS
+fi
 
 . "$(dirname $BASH_SOURCE)/curl_wrapper.sh"
 
