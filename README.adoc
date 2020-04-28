@@ -46,11 +46,13 @@ Refer to the link:localstack/README.md[localstack] for more information about ho
 
 ifdef::env-github[]
 . link:doc/architecture.adoc[Architecture]
+. link:doc/jupyter-git.adoc[Architecture]
 endif::[]
 
 ifndef::env-github[]
 :leveloffset: +1
 include::doc/architecture.adoc[]
+include::doc/jupyter-git.adoc[]
 :leveloffset: -1
 endif::[]
 

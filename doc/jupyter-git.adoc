@@ -1,0 +1,55 @@
+= Jupyter GIT
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+:toc-placement: preamble
+endif::[]
+
+== Configure a "Personal Access Token"
+
+When 2FA authentication is enabled on your GitHub account, it requires an OTP (one-time-password) token to authorize on GitHub. This is inconvenient in context of Jupyter, because it requires private and public keys to be set up.
+
+GitHub offers a "Personal Access Token" that acts as a password. This can be generated a few simple steps:
+
+1. Logon to your GitHub
+1. Click on the Account menu found top-right and chose Settings
+1. At bottom-left-menu click on Developers Settings and chose "Personal Access Token"
+1. Click on "Generate new token", give a name (aka "Note") ie. "ssb-jupyter" and select the `repo`-checkbox and then Generate token found at the bottom.
+
+The generated token is a secret and make sure store store this in a secure place.
+
+== Set up your GitHub account with Jupyter
+
+1. Open up Jupyter at Staging/Production/other
+1. PS! You will see a warning dialog/message "Build Recommended -> @jupyterlab/git needs to be removed from build". Please Cancel this message and disregard this for now. It will be fixed shortly by the Dalpa team.
+1. Open up Terminal and issue: `git-config.sh` and type in your Fullname, Email and GitHub-username.
+
+Your git account is now setup up on a single notebook server.
+
+=== Clone repo
+
+1. Issue `git clone https://github.com/statisticsnorway/dapla-notebooks.git` (please note: always use https when checking out a repo)
+1. Enter your "Personal Access Token"
+
+You may checkout as many repos as you like.
+
+You can also use the JupterLab-Git plugin from the Jupyter meny. Please note: this will ask for your username and password (read: personal access token) each time you do a pull or push.
+
+== Creating a new Git Repository
+
+1. Go to `https://github.com/statisticsnorway` and chose "New" repository
+2. Fill out necessary information
+3. Open Jupyter Terminal and do `git clone https://github.com/statisticsnorway/YOUR_NEWLY_CREATE_REPO`
+4. Issue `cd YOUR_NEWLY_CREATE_REPO` and create the following file `.gitattributes`:
+```
+*.ipynb filter=nbstripout
+*.ipynb diff=ipynb
+```
+5. Issue `git add .gitattributes` and `git commit -m "Added gitattributes" and finally `git push`
+
+Your repo is now ready for use.
+
