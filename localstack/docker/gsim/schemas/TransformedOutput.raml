@@ -1,0 +1,19 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ProcessOutput: ./abstract/ProcessOutput.raml
+
+types:
+  TransformedOutput:
+    description: A Process Output (a result) which provides the reason for existence for the Process Step.
+    displayName: Transformed output
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ProcessOutput.ProcessOutput ]
+
+    properties:
+      outputId:
+        type: string
+        displayName: Output id
+        (Link.types): [UnitDataSet, DimensionalDataSet]
+
+    example: !include ../examples/_main/TransformedOutput_Example.json

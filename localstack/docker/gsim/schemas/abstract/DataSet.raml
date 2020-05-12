@@ -1,0 +1,60 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+
+types:
+  DataSet:
+    description: An organized collection of data.
+
+    properties:
+      dataSetState:
+        type: string
+        description: The type of "steady state" for the dataset.
+        displayName: Data set state
+        enum:
+          - RAW_DATA
+          - INPUT_DATA
+          - PROCESSED_DATA
+          - OUTPUT_DATA
+          - DATA_PRODUCT
+          - OTHER_DATA
+
+      temporalityType?:
+        type: string
+        description: Dataset temporality
+        displayName: Temporality type
+        enum:
+          - EVENT
+          - STATUS
+          - ACCUMULATED
+          - FIXED
+
+      valuation?:
+        type: string
+        description: Classification of the value or damage potential of a dataset
+        displayName: Valuation
+        enum:  
+          - SENSITIVE  # 1
+          - SHIELDED   # 2
+          - INTERNAL   # 3
+          - OPEN       # 4
+
+      dataExistsFromDate?:
+        type: datetime
+        description: The date on which data is effective or valid.
+        displayName: Data exists from date
+
+      dataExistsUntilDate?:
+        type: datetime
+        description: The date on which data is no longer effective or valid.
+        displayName: Data exists until date
+
+      dataSourcePath?:
+        type: string
+        description: The path (API endpoint, URI, catalog, ..) to the raw dataset.
+        displayName: Data source path
+
+      metadataSourcePath?:
+        type: string
+        description: The path (API endpoint, URI, catalog, ..) to the metadata describing the raw dataset.
+        displayName: Metadata source path

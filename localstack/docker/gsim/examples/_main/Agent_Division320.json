@@ -1,0 +1,57 @@
+{
+    "id": "77d16bf9-e411-4cd3-970e-23d7e30bafa3",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Seksjon 320"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Division 320"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Seksjon for befolkningsstatistikk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Division for popuation statistics"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "agentType": "ORGANIZATION",
+    "isExternal": false,
+    "parentAgents": [
+      "/Agent/45a6317a-6e07-4a21-82bc-b2435d2c4ee4"
+    ],
+    "agentDetails": [
+      {
+          "agentDetailType": "CONTACT_EMAIL",
+          "values": [
+            "avd300@ssb.no",
+            "headof300@ssb.no",
+            "seksjon320@ssb.no"
+          ]
+      },
+      {
+          "agentDetailType": "CONTACT_ADDRESS",
+          "values": [
+            "Statistisk sentralbyrå, Oterveien 23, 2211 Kongsvinger",
+            "Statistisk sentralbyrå, Akersveien 26, 0177 Oslo"
+          ]
+      }
+    ],
+    "administrativeDetails": [
+      {
+          "administrativeDetailType": "URL",
+          "values": ["https://www.ssb.no/befolkning"]
+      }
+    ]
+}

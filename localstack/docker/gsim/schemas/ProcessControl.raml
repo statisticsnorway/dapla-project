@@ -1,0 +1,22 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  ProcessControl:
+    description: A set of decision points which determine the flow between the Process Steps used to perform a Business Process.
+    displayName: Process control
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      startEvent?:
+        type: string
+        description: The event which triggered the control.
+        displayName: Start event
+
+      processControlStatus?:
+        type: string
+        description: Success or error, typically using a coded value.
+        displayName: Process control status
+
+    #example: !include ../examples/ProcessControlExample.json

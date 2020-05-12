@@ -1,0 +1,30 @@
+{
+    "id": "c14bf95e-a116-489b-827b-686650024930",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Fødselsnummer"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Norwegian National identity number"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Et fødselsnummer er et ellevesifret identifikasjonsnummer. Alle som er folkeregistrert i Norge har et fødselsnummer."
+      },
+      {
+        "languageCode": "en",
+        "languageText": "The Norwegian national identity number is an 11-digit personal identifier. Everyone on the Norwegian National Registry has a national identity number."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"STRING"
+}

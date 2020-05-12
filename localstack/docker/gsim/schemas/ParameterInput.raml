@@ -1,0 +1,30 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ProcessInput: ./abstract/ProcessInput.raml
+
+types:
+  ParameterInput:
+    description: Inputs used to specify which configuration should be used for a specific Process Step which has been designed to be configurable.
+    displayName: Parameter input
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ProcessInput.ProcessInput ]
+
+    properties:
+      parameterDataType:
+        type: string
+        description: The datatype of the parameter input
+        displayName: Parameter data type
+
+      parameterRole?:
+        type: string
+        description: Used to convey the role of this parameter.
+        displayName: Parameter role
+        enum:
+          - WEIGHT
+          - UPPER_THRESHOLD
+          - AGREEMENT_LEVEL
+
+      parameterValue:
+        type: string
+        description: The content of the parameter
+        displayName: Parameter value

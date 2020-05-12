@@ -1,0 +1,24 @@
+{
+    "id": "44246a25-fb7a-4464-846e-051e01e514f6",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Gender"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The person's gender"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "variable": "/Variable/dc10a644-c57b-41a1-b6df-ad91be3d25e6",
+    "substantiveValueDomain": "/EnumeratedValueDomain/29e2238b-1e5d-46cc-b9dc-1a0f5ec5060d",
+    "universe": "/Universe/8fcf88a7-2113-47ad-9226-ea914b4284bd"
+}

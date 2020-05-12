@@ -1,0 +1,21 @@
+{
+    "id": "85109ca9-3539-40e9-a8fc-2aeb1d1277c4",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "IncomeAndWealth"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Income and wealth"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ"
+}

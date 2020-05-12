@@ -1,0 +1,24 @@
+{
+    "id": "950b417a-0b3c-4909-aa4b-5689a1378b8e",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "NationalFamilyIdentifier"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "National identifier number for families"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "variable": "/Variable/7f44975d-6100-43b0-a276-a0c6837195dc",
+    "substantiveValueDomain": "/DescribedValueDomain/49c54ebc-e742-488a-8a8a-c6fe63410e4f",
+    "universe": "/Universe/79d9040a-8893-4f1a-8760-9852cf693a79"
+}

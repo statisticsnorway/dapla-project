@@ -1,0 +1,24 @@
+{
+    "id": "e46ede82-cc41-441c-bd77-f1925afbd342",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Marital status"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The person's marital status"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "variable": "/Variable/f680664f-1eb0-47b5-970b-c21d81537581",
+    "substantiveValueDomain": "/EnumeratedValueDomain/9096149f-2bc2-4be9-a190-435570ca924a",
+    "universe": "/Universe/8fcf88a7-2113-47ad-9226-ea914b4284bd"
+}

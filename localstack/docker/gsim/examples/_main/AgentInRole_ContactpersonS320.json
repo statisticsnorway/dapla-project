@@ -1,0 +1,25 @@
+{
+  "id": "c05d5df4-28a4-4466-b90f-5c1269939789",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "N/A"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Contact person Division for popuation statistics"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2015-01-01T15:00:00.000Z",
+  "validFrom": "2015-01-01T15:00:00.000Z",
+  "createdDate": "2015-01-01T15:00:00.000Z",
+  "createdBy": "OHV",
+  "role": "/Role/7d6db429-905d-4fac-bc94-f438e2367288",
+  "agents": [
+    "/Agent/77d16bf9-e411-4cd3-970e-23d7e30bafa3"
+  ]
+}

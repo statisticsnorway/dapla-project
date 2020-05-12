@@ -1,0 +1,28 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  StatisticalProgramCycle:
+    description: A set of activities to investigate characteristics of a given Population for a particular reference period.
+    displayName: Statistical program cycle
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      businessProcesses?: 
+        type: string[]
+        displayName: Business processes
+        (Link.types): [BusinessProcess]
+
+      referencePeriodStart:
+        type: datetime
+        description: First date of validity
+        displayName: Reference period start
+
+      referencePeriodEnd:
+        type: datetime
+        description: Last date of validity
+        displayName: Reference period end
+
+    example: !include ../examples/_main/StatisticalProgramCycle_Example.json

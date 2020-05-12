@@ -1,0 +1,39 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  AgentDetails: ./abstract/AgentDetails.raml
+
+types:
+  Agent:
+    description: An actor that performs a role in relation to the statistical Business Process.
+    displayName: Agent
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      agentType:
+        type: string
+        description: The type of agent.
+        displayName: Agent type
+        enum:
+          - INDIVIDUAL
+          - ORGANIZATION
+          - SYSTEM
+
+      parentAgents?:
+        type: string[]
+        displayName: Parent agents
+        (Link.types): [Agent]
+
+      isExternal:  # See http://www.ddialliance.org/Specification/DDI-Lifecycle/3.2/XMLSchema/FieldLevelDocumentation/schemas/reusable_xsd/elements/AgencyOrganizationReference.html
+        type: boolean
+        default: false
+        description: Is this an external agent?
+        displayName: Is external
+
+      agentDetails?:
+        type: AgentDetails.AgentDetails[]
+        description: Agent details (e.g. contackt adress, email, phone, mobile ...).
+        displayName: Agent details
+
+    example: !include ../examples/_main/Agent_Department300.json

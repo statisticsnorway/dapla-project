@@ -1,0 +1,26 @@
+{
+    "id": "8d51f269-4216-4351-94e5-94602e704694",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "DataQuality"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Classification of the data quality."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "representedVariable": "/RepresentedVariable/51d14a9d-cf08-4d12-a680-0e97a7288ef6",
+    "population": "/Population/7ef40579-469d-447f-8955-febb7b254b10",
+    "dataStructureComponentType": "ATTRIBUTE",
+    "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "shortName":"DATA_QUALITY"
+}

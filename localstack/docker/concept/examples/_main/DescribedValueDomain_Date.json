@@ -1,0 +1,30 @@
+{
+    "id": "ae8edf6a-be4d-4c1c-930f-e6c9473cff95",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Dato"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Date"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Dato domene, obligatorisk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Dates, mandatory"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"DATETIME"
+}

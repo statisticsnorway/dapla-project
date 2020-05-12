@@ -1,0 +1,15 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ExchangeChannel: ./abstract/ExchangeChannel.raml
+
+types:
+  Questionnaire:
+    description: A concrete and usable tool to elicit information from observation units.
+    displayName: Questionnaire
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ExchangeChannel.ExchangeChannel ]
+
+    properties:
+
+    #example: !include ../examples/_main/Questionanaire_Example.json

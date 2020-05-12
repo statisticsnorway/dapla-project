@@ -1,0 +1,32 @@
+{
+  "id": "f1b61f07-c403-43c5-80db-2a1bfdd1bb37",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Person with income record"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Record for personinformation and income"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2018-01-01T00:00:00.000Z",
+  "validFrom": "2018-01-01T00:00:00.000Z",
+  "createdDate": "2018-01-01T00:00:00.000Z",
+  "createdBy": "BNJ",
+  "isPlaceholderRecord": false,
+  "instanceVariables": [
+    "/InstanceVariable/09c24ccd-6765-4d8c-84ae-b4c7d55ad4ea",
+    "/InstanceVariable/f908b24d-e5c4-4954-bcab-02a2e4724af3",
+    "/InstanceVariable/71aec966-eb44-4a49-9bbf-0606563ca0cb",
+    "/InstanceVariable/930607c9-88c7-45a2-80b4-4532c8a66a4e",
+    "/InstanceVariable/beb729fc-f418-46b1-bab1-8ed20d82b907",
+    "/InstanceVariable/8d51f269-4216-4351-94e5-94602e704694"
+  ],
+  "unitType": "/UnitType/51a8dcde-127d-49de-84a4-a0a9c34f666f",
+  "shortName": "PERSON"
+}

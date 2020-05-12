@@ -1,0 +1,57 @@
+{
+    "id": "fc993efe-8958-45bf-bce9-4c1d6d123708",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Seksjon 350"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Division 350"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Seksjon for inntekts- og levekårsstatistikk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Division for income and living conditions statistics"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "agentType": "ORGANIZATION",
+    "isExternal": false,
+    "parentAgents": [
+      "/Agent/45a6317a-6e07-4a21-82bc-b2435d2c4ee4"
+    ],
+    "agentDetails": [
+      {
+          "agentDetailType": "CONTACT_EMAIL",
+          "values": [
+            "avd300@ssb.no",
+            "headof300@ssb.no",
+            "seksjon350@ssb.no"
+          ]
+      },
+      {
+          "agentDetailType": "CONTACT_ADDRESS",
+          "values": [
+            "Statistisk sentralbyrå, Oterveien 23, 2211 Kongsvinger",
+            "Statistisk sentralbyrå, Akersveien 26, 0177 Oslo"
+          ]
+      }
+    ],
+    "administrativeDetails": [
+      {
+          "administrativeDetailType": "URL",
+          "values": ["https://www.ssb.no/en/inntekt-og-forbruk"]
+      }
+    ]
+}

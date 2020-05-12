@@ -1,0 +1,30 @@
+{
+    "id": "32ae01b4-50f7-4d8c-9be2-eecfeeef640c",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Municipality"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Kommune"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Municipality, region"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Kommune, regional inndeling"
+      }
+    ],
+    "typeOfStatisticalUnit": "MUNICIPALITY",
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ"
+}

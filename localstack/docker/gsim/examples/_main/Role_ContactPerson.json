@@ -1,0 +1,35 @@
+{
+  "id": "7d6db429-905d-4fac-bc94-f438e2367288",
+  "name": [
+    {
+      "languageCode": "nb",
+      "languageText": "KONTAKTPERSON"
+    },
+    {
+      "languageCode": "en",
+      "languageText": "CONTACTPERSON"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "nb",
+      "languageText": "Kontakperson"
+    },
+    {
+      "languageCode": "en",
+      "languageText": "Contact person"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2010-01-01T15:00:00.000Z",
+  "validFrom": "2010-01-01T15:00:00.000Z",
+  "createdDate": "2010-01-01T15:00:00.000Z",
+  "createdBy": "OBV",
+  "administrativeDetails": [
+    {
+      "administrativeDetailType": "DEFAULTLANGUAGE",
+      "values": ["nb"]
+    }
+  ]
+}

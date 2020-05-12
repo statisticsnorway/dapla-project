@@ -1,0 +1,31 @@
+{
+    "id": "c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Sentinelle verdier"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Sentinal value"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Sentinelle(Ikke substansielle) verdier"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Sentinal(non substansial) values"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType": "STRING",
+    "klassUrn": "klass:klassifikasjoner:sentinelvalues"
+}

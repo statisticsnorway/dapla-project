@@ -1,0 +1,26 @@
+{
+    "id": "7ef40579-469d-447f-8955-febb7b254b10",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "All families 2018-01-01"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "All families in Norway per 2018-01-01"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "populationType": "TARGET",
+    "referencePeriodStartDate": "2018-01-01T00:00:00.000Z",
+    "referencePeriodEndDate": "2018-01-01T00:00:00.000Z",
+    "geography": "COUNTRY",
+    "universes": [ "/Universe/79d9040a-8893-4f1a-8760-9852cf693a79", "/Universe/1bf5d364-13a8-47a8-bed4-c7311945c5fa"]
+}

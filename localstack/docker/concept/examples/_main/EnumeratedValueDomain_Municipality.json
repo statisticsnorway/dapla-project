@@ -1,0 +1,23 @@
+{
+    "id": "5b30542b-3ed0-4136-8d1e-ebb5097d35af",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Classification of municipalities"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Municipality is both a term for a political and an administrative level in Norway and a regional level in the publication of statistics."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "dataType": "STRING",
+    "klassUrn": "klass:klassifikasjoner:131"
+}

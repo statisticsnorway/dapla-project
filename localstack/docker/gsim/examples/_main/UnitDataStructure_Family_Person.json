@@ -1,0 +1,27 @@
+{
+ "id": "02305ae2-4c47-400c-8970-fb312dd87042",
+ "createdDate": "2018-12-21T12:24:41.262Z",
+ "createdBy": "Test",
+ "version": "1.0.0",
+ "versionValidFrom": "2018-12-21T12:24:41.262Z",
+ "lastUpdatedDate": "2018-12-21T12:24:41.262Z",
+ "lastUpdatedBy": "Test",
+ "validFrom": "2018-12-21T12:24:41.262Z",
+ "name": [
+   {
+     "languageCode": "en",
+     "languageText": "Family With Person Income"
+   }
+ ],
+ "description": [
+   {
+     "languageCode": "en",
+     "languageText": "Combination of Family and Person with income"
+   }
+ ],
+ "logicalRecords": [
+  "/LogicalRecord/40c192fe-4da5-49a3-9369-0ea2db0387a7",
+  "/LogicalRecord/12ade3cd-e806-4b55-95ed-633a1979a6bf"
+ ],
+ "administrativeStatus": "OPEN"
+}

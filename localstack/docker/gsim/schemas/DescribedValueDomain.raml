@@ -1,0 +1,39 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ValueDomain: ./abstract/ValueDomain.raml
+
+types:
+  DescribedValueDomain:
+    description: A Value Domain defined by an expression.
+    displayName: Described value domain
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ValueDomain.ValueDomain ]
+
+    properties:
+      #TODO: Do we need these, or can it be businessrules ?
+      minValue?:
+        type: number
+        description: A Value Domain defined by an expression.
+        displayName: Min value
+      maxValue?:
+        type: number
+        description: A Value Domain defined by an expression.
+        displayName: Max value
+      minLength?:
+        type: number
+        description: A Value Domain defined by an expression.
+        displayName: Min length
+      maxLength?:
+        type: number
+        description: A Value Domain defined by an expression.
+        displayName: Max length
+      minDecimals?:
+        type: number
+        description: A Value Domain defined by an expression.
+        displayName: Min decimals
+      maxDecimals?:
+        type: number
+        description: A Value Domain defined by an expression.
+        displayName: Max decimals
+
+    example: !include ../examples/_main/DescribedValueDomain_Amount.json

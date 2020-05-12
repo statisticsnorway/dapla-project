@@ -1,0 +1,14 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  ProcessPattern:
+    description: A nominated set of Process  Designs, and associated Process Control Designs (flow), which have been highlighted for possible reuse.
+    displayName: Process pattern
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      #OHV: Har flyttet link til ProcessDesign
+
+    #example: !include ../examples/ProcessPatternExample.json

@@ -1,0 +1,22 @@
+{
+    "id": "8fcf88a7-2113-47ad-9226-ea914b4284bd",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Persons with income"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "All persons with income"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "2017-01-01T00:00:00.000Z",
+    "validFrom": "2017-01-01T00:00:00.000Z",
+    "createdDate": "2018-11-28T00:00:00.000Z",
+    "createdBy": "OBV",
+    "unitTypes": ["/UnitType/51a8dcde-127d-49de-84a4-a0a9c34f666f"]
+}

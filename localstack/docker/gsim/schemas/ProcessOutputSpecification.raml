@@ -1,0 +1,17 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  ProcessOutputSpecification:
+    description: A record of the types of outputs required for a Process Design.
+    displayName: Process output specification
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      processOutputType:
+        type: string
+        description: This denotes the type of object which can be used as an output.
+        displayName: Process output type
+
+    #example: !include ../examples/ProcessOutputSpeificationExample.json

@@ -1,0 +1,31 @@
+{
+    "id": "29e2238b-1e5d-46cc-b9dc-1a0f5ec5060d",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Standard for kjønn"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Classification of sex"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "SSBs standardkoder for kjønn"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Statistics Norway's official sex codes."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1960-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType": "STRING",
+    "klassUrn": "klass:klassifikasjoner:2"
+}

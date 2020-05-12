@@ -1,0 +1,23 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  AgentInRole:
+    description: Reflects an agent acting in a specific role.
+    displayName: Agent in role
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      role:
+        type: string
+        displayName: Role
+        (Link.types): [Role]
+
+      agents:
+        type: string[]
+        displayName: Agents
+        (Link.types): [Agent]
+
+    example: !include ../examples/_main/AgentInRole_ContactpersonA300.json

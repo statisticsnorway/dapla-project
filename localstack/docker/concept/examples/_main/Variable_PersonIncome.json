@@ -1,0 +1,24 @@
+{
+    "id": "7f582f3a-8a84-436f-a8ff-14dcb35f96e7",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Income"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The person's annual income"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "unitType": "/UnitType/51a8dcde-127d-49de-84a4-a0a9c34f666f",
+    "subjectFields": [ "/SubjectField/434e9458-c3be-4437-82d3-c765552c38a0", "/SubjectField/85109ca9-3539-40e9-a8fc-2aeb1d1277c4" ],
+    "nationalConceptsCatalogURI": "https://some.national.concpetsCatalog/someId"
+}

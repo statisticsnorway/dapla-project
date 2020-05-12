@@ -103,6 +103,14 @@ open-hadoop-cluster: ## Open Hadoop cluster browser
 open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
 	open http://localhost:50070
 
+.PHONY: open-lds-client
+open-lds-client: ## Open Linked Data Store Client
+	open http://localhost:28080
+
+.PHONY: open-variable-search
+open-variable-search: ## Open Variable Search
+	open http://localhost:28081
+
 .PHONY: print-local-changes
 print-local-changes: ## Show a brief summary of local changes
 	(cd .. && make print-local-changes)
@@ -118,6 +126,10 @@ generate-keys: ## Generate keys used to sign and verify metadata
 .PHONY: generate-concept-schemas
 generate-concept-schemas: ## Generate concept schemas for use in Linked Data Store for Concept
 	./bin/generate-concept-schemas.sh
+
+.PHONY: generate-gsim-schemas
+generate-gsim-schemas: ## Generate all GSIM schemas for use in Linked Data Store for entire GSIM
+	./bin/generate-gsim-schemas.sh
 
 .PHONY: help
 help:

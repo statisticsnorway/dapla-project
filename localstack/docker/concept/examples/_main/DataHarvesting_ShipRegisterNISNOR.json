@@ -1,0 +1,23 @@
+{
+  "id": "4eea64e6-5c87-462d-9fc5-c3fdd3a310fc",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "NIS/NOR"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Norwegian Ordinary Ship Register (NOR)- Norwegian Maritime Authority"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2010-01-01T15:00:00.000Z",
+  "validFrom": "2010-01-01T15:00:00.000Z",
+  "createdDate": "2010-01-01T15:00:00.000Z",
+  "createdBy": "OHV",
+  "direction": "COLLECT",
+  "dataHarvestingType": "API"
+}

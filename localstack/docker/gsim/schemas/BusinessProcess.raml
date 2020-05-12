@@ -1,0 +1,44 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  BusinessProcess:
+    description: The set of Process Steps to perform one of more Business Functions to deliver a Statistical Program Cycle or Statistical Support Program.
+    displayName: Business process
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      isPlaceholderProcess:
+        type: boolean
+        default: false
+        description: If true this is a placeholder-process (only a grouping of other businessprocesses in a hierarchical manner), but without link(s) to any ProcessSteps.
+        displayName: Is placeholder process
+    
+      processSteps?:
+        type: string[]
+        displayName: Process steps
+        (Link.types): [ProcessStep]
+
+      businessFunctions?:
+        type: string[]
+        displayName: Business functions
+        (Link.types): [BusinessFunction]
+
+      businessServices?:
+        type: string[]
+        displayName: Business services
+        (Link.types): [BusinessService]
+
+      previousBusinessProcess?:
+        type: string
+        displayName: Previous Business Process
+        (Link.types): [BusinessProcess]
+
+      parentBusinessProcess?:
+        type: string
+        displayName: Parent Business Process
+        (Link.types): [BusinessProcess]
+        
+    example: !include ../examples/_main/BusinessProcess_Example_1.json

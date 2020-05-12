@@ -1,0 +1,14 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ProcessOutput: ./abstract/ProcessOutput.raml
+
+types:
+  ProcessMetric:
+    description: A Process Output whose purpose is to measure and report some aspect of how the Process Step performed during execution.
+    displayName: Process metric
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ProcessOutput.ProcessOutput ]
+
+    properties:
+
+    #example: !include ../examples/Processmetric.json

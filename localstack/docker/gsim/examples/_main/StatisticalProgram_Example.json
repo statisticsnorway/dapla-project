@@ -1,0 +1,33 @@
+{
+  "id": "99ce8940-400e-475f-90a2-204eca77886a",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Statistical Program example"
+    }
+  ],
+  "createdDate": "2019-10-09T09:27:20.609Z",
+  "createdBy": "Test user",
+  "version": "1.0.2",
+  "versionValidFrom": "2019-10-10T11:24:19.557Z",
+  "lastUpdatedDate": "2019-10-10T11:24:19.557Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-10-09T09:27:20.609Z",
+  "validUntil": "2020-10-10T11:24:19.557Z",
+  "statisticalProgramCycles": [
+    "/StatisticalProgramCycle/8560b6c5-87ec-45df-b320-d1196c9573de"
+  ],
+  "statisticalProgramStatus": "UNDER_DEVELOPMENT",
+  "history": [
+    {
+      "languageCode": "en",
+      "languageText": "And so it begins..."
+    }
+  ],
+  "subjectMatterDomains": [
+    {
+      "languageCode": "en",
+      "languageText": "Testing"
+    }
+  ]
+}

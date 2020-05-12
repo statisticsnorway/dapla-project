@@ -1,0 +1,74 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  BusinessCase:
+    description: A proposal for a body of work that will deliver outputs designed to achieve outcomes. A Business Case will provide the reasoning for undertaking a Statistical Support Program to initiate a new Statistical Program Design for an existing Statistical Program, or an entirely new Statistical Program, as well as the details of the change proposed.
+    displayName: Business case
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      dateInitiated?:
+        type: datetime
+        description: Date initiated
+        displayName: Date initiated
+
+      dateApproved?:
+        type: datetime
+        description: Date approved
+        displayName: Date approved
+
+      dateImplementationCommenced?:
+        type: datetime
+        description: Date implementation commenced
+        displayName: Date implementation commenced
+
+      businessCaseType:
+        type: string
+        description: Business case type.
+        displayName: Business case type
+        enum:
+            - NEW           # New program
+            - PERMANENT     # Permanent (indefinite) change to existing program
+            - TEMPORARY     # Temporary change to existing program
+            - CEASE         # Cease program 
+
+      objective:
+        type: MultilingualText.MultilingualText[]
+        description: The objective of the business case
+        displayName: Objective
+
+      deliverable:
+        type: MultilingualText.MultilingualText[]
+        description: The deliverable of the business case
+        displayName: Deliverable
+
+      assessments?:
+        type: string[]
+        displayName: Assessments
+        (Link.types): [Assessment]
+
+      statisticalPrograms?:
+        type: string[]
+        displayName: Statistical programs
+        (Link.types): [StatisticalProgram]
+
+      statisticalSupportPrograms?:
+        type: string[]
+        displayName: Statistical support programs
+        (Link.types): [StatisticalSupportProgram]
+
+      statisticalNeeds?: #TODO: Enten eller, men obligatorisk
+        type: string[]
+        displayName: Statistical needs
+        (Link.types): [EnvironmentChange, InformationRequest]
+
+      changeDefinitions?:
+        type: string[]
+        displayName: Change definitions
+        (Link.types): [ChangeDefinition]
+
+    #example: !include ../examples/BusinessCaseExample.json

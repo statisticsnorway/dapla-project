@@ -1,0 +1,44 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  Rule:
+    description: A specific mathematical or logical expression which can be evaluated to determine specific behavior.
+    displayName: Rule
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      algorithm?:
+        type: string
+        description: The rule expressed as an algorithm.
+        displayName: Algorithm
+
+      commandCode?:
+        type: string
+        description: Structured information used by a system to process the instruction.
+        displayName: Command code
+
+      ruleType?:
+        type: string
+        description: A type taken from a controlled vocabulary.
+        displayName: Rule type
+        enum:
+          - INPUT
+          - COMPARISON
+          - IMPUTATION
+          - EDIT
+          - DERIVATION
+          - RECODE
+
+      expression?:
+        type: string
+        description: The expression of the rule that is evaluated.
+        displayName: Expression
+
+      isSystemExecutable?:
+        type: boolean
+        description: Whether the rule is formatted to be executed by a system, or is only documentary.
+        displayName: Is system executable
+
+    #example: !include ../examples/RuleExample.json

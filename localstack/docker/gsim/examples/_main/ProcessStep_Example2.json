@@ -1,0 +1,18 @@
+{
+  "id": "ecd92c16-8119-4106-bc65-70dcc858d1cc",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Process Step dependency example"
+    }
+  ],
+  "createdDate": "2019-09-23T12:50:15.456Z",
+  "createdBy": "Test user",
+  "version": "1.0.0",
+  "versionValidFrom": "2019-09-24T08:53:24.134Z",
+  "lastUpdatedDate": "2019-09-24T08:53:24.134Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-09-23T12:50:15.456Z",
+  "validUntil": "2020-09-24T08:53:24.134Z",
+  "isComprehensive": false
+}

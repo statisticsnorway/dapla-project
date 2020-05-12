@@ -1,0 +1,53 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  ProcessDesign:
+    description: The specification of how a Process Step will be performed. This includes specifying the types of Process Inputs required and the type of Process Outputs that will be produced.
+    displayName: Process design
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      processSteps?:
+        type: string[]
+        displayName: Process steps
+        (Link.types): [ProcessStep]
+
+      processInputSpecifications:
+        type: string[]
+        displayName: Process input specifications
+        (Link.types): [ProcessInputSpecification]
+
+      processOutputSpecifications:
+        type: string[]
+        displayName: Process output specifications
+        (Link.types): [ProcessOutputSpecification]
+
+      processControlDesign:
+        type: string
+        displayName: Process control design
+        (Link.types): [ProcessControlDesign]
+
+      processMethods?: #feil side for link??
+        type: string[]
+        displayName: Process methods
+        (Link.types): [ProcessMethod]
+
+      businessServices?: #TODO: Maybe the link should be on the receiving end instead ?
+        type: string[]
+        displayName: Business services
+        (Link.types): [BusinessService]
+
+      businessFunctions?: #TODO: Maybe the link should be on the receiving end instead ?
+        type: string[]
+        displayName: Business functions
+        (Link.types): [BusinessFunction]
+
+      processPatterns?:  #TODO: Maybe the link should be on the receiving end instead ?
+        type: string[]
+        displayName: Process patterns
+        (Link.types): [ProcessPattern]
+
+    #example: !include ../examples/Sirius/ProcessDesignExampleGSBPM2_3.json

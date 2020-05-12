@@ -1,0 +1,18 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  ProcessMethod:
+    description: A specification of the technique which will be used to perform the unit of work.
+    displayName: Process method
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      rules?:
+        type: string[]
+        displayName: Rules
+        (Link.types): [Rule]
+
+    #example: !include ../examples/ProcessMethodExample.json

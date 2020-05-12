@@ -1,0 +1,24 @@
+{
+  "id": "c99cf2fa-f8db-4f85-aae6-f46e6204c84f",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Business Process example"
+    }
+  ],
+  "createdDate": "2019-10-09T09:28:09.127Z",
+  "createdBy": "Test user",
+  "version": "1.0.2",
+  "versionValidFrom": "2019-10-09T13:01:51.672Z",
+  "lastUpdatedDate": "2019-10-09T13:01:51.672Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-10-09T09:28:09.127Z",
+  "validUntil": "2020-10-09T13:01:51.672Z",
+  "isPlaceholderProcess": false,
+  "processSteps": [
+    "/ProcessStep/1eef14a0-ff0c-4f43-9416-e9c871326c82",
+    "/ProcessStep/1d39e9a7-494e-4257-951f-e494f45ae691"
+  ],
+  "previousBusinessProcess": "/BusinessProcess/dad379da-475c-44ac-98d7-56307c10a53c",
+  "parentBusinessProcess": "/BusinessProcess/010bfa55-bd1c-4e7e-ae30-b8014c9fe623"
+}

@@ -1,0 +1,18 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+
+types:
+  Concept:
+    description: Unit of thought differentiated by characteristics.
+
+    properties:
+      subjectFields?:
+        type: string[]
+        displayName: Subject fields
+        (Link.types): [SubjectField]
+
+      nationalConceptsCatalogURI?:
+        type: string
+        description: Link to national concepts catalog
+        displayName: National concepts catalog

@@ -1,0 +1,24 @@
+{
+  "id": "b33b094b-9250-44ba-8647-d24b53b88ded",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "FamilyDatastructure"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Datastructure for families Norway per 2018-01-01"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2018-01-01T00:00:00.000Z",
+  "validFrom": "2018-01-01T00:00:00.000Z",
+  "createdDate": "2018-01-01T00:00:00.000Z",
+  "createdBy": "OHV",
+  "logicalRecords": [
+    "/LogicalRecord/52264328-76be-4ea3-9d86-a0853751e7f4"
+  ]
+}

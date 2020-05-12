@@ -1,0 +1,19 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  DataSet: ./abstract/DataSet.raml
+
+types:
+  UnitDataSet:
+    description: A collection of data that conforms to a known structure and describes aspects of one or more Units.
+    displayName: Unit data set
+    type: [ IdentifiableArtefact.IdentifiableArtefact, DataSet.DataSet ]
+
+    properties:
+      unitDataStructure:
+        type: string
+        displayName: Unit data structure
+        (Link.types): [UnitDataStructure]
+
+    example: !include ../examples/_main/UnitDataSet_Family_1.json

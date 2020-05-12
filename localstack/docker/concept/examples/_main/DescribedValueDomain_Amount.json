@@ -1,0 +1,33 @@
+{
+    "id": "7c2c5846-0727-4a5d-8d07-c832bb14f9e2",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Amount"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Beløp"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Amount"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Beløp"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "dataType":"INTEGER",
+    "minValue": 0,
+    "maxValue": 999999999,
+    "measurementUnit": "/MeasurementUnit/ab1ac77e-6f3c-4418-a26c-ec9ae2137c30"
+}

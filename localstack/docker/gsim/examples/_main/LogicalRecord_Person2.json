@@ -1,0 +1,35 @@
+{
+ "id": "12ade3cd-e806-4b55-95ed-633a1979a6bf",
+ "createdDate": "2018-12-21T12:00:54.380Z",
+ "createdBy": "Test",
+ "version": "1.0.0",
+ "versionValidFrom": "2018-12-21T12:00:54.380Z",
+ "lastUpdatedDate": "2018-12-21T12:00:54.380Z",
+ "lastUpdatedBy": "Test",
+ "validFrom": "2018-12-21T12:00:54.380Z",
+ "name": [
+   {
+     "languageCode": "en",
+     "languageText": "Persons within a family"
+   }
+ ],
+ "description": [
+   {
+     "languageCode": "en",
+     "languageText": "Record for personinformation that belongs to a family"
+   }
+ ],
+ "parentLogicalRecord": "/LogicalRecord/40c192fe-4da5-49a3-9369-0ea2db0387a7",
+ "parentChildMultiplicity": "ONE_MANY",
+ "isPlaceholderRecord": false,
+ "instanceVariables": [
+   "/InstanceVariable/09c24ccd-6765-4d8c-84ae-b4c7d55ad4ea",
+   "/InstanceVariable/f908b24d-e5c4-4954-bcab-02a2e4724af3",
+   "/InstanceVariable/71aec966-eb44-4a49-9bbf-0606563ca0cb",
+   "/InstanceVariable/930607c9-88c7-45a2-80b4-4532c8a66a4e",
+   "/InstanceVariable/beb729fc-f418-46b1-bab1-8ed20d82b907"
+ ],
+ "unitType": "/UnitType/51a8dcde-127d-49de-84a4-a0a9c34f666f",
+ "administrativeStatus": "OPEN",
+ "shortName": "PERSON"
+}

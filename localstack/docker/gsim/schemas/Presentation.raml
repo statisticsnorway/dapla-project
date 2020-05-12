@@ -1,0 +1,36 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  Presentation:
+    description: The way data and referential metadata are presented in a Product.
+    displayName: Presentation
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      presentationType:
+        type: string
+        description: Type of presentation
+        displayName: Presentation type
+        enum:
+          - TABLE
+          - FILE
+          - GRAPH
+          - CLASSIFICATION
+          - PDF
+          - WEBPAGE
+
+      presentationFormat:
+        type: string
+        description: Format of the presentation type
+        displayName: Presentation format
+      # TODO: Should format also be an enum ?
+
+      informationSetsToPresent:
+        type: string[]
+        displayName: Informationsets to present
+        (Link.types): [DimensionalDataSet, UnitDataSet]
+
+    #example: !include ../examples/_main/Presentation_xxx.json

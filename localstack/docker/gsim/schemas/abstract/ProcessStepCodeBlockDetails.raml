@@ -1,0 +1,38 @@
+#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+
+types:
+  ProcessStepCodeBlockDetails:
+    description: A key-value-store for adding a complex array of code block attributes to the ProcessStep-object.
+    type: object
+
+    properties:
+      codeBlockType:
+        type: string
+        description: The type of code block
+        displayName: Type of code block
+        enum:
+          - DOCUMENTATION
+          - CODE
+
+      codeBlockTitle:
+        type: string
+        description: Title of code block
+        displayName: Code block title
+
+      codeBlockValue:
+        type: string
+        description: The actual code or text
+        displayName: Value
+
+      codeBlockIndex:
+        type: number
+        description: Index of the code block
+        displayName: Index
+
+      processStepInstance?:
+        type: string
+        displayName: Process step instance
+        (Link.types): [ProcessStepInstance]
+  

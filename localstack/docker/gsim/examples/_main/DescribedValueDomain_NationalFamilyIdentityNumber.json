@@ -1,0 +1,30 @@
+{
+    "id": "49c54ebc-e742-488a-8a8a-c6fe63410e4f",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "FamilyIdentifierNumber"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Norwegian National Family identifier number"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Et familienummer er et åttesifret identifikasjonsnummer."
+      },
+      {
+        "languageCode": "en",
+        "languageText": "The Norwegian national identity number for families is an 8-digit isUnique identifier."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"STRING"
+}

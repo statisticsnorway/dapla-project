@@ -1,0 +1,71 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  StatisticalSupportProgram:
+    description: A program which is not related to the post-design cyclic production of statistical products, but is necessary to support cyclical production.
+    displayName: Statistical support program
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      statisticalProgramDesign?:
+        type: string
+        displayName: Statistical program design
+        (Link.types): [StatisticalProgramDesign]
+
+      statisticalNeeds?:
+        type: string[]
+        displayName: Statistical needs
+        (Link.types): [EnvironmentChange, InformationRequest]
+
+      changeDefinitions?: 
+        type: string[]
+        displayName: Change definitions
+        (Link.types): [ChangeDefinition]
+
+      businessProcesses?:
+        type: string[]
+        displayName: Business processes
+        (Link.types): [BusinessProcess]
+
+      dateInitiated?: #TODO  Could this be the same as IdentefiableArtefact.validFrom ?
+        type: datetime
+        description: Initiated date
+        displayName: Date initiated
+
+      dateEnded?:     #TODO  Could this be the same as IdentefiableArtefact.validUntil ?
+        type: datetime
+        description: Last date of validity
+        displayName: Date ended
+
+      statisticalSupportProgramStatus:
+        type: string
+        description: The current condition of the program
+        displayName: Statistical support program status
+        enum:
+          - NEW
+          - UNDER_DEVELOPMENT
+          - CURRENT
+          - COMPLETED
+          - CANCELLED
+          - TRANSFERRED   # TO ANOTHER ORGANISATION
+
+      history?:
+        type: MultilingualText.MultilingualText[]
+        description: A description of the precursors of the program within the organisation
+        displayName: History
+
+      subjectMatterDomain?:
+        type: MultilingualText.MultilingualText[]
+        description: A description of the subject matters
+        displayName: Subject matter domain
+
+      significantEvents?:
+        type: MultilingualText.MultilingualText[]
+        description: A description of the real-world events which lead to the creation of the program
+        displayName: Significant events
+
+    #example:  !include ../examples/sirius/StatisticalSupportProgramExample.json

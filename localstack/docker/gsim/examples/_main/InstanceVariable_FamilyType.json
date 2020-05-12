@@ -1,0 +1,27 @@
+{
+    "id": "98bf9718-3964-4eb7-a966-3be58d3b9e55",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "FamilyType"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The classification describes the different types of families used in family statistics in Statistics Norway today."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "representedVariable": "/RepresentedVariable/d3648cc7-4a62-4da0-a168-5287949fbf56",
+    "population": "/Population/7ef40579-469d-447f-8955-febb7b254b10",
+    "dataStructureComponentType": "MEASURE",
+    "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "shortName": "FAMILY_TYPE",
+    "physicalDataType": "string"
+}

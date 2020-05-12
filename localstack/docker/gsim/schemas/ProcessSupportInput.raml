@@ -1,0 +1,31 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ProcessInput: ./abstract/ProcessInput.raml
+
+types:
+  ProcessSupportInput:
+    description: A form of Process Input that influences the work performed by the Process Step, and therefore influences its outcome.
+    displayName: Process support input
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ProcessInput.ProcessInput ]
+
+    properties:
+      processSupportDataType?:
+        type: string
+        description: The datatype of the ProcessSupportInput
+        displayName: Process support data type
+
+      processSupportRoles?: #TODO Noe annet enn våre Roles?
+        type: string[]
+        description: Used to convey the role of this input.
+        displayName: Process support roles
+        (Link.types): [Role]
+
+
+      processSupportValue?:
+        type: string
+        description: The content of the ProcessSupportInput
+        displayName: Process support value
+
+    #example: !include ../examples/ProcessSupportInput.json

@@ -1,0 +1,18 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  # ProcessInput: ./abstract/ProcessInput.raml
+
+types:
+  ProcessInputSpecification:
+    description: A record of the types of inputs required for a Process Design.
+    displayName: Process input specification
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      prosessInputType: #TODO ENUM?
+        type: string
+        description: This denotes the type of object which can be used as an input.
+        displayName: Prosess input type
+
+    #example: !include ../examples/ProcessInputSpecificationExample.json

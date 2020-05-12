@@ -1,0 +1,20 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  DataStructure: ./abstract/DataStructure.raml
+
+types:
+  DimensionalDataStructure:
+    description: Describes the structure of a Dimensional Data Set.
+    displayName: Dimensional data structure
+    type: [ IdentifiableArtefact.IdentifiableArtefact, DataStructure.DataStructure ]
+
+    properties:
+      # COMMENT:
+      # This link to InstanceVariable is a simplification of the GSIM logical Data Model (LDM) and replaces
+      # the links to IdentifierComponent, MeasureComponent and AttributeComponent objects in LDM.
+      instanceVariables:
+        type: string[]
+        displayName: Instance variables
+        (Link.types): [InstanceVariable]

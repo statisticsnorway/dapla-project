@@ -153,7 +153,20 @@ services:
     ports:
       - 25432:5432
     volumes:
+      - pgdata:/var/lib/postgresql/data
       - ./docker/postgres/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+
+  solr:
+    container_name: solr
+    image: solr:8
+    ports:
+      - 28983:8983
+    volumes:
+      - solrdata:/var/solr
+    entrypoint:
+      - bash
+      - "-c"
+      - "precreate-core gsim; precreate-core concept; exec solr -f"
 
   keycloak:
     container_name: keycloak
@@ -263,9 +276,9 @@ services:
     ports:
       - 29090:9090
     volumes:
-      - ./docker/concept/jsonschemas:/jsonschemas
       - ./docker/concept/graphqlschemas:/graphqlschemas
     environment:
+      - JAVA_MODULE_SYSTEM_ENABLED=true
       - LDS_persistence.provider=postgres
       - LDS_persistence.initialization.max-wait-seconds=10
       - LDS_postgres.driver.host=postgres
@@ -273,9 +286,93 @@ services:
       - LDS_postgres.driver.user=concept
       - LDS_postgres.driver.password=concept
       - LDS_postgres.driver.database=concept
-      - LDS_txlog.rawdata.provider=discard
-      - LDS_specification.schema=/jsonschemas
+      - LDS_sagalog.provider=no.ssb.sagalog.postgres.PostgresSagaLogInitializer
+      - LDS_sagalog.config.cluster.owner=concept-developer
+      - LDS_sagalog.config.cluster.name=concept-localstack
+      - LDS_sagalog.config.cluster.instance-id=01
+      - LDS_sagalog.config.postgres.driver.host=postgres
+      - LDS_sagalog.config.postgres.driver.port=5432
+      - LDS_sagalog.config.postgres.driver.user=concept_sagalog
+      - LDS_sagalog.config.postgres.driver.password=concept_sagalog
+      - LDS_sagalog.config.postgres.driver.database=concept_sagalog
+      - LDS_txlog.split.sources=false
+      - LDS_txlog.default-source=default
+      - LDS_txlog.rawdata.topic-prefix=concept-txlog-
+      - LDS_txlog.rawdata.provider=postgres
+      - LDS_txlog.config.postgres.driver.host=postgres
+      - LDS_txlog.config.postgres.driver.port=5432
+      - LDS_txlog.config.postgres.driver.user=concept_txlog
+      - LDS_txlog.config.postgres.driver.password=concept_txlog
+      - LDS_txlog.config.postgres.driver.database=concept_txlog
+      - LDS_txlog.config.rawdata.postgres.consumer.prefetch-size=10
+      - LDS_txlog.config.rawdata.postgres.consumer.prefetch-poll-interval-when-empty=1000
       - LDS_graphql.enabled=true
       - LDS_graphql.schema=/graphqlschemas/schema.graphql
+      - LDS_graphql.search.enabled=true
+      - LDS_search.index.provider=solr
+      - LDS_search.index.url=http://solr:8983/solr/concept
     depends_on:
       - postgres
+      - solr
+
+  gsim-lds:
+    container_name: gsim-lds
+    image: statisticsnorway/lds-server:latest
+    ports:
+      - 29091:9091
+    volumes:
+      - ./docker/gsim/graphqlschemas:/graphqlschemas
+    environment:
+      - JAVA_MODULE_SYSTEM_ENABLED=true
+      - LDS_http.port=9091
+      - LDS_persistence.provider=postgres
+      - LDS_persistence.initialization.max-wait-seconds=10
+      - LDS_postgres.driver.host=postgres
+      - LDS_postgres.driver.port=5432
+      - LDS_postgres.driver.user=gsim
+      - LDS_postgres.driver.password=gsim
+      - LDS_postgres.driver.database=gsim
+      - LDS_sagalog.provider=no.ssb.sagalog.postgres.PostgresSagaLogInitializer
+      - LDS_sagalog.config.cluster.owner=gsim-developer
+      - LDS_sagalog.config.cluster.name=gsim-localstack
+      - LDS_sagalog.config.cluster.instance-id=01
+      - LDS_sagalog.config.postgres.driver.host=postgres
+      - LDS_sagalog.config.postgres.driver.port=5432
+      - LDS_sagalog.config.postgres.driver.user=gsim_sagalog
+      - LDS_sagalog.config.postgres.driver.password=gsim_sagalog
+      - LDS_sagalog.config.postgres.driver.database=gsim_sagalog
+      - LDS_txlog.split.sources=true
+      - LDS_txlog.default-source=default
+      - LDS_txlog.rawdata.topic-prefix=gsim-txlog-
+      - LDS_txlog.rawdata.provider=postgres
+      - LDS_txlog.config.postgres.driver.host=postgres
+      - LDS_txlog.config.postgres.driver.port=5432
+      - LDS_txlog.config.postgres.driver.user=gsim_txlog
+      - LDS_txlog.config.postgres.driver.password=gsim_txlog
+      - LDS_txlog.config.postgres.driver.database=gsim_txlog
+      - LDS_txlog.config.rawdata.postgres.consumer.prefetch-size=10
+      - LDS_txlog.config.rawdata.postgres.consumer.prefetch-poll-interval-when-empty=1000
+      - LDS_graphql.enabled=true
+      - LDS_graphql.schema=/graphqlschemas/schema.graphql
+      - LDS_graphql.search.enabled=true
+      - LDS_search.index.provider=solr
+      - LDS_search.index.url=http://solr:8983/solr/gsim
+    depends_on:
+      - postgres
+      - solr
+
+  lds-client:
+    container_name: lds-client
+    image: statisticsnorway/linked-data-store-client:latest
+    ports:
+      - 28080:80
+
+  variable-search:
+    container_name: variable-search
+    image: statisticsnorway/variable-search:latest
+    ports:
+      - 28082:80
+
+volumes:
+  pgdata:
+  solrdata:

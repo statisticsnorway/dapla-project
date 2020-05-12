@@ -1,0 +1,74 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  ProvisionAgreement:
+    description: The legal or other basis by which two parties agree to exchange data.
+    displayName: Provision agreement
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      regulation:
+        type: string
+        description: Legal or lawful basis to collect data
+        displayName: Regulation
+        enum:
+          - VOLUNTARY
+          - MANDATORY
+          - ADMINISTRATIVE_REGISTER
+
+      provisionAgreementStatus:
+        type: string
+        description: Provision agreement status
+        displayName: Provision Agreement Status
+        enum:
+          - DRAFT
+          - INTERNAL
+          - OPEN
+          - DEPRECATED
+
+      changeManagement?:
+        type: MultilingualText.MultilingualText[]
+        displayName: Change management
+        description: Change management
+
+      informationSource:
+        type: MultilingualText.MultilingualText[]
+        displayName: Information source
+        description: External source
+
+      frequency:
+        type: string
+        description: The time frequency at which data is collected at regular intervals.
+        displayName: Frequency
+        enum:
+          - ONGOING
+          - DAILY
+          - WEEKLY
+          - MONTHLY
+          - ANNUAL
+
+      exchangeChannels?:
+        type: string[]
+        displayName: Exchange channels
+        (Link.types): [Product, AdministrativeRegister, Questionnaire, DataHarvesting]
+
+      informationProviders?:
+        type: string[]
+        displayName: Information providers
+        (Link.types): [AgentInRole]
+
+      informationConsumers?:
+        type: string[]
+        displayName: Information consumers
+        (Link.types): [AgentInRole]
+
+      agreedDataStructures?:
+        type: string[]
+        displayName: Agreed Data Structures
+        (Link.types): [UnitDataStructure, DimensionalDataStructure]
+
+    example: !include ../examples/_main/ProvisionAgreement_NorwegianMaritimeAuthority.json

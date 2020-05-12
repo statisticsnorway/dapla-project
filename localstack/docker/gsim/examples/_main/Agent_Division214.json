@@ -1,0 +1,57 @@
+{
+    "id": "f9088cea-9aee-4d91-9e2f-91d1d6c04d43",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Seksjon 214"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Division 214"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Seksjon for inntekts- og levekårsstatistikk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Division for external trade statisticsArkiv"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "agentType": "ORGANIZATION",
+    "isExternal": false,
+    "parentAgents": [
+      "/Agent/316ce68d-9154-43d3-ae4f-90b4668d2fd7"
+    ],
+    "agentDetails": [
+      {
+          "agentDetailType": "CONTACT_EMAIL",
+          "values": [
+            "avd200@ssb.no",
+            "headof200@ssb.no",
+            "seksjon214@ssb.no"
+          ]
+      },
+      {
+          "agentDetailType": "CONTACT_ADDRESS",
+          "values": [
+            "Statistisk sentralbyrå, Oterveien 23, 2211 Kongsvinger",
+            "Statistisk sentralbyrå, Akersveien 26, 0177 Oslo"
+          ]
+      }
+    ],
+    "administrativeDetails": [
+      {
+          "administrativeDetailType": "URL",
+          "values": ["https://www.ssb.no/en/utenriksokonomi?de=External+trade+"]
+      }
+    ]
+}

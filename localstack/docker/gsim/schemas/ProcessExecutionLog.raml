@@ -1,0 +1,48 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ProcessOutput: ./abstract/ProcessOutput.raml
+
+types:
+  ProcessExecutionLog:
+    description: The Process Execution Log captures the output of a Process Step which is not directly related to the Transformed Output it produced. It may include data that was recorded during the real time execution of the Process Step.
+    displayName: Process execution log
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ProcessOutput.ProcessOutput ]
+
+    properties:
+      processId?:     #TODO What is this.... could it be a link to ProcessStpeInstance?
+        type: string
+        description: Carries a reference to the instance, so that the log entry can be related to the process. Can be useful for both manual resolution or by the process control.
+        displayName: Process id
+
+      startTime?:
+        type: datetime
+        description: The time the Process Step started
+        displayName: Start time
+
+      endTime?:
+        type: datetime
+        description: The time the Process Step ended
+        displayName: End time
+
+      logType?:
+        type: string
+        description: The type of event that occurred during process execution (for example, an error)
+        displayName: Log type
+
+      logCode?:
+        type: string
+        description: The code for the event that occurred during the process execution.
+        displayName: Log code
+
+      logMessage?:
+        type: string
+        description: The human readable message for the event that occurred during the process execution.
+        displayName: Log message
+
+      logSeverity?: 
+        type: string
+        description: The severity for the event that occurred during the process execution.
+        displayName: Log severity
+
+    example: !include ../examples/_main/ProcessExecutionLog_Example.json

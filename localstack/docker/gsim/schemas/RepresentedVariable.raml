@@ -1,0 +1,28 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  RepresentedVariable:
+    description: A combination of a characteristic of a population to be measured and how that measure will be represented.
+    displayName: Represendted variable
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      variable:
+        type: string
+        displayName: Variable
+        (Link.types): [Variable]
+
+      universe:
+        type: string
+        displayName: Universe
+        (Link.types): [Universe]
+
+      substantiveValueDomain?:
+        type: string
+        displayName: Substantive value domain
+        (Link.types): [EnumeratedValueDomain, DescribedValueDomain]
+
+    example: !include ../examples/_main/RepresentedVariable_PersonIncome.json
