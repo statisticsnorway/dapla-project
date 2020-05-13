@@ -1,0 +1,20 @@
+#%RAML 1.0 Library
+types:
+  MultilingualText:
+    description: A reusable type for supporting multilingual texts.
+    type: object
+
+    properties:
+      languageCode:
+        type: string
+        description: The language code. Use only ISO 639-1 codes.
+        displayName: Language code
+        enum:
+          - nb
+          - nn
+          - en
+
+      languageText:
+        type: string
+        description: The text (e.g. label, title, description)
+        displayName: Language text

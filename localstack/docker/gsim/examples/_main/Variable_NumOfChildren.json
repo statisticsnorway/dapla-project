@@ -1,0 +1,24 @@
+{
+    "id": "7c05e24d-02d8-4ce9-a3ec-844106c4afc4",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "NumOfChildren"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Number of children"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "unitType": "/UnitType/31fd20ea-e1ca-46ba-bbf1-9d81e827575e",
+    "subjectFields": [ "/SubjectField/f805a254-ec08-4321-842c-cab572bf409d",
+      "/SubjectField/434e9458-c3be-4437-82d3-c765552c38a0" ]
+}

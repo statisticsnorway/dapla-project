@@ -1,0 +1,22 @@
+{
+    "id": "79d9040a-8893-4f1a-8760-9852cf693a79",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "AllFamilies"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "All families"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "2017-01-01T00:00:00.000Z",
+    "validFrom": "2017-01-01T00:00:00.000Z",
+    "createdDate": "2018-11-28T00:00:00.000Z",
+    "createdBy": "OHV",
+    "unitTypes": ["/UnitType/31fd20ea-e1ca-46ba-bbf1-9d81e827575e"]
+}

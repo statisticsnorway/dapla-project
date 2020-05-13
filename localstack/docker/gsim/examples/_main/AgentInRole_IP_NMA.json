@@ -1,0 +1,27 @@
+{
+ "id": "06c6f5e1-3e97-41da-b22c-63d58255774d",
+ "name": [
+  {
+   "languageCode": "en",
+   "languageText": "InformationProvider NMA"
+  }
+ ],
+ "description": [
+  {
+   "languageCode": "en",
+   "languageText": "Information providers at Norwegian Maritime Authority"
+  }
+ ],
+ "administrativeStatus": "OPEN",
+ "createdDate": "2019-02-01T14:05:46.738Z",
+ "createdBy": "Test",
+ "version": "1.0.1",
+ "versionValidFrom": "2019-02-01T14:05:49.657Z",
+ "lastUpdatedDate": "2019-02-01T14:05:49.657Z",
+ "lastUpdatedBy": "Test",
+ "validFrom": "2019-02-01T14:05:46.738Z",
+ "role": "/Role/85aa81f1-5998-4f3f-a8a4-3ec1aff7e4ef",
+ "agents": [
+  "/Agent/b00fa34f-a589-49ee-80da-8b5129eda5fd"
+ ]
+}

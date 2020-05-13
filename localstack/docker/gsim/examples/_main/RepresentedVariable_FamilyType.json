@@ -1,0 +1,24 @@
+{
+    "id": "d3648cc7-4a62-4da0-a168-5287949fbf56",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "FamilyType"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The classification describes the different types of families used in family statistics"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "variable": "/Variable/62af8455-9bbd-4822-b521-2c392d8666bd",
+    "substantiveValueDomain": "/EnumeratedValueDomain/a6f6d20d-e5eb-449b-8d52-b65c1b22c8ed",
+    "universe": "/Universe/79d9040a-8893-4f1a-8760-9852cf693a79"
+}

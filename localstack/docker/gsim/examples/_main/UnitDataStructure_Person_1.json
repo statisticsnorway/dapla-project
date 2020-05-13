@@ -1,0 +1,24 @@
+{
+  "id": "cd3ecd46-c090-4bc6-80fb-db758eeb10fd",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "PersonWithIncomeDatastructure"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Datastructure for personinformation and income"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2018-01-01T00:00:00.000Z",
+  "validFrom": "2018-01-01T00:00:00.000Z",
+  "createdDate": "2018-01-01T00:00:00.000Z",
+  "createdBy": "BNJ",
+  "logicalRecords": [
+    "/LogicalRecord/f1b61f07-c403-43c5-80db-2a1bfdd1bb37"
+  ]
+}

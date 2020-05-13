@@ -1,0 +1,54 @@
+{
+ "administrativeStatus": "OPEN",
+ "description": [
+  {
+   "languageCode": "en",
+   "languageText": "Overview import/export of ships"
+  }
+ ],
+ "validFrom": "2010-01-01T15:00:00.000Z",
+ "changeManagement": [
+  {
+   "languageCode": "en",
+   "languageText": "Reviewed on a yearly basis"
+  },
+  {
+   "languageCode": "nb",
+   "languageText": "Avtalen skal gjennomgås årlig"
+  }
+ ],
+ "version": "1.2.0",
+ "frequency": "ONGOING",
+ "versionValidFrom": "2019-02-01T14:07:37.344Z",
+ "createdDate": "2010-01-01T15:00:00.000Z",
+ "regulation": "VOLUNTARY",
+ "createdBy": "OHV",
+ "informationSource": [
+  {
+   "languageCode": "en",
+   "languageText": "NIS/NOR/BYGG-register"
+  }
+ ],
+ "exchangeChannels": [
+  "/DataHarvesting/4eea64e6-5c87-462d-9fc5-c3fdd3a310fc"
+ ],
+ "name": [
+  {
+   "languageCode": "en",
+   "languageText": "Norwegian Maritime Authority - Annex1"
+  }
+ ],
+ "provisionAgreementStatus": "DRAFT",
+ "id": "4eea64e6-5c87-462d-9fc5-c3fdd3a310fx",
+ "informationProviders": [
+  "/AgentInRole/06c6f5e1-3e97-41da-b22c-63d58255774d"
+ ],
+ "versionRationale": [
+  {
+   "languageCode": "en",
+   "languageText": "Added InformationProvider"
+  }
+ ],
+ "lastUpdatedDate": "2019-02-01T14:07:37.344Z",
+ "lastUpdatedBy": "Test"
+}

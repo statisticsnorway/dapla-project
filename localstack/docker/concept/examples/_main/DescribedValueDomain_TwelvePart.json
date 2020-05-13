@@ -1,0 +1,32 @@
+{
+    "id": "72d3ea5e-4c7b-43f9-9b49-d4bbc945fb97",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Tolvdeler"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Twelve parts"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Tolvdeler heltall, Tom ikke tillatt"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Twelve parts, Integer, Empty not allowed"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"INTEGER",
+    "minValue":1,
+    "maxValue":12
+}

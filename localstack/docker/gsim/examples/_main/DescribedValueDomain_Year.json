@@ -1,0 +1,24 @@
+{
+    "id": "a52fc2be-0fb5-41d2-9183-82b2f6929700",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Year"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Years between 1850 and 2100"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"INTEGER",
+    "minValue":1850,
+    "maxValue":2100
+}

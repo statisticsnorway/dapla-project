@@ -1,0 +1,81 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  StatisticalProgram:
+    description: A set of activities, which may be repeated, to investigate characteristics of a given Population. It describes the purpose and context of a set of Business Process within the context of the relevant Statistical Program Cycles.
+    displayName: Statistical program
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      parentStatisticalPrograms?:
+        type: string[]
+        displayName: Parent statistical programs
+        (Link.types): [StatisticalProgram]
+
+      statisticalProgramDesign?:
+        type: string
+        displayName: Statistical program design
+        (Link.types): [StatisticalProgramDesign]
+
+      statisticalProgramCycles?:
+        type: string[]
+        displayName: Statistical program cycles
+        (Link.types): [StatisticalProgramCycle]
+
+      dateInitiated?: #TODO  Could this be the same as IdentefiableArtefact.validFrom ?
+        type: datetime
+        description: First date of validity
+        displayName: Date initiated
+
+      dateEnded?:     #TODO  Could this be the same as IdentefiableArtefact.validUntil ?
+        type: datetime
+        description: Last date of validity
+        displayName: Date ended
+
+      statisticalProgramStatus:   #TODO Hvordan er disse ifht. status benyttet andre steder?
+        type: string
+        description: The current condition of the program
+        displayName: Statistical program status
+        enum:
+          - NEW
+          - UNDER_DEVELOPMENT
+          - CURRENT
+          - COMPLETED
+          - CANCELLED
+          - TRANSFERRED     # TO ANOTHER ORGANISATION
+
+      history:
+        type: MultilingualText.MultilingualText[]
+        description: A description of the precursors of the program within the organisation
+        displayName: History
+
+      subjectMatterDomains:
+        type: MultilingualText.MultilingualText[]
+        description: A description of the subject matters
+        displayName: Subject matter domains
+
+      sourceOfFunding?:
+        type: MultilingualText.MultilingualText[]
+        description: A description of the source of funding
+        displayName: Source of funding
+
+      budget?:
+        type: number
+        description: Budget
+        displayName: Budget
+
+      legislativeReferences?:
+        type: MultilingualText.MultilingualText[]
+        description: Any legislative materials, eg parliamentary tabling documents
+        displayName: Legislative references
+
+      legalFrameworks?:
+        type: MultilingualText.MultilingualText[]
+        description: Description of the legal framework
+        displayName: Legal frameworks
+
+    example:  !include ../examples/_main/StatisticalProgram_Example.json

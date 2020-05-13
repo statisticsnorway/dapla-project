@@ -1,0 +1,26 @@
+{
+    "id": "beb729fc-f418-46b1-bab1-8ed20d82b907",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Municipality"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The person's residential municipality"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "representedVariable": "/RepresentedVariable/8a0e6412-0fb0-46ed-b2e9-e3294b05fa59",
+    "population": "/Population/dfb6eecf-c4f4-4fa6-82a1-8b8684d560f4c",
+    "dataStructureComponentType": "MEASURE",
+    "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "shortName": "MUNICIPALITY"
+}

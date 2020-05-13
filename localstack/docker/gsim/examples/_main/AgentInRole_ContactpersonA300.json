@@ -1,0 +1,25 @@
+{
+  "id": "45a6317a-6e07-4a21-82bc-b2435d2c4ee4",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "N/A"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "nb",
+      "languageText": "Contact person Income and wealth statistics for households"
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2015-01-01T15:00:00.000Z",
+  "validFrom": "2015-01-01T15:00:00.000Z",
+  "createdDate": "2015-01-01T15:00:00.000Z",
+  "createdBy": "OHV",
+  "role": "/Role/7d6db429-905d-4fac-bc94-f438e2367288",
+  "agents": [
+    "/Agent/1d6ca477-4d0c-47b1-967d-1bead9c1b56b"
+  ]
+}

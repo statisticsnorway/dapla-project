@@ -1,0 +1,17 @@
+﻿#%RAML 1.0 Library
+uses:
+
+types:
+  StatisticalNeed:
+    description: A requirement, request or other notification that will be considered by an organization. A Statistical Need does not necessarily have structure or format - it is a 'raw' need as received by the organization. A Statistical Need may be of a variety of types including Environmental Change or Information Request.
+
+    properties:
+      dateCreated?:
+        type: datetime
+        description: Date created
+        displayName: Date created
+
+      statisticalNeedStatus: #TODO??Hva menes. MetUnmet  Rename til is<something> ??
+        type: boolean
+        description: Statistical need status
+        displayName: Statistical need status

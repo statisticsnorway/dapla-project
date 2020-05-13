@@ -1,0 +1,62 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  StatisticalProgramDesign:
+    description: The specification of the resources required, processes used and description of relevant methodological information about the set of activities undertaken to investigate characteristics of a given Population.
+    displayName: Statistical program design
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      businessCases?:
+        type: string[]
+        displayName: Business cases
+        (Link.types): [BusinessCase]
+
+      processDesigns?:
+        type: string[]
+        displayName: Process designs
+        (Link.types): [ProcessDesign]
+
+      processPatterns?:
+        type: string[]
+        displayName: Process patterns
+        (Link.types): [ProcessPattern]
+
+      businessFunctions?:
+        type: string[]
+        displayName: Business functions
+        (Link.types): [BusinessFunction]
+
+      dateInitiated?: #TODO  Could this be the same as IdentefiableArtefact.validFrom ?
+        type: datetime
+        description: First date of validity
+        displayName: Date initiated
+
+      dateEnded?:     #TODO  Could this be the same as IdentefiableArtefact.validUntil ?
+        type: datetime
+        description: Last date of validity
+        displayName: Date ended
+
+      statisticalProgramDesignStatus:
+        type: string
+        description: The current condition of the program design
+        displayName: Statistical program design status
+        enum:
+          - NEW
+          - UNDER_DEVELOPMENT
+          - CURRENT
+          - COMPLETED
+          - CANCELLED
+          - TRANSFERRED   # TO ANOTHER ORGANISATION
+
+      conceptualFrameworks?:
+        type: MultilingualText.MultilingualText[]
+        description: Description of the conceptual framework
+        displayName: Conceptual frameworks
+
+
+    #example: !include ../examples/Sirius/StatisticalProgramDesignExampleInnsamlingBeregnetSkatt.json

@@ -1,0 +1,16 @@
+#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  RankedUrnDetails: ./abstract/RankedUrnDetails.raml
+
+types:
+  ClassificationSubset:
+    description: A subset of classifications
+    displayName: Classification subset
+    type: [ IdentifiableArtefact.IdentifiableArtefact ]
+
+    properties:
+      codes:
+        type: RankedUrnDetails.RankedUrnDetails[]
+        description: List of urns to classification subsets
+        displayName: Codes

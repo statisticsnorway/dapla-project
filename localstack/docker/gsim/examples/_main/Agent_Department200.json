@@ -1,0 +1,46 @@
+{
+    "id": "316ce68d-9154-43d3-ae4f-90b4668d2fd7",
+    "agentType": "ORGANIZATION",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Department 200"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Department of prices, financial and external statisticsArkiv"
+      }
+    ],
+    "isExternal": false,
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "2015-01-01T15:00:00.000Z",
+    "validFrom": "2015-01-01T15:00:00.000Z",
+    "createdDate": "2015-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "agentDetails": [
+      {
+          "agentDetailType": "CONTACT_EMAIL",
+          "values": [
+            "avd200@ssb.no",
+            "headof200@ssb.no"
+          ]
+      },
+      {
+          "agentDetailType": "CONTACT_ADDRESS",
+          "values": [
+            "Statistisk sentralbyrå, Oterveien 23, 2211 Kongsvinger",
+            "Statistisk sentralbyrå, Akersveien 26, 0177 Oslo"
+          ]
+      }
+    ],
+    "administrativeDetails": [
+      {
+          "administrativeDetailType": "URL",
+          "values": ["https://www.ssb.no/en/omssb/om-oss/organisasjonskart/priser-finans-og-utenriksstatistikk"]
+      }
+    ]
+
+}

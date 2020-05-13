@@ -1,0 +1,19 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  DataStructure: ./abstract/DataStructure.raml
+
+types:
+  UnitDataStructure:
+    description: Describes the structure of a Unit Data Set.
+    displayName: Unit data structure
+    type: [ IdentifiableArtefact.IdentifiableArtefact, DataStructure.DataStructure ]
+
+    properties:
+      logicalRecords:
+        type: string[]
+        displayName: Logical records
+        (Link.types): [LogicalRecord]
+
+    example: !include ../examples/_main/UnitDataStructure_Family_1.json

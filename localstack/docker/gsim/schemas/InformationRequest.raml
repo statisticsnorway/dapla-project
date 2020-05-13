@@ -1,0 +1,33 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  StatisticalNeed: ./abstract/StatisticalNeed.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  InformationRequest:
+    description: An outline of a need for new information required for a particular purpose.
+    displayName: Information request
+    type: [ IdentifiableArtefact.IdentifiableArtefact, StatisticalNeed.StatisticalNeed ]
+
+    properties:
+      coverageOfInformationRequired:
+        type: MultilingualText.MultilingualText[]
+        description: Coverage of information required
+        displayName: Information requester
+
+      dateInformationRequired?:
+        type: datetime
+        description: Date Information Required
+        displayName: Date information required
+
+      subjectFields?:
+        type: string[]
+        displayName: Subject fields
+        (Link.types): [SubjectField]
+
+
+      #informationRequester?:    TODO: We have not implemented this as it seems that its covered by IdentifiableAtrifact.agentInRoles
+
+      #contactDetailofRequestor: TODO: We have not implemented this as it seems that its covered by Agent.agentDetails

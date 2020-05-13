@@ -1,0 +1,31 @@
+{
+    "id": "d8358911-7f2d-45b6-83d0-9665e793448a",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Standard for gruppering av husholdninger"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Classification of households"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Standarden beskriver de ulike husholdningstypene som i dag brukes i SSBs husholdningsstatistikk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "The classification describes the different types of households used in household statistics in Statistics Norway today"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType": "STRING",
+    "klassUrn": "klass:klassifikasjoner:37"
+}

@@ -1,0 +1,27 @@
+{
+  "id": "d7f1a566-b906-4561-92cb-4758b766335c",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "FamilyDataset"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Dataset for families in Norway per 2018-01-01"
+    }
+  ],
+  "valuation": "SENSITIVE",
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2018-01-01T00:00:00.000Z",
+  "validFrom": "2018-01-01T00:00:00.000Z",
+  "createdDate": "2018-01-01T00:00:00.000Z",
+  "createdBy": "OHV",
+  "unitDataStructure": "/UnitDataStructure/b33b094b-9250-44ba-8647-d24b53b88ded",
+  "dataSetState": "INPUT_DATA",
+  "temporalityType": "STATUS",
+  "dataExistsFromDate": "2018-01-01T00:00:00.000Z",
+  "dataExistsUntilDate": "2018-01-01T00:00:00.000Z"
+}

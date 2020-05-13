@@ -1,0 +1,30 @@
+{
+  "id": "52264328-76be-4ea3-9d86-a0853751e7f4",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Families and number of children."
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Record of families with classification and number of children."
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2018-01-01T00:00:00.000Z",
+  "validFrom": "2018-01-01T00:00:00.000Z",
+  "createdDate": "2018-01-01T00:00:00.000Z",
+  "createdBy": "OHV",
+  "isPlaceholderRecord": false,
+  "instanceVariables": [
+    "/InstanceVariable/e2288748-7d26-4690-b07b-30a58c4a41f4",
+    "/InstanceVariable/98bf9718-3964-4eb7-a966-3be58d3b9e55",
+    "/InstanceVariable/9ce825c9-ff8e-4e64-89a9-8d066c9349e7",
+    "/InstanceVariable/8d51f269-4216-4351-94e5-94602e704694"
+  ],
+  "unitType": "/UnitType/31fd20ea-e1ca-46ba-bbf1-9d81e827575e",
+  "shortName": "FAMILY"
+}

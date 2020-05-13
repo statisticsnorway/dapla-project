@@ -1,0 +1,54 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  LogicalRecord:
+    description: Describes a type of Unit Data Record for one Unit Type within a Unit Data Set.
+    displayName: Logical record
+    type:  IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      unitType:
+        type: string
+        displayName: Unit type
+        (Link.types): [UnitType]
+
+
+      # COMMENT:
+      # This self-referencing link (parentLogicalRecord) is a simplification of the GSIM logical Data Model (LDM)
+      # and replaces the RecordRelationship object in LDM.
+      # Use the parentLogicalRecord-link to describe a hierarchical UnitDataSet (e.g. Parquet, XML or JSON dataset)
+      # For a hierarchical UnitDataSet the parentLogicalRecord-link is not set for the root-LogicalRecord.
+      parentLogicalRecord?:
+        type: string
+        displayName: Parent logical record
+        (Link.types): [LogicalRecord]
+
+      parentChildMultiplicity?:
+        type: string
+        enum:
+         - ZERO_ONE
+         - ONE_ONE
+         - ZERO_MANY
+         - ONE_MANY
+        description: Describes the multiplicity of this LogicalRecord when a link to parentLogicalRecord exists.
+        displayName: Parent child multiplicity
+
+      isPlaceholderRecord:
+        type: boolean
+        default: false
+        description: If true this is a placeholder-record (only a grouping of other records in a hierarchical UnitDataSet), but without link(s) to any InstanceVariables.
+        displayName: Is placeholder record
+
+      # COMMENT:
+      # This link to InstanceVariable is a simplification of the GSIM logical Data Model (LDM) and replaces
+      # the links to IdentifierComponent, MeasureComponent and AttributeComponent objects in LDM.
+      # The instanceVariables-link is mandatory for all LogicalRecords except for PlaceholderRecords.
+      instanceVariables?:
+        type: string[]
+        displayName: Instance variables
+        (Link.types): [InstanceVariable]
+
+    example: !include ../examples/_main/LogicalRecord_Person_1.json

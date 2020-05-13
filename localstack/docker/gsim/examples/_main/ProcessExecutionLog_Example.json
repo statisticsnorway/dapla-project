@@ -1,0 +1,19 @@
+{
+  "id": "72e1b491-a7e3-463f-b86c-e719820d4508",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Process Excecution Log example"
+    }
+  ],
+  "createdDate": "2019-10-14T13:01:50.276Z",
+  "createdBy": "Test user",
+  "version": "1.0.0",
+  "versionValidFrom": "2019-10-14T13:01:50.276Z",
+  "lastUpdatedDate": "2019-10-14T13:01:50.276Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-10-14T13:01:50.276Z",
+  "validUntil": "2020-10-14T13:01:50.276Z",
+  "processId": "fdgy45yrfh",
+  "logMessage": "A boat with caught fish!"
+}

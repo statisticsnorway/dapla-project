@@ -1,0 +1,31 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+
+types:
+  ExchangeChannel:
+    description: A means of exchanging data.
+
+    properties:
+      direction:
+        type: string
+        description: Direction of the exchange channel
+        displayName: Direction
+        enum:
+          - COLLECT
+          - DISSEMINATE
+
+      protocol:
+        type: string
+        displayName: Protocol
+        (Link.types): [Protocol]
+
+      consumesInformationSets?:
+        type: string[]
+        displayName: Consumes Data Sets
+        (Link.types): [UnitDataSet, DimensionalDataSet]
+
+      producesInformationSets?:
+        type: string[]
+        displayName: Produces Data Sets
+        (Link.types): [UnitDataSet, DimensionalDataSet]

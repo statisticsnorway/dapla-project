@@ -1,0 +1,18 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+
+types:
+  InformationResource:
+    description: An abstract notion that is any organized collection of information.
+
+    properties:
+      parentResource?:
+         type: string
+         displayName: Parent resource
+         (Link.types): [DataResource]
+
+      owner: 
+        type: string
+        displayName: Owner
+        (Link.types): [ProvisionAgreement, StatisticalProgram]

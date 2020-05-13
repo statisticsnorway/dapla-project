@@ -1,0 +1,26 @@
+{
+  "id": "d1f8e3b7-0eb3-4a6d-91bb-a7451649f2f6",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "N/A"
+    }
+  ],
+  "description": [
+    {
+      "languageCode": "en",
+      "languageText": "Owner shared ownership departments A300 and A700."
+    }
+  ],
+  "administrativeStatus": "OPEN",
+  "version": "1.0.0",
+  "versionValidFrom": "2015-01-01T15:00:00.000Z",
+  "validFrom": "2015-01-01T15:00:00.000Z",
+  "createdDate": "2015-01-01T15:00:00.000Z",
+  "createdBy": "OHV",
+  "role": "/Role/4eea64e6-5c87-462d-9fc5-c3fdd3a310fa",
+  "agents": [
+    "/Agent/1d6ca477-4d0c-47b1-967d-1bead9c1b56b",
+    "/Agent/91712998-84a5-4f6c-8053-4dfaafa7c0e3"
+  ]
+}

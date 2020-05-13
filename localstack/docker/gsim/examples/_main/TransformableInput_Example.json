@@ -1,0 +1,18 @@
+{
+  "id": "f4ff8746-a71f-4eef-8870-9b5de120d7ce",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Transformable input example"
+    }
+  ],
+  "createdDate": "2019-10-14T13:00:35.974Z",
+  "createdBy": "Test user",
+  "version": "1.0.0",
+  "versionValidFrom": "2019-10-14T13:00:35.974Z",
+  "lastUpdatedDate": "2019-10-14T13:00:35.974Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-10-14T13:00:35.974Z",
+  "validUntil": "2020-10-14T13:00:35.974Z",
+  "inputId": "/UnitDataSet/b9c10b86-5867-4270-b56e-ee7439fe381e"
+}

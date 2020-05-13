@@ -1,0 +1,39 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  Assessment:
+    description: The result of the analysis of the quality and effectiveness of any activity undertaken by a statistical organization and recommendations on how these can be improved.
+    displayName: Assessment
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      datesAssessed:
+        type: datetime[]
+        description: Date assessed
+        displayName: Dates assessed
+
+      issues?:
+        type: MultilingualText.MultilingualText[]
+        description: Issues
+        displayName: Issues
+
+      recommendations?:
+        type: MultilingualText.MultilingualText[]
+        description: Recommendations
+        displayName: Recommendations
+
+      results?:
+        type: MultilingualText.MultilingualText[]
+        description: Results
+        displayName: Results
+
+      statisticalNeeds?:
+        type: string[]
+        displayName: Statistical needs
+        (Link.types): [EnvironmentChange, InformationRequest]
+
+    #example: !include ../examples/AssessmentExample.json

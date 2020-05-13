@@ -1,0 +1,31 @@
+{
+    "id": "42c799a6-952f-4504-abe2-92f2bd478273",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Heltall"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Integer"
+      }
+
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Heltall, Tom ikke tillatt"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "INTEGER, Empty not allowed"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"INTEGER"
+}

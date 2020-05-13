@@ -1,0 +1,26 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  Protocol:
+    description: The mechanism for exchanging information through an Exchange Channel.
+    displayName: Protocol
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      protocolType:
+        type: string
+        description: Type of protocol.
+        displayName: Protocol type
+        enum:
+          - API
+          - FTP
+          - SFTP
+          - HTTP
+          - HTTPS
+          - EMAIL
+          - OPTICAL_DEVICE
+          - DATABASE
+
+    example: !include ../examples/_main/Protocol_pullAPI.json

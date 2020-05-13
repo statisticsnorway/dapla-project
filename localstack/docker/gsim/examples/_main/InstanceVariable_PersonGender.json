@@ -1,0 +1,26 @@
+{
+    "id": "f908b24d-e5c4-4954-bcab-02a2e4724af3",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Gender"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "The person's gender"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "representedVariable": "/RepresentedVariable/44246a25-fb7a-4464-846e-051e01e514f6",
+    "population": "/Population/dfb6eecf-c4f4-4fa6-82a1-8b8684d560f4c",
+    "dataStructureComponentType": "MEASURE",
+    "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "shortName": "GENDER"
+}

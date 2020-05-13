@@ -1,0 +1,52 @@
+{
+    "id": "661c35a5-26b1-4a94-8c6d-a51a69305555",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Skattedirektoratet"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Skattedirektoratet"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "The Norwegian Tax Administration"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "The Norwegian Tax Administration"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "agentType": "ORGANIZATION",
+    "isExternal": true,
+    "agentDetails": [
+      {
+          "agentDetailType": "CONTACT_PHONE",
+          "values": [
+            "800 80 000",
+            "+47 22 07 70 00"
+          ]
+      },
+      {
+          "agentDetailType": "CONTACT_ADDRESS",
+          "values": [
+            "Fredrik Selmers vei , Helsfyr (0663 OSLO)"
+          ]
+      }
+    ],
+    "administrativeDetails": [
+      {
+          "administrativeDetailType": "URL",
+          "values": ["https://www.ssb.no/befolkning"]
+      }
+    ]
+}

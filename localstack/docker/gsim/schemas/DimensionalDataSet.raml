@@ -1,0 +1,25 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  DataSet: ./abstract/DataSet.raml
+
+types:
+  DimensionalDataSet:
+    description: A collection of dimensional data that conforms to a known structure.
+    displayName: Dimensional data set
+    type: [ IdentifiableArtefact.IdentifiableArtefact, DataSet.DataSet ]
+
+    properties:
+      dimensionalDataStructure:
+        type: string
+        displayName: Dimensional data structure
+        (Link.types): [DimensionalDataStructure]
+
+    #TODO: Other attributes? Do we need these:
+      # reportingBegin ?
+      # reportingEnd ?
+      # dataExtractionDate ?
+      # action ?
+
+    # TODO: example: !include ../examples/DimensionalDataSetExample1.json

@@ -1,0 +1,25 @@
+{
+ "id": "b00fa34f-a589-49ee-80da-8b5129eda5fd",
+ "name": [
+  {
+   "languageCode": "en",
+   "languageText": "Norwegian Maritime Authority"
+  }
+ ],
+ "description": [
+  {
+   "languageCode": "en",
+   "languageText": "Norwegian Maritime Authority"
+  }
+ ],
+ "administrativeStatus": "OPEN",
+ "createdDate": "2019-02-01T14:01:51.535Z",
+ "createdBy": "Test",
+ "version": "1.0.1",
+ "versionValidFrom": "2019-02-01T14:01:55.015Z",
+ "lastUpdatedDate": "2019-02-01T14:01:55.015Z",
+ "lastUpdatedBy": "Test",
+ "validFrom": "2019-02-01T14:01:51.535Z",
+ "agentType": "ORGANIZATION",
+ "isExternal": true
+}

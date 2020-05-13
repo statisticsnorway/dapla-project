@@ -1,0 +1,24 @@
+{
+    "id": "7f44975d-6100-43b0-a276-a0c6837195dc",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "FamilyIdentifier"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "National identifier number for families"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "unitType": "/UnitType/31fd20ea-e1ca-46ba-bbf1-9d81e827575e",
+    "subjectFields": [ "/SubjectField/f805a254-ec08-4321-842c-cab572bf409d" ],
+    "nationalConceptsCatalogURI": "https://some.national.concpetsCatalog/someId"
+}

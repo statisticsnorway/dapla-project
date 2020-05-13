@@ -1,0 +1,23 @@
+﻿#%RAML 1.0 Library
+types:
+  AdministrativeDetails:
+    description: A generic and expandable key-value-store for adding present and future AdministrativeDetails-attributes to any information object.
+    type: object
+
+    properties:
+      administrativeDetailType:
+        type: string
+        description: The type (key) of the AdministrativeDetails-attribute.
+        displayName: Administrative detail type
+        enum:
+          - DEFAULTLANGUAGE
+          - ANNOTATION
+          - ALIAS
+          - URL
+          - DOCUMENTATION
+          - LOCALID
+          - ORIGIN
+      values:
+        type: string[]
+        description: One or more values (a list) for this administrativeDetailType.
+        displayName: Values

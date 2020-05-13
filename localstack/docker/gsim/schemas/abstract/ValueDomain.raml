@@ -1,0 +1,24 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ../annotation/Link.raml
+
+types:
+  ValueDomain:
+    description: The permitted range of values for a characteristic of a variable
+
+    properties:
+      dataType:
+        type: string
+        description: The data type for a value domain
+        displayName: Data type
+        enum:
+          - STRING
+          - INTEGER
+          - FLOAT
+          - DATETIME
+          - BOOLEAN
+
+      measurementUnit?:
+        type: string
+        displayName: Measurement unit
+        (Link.types): [MeasurementUnit]

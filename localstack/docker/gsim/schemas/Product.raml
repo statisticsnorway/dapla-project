@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ExchangeChannel: ./abstract/ExchangeChannel.raml
+
+types:
+  Product:
+    description: A package of content that can be disseminated as a whole.
+    displayName: Product
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ExchangeChannel.ExchangeChannel ]
+
+    properties:
+      presentations:
+        type: string[]
+        displayName: Presentations
+        (Link.types): [Presentation]
+
+    #example: !include ../examples/_main/Product_xxx.json

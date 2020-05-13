@@ -1,0 +1,33 @@
+{
+    "id": "03ff807e-3d11-456e-8030-4f7319389405",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Desimaltall, todesimaler"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Decimal, two digits"
+      }
+
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Desimaltall, todesimaler, Tom ikke tillatt"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Decimal, two digits, non empty"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType":"FLOAT",
+    "minDecimals": 2,
+    "maxDecimals": 2
+}

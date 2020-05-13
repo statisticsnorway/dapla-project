@@ -1,0 +1,23 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  OutputSpecification:
+    description: Defines how Information Sets consumed by a Product are presented to Information Consumers.
+    displayName: Output Specification
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      products?:
+        type: string[]
+        displayName: Products
+        (Link.types): [Product]
+
+      presentations?:
+        type: string[]
+        displayName: Presentations
+        (Link.types): [Presentation]
+
+    #example: !include ../examples/_main/OutputSpecification_xxx.json

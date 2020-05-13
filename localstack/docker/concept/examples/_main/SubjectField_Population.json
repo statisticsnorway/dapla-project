@@ -1,0 +1,21 @@
+{
+    "id": "434e9458-c3be-4437-82d3-c765552c38a0",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Population"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Population"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ"
+}

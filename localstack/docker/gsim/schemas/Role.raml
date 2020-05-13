@@ -1,0 +1,13 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  Role:
+    description: The responsible function involved in the statistical Business Process.
+    displayName: Role
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+
+    example: !include ../examples/_main/Role_ContactPerson.json

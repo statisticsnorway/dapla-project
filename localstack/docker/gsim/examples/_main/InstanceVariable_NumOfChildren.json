@@ -1,0 +1,26 @@
+{
+    "id": "9ce825c9-ff8e-4e64-89a9-8d066c9349e7",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "NumOfChildren"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Number of children"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "representedVariable": "/RepresentedVariable/d0dbb7eb-e0ca-44d3-909f-1dd7a9cb3249",
+    "population": "/Population/7ef40579-469d-447f-8955-febb7b254b10",
+    "dataStructureComponentType": "MEASURE",
+    "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "shortName": "NUM_CHILDREN"
+}

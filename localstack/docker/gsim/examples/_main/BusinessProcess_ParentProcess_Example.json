@@ -1,0 +1,18 @@
+{
+  "id": "010bfa55-bd1c-4e7e-ae30-b8014c9fe623",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Business Process Parent example"
+    }
+  ],
+  "createdDate": "2019-10-09T10:36:32.121Z",
+  "createdBy": "Test user",
+  "version": "1.0.0",
+  "versionValidFrom": "2019-10-26T11:24:55.842Z",
+  "lastUpdatedDate": "2019-10-26T11:24:55.842Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-10-09T10:36:32.121Z",
+  "validUntil": "2020-12-31T11:24:55.842Z",
+  "isPlaceholderProcess": true
+}

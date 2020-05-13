@@ -1,0 +1,30 @@
+{
+    "id": "ab1ac77e-6f3c-4418-a26c-ec9ae2137c30",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "NOK"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "NOK"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Norske kroner"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Norwegian kroner"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "measurementType": "/MeasurementType/1e574436-b463-4a66-8a90-38a76b005e95"
+}

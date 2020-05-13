@@ -1,0 +1,53 @@
+{
+    "id": "1d6ca477-4d0c-47b1-967d-1bead9c1b56b",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Avdeling 300"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Department 300"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Avdeling for person- og sosialstatistikk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Department of social statistics"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "agentType": "ORGANIZATION",
+    "isExternal": false,
+    "agentDetails": [
+      {
+          "agentDetailType": "CONTACT_EMAIL",
+          "values": [
+            "avd300@ssb.no",
+            "headof300@ssb.no"
+          ]
+      },
+      {
+          "agentDetailType": "CONTACT_ADDRESS",
+          "values": [
+            "Statistisk sentralbyrå, Oterveien 23, 2211 Kongsvinger",
+            "Statistisk sentralbyrå, Akersveien 26, 0177 Oslo"
+          ]
+      }
+    ],
+    "administrativeDetails": [
+      {
+          "administrativeDetailType": "URL",
+          "values": ["https://www.ssb.no/befolkning"]
+      }
+    ]
+}

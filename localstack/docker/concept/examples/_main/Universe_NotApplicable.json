@@ -1,0 +1,22 @@
+{
+    "id": "1bf5d364-13a8-47a8-bed4-c7311945c5fa",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "NotApplicable"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Used by reusable Represented Variables (e.g. quality-attributes)"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "unitTypes": ["/UnitType/82218226-ec61-46ce-9c6a-e7d3f29b3704"]
+}

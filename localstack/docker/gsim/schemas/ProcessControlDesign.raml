@@ -1,0 +1,23 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  ProcessControlDesign:
+    description: The specification of the decision points required during the execution of a Business Process.
+    displayName: Process control design
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      rules?:
+        type: string[]
+        displayName: Rules
+        (Link.types): [Rule]
+
+      processControl:
+        type: string
+        displayName: Process control
+        (Link.types): [ProcessControl]
+
+    #example: !include ../examples/ProcessControlDesignExample.json

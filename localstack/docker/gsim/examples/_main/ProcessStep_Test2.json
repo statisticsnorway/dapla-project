@@ -1,0 +1,27 @@
+{
+  "id": "1d39e9a7-494e-4257-951f-e494f45ae691",
+  "name": [
+    {
+      "languageCode": "en",
+      "languageText": "Process Step example 2"
+    }
+  ],
+  "createdDate": "2019-10-25T12:50:15.456Z",
+  "createdBy": "Test user",
+  "version": "1.0.0",
+  "versionValidFrom": "2019-10-25T08:53:24.134Z",
+  "lastUpdatedDate": "2019-10-25T08:53:24.134Z",
+  "lastUpdatedBy": "Test user",
+  "validFrom": "2019-10-25T12:50:15.456Z",
+  "validUntil": "2020-10-25T08:53:24.134Z",
+  "isComprehensive": false,
+  "codeBlocks": [
+    {
+      "codeBlockIndex": 1,
+      "codeBlockTitle": "First doc",
+      "codeBlockType": "DOCUMENTATION",
+      "codeBlockValue": "%md\n# Process beskrivelse\nHer beskriver du hva det er dette process steget skal gjøre\n\n## Input\n- Lag en liste over de inputer som skal ingå i dette steget\n\n## Output\n- Lad en liste over de resultater som forventes av steget"
+    }
+  ],
+  "previousProcessStep": "/ProcessStep/1eef14a0-ff0c-4f43-9416-e9c871326c82"
+}

@@ -1,0 +1,19 @@
+#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  ExchangeChannel: ./abstract/ExchangeChannel.raml
+
+types:
+  AdministrativeRegister:
+    description: A source of administrative information which is obtained from an external organisation (or sometimes from another department of the same organisation)
+    displayName: Administrative Register
+    type: [ IdentifiableArtefact.IdentifiableArtefact, ExchangeChannel.ExchangeChannel ]
+
+    properties:
+      supplierIdentifier:
+        type: string
+        description: An identifier for the supplier of the Administrative Register
+        displayName: Supplier identifier
+
+    #example: !include ../examples/_main/...

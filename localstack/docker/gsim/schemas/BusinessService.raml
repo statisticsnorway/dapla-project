@@ -1,0 +1,21 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  MultilingualText: ./abstract/MultilingualText.raml
+
+types:
+  BusinessService:
+    description: A means of performing a Business Function (an ability that an organization possesses, typically expressed in general and high level terms and requiring a combination of organization, people, processes and technology to achieve).
+    displayName: Business service
+    type: IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      location?:
+        type: MultilingualText.MultilingualText[]
+        description: Specifies where the service can be accessed.
+        displayName: Location
+
+      serviceInterface?:
+        type: MultilingualText.MultilingualText[]
+        description: Specifies how to communicate with the service.
+        displayName: Service interface

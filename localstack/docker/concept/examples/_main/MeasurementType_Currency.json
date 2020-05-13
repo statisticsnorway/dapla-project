@@ -1,0 +1,29 @@
+{
+    "id": "1e574436-b463-4a66-8a90-38a76b005e95",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Valuta"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Currency"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Valuta"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Currency"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ"
+}

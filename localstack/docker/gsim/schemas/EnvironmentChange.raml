@@ -1,0 +1,46 @@
+﻿#%RAML 1.0 Library
+uses:
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+  StatisticalNeed: ./abstract/StatisticalNeed.raml
+
+types:
+  EnvironmentChange:
+    description: A requirement for change  that originates from a change in the operating environment of the statistical organization.
+    displayName: Environment change
+    type: [ IdentifiableArtefact.IdentifiableArtefact, StatisticalNeed.StatisticalNeed ]
+
+    properties:
+      environmentChangeType:
+        type: string
+        description: Environment change type.
+        displayName: Environment change type
+        enum:
+          - INTERNAL
+          - EXTERNAL
+
+      changeOrigin:
+        type: string
+        description: Change origin
+        displayName: Change origin
+
+      legalChange?:
+        type: string
+        description: Legal change
+        displayName: Legal change
+
+      methodChange?:
+        type: string
+        description: Method change
+        displayName: Method change
+
+      softwareChange?:
+        type: string
+        description: Software change
+        displayName: Software change
+
+      otherChange?:
+        type: string
+        description: Other change
+        displayName: Other change
+
+    #example: !include ../examples/BusinessFunctionExample.json

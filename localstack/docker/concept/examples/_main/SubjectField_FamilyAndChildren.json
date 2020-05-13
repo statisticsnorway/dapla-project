@@ -1,0 +1,21 @@
+{
+    "id": "f805a254-ec08-4321-842c-cab572bf409d",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "FamilyAndChildren"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "All content for subtopic children and families"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV"
+}

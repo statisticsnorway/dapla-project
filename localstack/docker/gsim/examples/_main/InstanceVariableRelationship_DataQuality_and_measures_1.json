@@ -1,0 +1,29 @@
+{
+    "id": "cfaafde8-6ffc-4529-81f9-f317d7d14d57",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Data quality and measures relationship"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Example of data quality and measures relationship in a DataSet."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "BNJ",
+    "relationType": "SIBLING",
+    "sourceComponents": [
+      "/InstanceVariable/71aec966-eb44-4a49-9bbf-0606563ca0cb",
+      "/InstanceVariable/beb729fc-f418-46b1-bab1-8ed20d82b907"
+    ],
+    "targetComponents": [
+      "/InstanceVariable/8d51f269-4216-4351-94e5-94602e704694"
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "id": "31fd20ea-e1ca-46ba-bbf1-9d81e827575e",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Family"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Familie"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "Family"
+      },
+      {
+        "languageCode": "nb",
+        "languageText": "Familie"
+      }
+    ],
+    "typeOfStatisticalUnit": "FAMILY",
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV"
+}

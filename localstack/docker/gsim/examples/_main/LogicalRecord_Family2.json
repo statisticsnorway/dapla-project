@@ -1,0 +1,32 @@
+{
+ "id": "40c192fe-4da5-49a3-9369-0ea2db0387a7",
+ "createdDate": "2018-12-21T11:34:08.307Z",
+ "createdBy": "Test",
+ "version": "1.0.0",
+ "versionValidFrom": "2018-12-21T11:34:08.307Z",
+ "lastUpdatedDate": "2018-12-21T11:34:08.307Z",
+ "lastUpdatedBy": "Test",
+ "validFrom": "2018-12-21T11:34:08.307Z",
+ "name": [
+   {
+     "languageCode": "en",
+     "languageText": "Families and number of children 2."
+   }
+ ],
+ "description": [
+   {
+     "languageCode": "en",
+     "languageText": "Record of families with classification and number of children."
+   }
+ ],
+ "isPlaceholderRecord": false,
+ "instanceVariables": [
+   "/InstanceVariable/e2288748-7d26-4690-b07b-30a58c4a41f4",
+   "/InstanceVariable/98bf9718-3964-4eb7-a966-3be58d3b9e55",
+   "/InstanceVariable/9ce825c9-ff8e-4e64-89a9-8d066c9349e7",
+   "/InstanceVariable/8d51f269-4216-4351-94e5-94602e704694"
+ ],
+ "unitType": "/UnitType/31fd20ea-e1ca-46ba-bbf1-9d81e827575e",
+ "administrativeStatus": "OPEN",
+ "shortName": "FAMILY"
+}

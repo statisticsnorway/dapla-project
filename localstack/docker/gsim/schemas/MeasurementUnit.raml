@@ -1,0 +1,28 @@
+﻿#%RAML 1.0 Library
+uses:
+  Link: ./annotation/Link.raml
+  IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
+
+types:
+  MeasurementUnit:
+    description: A Measurement Unit is the metric for a measurement in terms of an official unit of measurement.
+    displayName: Measurement unit
+    type:  IdentifiableArtefact.IdentifiableArtefact
+
+    properties:
+      measurementType?:
+        type: string
+        displayName: Measurement type
+        (Link.types): [MeasurementType]
+
+      conversionRule?:
+        description: Rule for conversion to the standard Measurement Unit, if this exists.
+        displayName: Conversion rule
+        type: string
+
+      abbreviation?:
+        description: Abbreviation for the Measurement Unit e.g. kg for kilograms
+        displayName: Abbreviation
+        type: string
+
+    example: !include ../examples/_main/MeasurementUnit_NorwegianKroner.json

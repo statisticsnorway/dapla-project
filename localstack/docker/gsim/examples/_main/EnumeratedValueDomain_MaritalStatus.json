@@ -1,0 +1,31 @@
+{
+    "id": "9096149f-2bc2-4be9-a190-435570ca924a",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Standard for sivilstand"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Marital status"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Sivilstand brukt i befolkningsstatistikken"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Marital status used in population statistics"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType": "STRING",
+    "klassUrn": "klass:klassifikasjoner:19"
+}

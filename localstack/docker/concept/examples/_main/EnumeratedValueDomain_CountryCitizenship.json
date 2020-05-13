@@ -1,0 +1,31 @@
+{
+    "id": "e2db994a-c16a-45cf-92e6-e4f1e39581f4",
+    "name": [
+      {
+        "languageCode": "nb",
+        "languageText": "Standard for land og statsborgerskap i personstatistikk"
+      },
+      {
+        "languageCode": "en",
+        "languageText": "Classification of country and citizenship in population statistics"
+       }
+    ],
+    "description": [
+      {
+        "languageCode": "nb",
+        "languageText": "Standarden ble tatt i bruk i SSB i 1974/75. Da erstattet den ulike kodesett på ett eller to siffer. Standarden ble brukt både i folkeregistret og i befolkningsstatistikken. Etter 1975 har navn blitt endret, nye koder er lagt til og noen har utgått. Folkeregistreringssystemet ble skilt ut fra SSB i 1991, men beholdt kodene fra SSB-tida. Midt på 1990-tallet bestemte Sentralkontoret for folkeregistrering at det i folkeregisteret ikke skulle registreres andre land enn dem som har egen kode i ISO-standarden. I SSB har det imidlertid eksistert koder ut over det."
+      },
+      {
+        "languageCode": "en",
+        "languageText": "The standard classification was adopted in SSB in 1974/1975, replacing simplier code lists. Since 1975, names have been changed, new codes have been added and some have been discarded. The standard was used both in population registration and in the population statistics. The Office of the National Registrar was separated from SSB in 1991, but continued to use and maintain the code set from the SSB period. In the middle of the 1990s, a principle was introduced not to include country elements that did not exist in the ISO standard. Such codes have, however, continued to exist in SSB."
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "dataType": "STRING",
+    "klassUrn": "klass:klassifikasjoner:91"
+}

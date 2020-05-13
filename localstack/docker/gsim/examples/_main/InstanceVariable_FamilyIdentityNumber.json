@@ -1,0 +1,29 @@
+{
+    "id": "e2288748-7d26-4690-b07b-30a58c4a41f4",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "Family identifier number"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "National identifier number for person"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "representedVariable": "/RepresentedVariable/950b417a-0b3c-4909-aa4b-5689a1378b8e",
+    "population": "/Population/7ef40579-469d-447f-8955-febb7b254b10",
+    "dataStructureComponentType": "IDENTIFIER",
+    "identifierComponentIsUnique": true,
+    "identifierComponentIsComposite": false,
+    "dataStructureComponentRole": "ENTITY",
+    "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
+    "shortName": "FAMILY_ID"
+}
