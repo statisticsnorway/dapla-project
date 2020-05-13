@@ -43,12 +43,7 @@ You can also use the JupterLab-Git plugin from the Jupyter meny. Please note: th
 1. Go to `https://github.com/statisticsnorway` and chose "New" repository
 2. Fill out necessary information
 3. Open Jupyter Terminal and do `git clone https://github.com/statisticsnorway/YOUR_NEWLY_CREATE_REPO`
-4. Issue `cd YOUR_NEWLY_CREATE_REPO` and create the following file `.gitattributes`:
-```
-*.ipynb filter=nbstripout
-*.ipynb diff=ipynb
-```
-5. Issue `git add .gitattributes` and `git commit -m "Added gitattributes" and finally `git push`
+4. cd `YOUR_NEWLY_CREATE_REPO`
 
 Your repo is now ready for use.
 
