@@ -27,6 +27,7 @@
         <module>metadata-distributor-protobuf</module>
         <module>google-pubsub-client</module>
         <module>dataset-uri</module>
+        <module>dapla-gsim-metadata-ingest</module>
     </modules>
 
 </project>
