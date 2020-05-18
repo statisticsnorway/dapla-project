@@ -379,11 +379,11 @@ services:
       - 28082:80
 
   gsim-metadata-ingest:
-    container_name: dapla-gsim-metadata-ingest
+    container_name: gsim-metadata-ingest
     build:
       context: ../dapla-gsim-metadata-ingest
       dockerfile: Dockerfile
-    image: dapla-gsim-metadata-ingest:dev
+    image: gsim-metadata-ingest:dev
     ports:
       - 20230:10230
     environment:
