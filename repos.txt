@@ -17,3 +17,4 @@ metadata-distributor-protobuf
 google-pubsub-client
 dataset-uri
 dapla-gsim-metadata-ingest
+dapla-gsim-concept-ingest
