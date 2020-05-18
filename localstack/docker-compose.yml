@@ -273,7 +273,7 @@ services:
 
   concept-lds:
     container_name: concept-lds
-    image: statisticsnorway/lds-server:1.0.0
+    image: statisticsnorway/lds-server:1.0.1
     ports:
       - 29090:9090
     volumes:
@@ -320,7 +320,7 @@ services:
 
   gsim-lds:
     container_name: gsim-lds
-    image: statisticsnorway/lds-server:1.0.0
+    image: statisticsnorway/lds-server:1.0.1
     ports:
       - 29091:9091
     volumes:
