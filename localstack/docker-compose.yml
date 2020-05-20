@@ -273,7 +273,7 @@ services:
 
   concept-lds:
     container_name: concept-lds
-    image: statisticsnorway/lds-server:1.0.0
+    image: statisticsnorway/lds-server:1.0.2
     ports:
       - 29090:9090
     volumes:
@@ -320,7 +320,7 @@ services:
 
   gsim-lds:
     container_name: gsim-lds
-    image: statisticsnorway/lds-server:1.0.0
+    image: statisticsnorway/lds-server:1.0.2
     ports:
       - 29091:9091
     volumes:
@@ -377,6 +377,56 @@ services:
     image: statisticsnorway/variable-search:latest
     ports:
       - 28082:80
+
+  gsim-metadata-ingest:
+    container_name: gsim-metadata-ingest
+    build:
+      context: ../dapla-gsim-metadata-ingest
+      dockerfile: Dockerfile
+    image: gsim-metadata-ingest:dev
+    ports:
+      - 20230:10230
+    environment:
+      - JAVA_MODULE_SYSTEM_ENABLED=false
+      - PUBSUB_ENABLED=true
+      - PUBSUB_ADMIN=true
+      - PUBSUB_USE_dash_EMULATOR=true
+      - PUBSUB_EMULATOR_HOST=pubsub
+      - PUBSUB_EMULATOR_PORT=8538
+      - PUBSUB_UPSTREAM_PROJECTID=dapla
+      - PUBSUB_UPSTREAM_TOPIC=gsim-metadata-1
+      - PUBSUB_UPSTREAM_SUBSCRIPTION=gsim-metadata-dev
+    depends_on:
+      - pubsub
+      - gsim-lds
+
+  gsim-concept-ingest:
+    container_name: gsim-concept-ingest
+    build:
+      context: ../dapla-gsim-concept-ingest
+      dockerfile: Dockerfile
+    image: gsim-concept-ingest:dev
+    ports:
+      - 20240:10240
+    environment:
+      - JAVA_MODULE_SYSTEM_ENABLED=false
+      - PIPE_SOURCE_TOPIC=concept-txlog-default
+      - PIPE_SOURCE_PROVIDER_NAME=postgres
+      - PIPE_SOURCE_PROVIDER_CONFIG_POSTGRES_DRIVER_HOST=postgres
+      - PIPE_SOURCE_PROVIDER_CONFIG_POSTGRES_DRIVER_PORT=5432
+      - PIPE_SOURCE_PROVIDER_CONFIG_POSTGRES_DRIVER_USER=concept_txlog
+      - PIPE_SOURCE_PROVIDER_CONFIG_POSTGRES_DRIVER_PASSWORD=concept_txlog
+      - PIPE_SOURCE_PROVIDER_CONFIG_POSTGRES_DRIVER_DATABASE=concept_txlog
+      - PIPE_SOURCE_PROVIDER_CONFIG_RAWDATA_POSTGRES_CONSUMER_PREFETCH_dash_SIZE=10
+      - PIPE_SOURCE_PROVIDER_CONFIG_RAWDATA_POSTGRES_CONSUMER_PREFETCH_dash_POLL_dash_INTERVAL_dash_WHEN_dash_EMPTY=1000
+      - PIPE_TARGET_SCHEME=http
+      - PIPE_TARGET_HOST=gsim-lds
+      - PIPE_TARGET_PORT=9091
+      - PIPE_TARGET_NAMESPACE=ns
+      - PIPE_TARGET_SOURCE=concept
+    depends_on:
+      - concept-lds
+      - gsim-lds
 
 volumes:
   pgdata:

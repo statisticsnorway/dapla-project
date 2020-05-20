@@ -15,7 +15,3 @@ data/
 secret/
 notebook/
 tmp/
-docker/concept/jsonschemas
-docker/concept/graphqlschemas
-docker/gsim/jsonschemas
-docker/gsim/graphqlschemas
