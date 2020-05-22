@@ -381,7 +381,7 @@ services:
   exploration-metadata-ingest:
     container_name: exploration-metadata-ingest
     build:
-      context: ../dapla-gsim-metadata-ingest
+      context: ../dapla-exploration-metadata-ingest
       dockerfile: Dockerfile
     image: exploration-metadata-ingest:dev
     ports:
@@ -403,7 +403,7 @@ services:
   exploration-concept-ingest:
     container_name: exploration-concept-ingest
     build:
-      context: ../dapla-gsim-concept-ingest
+      context: ../dapla-exploration-concept-ingest
       dockerfile: Dockerfile
     image: exploration-concept-ingest:dev
     ports:
