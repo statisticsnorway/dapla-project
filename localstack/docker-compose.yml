@@ -324,7 +324,7 @@ services:
     ports:
       - 29091:9091
     volumes:
-      - ./docker/gsim/graphqlschemas:/graphqlschemas
+      - ./docker/exploration/graphqlschemas:/graphqlschemas
     environment:
       - JAVA_MODULE_SYSTEM_ENABLED=true
       - LDS_http.port=9091
