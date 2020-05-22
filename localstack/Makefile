@@ -127,9 +127,9 @@ generate-keys: ## Generate keys used to sign and verify metadata
 generate-concept-schemas: ## Generate concept schemas for use in Linked Data Store for Concept
 	./bin/generate-concept-schemas.sh
 
-.PHONY: generate-gsim-schemas
-generate-gsim-schemas: ## Generate all GSIM schemas for use in Linked Data Store for entire GSIM
-	./bin/generate-gsim-schemas.sh
+.PHONY: generate-exploration-schemas
+generate-exploration-schemas: ## Generate Exploration schemas for use in Linked Data Store
+	./bin/generate-exploration-schemas.sh
 
 .PHONY: help
 help:
