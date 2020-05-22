@@ -25,17 +25,17 @@ CREATE USER concept_txlog WITH PASSWORD 'concept_txlog';
 CREATE DATABASE concept_txlog;
 GRANT ALL PRIVILEGES ON DATABASE concept_txlog TO concept_txlog;
 
--- Linked Data Store for entire GSIM
-CREATE USER gsim WITH PASSWORD 'gsim';
-CREATE DATABASE gsim;
-GRANT ALL PRIVILEGES ON DATABASE gsim TO gsim;
+-- Linked Data Store for entire Exploration
+CREATE USER exploration WITH PASSWORD 'exploration';
+CREATE DATABASE exploration;
+GRANT ALL PRIVILEGES ON DATABASE exploration TO exploration;
 
--- LDS SagaLog for GSIM
-CREATE USER gsim_sagalog WITH PASSWORD 'gsim_sagalog';
-CREATE DATABASE gsim_sagalog;
-GRANT ALL PRIVILEGES ON DATABASE gsim_sagalog TO gsim_sagalog;
+-- LDS SagaLog for Exploration
+CREATE USER exploration_sagalog WITH PASSWORD 'exploration_sagalog';
+CREATE DATABASE exploration_sagalog;
+GRANT ALL PRIVILEGES ON DATABASE exploration_sagalog TO exploration_sagalog;
 
--- LDS Transaction-Log for GSIM
-CREATE USER gsim_txlog WITH PASSWORD 'gsim_txlog';
-CREATE DATABASE gsim_txlog;
-GRANT ALL PRIVILEGES ON DATABASE gsim_txlog TO gsim_txlog;
+-- LDS Transaction-Log for Exploration
+CREATE USER exploration_txlog WITH PASSWORD 'exploration_txlog';
+CREATE DATABASE exploration_txlog;
+GRANT ALL PRIVILEGES ON DATABASE exploration_txlog TO exploration_txlog;

@@ -167,7 +167,7 @@ services:
     entrypoint:
       - bash
       - "-c"
-      - "precreate-core gsim; precreate-core concept; exec solr -f"
+      - "precreate-core exploration; precreate-core concept; exec solr -f"
 
   keycloak:
     container_name: keycloak
@@ -279,7 +279,7 @@ services:
     volumes:
       - ./docker/concept/graphqlschemas:/graphqlschemas
     environment:
-      - JAVA_MODULE_SYSTEM_ENABLED=true
+      - JAVA_MODULE_SYSTEM_ENABLED=false
       - LDS_persistence.provider=postgres
       - LDS_persistence.initialization.max-wait-seconds=10
       - LDS_postgres.driver.host=postgres
@@ -318,50 +318,50 @@ services:
       - postgres
       - solr
 
-  gsim-lds:
-    container_name: gsim-lds
+  exploration-lds:
+    container_name: exploration-lds
     image: statisticsnorway/lds-server:1.0.3
     ports:
       - 29091:9091
     volumes:
       - ./docker/exploration/graphqlschemas:/graphqlschemas
     environment:
-      - JAVA_MODULE_SYSTEM_ENABLED=true
+      - JAVA_MODULE_SYSTEM_ENABLED=false
       - LDS_http.port=9091
       - LDS_persistence.provider=postgres
       - LDS_persistence.initialization.max-wait-seconds=10
       - LDS_postgres.driver.host=postgres
       - LDS_postgres.driver.port=5432
-      - LDS_postgres.driver.user=gsim
-      - LDS_postgres.driver.password=gsim
-      - LDS_postgres.driver.database=gsim
+      - LDS_postgres.driver.user=exploration
+      - LDS_postgres.driver.password=exploration
+      - LDS_postgres.driver.database=exploration
       - LDS_saga.number-of-logs=5
       - LDS_sagalog.provider=no.ssb.sagalog.postgres.PostgresSagaLogInitializer
-      - LDS_sagalog.config.cluster.owner=gsim-developer
-      - LDS_sagalog.config.cluster.name=gsim-localstack
+      - LDS_sagalog.config.cluster.owner=exploration-developer
+      - LDS_sagalog.config.cluster.name=exploration-localstack
       - LDS_sagalog.config.cluster.instance-id=01
       - LDS_sagalog.config.postgres.driver.host=postgres
       - LDS_sagalog.config.postgres.driver.port=5432
-      - LDS_sagalog.config.postgres.driver.user=gsim_sagalog
-      - LDS_sagalog.config.postgres.driver.password=gsim_sagalog
-      - LDS_sagalog.config.postgres.driver.database=gsim_sagalog
+      - LDS_sagalog.config.postgres.driver.user=exploration_sagalog
+      - LDS_sagalog.config.postgres.driver.password=exploration_sagalog
+      - LDS_sagalog.config.postgres.driver.database=exploration_sagalog
       - LDS_sagalog.config.connection-pool.max-size=10
       - LDS_txlog.split.sources=true
       - LDS_txlog.default-source=default
-      - LDS_txlog.rawdata.topic-prefix=gsim-txlog-
+      - LDS_txlog.rawdata.topic-prefix=exploration-txlog-
       - LDS_txlog.rawdata.provider=postgres
       - LDS_txlog.config.postgres.driver.host=postgres
       - LDS_txlog.config.postgres.driver.port=5432
-      - LDS_txlog.config.postgres.driver.user=gsim_txlog
-      - LDS_txlog.config.postgres.driver.password=gsim_txlog
-      - LDS_txlog.config.postgres.driver.database=gsim_txlog
+      - LDS_txlog.config.postgres.driver.user=exploration_txlog
+      - LDS_txlog.config.postgres.driver.password=exploration_txlog
+      - LDS_txlog.config.postgres.driver.database=exploration_txlog
       - LDS_txlog.config.rawdata.postgres.consumer.prefetch-size=10
       - LDS_txlog.config.rawdata.postgres.consumer.prefetch-poll-interval-when-empty=1000
       - LDS_graphql.enabled=true
       - LDS_graphql.schema=/graphqlschemas/schema.graphql
       - LDS_graphql.search.enabled=true
       - LDS_search.index.provider=solr
-      - LDS_search.index.url=http://solr:8983/solr/gsim
+      - LDS_search.index.url=http://solr:8983/solr/exploration
     depends_on:
       - postgres
       - solr
@@ -378,12 +378,12 @@ services:
     ports:
       - 28082:80
 
-  gsim-metadata-ingest:
-    container_name: gsim-metadata-ingest
+  exploration-metadata-ingest:
+    container_name: exploration-metadata-ingest
     build:
       context: ../dapla-gsim-metadata-ingest
       dockerfile: Dockerfile
-    image: gsim-metadata-ingest:dev
+    image: exploration-metadata-ingest:dev
     ports:
       - 20230:10230
     environment:
@@ -394,18 +394,18 @@ services:
       - PUBSUB_EMULATOR_HOST=pubsub
       - PUBSUB_EMULATOR_PORT=8538
       - PUBSUB_UPSTREAM_PROJECTID=dapla
-      - PUBSUB_UPSTREAM_TOPIC=gsim-metadata-1
-      - PUBSUB_UPSTREAM_SUBSCRIPTION=gsim-metadata-dev
+      - PUBSUB_UPSTREAM_TOPIC=exploration-metadata-1
+      - PUBSUB_UPSTREAM_SUBSCRIPTION=exploration-metadata-dev
     depends_on:
       - pubsub
-      - gsim-lds
+      - exploration-lds
 
-  gsim-concept-ingest:
-    container_name: gsim-concept-ingest
+  exploration-concept-ingest:
+    container_name: exploration-concept-ingest
     build:
       context: ../dapla-gsim-concept-ingest
       dockerfile: Dockerfile
-    image: gsim-concept-ingest:dev
+    image: exploration-concept-ingest:dev
     ports:
       - 20240:10240
     environment:
@@ -420,13 +420,13 @@ services:
       - PIPE_SOURCE_PROVIDER_CONFIG_RAWDATA_POSTGRES_CONSUMER_PREFETCH_dash_SIZE=10
       - PIPE_SOURCE_PROVIDER_CONFIG_RAWDATA_POSTGRES_CONSUMER_PREFETCH_dash_POLL_dash_INTERVAL_dash_WHEN_dash_EMPTY=1000
       - PIPE_TARGET_SCHEME=http
-      - PIPE_TARGET_HOST=gsim-lds
+      - PIPE_TARGET_HOST=exploration-lds
       - PIPE_TARGET_PORT=9091
       - PIPE_TARGET_NAMESPACE=ns
       - PIPE_TARGET_SOURCE=concept
     depends_on:
       - concept-lds
-      - gsim-lds
+      - exploration-lds
 
 volumes:
   pgdata:
