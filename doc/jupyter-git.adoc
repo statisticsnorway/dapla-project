@@ -26,6 +26,7 @@ The generated token is a secret and make sure store store this in a secure place
 
 1. Open up Jupyter at Staging/Production/other
 1. Open up Terminal and issue: `git-config.sh` and type in your Fullname, Email and GitHub-username.
+1. When asked for "Do you want to create a new GIT+SSH profile?" Answer: No, if you don't intend to use git from Terminal only.
 
 Your git account is now setup up on a single notebook server.
 
@@ -43,7 +44,21 @@ You can also use the JupterLab-Git plugin from the Jupyter meny. Please note: th
 1. Go to `https://github.com/statisticsnorway` and chose "New" repository
 2. Fill out necessary information
 3. Open Jupyter Terminal and do `git clone https://github.com/statisticsnorway/YOUR_NEWLY_CREATE_REPO`
-4. cd `YOUR_NEWLY_CREATE_REPO`
+4. Issue `cd YOUR_NEWLY_CREATE_REPO` and create the following file `.gitattributes`:
+```
+*.ipynb filter=nbstripout
+*.ipynb diff=ipynb
+```
+5. Issue `git add .gitattributes` and `git commit -m "Added gitattributes" and finally `git push`
 
 Your repo is now ready for use.
 
+## Working with GIT+SSH
+
+> Please note: SSH URLs only works in Terminal. The Git plugin doesn't read `$HOME/.ssh`-keys and it does not initialize the bourne-shell user profile, thus causing an error on pull/push.
+
+1. Open Terminal
+1. Change to repo directory, or Clone `git@github.com` repos
+1. Type your passphrase
+
+You will not be promoted for passphrase over again.
