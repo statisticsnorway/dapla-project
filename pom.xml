@@ -29,6 +29,7 @@
         <module>dataset-uri</module>
         <module>dapla-exploration-metadata-ingest</module>
         <module>dapla-exploration-concept-ingest</module>
+        <module>dataset-doc</module>
     </modules>
 
 </project>

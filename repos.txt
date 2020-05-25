@@ -18,3 +18,4 @@ google-pubsub-client
 dataset-uri
 dapla-exploration-metadata-ingest
 dapla-exploration-concept-ingest
+dataset-doc
