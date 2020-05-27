@@ -1,0 +1,160 @@
+@startuml
+
+hide stereotype
+
+skinparam node {
+	backgroundColor LightGreen
+}
+
+skinparam database {
+	backgroundColor LightBlue
+	backgroundColor<<existing>> transparent
+}
+
+skinparam queue {
+	backgroundColor LightBlue
+}
+
+skinparam storage {
+	backgroundColor LightBlue
+}
+
+skinparam component {
+	backgroundColor transparent
+}
+
+node concept_lds [
+  concept-lds
+  ....
+  docker.io/statisticsnorway/lds-server:1.0.3
+  ....
+]
+
+database concept_sagalog [
+  sagalog
+  ....
+  postgres
+]
+
+database concept_txlog [
+  txlog
+  ....
+  postgres
+]
+
+node concept_neo4j [
+  concept-neo4j
+  ....
+  docker.io/neo4j:4
+  ....
+]
+
+storage concept_neo4j_volume [
+  persistent-volume
+  ....
+  standard
+]
+
+node concept_solr [
+  concept-solr
+  ....
+  docker.io/solr:8
+  ....
+]
+
+storage concept_solr_volume [
+  persistent-volume
+  ....
+  standard
+]
+
+concept_lds --> concept_sagalog
+concept_lds --> concept_txlog
+concept_lds --> concept_neo4j
+concept_lds --> concept_solr
+
+concept_neo4j --> concept_neo4j_volume : /data
+concept_solr --> concept_solr_volume : /var/solr
+
+
+node exploration_lds [
+  exploration-lds
+  ....
+  docker.io/statisticsnorway/lds-server:1.0.3
+  ....
+]
+
+database exploration_sagalog [
+  sagalog
+  ....
+  postgres
+]
+
+database exploration_txlog [
+  txlog
+  ....
+  postgres
+]
+
+node exploration_neo4j [
+  exploration-neo4j
+  ....
+  docker.io/neo4j:4
+  ....
+]
+
+storage exploration_neo4j_volume [
+  persistent-volume
+  ....
+  standard
+]
+
+node exploration_solr [
+  exploration-solr
+  ....
+  docker.io/solr:8
+  ....
+]
+
+storage exploration_solr_volume [
+  persistent-volume
+  ....
+  standard
+]
+
+exploration_lds --> exploration_sagalog
+exploration_lds --> exploration_txlog
+exploration_lds --> exploration_neo4j
+exploration_lds --> exploration_solr
+
+exploration_neo4j --> exploration_neo4j_volume : /data
+exploration_solr --> exploration_solr_volume : /var/solr
+
+node exploration_concept_ingest [
+  exploration-concept-ingest
+  ....
+  eu.gcr.io/prod-bip/exploration_concept_ingest:1.0.0
+]
+
+exploration_concept_ingest --> exploration_lds : PUT\nsource=concept
+exploration_concept_ingest --> concept_txlog : txlog-consumer
+
+node exploration_metadata_ingest [
+  exploration-metadata-ingest
+  ....
+  eu.gcr.io/prod-bip/exploration_metadata_ingest:1.0.0
+]
+
+component "metadata-distributor" as distributor
+
+queue "exploration-metadata" as exploration_metadata
+
+database "GCS" as gcs <<existing>>
+
+exploration_metadata <-- exploration_metadata_ingest : subscription:\nexploration-metadata-sub
+exploration_metadata_ingest --> exploration_lds : PUT\nsource=metadata
+
+distributor --> exploration_metadata : publish
+distributor --> gcs : read
+
+@enduml
