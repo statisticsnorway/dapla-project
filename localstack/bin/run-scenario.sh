@@ -29,6 +29,8 @@ case $2 in
     catalog=http://localhost:10110
     distributor=http://localhost:10160
     daccess=http://localhost:10140
+    exploration-lds=http://localhost:9091
+
     TOKEN=
     ;;
   local)
@@ -48,6 +50,7 @@ case $2 in
     catalog=http://localhost:20110
     distributor=http://localhost:20160
     daccess=http://localhost:20140
+    exploration_lds=http://localhost:29091
     TOKEN=$LTOKEN
     ;;
   staging)
