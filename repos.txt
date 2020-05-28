@@ -19,3 +19,5 @@ dataset-uri
 dapla-exploration-metadata-ingest
 dapla-exploration-concept-ingest
 dataset-doc
+dapla-gsim-concept-ingest
+dapla-gsim-metadata-ingest
