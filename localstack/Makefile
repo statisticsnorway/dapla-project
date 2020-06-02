@@ -19,8 +19,7 @@ build-all: ## Build all
 
 .PHONY: build-all-docker
 build-all-docker: ## Build all docker containers
-	(cd ../dapla-noterepo && docker build -t eu.gcr.io/prod-bip/dapla-zeppelin-base -f docker/Dockerfile .)
-	docker-compose build
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build
 
 .PHONY: build-all-mvn
 build-all-mvn: ## Build all maven projects
@@ -28,47 +27,35 @@ build-all-mvn: ## Build all maven projects
 
 .PHONY: start-all
 start-all: ## Start all docker containers
-	docker-compose up -d
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d
 
 .PHONY: start-all-lite
 start-all-lite:
-	docker-compose up -d --scale jupyter=0
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d --scale jupyter=0
 
 .PHONY: start-all-with-console
 start-all-with-console: ## Start all docker containers with output to existing console
-	docker-compose up
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up
 
 .PHONY: start-all-recreate
 start-all-recreate: ## Recreate and start docker containers even if their configuration and image haven't changed
-	docker-compose up -d --force-recreate
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d --force-recreate
 
 .PHONY: start-services
 start-services: ## Start all services (excluding spark, etc)
-	docker-compose up -d ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
 
 .PHONY: stop-all
 stop-all: ## Stop and remove all docker containers
-	docker-compose down
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml down
+
+.PHONY: clean-all
+clean-all: ## Stop and remove all docker containers and volumes
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml down -v
 
 .PHONY: stop-services
 stop-services: ## Stop all services (excluding spark, etc)
-	docker-compose stop ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
-
-.PHONY: spark-plugin-redeploy
-spark-plugin-redeploy: ## Build and redeploy the spark plugin and/or associated libs
-ifndef skipPlugin
-	@make --directory ../dapla-spark-plugin build-mvn skipTest=true
-	docker cp ../dapla-spark-plugin/target/*-shaded.jar zeppelin:/zeppelin/lib/dapla-spark-plugin.jar
-endif
-ifndef skipPseudo
-	@make --directory ../dapla-dlp-pseudo-func build-mvn skipTest=true
-	docker cp ../dapla-dlp-pseudo-func/target/*-shaded.jar zeppelin:/zeppelin/lib/dapla-dlp-pseudo-func.jar
-endif
-	@make spark-interpreter-restart
-
-.PHONY: spark-interpreter-restart
-spark-interpreter-restart: ## Restart the Zeppelin Spark interpreter
-	./bin/spark-interpreter-restart.sh
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml stop ${DATABASE_CONTAINERS} ${SERVICE_CONTAINERS}
 
 .PHONY: open-db-admin
 open-db-admin: ## Open a DB admin tool in your browser
@@ -77,10 +64,6 @@ open-db-admin: ## Open a DB admin tool in your browser
 .PHONY: open-jaeger
 open-jaeger: ## Open Jaeger in your browser
 	open http://localhost:16686
-
-.PHONY: open-zeppelin
-open-zeppelin: ## Open Zeppelin in your browser
-	open http://localhost:28010
 
 .PHONY: open-jupyter
 open-jupyter: ## Open Juphyterhub in your browser
