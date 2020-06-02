@@ -40,7 +40,7 @@ c.GenericOAuthenticator.tls_verify = False
 c.GenericOAuthenticator.enable_auth_state = True
 # Force refresh of tokens before spawning
 c.GenericOAuthenticator.refresh_pre_spawn = True
-c.GenericOAuthenticator.auth_refresh_age = 300
+c.GenericOAuthenticator.auth_refresh_age = 60
 
 c.JupyterHub.internal_ssl = True
 c.JupyterHub.internal_certs_location = "/jupyter/cert"
