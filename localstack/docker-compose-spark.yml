@@ -57,4 +57,3 @@ services:
   jupyter:
     depends_on:
       - spark-master
-      - keycloak
