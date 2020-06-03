@@ -8,7 +8,7 @@ services:
 
   exploration-lds:
     container_name: exploration-lds
-    image: statisticsnorway/lds-server:1.0.6
+    image: statisticsnorway/lds-server:1.0.7
     ports:
       - 29091:9091
     volumes:
@@ -24,6 +24,8 @@ services:
       - LDS_postgres.driver.password=exploration
       - LDS_postgres.driver.database=exploration
       - LDS_saga.number-of-logs=5
+      - LDS_sagalog.provider.initialization.max-wait-seconds=10
+      - LDS_sagalog.provider.initialization.retry-interval-seconds=1
       - LDS_sagalog.provider=no.ssb.sagalog.postgres.PostgresSagaLogInitializer
       - LDS_sagalog.config.cluster.owner=exploration-developer
       - LDS_sagalog.config.cluster.name=exploration-localstack
@@ -37,6 +39,8 @@ services:
       - LDS_txlog.split.sources=true
       - LDS_txlog.default-source=default
       - LDS_txlog.rawdata.topic-prefix=exploration-txlog-
+      - LDS_txlog.rawdata.provider.initialization.max-wait-seconds=10
+      - LDS_txlog.rawdata.provider.initialization.retry-interval-seconds=1
       - LDS_txlog.rawdata.provider=postgres
       - LDS_txlog.config.postgres.driver.host=postgres
       - LDS_txlog.config.postgres.driver.port=5432

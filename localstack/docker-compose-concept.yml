@@ -19,7 +19,7 @@ services:
 
   concept-lds:
     container_name: concept-lds
-    image: statisticsnorway/lds-server:1.0.6
+    image: statisticsnorway/lds-server:1.0.7
     ports:
       - 29090:9090
     volumes:
@@ -34,6 +34,8 @@ services:
       - LDS_postgres.driver.password=concept
       - LDS_postgres.driver.database=concept
       - LDS_saga.number-of-logs=5
+      - LDS_sagalog.provider.initialization.max-wait-seconds=10
+      - LDS_sagalog.provider.initialization.retry-interval-seconds=1
       - LDS_sagalog.provider=no.ssb.sagalog.postgres.PostgresSagaLogInitializer
       - LDS_sagalog.config.cluster.owner=concept-developer
       - LDS_sagalog.config.cluster.name=concept-localstack
@@ -47,6 +49,8 @@ services:
       - LDS_txlog.split.sources=false
       - LDS_txlog.default-source=default
       - LDS_txlog.rawdata.topic-prefix=concept-txlog-
+      - LDS_txlog.rawdata.provider.initialization.max-wait-seconds=10
+      - LDS_txlog.rawdata.provider.initialization.retry-interval-seconds=1
       - LDS_txlog.rawdata.provider=postgres
       - LDS_txlog.config.postgres.driver.host=postgres
       - LDS_txlog.config.postgres.driver.port=5432
