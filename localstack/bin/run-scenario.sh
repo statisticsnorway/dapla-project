@@ -29,7 +29,8 @@ case $2 in
     catalog=http://localhost:10110
     distributor=http://localhost:10160
     daccess=http://localhost:10140
-    exploration-lds=http://localhost:9091
+    consept_lds=http://localhost:9090
+    exploration_lds=http://localhost:9091
 
     TOKEN=
     ;;
@@ -50,6 +51,7 @@ case $2 in
     catalog=http://localhost:20110
     distributor=http://localhost:20160
     daccess=http://localhost:20140
+    consept_lds=http://localhost:29090
     exploration_lds=http://localhost:29091
     TOKEN=$LTOKEN
     ;;
@@ -68,6 +70,8 @@ case $2 in
     catalog=https://dapla-catalog.staging-bip-app.ssb.no
     distributor=https://metadata-distributor.staging-bip-app.ssb.no
     daccess=https://data-access.staging-bip-app.ssb.no
+    consept_lds=https://concept-lds.staging-bip-app.ssb.no
+    exploration_lds=https://exploration_lds.staging-bip-app.ssb.no
     ;;
   prod)
     if [ "a" == "a$TOKEN" ]; then
