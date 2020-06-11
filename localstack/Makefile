@@ -25,6 +25,16 @@ build-all-docker: ## Build all docker containers
 build-all-mvn: ## Build all maven projects
 	mvn -f ../pom.xml clean install -U -Dmaven.test.skip=true
 
+.PHONY: build-dependent-on-dataset-doc-mvn
+build-dependent-on-dataset-doc-mvn: ## Build all maven projects
+	mvn -f ../pom.xml -pl dapla-spark-plugin,dapla-exploration-metadata-ingest -am clean install -U -Dmaven.test.skip=true
+
+.PHONY: restart-and-build-dependent-on-datadoc-all
+restart-and-build-dependent-on-datadoc-all: ## Build all dependent on dataset-doc and buidld and restart jupyter and exploration-metadata-ingest
+	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml stop jupyter exploration-metadata-ingest
+	@make build-dependent-on-dataset-doc-mvn
+	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d --build jupyter exploration-metadata-ingest
+
 .PHONY: start-all
 start-all: ## Start all docker containers
 	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d
