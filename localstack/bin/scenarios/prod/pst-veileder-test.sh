@@ -20,7 +20,7 @@ for user in "Christine.Rokkan" \
     "paths": {
       "includes": ["/user/'$user'/"]
     },
-    "maxValuation": "SENSITIVE",
+    "maxValuation": "SENSITIVE"
   }' 201
 
   put $auth "/user/$user@ssb.no" '{
