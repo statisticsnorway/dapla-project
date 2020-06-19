@@ -42,16 +42,16 @@ You can further customize this with the `skipPseudo=true` and/or `skipPlugin=tru
 ### Setup Linked Data Store
 All GSIM schemas for the service can be generated with:
 ```
-make generate-gsim-schemas
+make generate-exploration-schemas
 ```
-You will find the generated files in `localstack/docker/gsim/jsonschemas` and `localstack/docker/gsim/graphqlschemas`.
+You will find the generated files in `localstack/docker/exploration/jsonschemas` and `localstack/docker/exploration/graphqlschemas`.
 
 If you wish to import some example domains you can run:
 ```
-make run-scenario s=import-gsim-examples
+make run-scenario s=import-exploration-examples
 ```
 
-The same things can be done for only Concept schemas if you swap `gsim` with `concept` in the scripts and output locations.
+The same things can be done for only Concept schemas if you swap `exploration` with `concept` in the scripts and output locations.
 
 ## Additional config
 
@@ -108,7 +108,7 @@ open-lds-client                               Open Linked Data Store Client in y
 open-variable-search                          Open Variable Search in your browser
 print-local-changes                           Show a brief summary of local changes
 generate-concept-schemas                      Generate schemas from RAML files for setting up Linked Data Store for Concept
-generate-gsim-schemas                         Generate schemas from RAML files for setting up Linked Data Store for the entire GSIM model
+generate-exploration-schemas                  Generate schemas from RAML files for setting up Linked Data Store for the entire GSIM model
 ```
 
 ## Services

@@ -57,7 +57,7 @@ interface ValueDomain {
 union substantiveValueDomain = DescribedValueDomain | EnumeratedValueDomain
 
 #Information about the model
-type About {
+type About @domain {
   #This version isolates the Concept group by itself
   model_version: String!
 }
