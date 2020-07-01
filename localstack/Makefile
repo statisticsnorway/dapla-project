@@ -19,7 +19,7 @@ build-all: ## Build all
 
 .PHONY: build-all-docker
 build-all-docker: ## Build all docker containers
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build
+	docker-compose -f docker-compose.yml -f docker-compose-jupyterlab.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build
 
 .PHONY: build-all-mvn
 build-all-mvn: ## Build all maven projects

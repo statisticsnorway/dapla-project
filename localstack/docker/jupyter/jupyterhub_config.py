@@ -1,15 +1,27 @@
 # Configuration file for jupyterhub.
 
-c.JupyterHub.spawner_class = 'jupyterhub.spawner.SimpleLocalProcessSpawner'
+c.JupyterHub.spawner_class = 'dockerspawner.DockerSpawner'
+c.JupyterHub.hub_ip = 'jupyterhub'
+
+c.DockerSpawner.image = 'dapla-jupyterlab:dev'
+c.DockerSpawner.use_internal_hostname = True
+c.DockerSpawner.network_name = 'local_network'
+c.DockerSpawner.extra_host_config = { 'network_mode': 'local_network' }
+c.DockerSpawner.remove = True
+c.DockerSpawner.debug = True
+
+c.DockerSpawner.volumes = {'localstack_data-dir': {"bind": '/data', "mode": "rw"}}
 
 # Initialize environment
 c.Spawner.environment = {}
 
 # Keep Spark vars in notebooks
-c.Spawner.env_keep = ['PYSPARK_PYTHON','PYSPARK_SUBMIT_ARGS', 'PYSPARK_DRIVER_PYTHON', 'PYSPARK_DRIVER_PYTHON_OPTS',
-                      'SPARK_HOME', 'PYTHONPATH', 'HADOOP_CONF_DIR', 'YARN_CONF_DIR', 'PYTHON_KERNELS_PATH',
-                      'OAUTH2_TOKEN_URL', 'METADATA_PUBLISHER_URL', 'DATA_ACCESS_URL', 'CATALOG_URL',
-                      'JUPYTERHUB_HANDLER_CUSTOM_AUTH_URL', 'SPARK_USER_TOKEN_EXPIRY_BUFFER_SECS']
+c.Spawner.env_keep = ['PYSPARK_PYTHON', 'PYSPARK_LOCAL_SUBMIT_ARGS', 'PYSPARK_K8S_SUBMIT_ARGS', 'PYSPARK_DRIVER_PYTHON',
+                      'PYSPARK_DRIVER_PYTHON_OPTS', 'SPARK_HOME', 'PYTHONPATH', 'HADOOP_CONF_DIR', 'YARN_CONF_DIR',
+                      'PYTHON_KERNELS_PATH', 'OAUTH2_TOKEN_URL', 'METADATA_PUBLISHER_URL',
+                      'METADATA_PUBLISHER_PROJECT_ID', 'METADATA_PUBLISHER_TOPIC_NAME', 'DATA_ACCESS_URL', 'CATALOG_URL',
+                      'JUPYTERHUB_HANDLER_CUSTOM_AUTH_URL', 'SPARK_USER_TOKEN_EXPIRY_BUFFER_SECS',
+                      'SPARK_DEFAULT_PARTITION_SIZE']
 
 import os, sys, warnings
 from custom_auth.authenticator import EnvGenericOAuthenticator
@@ -42,8 +54,9 @@ c.GenericOAuthenticator.enable_auth_state = True
 c.GenericOAuthenticator.refresh_pre_spawn = True
 c.GenericOAuthenticator.auth_refresh_age = 60
 
-c.JupyterHub.internal_ssl = True
-c.JupyterHub.internal_certs_location = "/jupyter/cert"
+#This requires additional tls for dockerspawner
+#c.JupyterHub.internal_ssl = True
+#c.JupyterHub.internal_certs_location = "/jupyter/cert"
 
 from custom_auth.authextension import AuthHandler
 

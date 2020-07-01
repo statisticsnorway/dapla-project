@@ -2,22 +2,22 @@ version: "3.7"
 
 services:
 
-  jupyter:
-    container_name: jupyter
-    image: eu.gcr.io/prod-bip/dapla-jupyter
+  jupyterhub:
+    container_name: jupyterhub
+    image: dapla-jupyterhub:dev
     volumes:
-      - ./data:/data:delegated
-      - ./docker/jupyter/jupyterhub_config.py:/jupyter/jupyterhub_config.py
+      - ./docker/jupyter/jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
       - ./docker/jupyter/spark-localstack.conf:/usr/lib/spark/conf/spark-defaults.conf
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
     build:
-      context: ../dapla-spark-plugin
-      dockerfile: ${PWD}/../dapla-spark-plugin/docker/jupyter/Dockerfile
+      context: ../dapla-gcp-jupyter
+      dockerfile: ${PWD}/../dapla-gcp-jupyter/jupyterhub/Dockerfile-dev
     depends_on:
       - keycloak
     ports:
       - 28012:8000
     environment:
-      - JUPYTERHUB_HANDLER_CUSTOM_AUTH_URL=https://127.0.0.1:8081/hub/custom-api/user
+      - JUPYTERHUB_HANDLER_CUSTOM_AUTH_URL=http://jupyterhub:8081/hub/custom-api/user
       - SPARK_USER_TOKEN_EXPIRY_BUFFER_SECS=120
       - OAUTH2_AUTH_URL=http://localhost:28081/auth/realms/ssb/protocol/openid-connect/auth
       - OAUTH2_TOKEN_URL=http://keycloak:8080/auth/realms/ssb/protocol/openid-connect/token
@@ -26,8 +26,13 @@ services:
       - OAUTH_CLIENT_ID=jupyter
       - OAUTH_CLIENT_SECRET=f506d183-77ec-446c-a51b-af4ec7daef81
       - METADATA_PUBLISHER_URL=http://metadata-distributor:10160
+      - METADATA_PUBLISHER_PROJECT_ID=dapla
+      - METADATA_PUBLISHER_TOPIC_NAME=file-events-1
       - DATA_ACCESS_URL=http://data-access:10140
       - CATALOG_URL=http://catalog:10110
+      - SPARK_DEFAULT_PARTITION_SIZE=1
+      - PYSPARK_LOCAL_SUBMIT_ARGS=--master local[*] --driver-memory 3g --executor-memory 2g pyspark-shell
+      - PYSPARK_K8S_SUBMIT_ARGS=--master spark://spark-master:7077 --driver-memory 3g --executor-memory 2g pyspark-shell
 
   pubsub:
     container_name: pubsub
@@ -160,7 +165,7 @@ services:
       - 20160:10160
       - 20168:10168
     volumes:
-      - ./data:/data:delegated
+      - data-dir:/data
       - ../dapla-spark-plugin/secret:/secret
     environment:
       PUBSUB_EMULATOR_HOST: pubsub
@@ -174,3 +179,12 @@ services:
 
 volumes:
   pgdata:
+  data-dir: # will be exposed as 'localstack_data-dir' and used by DockerSpawner
+    driver_opts:
+      type: none
+      device: ${PWD}/data
+      o: bind
+
+networks:
+  default:
+    name: local_network

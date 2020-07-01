@@ -30,6 +30,7 @@
         <module>dapla-exploration-metadata-ingest</module>
         <module>dapla-exploration-concept-ingest</module>
         <module>dataset-doc</module>
+        <module>dapla-gcp-jupyter</module>
     </modules>
 
 </project>

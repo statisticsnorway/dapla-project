@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+
+# This image will be spawned by jupyterhub - and should not be started by docker-compose
+  jupyterlab:
+    container_name: jupyterlab
+    image: dapla-jupyterlab:dev
+    volumes:
+      - ./data:/data:delegated
+    build:
+      context: ../dapla-gcp-jupyter/jupyter
+      dockerfile: ${PWD}/../dapla-gcp-jupyter/jupyter/Dockerfile
+
