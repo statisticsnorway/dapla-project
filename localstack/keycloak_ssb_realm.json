@@ -520,6 +520,64 @@
     },
     "notBefore" : 0,
     "groups" : [ ]
+  },{
+    "id" : "773d9dd9-0961-44b8-ae8e-f5782a783c97",
+    "createdTimestamp" : 1593597584210,
+    "username" : "fenglin",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "firstName" : "fenglin",
+    "email" : "dapla-fenglin@ssb.no",
+    "credentials" : [ {
+      "id" : "3bff8195-c6fa-4b34-9d58-e25144ed34c0",
+      "type" : "password",
+      "createdDate" : 1593677751390,
+      "secretData" : "{\"value\":\"Tdy5l5EWwpqjksAbbUaS1x74znSxSs4+WJ/CKJWwrS+DNiWP6vcEIuiOUaK1Q1/lR4aSwPhkQEYvtsAXo0YOJw==\",\"salt\":\"fE+DIVCJpqpNmeJtIgSvFw==\"}",
+      "credentialData" : "{\"hashIterations\":27500,\"algorithm\":\"pbkdf2-sha256\"}"
+    } ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "uma_authorization", "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "96233f1a-8c37-433f-abda-47525bfaf7bc",
+    "createdTimestamp" : 1593677670111,
+    "username" : "olve",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "email" : "dapla-olve@ssb.no",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "uma_authorization", "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
+  }, {
+    "id" : "fb5bda4f-0adf-40cd-a404-93cbea31c330",
+    "createdTimestamp" : 1593677729990,
+    "username" : "jassin",
+    "enabled" : true,
+    "totp" : false,
+    "emailVerified" : false,
+    "email" : "dapla-jassin@ssb.no",
+    "credentials" : [ ],
+    "disableableCredentialTypes" : [ ],
+    "requiredActions" : [ ],
+    "realmRoles" : [ "uma_authorization", "offline_access" ],
+    "clientRoles" : {
+      "account" : [ "view-profile", "manage-account" ]
+    },
+    "notBefore" : 0,
+    "groups" : [ ]
   }, {
     "id" : "9f61218e-3d1a-45f8-8749-e1fc4cbf73ce",
     "createdTimestamp" : 1583151712687,
