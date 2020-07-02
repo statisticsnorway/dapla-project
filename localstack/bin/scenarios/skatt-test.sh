@@ -82,7 +82,7 @@ put $auth '/group/skatt-test' '{
 get $auth '/group/skatt-test' 200
 
 ## create and read users
-for user in "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve" "rannveig" "marianne" "magnus"; do
+for user in "fenglin" "olve" "jassin" "arild" "bjornandre" "hadrien" "kenneth" "kim" "mehran" "ove" "oyvind" "rune" "rupinder" "trygve" "rannveig" "marianne" "magnus"; do
   put $auth "/role/user.$user" '{
     "roleId": "user.'$user'",
     "paths": {
