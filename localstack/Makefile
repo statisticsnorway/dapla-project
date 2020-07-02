@@ -35,6 +35,15 @@ restart-and-build-dependent-on-datadoc-all: ## Build all dependent on dataset-do
 	@make build-dependent-on-dataset-doc-mvn
 	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d --build jupyter exploration-metadata-ingest
 
+.PHONY: copy-sparkextension-py-to-jupyterlab
+copy-sparkextension-py-to-jupyterlab: ## find spawned instance of jupyterlab and copy sparkextension
+	./bin/copy-sparkextension-py.sh
+
+.PHONY: spark-plugin-build-and-copy-to-jupyterlab
+spark-plugin-build-and-copy-to-jupyterlab: ## build plugin and find spawned instance of jupyterlab and copy jar file
+	mvn -f ../pom.xml -pl dapla-spark-plugin -am clean install -U -Dmaven.test.skip=true
+	./bin/spark-plugin-copy-to-jupyer.sh
+
 .PHONY: start-all
 start-all: ## Start all docker containers
 	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d
