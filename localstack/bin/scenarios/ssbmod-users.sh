@@ -35,6 +35,7 @@ for user in "kim.gaarder" \
   "hadrien.kohl" \
   "trygve.falch" \
   "mehran.raja" \
+  "fenglin.han" \
   "ole.bredesen-vestby" \
   "oyvind.strommen" \
   "arild.takvam-borge" \
