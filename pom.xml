@@ -9,6 +9,7 @@
     <name>Dapla Project</name>
 
     <modules>
+        <module>dapla-blueprint</module>
         <module>dapla-catalog-protobuf</module>
         <module>dapla-catalog</module>
         <module>dapla-helidon-application</module>

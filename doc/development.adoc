@@ -43,6 +43,12 @@ endif::[]
 | 10168
 | 20160
 | 20168
+
+| blueprint
+| 10170
+| N/A
+| 20170
+| N/A
 |===
 
 [cols="4,4,1,1", options="header"]
