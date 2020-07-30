@@ -12,6 +12,7 @@ out/
 .settings
 .classpath
 certs/
+/dapla-blueprint/
 /dapla-catalog/
 /dapla-catalog-protobuf/
 /dapla-dlp-pseudo-func/
