@@ -67,6 +67,7 @@ print-local-changes            Show a brief summary of local changes
 ```
 When running the contents of `update-all` on windows you may experience problems related to how git is configured to handle line endings.
 The default is CRLF. To change settings:
+
 . open up the file PATH-TO-GIT/git/etc/gitconfig
 . find the field `autocrlf=true` and change it to `autocrlf=input`
 
