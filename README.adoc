@@ -65,6 +65,12 @@ Run `make help` to see common commands.
 update-all                     Checkout or update all related dapla repos
 print-local-changes            Show a brief summary of local changes
 ```
+When running the contents of `update-all` on windows you may experience problems related to how git is configured to handle line endings.
+The default is CRLF. To change settings:
+. open up the file PATH-TO-GIT/git/etc/gitconfig
+. find the field `autocrlf=true` and change it to `autocrlf=input`
+
+If you have previously cloned the repo, you must clone it again for the changes to take effect
 
 == Development Environment
 
