@@ -12,3 +12,9 @@ services:
       context: ../dapla-gcp-jupyter/jupyter
       dockerfile: ${PWD}/../dapla-gcp-jupyter/jupyter/Dockerfile
 
+  spark-py:
+    container_name: spark-py
+    image: dapla-spark-py:dev
+    build:
+      context: ../dapla-gcp-jupyter/spark-py
+      dockerfile: ${PWD}/../dapla-gcp-jupyter/spark-py/Dockerfile
