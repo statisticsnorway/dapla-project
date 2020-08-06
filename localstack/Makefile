@@ -58,7 +58,7 @@ start-all-with-console: ## Start all docker containers with output to existing c
 
 .PHONY: start-jupyter-exploration-with-console
 start-jupyter-exploration-with-console: ## Start docker containers with output to existing console and shut down all on ctrl-c
-	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up jupyter exploration-lds postgres jaeger pubsub keycloak exploration-metadata-ingest metadata-distributor catalog user-access data-access solr
+	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up jupyterhub exploration-lds postgres jaeger pubsub keycloak exploration-metadata-ingest metadata-distributor catalog user-access data-access solr
 
 .PHONY: start-all-recreate
 start-all-recreate: ## Recreate and start docker containers even if their configuration and image haven't changed
