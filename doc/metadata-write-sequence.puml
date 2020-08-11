@@ -1,0 +1,33 @@
+@startuml
+
+' Participants
+
+participant "Jupyter Kernel\n(Spark, R, Python)" as kernel
+participant "Storage" as storage
+participant "data-access" as data_access
+participant "Catalog" as catalog
+participant "Metadata-distributor" as distributor
+participant "PubSub events" as pubsubevents
+participant "PubSub catalog" as pubsubcat
+
+
+kernel->data_access ++: write("/path/to/dataset", timestamp)
+data_access -> catalog ++ : write metadata (dirty 1)
+return
+return
+kernel->storage ++: write data (parquet files)
+return
+kernel->storage ++: write metadata (json files)
+storage-->pubsubevents: publish signature file created event
+return
+pubsubevents-->distributor++: signature file created event
+distributor->storage ++: read
+return metadata files
+distributor-->pubsubcat: publish metadata
+deactivate
+pubsubcat-->catalog++: metadata
+catalog->catalog: update metadata (dirty 0)
+
+deactivate
+
+@enduml
