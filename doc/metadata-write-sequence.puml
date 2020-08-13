@@ -12,7 +12,7 @@ participant "PubSub catalog" as pubsubcat
 
 
 kernel->data_access ++: write("/path/to/dataset", timestamp)
-data_access -> catalog ++ : write metadata (dirty 1)
+data_access -> catalog ++ : write metadata (dirty 0)
 return
 return
 kernel->storage ++: write data (parquet files)
@@ -26,7 +26,7 @@ return metadata files
 distributor-->pubsubcat: publish metadata
 deactivate
 pubsubcat-->catalog++: metadata
-catalog->catalog: update metadata (dirty 0)
+catalog->catalog: update metadata (dirty 1)
 
 deactivate
 
