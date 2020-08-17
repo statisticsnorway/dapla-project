@@ -11,22 +11,30 @@ participant "PubSub events" as pubsubevents
 participant "PubSub catalog" as pubsubcat
 
 
-kernel->data_access ++: write("/path/to/dataset", timestamp)
-data_access -> catalog ++ : write metadata (dirty 0)
+kernel->data_access ++: writeLocation
+return signed metadata
+
+kernel->storage ++: write data files (parquet)
 return
+kernel->storage ++: write metadata files (json)
 return
-kernel->storage ++: write data (parquet files)
+kernel->storage ++: write signature file
 return
-kernel->storage ++: write metadata (json files)
+
+kernel->catalog ++: <b>NEW:</b> write metadata and signature (low timeout, ignore failure)
+catalog->catalog : <b>NEW:</b> validate metadata and signature
+return
+
 storage-->pubsubevents: publish signature file created event
-return
+
 pubsubevents-->distributor++: signature file created event
 distributor->storage ++: read
 return metadata files
 distributor-->pubsubcat: publish metadata
 deactivate
+
 pubsubcat-->catalog++: metadata
-catalog->catalog: update metadata (dirty 1)
+catalog->catalog: update metadata
 
 deactivate
 
