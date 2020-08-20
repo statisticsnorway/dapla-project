@@ -97,6 +97,8 @@ services:
     ports:
       - 20110:10110
       - 20118:10118
+    volumes:
+      - ../dapla-spark-plugin/secret:/secret
     environment:
       PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
       PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
