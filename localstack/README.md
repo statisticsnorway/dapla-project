@@ -12,6 +12,12 @@ Before continuing, make sure you have pulled down all related dapla repositories
 make update-all
 ```
 
+Then, generate some necessary keys:
+
+```sh
+make generate-keys
+```
+
 Then, build all the things:
 ```sh
 make build-all
@@ -109,6 +115,7 @@ open-variable-search                          Open Variable Search in your brows
 print-local-changes                           Show a brief summary of local changes
 generate-concept-schemas                      Generate schemas from RAML files for setting up Linked Data Store for Concept
 generate-exploration-schemas                  Generate schemas from RAML files for setting up Linked Data Store for the entire GSIM model
+generate-keys                                 Generate keys for catalog, metadata-distributor, data-access
 ```
 
 ## Services

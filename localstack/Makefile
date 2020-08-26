@@ -127,7 +127,7 @@ run-scenario: ## Populate data for a given scenario specified by s=<scenario nam
 
 .PHONY: generate-keys
 generate-keys: ## Generate keys used to sign and verify metadata
-	./bin/generate-metadata-signer-keypair.sh
+	./bin/generate-catalog-and-metadata-signer-keypair.sh
 
 .PHONY: generate-concept-schemas
 generate-concept-schemas: ## Generate concept schemas for use in Linked Data Store for Concept
