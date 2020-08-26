@@ -39,4 +39,5 @@ rawdata-converter-app-sirius/
 /dapla-exploration-metadata-ingest/
 /dapla-exploration-concept-ingest/
 /dataset-doc/
+/dataset-doc-service/
 /dapla-gcp-jupyter/

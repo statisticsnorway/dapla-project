@@ -74,5 +74,14 @@ services:
     ports:
       - 28080:80
 
+  dataset-doc-service:
+    container_name: dataset-doc-service
+    build:
+      context: ../dataset-doc-service
+      dockerfile: Dockerfile
+    image: dataset-doc-service:dev
+    ports:
+      - 20190:10190
+
 volumes:
   solrdata:
