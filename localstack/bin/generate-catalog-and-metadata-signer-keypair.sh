@@ -19,5 +19,5 @@ cd -
 cp localstack/secret/metadata-signer_keystore.p12 data-access/secret
 cp localstack/secret/metadata-verifier_keystore.p12 metadata-distributor/secret
 
-# DOTO cp the signer file to the right location of jupyter
+cp localstack/secret/catalog-signer_keystore.p12 dapla-gcp-jupyter/secret
 cp localstack/secret/catalog-verifier_keystore.p12 dapla-catalog/secret
