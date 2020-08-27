@@ -11,13 +11,7 @@ keytool -genkeypair -alias dataAccessKeyPair -keyalg RSA -keysize 2048 -dname "d
 keytool -exportcert -alias dataAccessKeyPair -storetype PKCS12 -keystore metadata-signer_keystore.p12 -file metadata-signer_certificate.cer -rfc -storepass changeit
 keytool -importcert -alias dataAccessCertificate -storetype PKCS12 -keystore metadata-verifier_keystore.p12 -file metadata-signer_certificate.cer -rfc -storepass changeit <<< yes
 
-keytool -genkeypair -alias catalogKeyPair -keyalg RSA -keysize 2048 -dname "dc=ssb,dc=no,ou=dapla,cn=catalog" -validity 10000 -storetype PKCS12 -keystore catalog-signer_keystore.p12 -storepass changeit
-keytool -exportcert -alias catalogKeyPair -storetype PKCS12 -keystore catalog-signer_keystore.p12 -file catalog-signer_certificate.cer -rfc -storepass changeit
-keytool -importcert -alias catalogCertificate -storetype PKCS12 -keystore catalog-verifier_keystore.p12 -file catalog-signer_certificate.cer -rfc -storepass changeit <<< yes
-
 cd -
 cp localstack/secret/metadata-signer_keystore.p12 data-access/secret
 cp localstack/secret/metadata-verifier_keystore.p12 metadata-distributor/secret
-
-cp localstack/secret/catalog-signer_keystore.p12 dapla-gcp-jupyter/secret
 cp localstack/secret/catalog-verifier_keystore.p12 dapla-catalog/secret
