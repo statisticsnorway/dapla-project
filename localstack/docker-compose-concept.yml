@@ -82,6 +82,9 @@ services:
     image: dataset-doc-service:dev
     ports:
       - 20190:10190
+    environment:
+      CONCEPT_dash_LDS_HOST: http://concept-lds
+      CONCEPT_dash_LDS_PORT: 9090
 
 volumes:
   solrdata:
