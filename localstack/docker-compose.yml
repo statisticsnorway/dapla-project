@@ -190,6 +190,8 @@ services:
 
   blueprint:
     container_name: blueprint
+    environment:
+      - SERVER_PORT=10170
     build:
       context: ../dapla-blueprint
       dockerfile: Dockerfile
@@ -198,6 +200,17 @@ services:
       - 20170:10170
     depends_on:
       - neo4j
+
+  blueprint-execution:
+    container_name: blueprint-execution
+    environment:
+      - WEBSERVER_PORT=10180
+    build:
+      context: ../dapla-blueprint-execution
+      dockerfile: Dockerfile
+    image: dapla-blueprint-execution:dev
+    ports:
+      - 20180:10180
 
 volumes:
   pgdata:

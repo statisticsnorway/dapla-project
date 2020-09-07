@@ -10,6 +10,7 @@
 
     <modules>
         <module>dapla-blueprint</module>
+        <module>dapla-blueprint-execution</module>
         <module>dapla-catalog-protobuf</module>
         <module>dapla-catalog</module>
         <module>dapla-helidon-application</module>

@@ -49,6 +49,12 @@ endif::[]
 | N/A
 | 20170
 | N/A
+
+| blueprint-execution
+| 10180
+| N/A
+| 20180
+| N/A
 |===
 
 [cols="4,4,1,1", options="header"]

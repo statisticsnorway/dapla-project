@@ -13,6 +13,7 @@ out/
 .classpath
 certs/
 /dapla-blueprint/
+/dapla-blueprint-execution/
 /dapla-catalog/
 /dapla-catalog-protobuf/
 /dapla-dlp-pseudo-func/
