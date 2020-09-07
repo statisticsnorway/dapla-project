@@ -57,6 +57,32 @@ put $consept_lds '/ns/RepresentedVariable/RepresentertVariable_DUMMY' '{
  "administrativeStatus": "INTERNAL"
 }'
 
+put $consept_lds '/ns/Population/7ef40579-469d-447f-8955-febb7b254b10' '{
+    "id": "7ef40579-469d-447f-8955-febb7b254b10",
+    "name": [
+      {
+        "languageCode": "en",
+        "languageText": "All families 2018-01-01"
+      }
+    ],
+    "description": [
+      {
+        "languageCode": "en",
+        "languageText": "All families in Norway per 2018-01-01"
+      }
+    ],
+    "administrativeStatus": "OPEN",
+    "version": "1.0.0",
+    "versionValidFrom": "1985-01-01T15:00:00.000Z",
+    "validFrom": "1985-01-01T15:00:00.000Z",
+    "createdDate": "1985-01-01T15:00:00.000Z",
+    "createdBy": "OHV",
+    "populationType": "TARGET",
+    "referencePeriodStartDate": "2018-01-01T00:00:00.000Z",
+    "referencePeriodEndDate": "2018-01-01T00:00:00.000Z",
+    "geography": "COUNTRY",
+    "universes": [ "/Universe/Universe_DUMMY"]
+}'
 
 put $consept_lds '/ns/Variable/Variable_DUMMY' '{
  "unitType": "/UnitType/UnitType_DUMMY",
