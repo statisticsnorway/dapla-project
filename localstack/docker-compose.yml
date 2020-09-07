@@ -30,6 +30,7 @@ services:
       - METADATA_PUBLISHER_TOPIC_NAME=file-events-1
       - DATA_ACCESS_URL=http://data-access:10140
       - CATALOG_URL=http://catalog:10110
+      - DOC_TEMPLATE_URL=http://dataset-doc-service:10190
       - SPARK_DEFAULT_PARTITION_SIZE=1
       - PYSPARK_LOCAL_SUBMIT_ARGS=--master local[*] --driver-memory 3g --executor-memory 2g pyspark-shell
       - PYSPARK_K8S_SUBMIT_ARGS=--master spark://spark-master:7077 --driver-memory 3g --executor-memory 2g pyspark-shell
