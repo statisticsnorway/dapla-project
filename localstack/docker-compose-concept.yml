@@ -5,34 +5,34 @@ version: "3.7"
 
 services:
 
-  solr:
-    container_name: solr
-    image: solr:8
+  concept-neo4j:
+    container_name: concept-neo4j
+    image: neo4j:4.1
     ports:
-      - 28983:8983
+      - 21074:7474
+      - 21087:7687
     volumes:
-      - solrdata:/var/solr
-    entrypoint:
-      - bash
-      - "-c"
-      - "precreate-core exploration; precreate-core concept; exec solr -f"
+      - concept-neo4jdata:/data
+      - concept-neo4jplugins:/plugins
+    environment:
+      - NEO4J_AUTH=neo4j/secret
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
 
   concept-lds:
     container_name: concept-lds
-    image: statisticsnorway/lds-server:1.0.8
+    image: statisticsnorway/lds-server:2.0-a1
     ports:
       - 29090:9090
     volumes:
       - ./docker/concept/graphqlschemas:/graphqlschemas
     environment:
       - JAVA_MODULE_SYSTEM_ENABLED=false
-      - LDS_persistence.provider=postgres
-      - LDS_persistence.initialization.max-wait-seconds=10
-      - LDS_postgres.driver.host=postgres
-      - LDS_postgres.driver.port=5432
-      - LDS_postgres.driver.user=concept
-      - LDS_postgres.driver.password=concept
-      - LDS_postgres.driver.database=concept
+      - LDS_persistence.provider=neo4j
+      - LDS_persistence.initialization.max-wait-seconds=60
+      - LDS_neo4j.driver.url=bolt://concept-neo4j:7687
+      - LDS_neo4j.driver.username=neo4j
+      - LDS_neo4j.driver.password=secret
+      - LDS_neo4j.cypher.show=false
       - LDS_saga.number-of-logs=5
       - LDS_sagalog.provider.initialization.max-wait-seconds=10
       - LDS_sagalog.provider.initialization.retry-interval-seconds=1
@@ -61,12 +61,10 @@ services:
       - LDS_txlog.config.rawdata.postgres.consumer.prefetch-poll-interval-when-empty=1000
       - LDS_graphql.enabled=true
       - LDS_graphql.schema=/graphqlschemas/schema.graphql
-      - LDS_graphql.search.enabled=true
-      - LDS_search.index.provider=solr
-      - LDS_search.index.url=http://solr:8983/solr/concept
+      - LDS_graphql.search.enabled=false
     depends_on:
       - postgres
-      - solr
+      - concept-neo4j
 
   lds-client:
     container_name: lds-client
@@ -87,4 +85,10 @@ services:
       CONCEPT_dash_LDS_PORT: 9090
 
 volumes:
-  solrdata:
+  concept-neo4jdata:
+  concept-neo4jplugins:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/neo4jplugins
+      o: bind

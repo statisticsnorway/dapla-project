@@ -6,9 +6,22 @@ version: "3.7"
 
 services:
 
+  exploration-neo4j:
+    container_name: exploration-neo4j
+    image: neo4j:4.1
+    ports:
+      - 21174:7474
+      - 21187:7687
+    volumes:
+      - exploration-neo4jdata:/data
+      - exploration-neo4jplugins:/plugins
+    environment:
+      - NEO4J_AUTH=neo4j/secret
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+
   exploration-lds:
     container_name: exploration-lds
-    image: statisticsnorway/lds-server:1.0.8
+    image: statisticsnorway/lds-server:2.0-a1
     ports:
       - 29091:9091
     volumes:
@@ -16,13 +29,12 @@ services:
     environment:
       - JAVA_MODULE_SYSTEM_ENABLED=false
       - LDS_http.port=9091
-      - LDS_persistence.provider=postgres
-      - LDS_persistence.initialization.max-wait-seconds=10
-      - LDS_postgres.driver.host=postgres
-      - LDS_postgres.driver.port=5432
-      - LDS_postgres.driver.user=exploration
-      - LDS_postgres.driver.password=exploration
-      - LDS_postgres.driver.database=exploration
+      - LDS_persistence.provider=neo4j
+      - LDS_persistence.initialization.max-wait-seconds=60
+      - LDS_neo4j.driver.url=bolt://exploration-neo4j:7687
+      - LDS_neo4j.driver.username=neo4j
+      - LDS_neo4j.driver.password=secret
+      - LDS_neo4j.cypher.show=false
       - LDS_saga.number-of-logs=5
       - LDS_sagalog.provider.initialization.max-wait-seconds=10
       - LDS_sagalog.provider.initialization.retry-interval-seconds=1
@@ -51,12 +63,10 @@ services:
       - LDS_txlog.config.rawdata.postgres.consumer.prefetch-poll-interval-when-empty=1000
       - LDS_graphql.enabled=true
       - LDS_graphql.schema=/graphqlschemas/schema.graphql
-      - LDS_graphql.search.enabled=true
-      - LDS_search.index.provider=solr
-      - LDS_search.index.url=http://solr:8983/solr/exploration
+      - LDS_graphql.search.enabled=false
     depends_on:
       - postgres
-      - solr
+      - exploration-neo4j
 
   variable-search:
     container_name: variable-search
@@ -113,3 +123,12 @@ services:
     depends_on:
       - concept-lds
       - exploration-lds
+
+volumes:
+  exploration-neo4jdata:
+  exploration-neo4jplugins:
+    driver: local
+    driver_opts:
+      type: none
+      device: $PWD/neo4jplugins
+      o: bind

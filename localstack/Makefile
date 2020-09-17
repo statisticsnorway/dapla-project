@@ -137,6 +137,10 @@ generate-concept-schemas: ## Generate concept schemas for use in Linked Data Sto
 generate-exploration-schemas: ## Generate Exploration schemas for use in Linked Data Store
 	./bin/generate-exploration-schemas.sh
 
+.PHONY: init
+init: ## Initialize localstack, this should not need to be run every time
+	./bin/neo4j-apoc.sh
+
 .PHONY: help
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-45s\033[0m %s\n", $$1, $$2}'
