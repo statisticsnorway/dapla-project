@@ -1073,6 +1073,26 @@ type InstanceVariableRelationship implements IdentifiableArtefact @domain {
   versionValidFrom: DateTime!
 }
 
+type LineageDataSet @domain {
+  lineage: [LineageDataSet!] @link
+  dataSet: DataSet! @link
+}
+
+type LineageField @domain {
+  name: String!
+  lineageDataSet: LineageDataSet! @link
+  relationType: LineageRelationType!
+  lineage: [LineageField!] @link
+  confidence: Float!
+  instanceVariable: InstanceVariable @link
+}
+
+enum LineageRelationType {
+  INHERITED
+  DERIVED
+  CREATED
+}
+
 #Describes a type of Unit Data Record for one Unit Type within a Unit Data Set.
 type LogicalRecord implements IdentifiableArtefact @domain {
   #Administrative details (e.g. default language, documentation, localID, ...).
