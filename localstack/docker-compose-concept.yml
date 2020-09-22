@@ -7,13 +7,13 @@ services:
 
   concept-neo4j:
     container_name: concept-neo4j
-    image: neo4j:4.1
+    image: statisticsnorway/neo4j:4.1.1-lds
     ports:
       - 21074:7474
+      - 21073:7473
       - 21087:7687
     volumes:
       - concept-neo4jdata:/data
-      - concept-neo4jplugins:/plugins
     environment:
       - NEO4J_AUTH=neo4j/secret
       - NEO4J_dbms_security_procedures_unrestricted=apoc.*
@@ -86,9 +86,3 @@ services:
 
 volumes:
   concept-neo4jdata:
-  concept-neo4jplugins:
-    driver: local
-    driver_opts:
-      type: none
-      device: $PWD/neo4jplugins
-      o: bind
