@@ -21,8 +21,8 @@ build-all: ## Build all
 build-all-docker: ## Build all docker containers
 	docker-compose -f docker-compose.yml -f docker-compose-jupyterlab.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build
 
-.PHONY: build-all-docker-pull
-build-all-docker-pull: ## Build all docker containers and pull base images
+.PHONY: build-all-docker-with-pull
+build-all-docker-with-pull: ## Build all docker containers and pull base images
 	docker-compose -f docker-compose.yml -f docker-compose-jupyterlab.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build --pull
 
 .PHONY: build-all-mvn
