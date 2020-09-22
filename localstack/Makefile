@@ -19,7 +19,7 @@ build-all: ## Build all
 
 .PHONY: build-all-docker
 build-all-docker: ## Build all docker containers
-	docker-compose -f docker-compose.yml -f docker-compose-jupyterlab.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build
+	docker-compose -f docker-compose.yml -f docker-compose-jupyterlab.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml build --pull
 
 .PHONY: build-all-docker-with-pull
 build-all-docker-with-pull: ## Build all docker containers and pull base images
@@ -62,7 +62,7 @@ start-all-with-console: ## Start all docker containers with output to existing c
 
 .PHONY: start-jupyter-exploration-with-console
 start-jupyter-exploration-with-console: ## Start docker containers with output to existing console and shut down all on ctrl-c
-	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up jupyterhub exploration-lds postgres jaeger pubsub keycloak exploration-metadata-ingest metadata-distributor catalog user-access data-access
+	docker-compose -f docker-compose.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up jupyterhub exploration-lds postgres jaeger pubsub keycloak exploration-metadata-ingest metadata-distributor catalog user-access data-access dataset-doc-service concept-lds
 
 .PHONY: start-all-recreate
 start-all-recreate: ## Recreate and start docker containers even if their configuration and image haven't changed
