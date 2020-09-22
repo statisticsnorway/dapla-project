@@ -17,7 +17,7 @@ services:
       - exploration-neo4jdata:/data
     environment:
       - NEO4J_AUTH=neo4j/secret
-      - NEO4J_dbms_security_procedures_unrestricted=apoc.*
+      - NEO4J_dbms_security_procedures_unrestricted=apoc.*,lds.*
 
   exploration-lds:
     container_name: exploration-lds
