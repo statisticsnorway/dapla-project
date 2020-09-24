@@ -795,6 +795,8 @@ type DimensionalDataSet implements DataSet & IdentifiableArtefact @domain {
   versionRationale: [MultilingualText!]
   #The date on which the current version of the infomation object is effective or valid.
   versionValidFrom: DateTime!
+  #The lineage of this dataset
+  lineage: LineageDataSet @link
 }
 
 #Describes the structure of a Dimensional Data Set.
@@ -1074,11 +1076,14 @@ type InstanceVariableRelationship implements IdentifiableArtefact @domain {
 }
 
 type LineageDataSet @domain {
+  # e.g. '/path/to/dataset#version'
+  id: String!
   lineage: [LineageDataSet!] @link
-  dataSet: DataSet! @link
 }
 
 type LineageField @domain {
+  # e.g. '/path/to/dataset#version#fieldName'
+  id: String!
   name: String!
   lineageDataSet: LineageDataSet! @link
   relationType: LineageRelationType!
@@ -2639,6 +2644,8 @@ type UnitDataSet implements DataSet & IdentifiableArtefact @domain {
   versionRationale: [MultilingualText!]
   #The date on which the current version of the infomation object is effective or valid.
   versionValidFrom: DateTime!
+  #The lineage of this dataset
+  lineage: LineageDataSet @link
 }
 
 #Describes the structure of a Unit Data Set.
