@@ -1,0 +1,18 @@
+@startuml
+
+actor "Alice" as alice
+actor "Bob" as bob
+actor "John" as john
+actor "Jane" as jane
+
+component "Concept" as concept
+component "Klass" as klass
+component "Catalog" as catalog
+component "Blueprint" as blueprint
+component "Lineage" as lineage
+component "Jupyter" as jupyter
+component "Data Exploration" as exploration
+database "Git Repository" as gitrepo
+database "Cloud Storage" as gcs
+
+@enduml
