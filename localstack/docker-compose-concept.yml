@@ -66,12 +66,6 @@ services:
       - postgres
       - concept-neo4j
 
-  lds-client:
-    container_name: lds-client
-    image: statisticsnorway/linked-data-store-client:latest
-    ports:
-      - 28080:80
-
   dataset-doc-service:
     container_name: dataset-doc-service
     build:

@@ -50,15 +50,15 @@ spark-plugin-build-and-copy-to-jupyterlab: ## build plugin and find spawned inst
 
 .PHONY: start-all
 start-all: ## Start all docker containers
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml -f docker-compose-frontends.yml up -d
 
 .PHONY: start-all-lite
 start-all-lite:
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d --scale jupyter=0
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml -f docker-compose-frontends.yml up -d --scale jupyter=0
 
 .PHONY: start-all-with-console
 start-all-with-console: ## Start all docker containers with output to existing console
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml -f docker-compose-frontends.yml up
 
 .PHONY: start-jupyter-exploration-with-console
 start-jupyter-exploration-with-console: ## Start docker containers with output to existing console and shut down all on ctrl-c
@@ -66,7 +66,7 @@ start-jupyter-exploration-with-console: ## Start docker containers with output t
 
 .PHONY: start-all-recreate
 start-all-recreate: ## Recreate and start docker containers even if their configuration and image haven't changed
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml up -d --force-recreate
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml -f docker-compose-frontends.yml up -d --force-recreate
 
 .PHONY: start-services
 start-services: ## Start all services (excluding spark, etc)
@@ -74,11 +74,11 @@ start-services: ## Start all services (excluding spark, etc)
 
 .PHONY: stop-all
 stop-all: ## Stop and remove all docker containers
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml down
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml -f docker-compose-frontends.yml down
 
 .PHONY: clean-all
 clean-all: ## Stop and remove all docker containers and volumes
-	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml down -v
+	docker-compose -f docker-compose.yml -f docker-compose-spark.yml -f docker-compose-concept.yml -f docker-compose-exploration.yml -f docker-compose-frontends.yml down -v
 
 .PHONY: stop-services
 stop-services: ## Stop all services (excluding spark, etc)
@@ -115,11 +115,15 @@ open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
 
 .PHONY: open-lds-client
 open-lds-client: ## Open Linked Data Store Client
+	open http://localhost:28081
+
+.PHONY: open-dapla-workbench
+open-dapla-workbench: ## Open Dapla Workbench
 	open http://localhost:28080
 
-.PHONY: open-variable-search
-open-variable-search: ## Open Variable Search
-	open http://localhost:28081
+.PHONY: open-user-access-admin
+open-user-access-admin: ## Open Dapla Workbench
+	open http://localhost:28082
 
 .PHONY: print-local-changes
 print-local-changes: ## Show a brief summary of local changes

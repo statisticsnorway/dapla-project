@@ -1,0 +1,43 @@
+version: "3.7"
+
+services:
+
+  dapla-workbench:
+    container_name: dapla-workbench
+    image: eu.gcr.io/prod-bip/ssb/dapla/dapla-workbench:latest
+    ports:
+      - 28080:80
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_ENV=develop
+      - REACT_APP_CONCEPT_LDS=http://localhost:29090
+      - REACT_APP_CATALOG_SERVICE=http://localhost:20110
+      - REACT_APP_EXPLORATION_LDS=http://localhost:29091
+    depends_on:
+      - catalog
+      - concept-lds
+      - exploration-lds
+
+  lds-client:
+    container_name: lds-client
+    image: eu.gcr.io/prod-bip/ssb/dapla/linked-data-store-client:latest
+    ports:
+      - 28081:80
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API=http://localhost:29090
+    depends_on:
+      - concept-lds
+
+  user-access-admin:
+    container_name: user-access-admin
+    image: eu.gcr.io/prod-bip/ssb/dapla/user-access-admin:latest
+    ports:
+      - 28082:80
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_AUTH=http://localhost:20100
+      - REACT_APP_API_CATALOG=http://localhost:20110
+    depends_on:
+      - catalog
+      - user-access

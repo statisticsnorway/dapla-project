@@ -68,12 +68,6 @@ services:
       - postgres
       - exploration-neo4j
 
-  variable-search:
-    container_name: variable-search
-    image: statisticsnorway/variable-search:latest
-    ports:
-      - 28082:80
-
   exploration-metadata-ingest:
     container_name: exploration-metadata-ingest
     build:
