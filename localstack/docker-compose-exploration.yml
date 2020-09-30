@@ -21,7 +21,7 @@ services:
 
   exploration-lds:
     container_name: exploration-lds
-    image: statisticsnorway/lds-server:2.0-a2
+    image: statisticsnorway/lds-server:2.0-a5
     ports:
       - 29091:9091
     volumes:
