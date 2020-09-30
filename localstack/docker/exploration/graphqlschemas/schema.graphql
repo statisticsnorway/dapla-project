@@ -1093,9 +1093,9 @@ type LineageField @domain {
 }
 
 enum LineageRelationType {
-  INHERITED
-  DERIVED
-  CREATED
+  inherited
+  derived
+  created
 }
 
 #Describes a type of Unit Data Record for one Unit Type within a Unit Data Set.
