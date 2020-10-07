@@ -1093,6 +1093,7 @@ type LineageField @domain {
 }
 
 enum LineageRelationType {
+  unknown
   inherited
   derived
   created
