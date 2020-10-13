@@ -1076,13 +1076,13 @@ type InstanceVariableRelationship implements IdentifiableArtefact @domain {
 }
 
 type LineageDataset @domain {
-  # e.g. 'path.to.dataset!version'
+  # e.g. 'path.to.dataset'
   id: String!
   lineage: [LineageDataset!] @link
 }
 
 type LineageField @domain {
-  # e.g. 'path.to.dataset!version$fieldName'
+  # e.g. 'path.to.dataset$fieldName'
   id: String!
   name: String!
   lineageDataset: LineageDataset! @link
