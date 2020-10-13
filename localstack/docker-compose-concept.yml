@@ -20,7 +20,7 @@ services:
 
   concept-lds:
     container_name: concept-lds
-    image: statisticsnorway/lds-server:2.0-a6
+    image: statisticsnorway/lds-server:2.0-a7
     ports:
       - 29090:9090
     volumes:
