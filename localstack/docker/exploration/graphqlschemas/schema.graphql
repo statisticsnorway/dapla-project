@@ -2,6 +2,8 @@ directive @domain on OBJECT
 
 directive @link on FIELD_DEFINITION
 
+directive @virtual on FIELD_DEFINITION
+
 #Unit of thought differentiated by characteristics.
 interface Concept {
   #Link to national concepts catalog
@@ -1090,6 +1092,9 @@ type LineageField @domain {
   lineage: [LineageField!] @link
   confidence: Float!
   instanceVariable: InstanceVariable @link
+  smart: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage','+LineageField',-1,-1,datetime()) YIELD path RETURN last(nodes(path)) AS n")
+  ancestors: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage>','+LineageField',-1,-1,datetime()) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
+  descendants: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'<lineage','+LineageField',-1,-1,datetime()) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
 }
 
 enum LineageRelationType {
