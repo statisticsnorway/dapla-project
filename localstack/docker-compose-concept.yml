@@ -7,7 +7,7 @@ services:
 
   concept-neo4j:
     container_name: concept-neo4j
-    image: statisticsnorway/neo4j:4.1.1-lds
+    image: statisticsnorway/neo4j:4.1.3-lds
     ports:
       - 21074:7474
       - 21073:7473
