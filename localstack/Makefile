@@ -115,7 +115,7 @@ open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
 
 .PHONY: open-lds-client
 open-lds-client: ## Open Linked Data Store Client
-	open http://localhost:28081
+	open http://localhost:28083
 
 .PHONY: open-dapla-workbench
 open-dapla-workbench: ## Open Dapla Workbench

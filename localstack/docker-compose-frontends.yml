@@ -22,7 +22,7 @@ services:
     container_name: lds-client
     image: eu.gcr.io/prod-bip/ssb/dapla/linked-data-store-client:latest
     ports:
-      - 28081:80
+      - 28083:80
     environment:
       - NODE_ENV=development
       - REACT_APP_API=http://localhost:29090
