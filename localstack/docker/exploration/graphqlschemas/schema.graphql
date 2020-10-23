@@ -1095,6 +1095,24 @@ type LineageField @domain {
   smart: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage','+LineageField',-1,-1,ver) YIELD path RETURN last(nodes(path)) AS n")
   ancestors: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage>','+LineageField',-1,-1,ver) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
   descendants: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'<lineage','+LineageField',-1,-1,ver) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
+  smartGraph: [LineageFieldGraphEdge!] @virtual @cypher(statement: """
+    MATCH (this)
+    CALL lds.path.expand(this,'lineage','+LineageField',-1,-1,ver) YIELD path
+    WITH apoc.path.elements(path) AS elems
+    UNWIND range(0, size(elems)-4) AS i
+    WITH elems, i
+    WHERE i % 4 = 0
+    WITH DISTINCT i, elems[i] AS instance1, elems[i+1] AS rel1, elems[i+2] AS resource, elems[i+3] AS rel2, elems[i+4] AS instance2
+    RETURN CASE type(rel2)
+      WHEN 'VERSION_OF' THEN {fromId: instance1.id, toId: instance2.id}
+      ELSE {fromId: instance2.id, toId: instance1.id}
+    END AS n
+  """)
+}
+
+type LineageFieldGraphEdge {
+  fromId: String!
+  toId: String!
 }
 
 enum LineageRelationType {
