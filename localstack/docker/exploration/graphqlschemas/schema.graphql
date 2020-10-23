@@ -1092,9 +1092,9 @@ type LineageField @domain {
   lineage: [LineageField!] @link
   confidence: Float!
   instanceVariable: InstanceVariable @link
-  smart: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage','+LineageField',-1,-1,datetime()) YIELD path RETURN last(nodes(path)) AS n")
-  ancestors: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage>','+LineageField',-1,-1,datetime()) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
-  descendants: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'<lineage','+LineageField',-1,-1,datetime()) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
+  smart: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage','+LineageField',-1,-1,ver) YIELD path RETURN last(nodes(path)) AS n")
+  ancestors: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'lineage>','+LineageField',-1,-1,ver) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
+  descendants: [LineageField!] @virtual @cypher(statement: "MATCH (this) CALL lds.path.expand(this,'<lineage','+LineageField',-1,-1,ver) YIELD path WHERE last(nodes(path)) <> this RETURN last(nodes(path)) AS n")
 }
 
 enum LineageRelationType {
