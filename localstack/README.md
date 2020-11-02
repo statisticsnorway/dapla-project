@@ -119,7 +119,7 @@ open-hadoop-cluster                           Open Hadoop cluster browser
 open-hadoop-hdfs                              Open Hadoop nameserver/dataserver
 open-lds-client                               Open Linked Data Store Client in your browser
 open-dapla-workbench                          Open Dapla Workbench in your browser
-open-user-access-admin                        Open User Access Admin in your browser
+open-dapla-user-access-admin                  Open Dapla User Access Admin in your browser
 print-local-changes                           Show a brief summary of local changes
 generate-concept-schemas                      Generate schemas from RAML files for setting up Linked Data Store for Concept
 generate-exploration-schemas                  Generate schemas from RAML files for setting up Linked Data Store for the entire GSIM model

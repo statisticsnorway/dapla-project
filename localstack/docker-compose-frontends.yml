@@ -29,9 +29,9 @@ services:
     depends_on:
       - concept-lds
 
-  user-access-admin:
-    container_name: user-access-admin
-    image: eu.gcr.io/prod-bip/ssb/dapla/user-access-admin:latest
+  dapla-user-access-admin:
+    container_name: dapla-user-access-admin
+    image: eu.gcr.io/prod-bip/ssb/dapla/dapla-user-access-admin:latest
     ports:
       - 28082:80
     environment:
