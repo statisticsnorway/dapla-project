@@ -121,8 +121,8 @@ open-lds-client: ## Open Linked Data Store Client
 open-dapla-workbench: ## Open Dapla Workbench
 	open http://localhost:28080
 
-.PHONY: open-user-access-admin
-open-user-access-admin: ## Open Dapla Workbench
+.PHONY: open-dapla-user-access-admin
+open-dapla-user-access-admin: ## Open Dapla User Access Admin
 	open http://localhost:28082
 
 .PHONY: print-local-changes
