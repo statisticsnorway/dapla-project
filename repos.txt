@@ -6,7 +6,6 @@ dapla-dlp-pseudo-func
 dapla-helidon-application
 dapla-helidon-parent
 dapla-helidon-testing
-dapla-noterepo
 dapla-spark-plugin
 dataset-access
 dapla-auth-dataset-protobuf

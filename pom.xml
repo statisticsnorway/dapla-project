@@ -17,7 +17,6 @@
         <module>dapla-helidon-parent</module>
         <module>dapla-helidon-testing</module>
         <module>dapla-dlp-pseudo-func</module>
-        <module>dapla-noterepo</module>
         <module>dapla-spark-plugin</module>
         <module>dapla-auth-dataset-protobuf</module>
         <module>dataset-access</module>
