@@ -13,7 +13,7 @@ endif::[]
 
 ifdef::env-github[]
 === Components Overview
-image::img/components.png[Components Overview,1024]
+image::img/dapla-components.svg[Components Overview,1024]
 endif::[]
 
 ifndef::env-github[]
