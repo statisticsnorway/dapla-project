@@ -16,6 +16,8 @@ certs/
 /dapla-blueprint-execution/
 /dapla-catalog/
 /dapla-catalog-protobuf/
+/dapla-cli/
+/dapla-data-maintenance/
 /dapla-dlp-pseudo-func/
 /dapla-helidon-application/
 /dapla-helidon-parent/

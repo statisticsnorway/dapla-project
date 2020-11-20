@@ -16,6 +16,7 @@
         <module>dapla-helidon-application</module>
         <module>dapla-helidon-parent</module>
         <module>dapla-helidon-testing</module>
+        <module>dapla-data-maintenance</module>
         <module>dapla-dlp-pseudo-func</module>
         <module>dapla-spark-plugin</module>
         <module>dapla-auth-dataset-protobuf</module>

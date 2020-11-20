@@ -1,3 +1,5 @@
+dapla-data-maintenance
+dapla-cli
 dapla-blueprint
 dapla-blueprint-execution
 dapla-catalog
