@@ -6,32 +6,31 @@ skinparam queue {
 
 component "User Access" as user_access
 component "Catalog" as catalog
-component "Pseudonymization" as pseudo
 component "Blueprint" as blueprint
-component "Lineage" as lineage
+component "Blueprint\nExecution" as blueprint_execution
+component "Metadata\ningest" as metadata_ingest
+component "Concept\ningest" as concept_ingest
 component "Data Access" as data_access
-database "Linked Data Store" as lds {
+database "Concept-LDS" as concept_lds {
+}
+database "Exploration-LDS" as exploration_lds {
 }
 database "Google\nCloud Storage" as gcs {
 }
-node "Dataproc" <<Hadoop>> as dataproc {
-  node "Worker" as worker1
-  node "Worker" as worker2
-  node "Worker" as worker3
-  node "Worker" as worker4
+component "JupyterLab\n(personal)" as jupyter_lab {
+    component "Spark/Python/R\n         Kernel" as kernel
 }
-component "Jupyter" as jupyter
 catalog -> user_access
 data_access --> catalog
 data_access --> user_access
 
 database "GitHub" as github
 
-jupyter -- dataproc
-jupyter --> github
+jupyter_lab --> github
 blueprint --> github : read-only
-dataproc ----> gcs : \n\nread/\nwrite
-dataproc ----> data_access : get GCS\ntoken
+blueprint_execution --> blueprint
+kernel --> gcs : \n\nread/\nwrite
+kernel --> data_access : get GCS\ntoken
 
 component "External\nDatasource" as source
 component "Metadata\nDistributor" as distributor
@@ -39,38 +38,30 @@ queue "DatasetMeta" as datasetmetaevents <<events>> {
 }
 queue "GCS" as gcsevents <<events>> {
 }
-queue "Catalog\nMetadata" as catalogQ {
+queue "Metadata" as catalogQ {
 }
-queue "LDS\nMetadata" as ldsQ {
+queue "Metadata" as exploration_ldsQ {
 }
-queue "Lineage\nMetadata" as lineageQ {
+component "Collector" as collector
+queue "Rawdata" as rawdata {
 }
-cloud Collection {
-    component "Secure proxy" as sec_proxy {
-        card "Client Certificate" as client_cert
-    }
-    component "Collector" as collector
-    queue "Rawdata" as rawdata {
-    }
-    component "Converter" as converter
-    collector -u-> sec_proxy
-    collector ..> rawdata : payload-\nencryption
-    converter ..> rawdata
-    converter -> gcs : "      write"
-    converter --> pseudo
-}
+component "Converter" as converter
+collector -> rawdata : payload-\nencryption
+rawdata <. converter
+converter -u-> gcs
 
-distributor --> gcs : read
-distributor ..> lineageQ : pub
-distributor ..> catalogQ : pub
-distributor ..> ldsQ : pub
-gcs .> gcsevents : object-created
-dataproc ..> datasetmetaevents : dataset-meta.json\ncreated
-distributor .> gcsevents : sub
-distributor .u-> datasetmetaevents : sub
-lds .u.> ldsQ : sub
-catalog .u.> catalogQ : sub
-lineage .u.> lineageQ : sub
-sec_proxy .u.> source
+distributor --> gcs
+distributor -> catalogQ
+distributor --> exploration_ldsQ
+gcs -> gcsevents
+kernel --> datasetmetaevents : sign
+distributor .> gcsevents
+datasetmetaevents <.. distributor
+exploration_ldsQ <. metadata_ingest
+metadata_ingest --> exploration_lds : w
+concept_ingest --> exploration_lds : w
+concept_ingest --> concept_lds : r
+catalogQ <. catalog
+collector .u.> source
 
 @enduml
