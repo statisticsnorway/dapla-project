@@ -212,6 +212,17 @@ services:
     ports:
       - 20180:10180
 
+  data-maintenance:
+    container_name: data-maintenance
+    environment:
+      - WEBSERVER_PORT=10190
+    build:
+      context: ../dapla-data-maintenance
+      dockerfile: Dockerfile
+    image: dapla-data-maintenance:dev
+    ports:
+      - 20190:10190
+
 volumes:
   pgdata:
   data-dir: # will be exposed as 'localstack_data-dir' and used by DockerSpawner
