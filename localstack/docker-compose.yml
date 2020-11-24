@@ -215,13 +215,13 @@ services:
   data-maintenance:
     container_name: data-maintenance
     environment:
-      - WEBSERVER_PORT=10192
+      - WEBSERVER_PORT=10200
     build:
       context: ../dapla-data-maintenance
       dockerfile: Dockerfile
     image: dapla-data-maintenance:dev
     ports:
-      - 20192:10192
+      - 20200:10200
 
 volumes:
   pgdata:
