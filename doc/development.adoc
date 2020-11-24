@@ -56,10 +56,16 @@ endif::[]
 | 20180
 | N/A
 
-| data-maintenance
+| dataset-doc-service
 | 10190
 | N/A
-| 20190
+| 20290
+| N/A
+
+| data-maintenance
+| 10200
+| N/A
+| 20290
 | N/A
 |===
 
