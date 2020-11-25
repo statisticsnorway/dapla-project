@@ -2,7 +2,7 @@
 
 put $auth '/group/vof' '{
   "groupId": "vof",
-  "description": "Brukere som skal teste PST sin veileder. JIRA: SKATT-216",
+  "description": "Brukere som skal teste enhetsregisteret data fra brreg.no",
   "roles": ["felles"]
 }' 201
 
