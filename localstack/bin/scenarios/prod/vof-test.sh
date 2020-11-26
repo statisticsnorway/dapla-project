@@ -6,13 +6,13 @@ put $auth '/group/felles' '{
   "roles": ["felles"]
 }' 201
 
-for user in "fenglin" \
-  "sjur" \
-  "simen" \
-  "mehran" \
-  "audun" \
-  "anne" \
-  "bjorn"; do
+for user in "fenglin.han" \
+  "sjur.sagen" \
+  "simen.sommer" \
+  "mehran.raja" \
+  "audun.rusti" \
+  "anne.harbosen" \
+  "bjorn.skaar"; do
 
   put $auth "/role/user.$user" '{
     "roleId": "user.'$user'",
