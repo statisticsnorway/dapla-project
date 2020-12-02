@@ -4,6 +4,8 @@ directive @link on FIELD_DEFINITION
 
 directive @virtual on FIELD_DEFINITION
 
+directive @index on FIELD_DEFINITION
+
 #Unit of thought differentiated by characteristics.
 interface Concept {
   #Link to national concepts catalog
@@ -2638,7 +2640,7 @@ type UnitDataSet implements DataSet & IdentifiableArtefact @domain {
   #The type of "steady state" for the dataset.
   dataSetState: DataSetStateType!
   #The path (API endpoint, URI, catalog, ..) to the raw dataset.
-  dataSourcePath: String
+  dataSourcePath: String @index
   #The description of the information object
   description: [MultilingualText!]
   #The global unique identifier (GUID) of the information object assigned by the owner agency.
