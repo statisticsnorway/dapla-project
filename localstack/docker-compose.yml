@@ -97,15 +97,13 @@ services:
     image: dapla-catalog-service:dev
     ports:
       - 20110:10110
-      - 20118:10118
     volumes:
       - ../dapla-spark-plugin/secret:/secret
     environment:
-      PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
-      PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
+      DB_CONNECTION_URL: jdbc:postgresql://postgres:5432/catalog
       FLYWAY_URL: jdbc:postgresql://postgres:5432/catalog
       AUTH_dash_SERVICE_HOST: user-access
-      AUTH_dash_SERVICE_PORT: 10108
+      AUTH_dash_SERVICE_PORT: 10100
       PUBSUB_EMULATOR_HOST: pubsub
       PUBSUB_EMULATOR_PORT: 8538
       TRACING_HOST: jaeger
@@ -123,10 +121,8 @@ services:
     image: user-access:dev
     ports:
       - 20100:10100
-      - 20108:10108
     environment:
-      PGPOOL_CONNECT_dash_OPTIONS_HOST: postgres
-      PGPOOL_CONNECT_dash_OPTIONS_PORT: 5432
+      DB_CONNECTION_URL: jdbc:postgresql://postgres:5432/user_access
       FLYWAY_URL: jdbc:postgresql://postgres:5432/user_access
       TRACING_HOST: jaeger
     depends_on:
@@ -141,7 +137,6 @@ services:
     image: data-access:dev
     ports:
       - 20140:10140
-      - 20148:10148
     volumes:
       - ./docker/data-access:/data-access-conf
       - ../dapla-spark-plugin/secret:/secret
@@ -150,9 +145,9 @@ services:
       ROUTING_FILE: /data-access-conf/routing.json
       DATA_dash_ACCESS_PROVIDER: no.ssb.dapla.data.access.service.GoogleDataAccessService
       AUTH_dash_SERVICE_HOST: user-access
-      AUTH_dash_SERVICE_PORT: 10108
+      AUTH_dash_SERVICE_PORT: 10100
       CATALOG_dash_SERVICE_HOST: catalog
-      CATALOG_dash_SERVICE_PORT: 10118
+      CATALOG_dash_SERVICE_PORT: 10110
     depends_on:
       - jaeger
       - user-access
@@ -166,7 +161,6 @@ services:
     image: metadata-distributor:dev
     ports:
       - 20160:10160
-      - 20168:10168
     volumes:
       - data-dir:/data
       - ../dapla-spark-plugin/secret:/secret
