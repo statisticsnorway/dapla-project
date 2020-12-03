@@ -27,11 +27,11 @@ build-all-docker-with-pull: ## Build all docker containers and pull base images
 
 .PHONY: build-all-mvn
 build-all-mvn: ## Build all maven projects
-	mvn -f ../pom.xml clean install -U -Dmaven.test.skip=true
+	mvn -f ../pom.xml -Pssb-bip clean install -U -Dmaven.test.skip=true
 
 .PHONY: build-dependent-on-dataset-doc-mvn
 build-dependent-on-dataset-doc-mvn: ## Build all maven projects
-	mvn -f ../pom.xml -pl dapla-spark-plugin,dapla-exploration-metadata-ingest -am clean install -U -Dmaven.test.skip=true
+	mvn -f ../pom.xml -Pssb-bip -pl dapla-spark-plugin,dapla-exploration-metadata-ingest -am clean install -U -Dmaven.test.skip=true
 
 .PHONY: restart-and-build-dependent-on-datadoc-all
 restart-and-build-dependent-on-datadoc-all: ## Build all dependent on dataset-doc and buidld and restart jupyter and exploration-metadata-ingest
@@ -45,7 +45,7 @@ copy-sparkextension-py-to-jupyterlab: ## find spawned instance of jupyterlab and
 
 .PHONY: spark-plugin-build-and-copy-to-jupyterlab
 spark-plugin-build-and-copy-to-jupyterlab: ## build plugin and find spawned instance of jupyterlab and copy jar file
-	mvn -f ../pom.xml -pl dapla-spark-plugin -am clean install -U -Dmaven.test.skip=true
+	mvn -f ../pom.xml -Pssb-bip -pl dapla-spark-plugin -am clean install -U -Dmaven.test.skip=true
 	./bin/spark-plugin-copy-to-jupyer.sh
 
 .PHONY: start-all
