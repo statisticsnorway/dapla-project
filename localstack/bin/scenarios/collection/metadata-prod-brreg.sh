@@ -31,12 +31,12 @@ ds_version=${DS_VERSION:-$(date +%s000)}
 
 DATASET_META_JSON=$(jq '@json' <<< '{
   "id": {
-    "path": "/kilde/brreg/enhetsreg/1598553650001",
+    "path": "/kilde/brreg/enhetsreg",
     "version": "'${ds_version}'"
   },
   "type": "UNBOUNDED",
-  "valuation": "INTERNAL",
-  "state": "SENSITIVE",
+  "valuation": "SENSITIVE",
+  "state": "RAW",
   "pseudoConfig": {}
 }')
 
@@ -64,4 +64,4 @@ post $distributor '/rpc/MetadataDistributorService/dataChanged' '{
   "projectId": "prod-bip",
   "topicName": "metadata-distributor-dataset-updates",
   "uri": "'${ds_parent_uri}'/'${ds_path}'/'${ds_version}'"
-}' 200
+}' 200                                                                                                                                                                                                         åpokuijhygtjul,kmjnmkloijkm,lkp,kmjii90oplø,kolpøåpøløåpløæåpløåplokl
