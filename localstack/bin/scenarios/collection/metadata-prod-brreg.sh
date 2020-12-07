@@ -26,7 +26,7 @@
 
 . $DAPLA_PROJECT_HOME/localstack/bin/validate.sh
 
-ds_parent_uri="gs://ssb-data-prod-kilde-brreg/kilde/brreg/enhetsreg/"
+ds_parent_uri="gs://ssb-data-prod-kilde-brreg/kilde/brreg/enhetsreg"
 ds_version=${DS_VERSION:-$(date +%s000)}
 
 DATASET_META_JSON=$(jq '@json' <<< '{
@@ -55,7 +55,7 @@ echo
 
 ds_path=$(jq -r '.id.path' tmp/.dataset-meta.json)
 ds_version=$(jq -r '.id.version' tmp/.dataset-meta.json)
-storage_path="$ds_parent_uri$ds_path/$ds_version"
+storage_path="$ds_parent_uri/$ds_path/$ds_version"
 echo $(bold "Copy dataset metadata files to $storage_path")
 gsutil cp tmp/.dataset-meta.json* $storage_path
 
