@@ -26,7 +26,7 @@
 
 . $DAPLA_PROJECT_HOME/localstack/bin/validate.sh
 
-ds_parent_uri="gs://ssb-data-prod-kilde-brreg/kilde/brreg/enhetsreg"
+ds_parent_uri="gs://ssb-data-prod-kilde-brreg"
 ds_version=${DS_VERSION:-$(date +%s000)}
 
 DATASET_META_JSON=$(jq '@json' <<< '{
