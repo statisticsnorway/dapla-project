@@ -18,16 +18,18 @@ services:
       - concept-lds
       - exploration-lds
 
-  lds-client:
-    container_name: lds-client
-    image: eu.gcr.io/prod-bip/ssb/dapla/linked-data-store-client:latest
+  dapla-metadata-explorer:
+    container_name: metadata-explorer
+    image: eu.gcr.io/prod-bip/ssb/dapla/dapla-metadata-explorer:latest
     ports:
       - 28083:80
     environment:
       - NODE_ENV=development
-      - REACT_APP_API=http://localhost:29090
+      - REACT_APP_CONCEPT_LDS=http://localhost:29090
+      - REACT_APP_EXPLORATION_LDS=http://localhost:29091
     depends_on:
       - concept-lds
+      - exploration-lds
 
   dapla-user-access-admin:
     container_name: dapla-user-access-admin

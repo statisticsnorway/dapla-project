@@ -57,7 +57,7 @@ If you wish to import some example domains you can run:
 make run-scenario s=import-exploration-examples
 ```
 
-The same things can be done for only Concept schemas if you swap `exploration` with `concept` in the scripts and output locations.
+The same thing can be done for "concept" schemas if you swap `exploration` with `concept` in the scripts and output locations.
 
 ## Additional config
 
@@ -117,7 +117,7 @@ open-zeppelin                                 Open Zeppelin in your browser
 open-jupyter                                  Open Jupyter in your browser
 open-hadoop-cluster                           Open Hadoop cluster browser
 open-hadoop-hdfs                              Open Hadoop nameserver/dataserver
-open-lds-client                               Open Linked Data Store Client in your browser
+open-dapla-metadata-explorer                  Open Dapla Metadata Explorer in your browser
 open-dapla-workbench                          Open Dapla Workbench in your browser
 open-dapla-user-access-admin                  Open Dapla User Access Admin in your browser
 print-local-changes                           Show a brief summary of local changes
