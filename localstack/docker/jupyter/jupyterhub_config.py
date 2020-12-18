@@ -10,7 +10,8 @@ c.DockerSpawner.extra_host_config = { 'network_mode': 'local_network' }
 c.DockerSpawner.remove = True
 c.DockerSpawner.debug = True
 
-c.DockerSpawner.volumes = {'localstack_data-dir': {"bind": '/data', "mode": "rw"}}
+c.DockerSpawner.volumes = {'localstack_data-dir': {"bind": '/data', "mode": "rw"},
+                           'localstack_notebook-user-dir': {"bind": '/home/jovyan', "mode": "rw"}}
 
 # Initialize environment
 c.Spawner.environment = {}

@@ -224,6 +224,11 @@ volumes:
       type: none
       device: ${PWD}/data
       o: bind
+  notebook-user-dir: # will be exposed as 'localstack_notebook-user-dir' and used by DockerSpawner
+    driver_opts:
+      type: none
+      device: ${PWD}/notebook-user-dir
+      o: bind
 
 networks:
   default:
