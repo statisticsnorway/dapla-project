@@ -113,8 +113,8 @@ open-hadoop-cluster: ## Open Hadoop cluster browser
 open-hadoop-hdfs: ## Open Hadoop nameserver/dataserver
 	open http://localhost:50070
 
-.PHONY: open-lds-client
-open-lds-client: ## Open Linked Data Store Client
+.PHONY: open-dapla-metadata-explorer
+open-dapla-metadata-explorer: ## Open Dapla Metadata Explorer
 	open http://localhost:28083
 
 .PHONY: open-dapla-workbench
