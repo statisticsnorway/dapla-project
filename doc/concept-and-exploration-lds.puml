@@ -30,14 +30,8 @@ node concept_lds [
   ....
 ]
 
-database concept_sagalog [
-  sagalog
-  ....
-  postgres
-]
-
-database concept_txlog [
-  txlog
+database concept_psql [
+  sagalog / tx-log
   ....
   postgres
 ]
@@ -55,26 +49,10 @@ storage concept_neo4j_volume [
   standard
 ]
 
-node concept_solr [
-  concept-solr
-  ....
-  docker.io/solr:8
-  ....
-]
-
-storage concept_solr_volume [
-  persistent-volume
-  ....
-  standard
-]
-
-concept_lds --> concept_sagalog
-concept_lds --> concept_txlog
+concept_lds --> concept_psql
 concept_lds --> concept_neo4j
-concept_lds --> concept_solr
 
 concept_neo4j --> concept_neo4j_volume : /data
-concept_solr --> concept_solr_volume : /var/solr
 
 
 node exploration_lds [
@@ -84,14 +62,8 @@ node exploration_lds [
   ....
 ]
 
-database exploration_sagalog [
-  sagalog
-  ....
-  postgres
-]
-
-database exploration_txlog [
-  txlog
+database exploration_psql [
+  sagalog / tx-log
   ....
   postgres
 ]
@@ -109,26 +81,10 @@ storage exploration_neo4j_volume [
   standard
 ]
 
-node exploration_solr [
-  exploration-solr
-  ....
-  docker.io/solr:8
-  ....
-]
-
-storage exploration_solr_volume [
-  persistent-volume
-  ....
-  standard
-]
-
-exploration_lds --> exploration_sagalog
-exploration_lds --> exploration_txlog
+exploration_lds --> exploration_psql
 exploration_lds --> exploration_neo4j
-exploration_lds --> exploration_solr
 
 exploration_neo4j --> exploration_neo4j_volume : /data
-exploration_solr --> exploration_solr_volume : /var/solr
 
 node exploration_concept_ingest [
   exploration-concept-ingest
@@ -137,7 +93,7 @@ node exploration_concept_ingest [
 ]
 
 exploration_concept_ingest --> exploration_lds : PUT\nsource=concept
-exploration_concept_ingest --> concept_txlog : txlog-consumer
+exploration_concept_ingest --> concept_psql : txlog-consumer
 
 node exploration_metadata_ingest [
   exploration-metadata-ingest
