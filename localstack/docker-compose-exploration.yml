@@ -21,7 +21,7 @@ services:
 
   exploration-lds:
     container_name: exploration-lds
-    image: eu.gcr.io/prod-bip/ssb/lds-server:master-3df2c59e80318776f2223d0e77764ec1ae9fd5f7
+    image: eu.gcr.io/prod-bip/ssb/lds-server:master-24f3883b88d0d150447dc329cfadeacd9c7d5126
     ports:
       - 29091:9091
     volumes:
