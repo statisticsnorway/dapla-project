@@ -8,7 +8,7 @@ services:
     volumes:
       - ./docker/jupyter/jupyterhub_config.py:/srv/jupyterhub/jupyterhub_config.py
       - ./docker/jupyter/spark-localstack.conf:/usr/lib/spark/conf/spark-defaults.conf
-      - "/var/run/docker.sock.raw:/var/run/docker.sock:rw"
+      - "/var/run/docker.sock:/var/run/docker.sock:rw"
     build:
       context: ../dapla-gcp-jupyter
       dockerfile: ${PWD}/../dapla-gcp-jupyter/jupyterhub/Dockerfile-dev
