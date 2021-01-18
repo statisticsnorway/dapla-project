@@ -9,6 +9,7 @@ GRANT ALL PRIVILEGES ON DATABASE user_access TO user_access;
 CREATE USER catalog WITH PASSWORD 'catalog';
 CREATE DATABASE catalog;
 GRANT ALL PRIVILEGES ON DATABASE catalog TO catalog;
+ALTER ROLE catalog SUPERUSER;
 
 -- Linked Data Store for Concept
 CREATE USER concept WITH PASSWORD 'concept';
