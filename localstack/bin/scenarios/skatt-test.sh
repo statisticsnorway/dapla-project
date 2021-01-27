@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# dataset-access
+# user_access
 
 put $auth '/role/felles' '{
   "roleId": "felles",

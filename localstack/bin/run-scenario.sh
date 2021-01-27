@@ -62,11 +62,11 @@ case $2 in
       echo
       echo Run the following command using your own client-id and secret to obtain a valid token:
       echo
-      echo "  $(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c staging-bip-app -n dataset-access -t"
+      echo "  $(dirname $BASH_SOURCE)/oauth2.sh -i <client-id> -s <secret> -c staging-bip-app -n dapla-user_access -t"
       echo
       exit 1
     fi
-    auth=https://dataset-access.staging-bip-app.ssb.no
+    auth=https://dapla-user-access.staging-bip-app.ssb.no
     catalog=https://dapla-catalog.staging-bip-app.ssb.no
     distributor=https://metadata-distributor.staging-bip-app.ssb.no
     daccess=https://data-access.staging-bip-app.ssb.no
