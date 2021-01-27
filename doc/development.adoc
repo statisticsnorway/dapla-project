@@ -77,8 +77,8 @@ endif::[]
 | http cont
 | grpc cont
 
-| dataset-access.staging-bip-app.ssb.no
-| dataset-access.dapla.svc.cluster.local
+| dapla-user-access.staging-bip-app.ssb.no
+| dapla-user-access.dapla.svc.cluster.local
 | 10100
 | 10108
 
