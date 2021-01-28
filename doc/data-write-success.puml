@@ -5,6 +5,7 @@
 participant "Notebook" as notebook
 participant "Spark" as spark
 participant "DataAccess" as data_access
+participant "Google IAM" as iam
 database "GCS" as gcs
 queue "App events" as appQ
 queue "GCS events" as gcsQ
@@ -30,16 +31,15 @@ spark->data_access ++ : writeLocation( jwt, path, version, valuation, state )
 spark-->notebook: logs
 data_access->user_access ++ : hasAccess( user, WRITE, path, valuation, state )
 return allowed
-return allowed, metadata, signature
+data_access -> data_access : route to wanted bucket and\n service-account and determine parentUri
+data_access -> iam ++ : service-account credentials
+return accessToken
+data_access -> data_access : sign two metadata json files\none with and one without parentUri
+return allowed, metadata, signature, \nallMetadata, allSignature, \naccessToken, ttl
 spark-->notebook: logs
 
 == Write data and metadata to Cloud Storage ==
 
-spark->data_access ++ : writeAccessToken( jwt, metadata, signature )
-data_access -> data_access : validate \nmetadata & signature
-data_access->user_access ++ : hasAccess( user, WRITE, path, valuation, state )
-return allowed
-return accessToken, ttl
 |||
 spark->gcs ++ : write .dataset-meta.json
 return
@@ -60,7 +60,11 @@ deactivate gcsQ
 
 spark->gcs ++ : write .dataset-meta.json.sign
 return
+
+spark-->catalog : PUT
+
 return logs
+
 deactivate notebook
 
 == Metadata propagation ==
