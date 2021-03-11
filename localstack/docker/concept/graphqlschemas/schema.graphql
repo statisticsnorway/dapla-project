@@ -58,7 +58,7 @@ union substantiveValueDomain = DescribedValueDomain | EnumeratedValueDomain
 
 #Information about the model
 type About @domain {
-  #This version isolates the Concept group by itself
+  #This version removed schemas related to classification subsets, that have been moved to their own repository.
   model_version: String!
 }
 
@@ -301,11 +301,11 @@ type Population implements Concept & IdentifiableArtefact @domain {
   nationalConceptsCatalogURI: String
   parentPopulations: [Population] @link
   #The type og pupulation.
-  populationType: PopulationType!
+  populationType: PopulationType
   #The time period to which the population is associated.
-  referencePeriodEndDate: DateTime!
+  referencePeriodEndDate: DateTime
   #The time period to which the population is associated.
-  referencePeriodStartDate: DateTime!
+  referencePeriodStartDate: DateTime
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
   subjectFields: [SubjectField] @link
@@ -370,7 +370,9 @@ type RepresentedVariable implements IdentifiableArtefact @domain {
   name: [MultilingualText!]!
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
+  subjectFields: [SubjectField] @link
   substantiveValueDomain: substantiveValueDomain @link
+  unitType: UnitType @link
   universe: Universe! @link
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
   validFrom: DateTime!
@@ -405,6 +407,7 @@ type SubjectField implements IdentifiableArtefact @domain {
   lastUpdatedDate: DateTime
   #A term which designates a concept, in this case an information object. The identifying name will be the preferred designation. There will be many terms to designate the same information object, such as synonyms and terms in other languages.
   name: [MultilingualText!]!
+  parentSubjectField: SubjectField @link
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
@@ -445,8 +448,6 @@ type UnitType implements Concept & IdentifiableArtefact @domain {
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
   subjectFields: [SubjectField] @link
-  #Type of unit.
-  typeOfStatisticalUnit: TypeOfStatisticalUnitType!
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
   validFrom: DateTime!
   #The date on which the information object is no longer effective or valid.
@@ -578,19 +579,9 @@ enum LanguageCodeType {
 }
 
 enum PopulationType {
+  FRAME
   SURVEY
   TARGET
-}
-
-enum TypeOfStatisticalUnitType {
-  ENTERPRISE
-  ESTABLISHMENT
-  FAMILY
-  HOUSEHOLD
-  MUNICIPALITY
-  NOT_APPLICABLE
-  PERSON
-  SHAREHOLDER
 }
 
 #An RFC-3339 compliant Full Date Scalar

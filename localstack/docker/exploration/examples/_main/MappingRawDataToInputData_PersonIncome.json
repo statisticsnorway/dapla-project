@@ -1,9 +1,0 @@
-{
-    "id": "24934973-86b0-45a1-a461-c3c63c082182",
-    "sourceName": "income",
-    "sourcePath": "/some/path/to/raw/data/",
-    "targetInstanceVariable": "/InstanceVariable/71aec966-eb44-4a49-9bbf-0606563ca0cb",
-    "validFrom": "1985-01-01T15:00:00.000Z",
-    "lastUpdatedDate": "1985-01-01T15:00:00.000Z",
-    "lastUpdatedBy": "BNJ"
-}

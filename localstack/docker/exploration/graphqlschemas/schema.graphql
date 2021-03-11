@@ -28,7 +28,7 @@ interface DataSet {
   #Dataset temporality
   temporalityType: TemporalityType
   #Classification of the value or damage potential of a dataset
-  valuation: ValuationType
+  valuation: ValuationType!
 }
 
 #Defines the structure of an organized collection of data (Data Set).
@@ -180,7 +180,7 @@ union substantiveValueDomain = DescribedValueDomain | EnumeratedValueDomain
 
 #Information about the model
 type About @domain {
-  #This version changes attributes of type URL to URN, plus adds new object ClassificationSubset with ranked urn elements
+  #This version removed schemas related to classification subsets, that have been moved to their own repository.
   model_version: String!
 }
 
@@ -792,7 +792,7 @@ type DimensionalDataSet implements DataSet & IdentifiableArtefact @domain {
   #The date on which the information object is no longer effective or valid.
   validUntil: DateTime
   #Classification of the value or damage potential of a dataset
-  valuation: ValuationType
+  valuation: ValuationType!
   #Formal versioning of the information object. The version designator of the information object assigned by the owner agency. "major.minor.patch", e.g. "1.12.5".
   version: String
   #The reason for making this version of the information object.
@@ -994,22 +994,16 @@ type InstanceVariable implements IdentifiableArtefact @domain {
   createdBy: String!
   #The date on which the information object was created
   createdDate: DateTime!
-  #For INDENTIFIER-components or MEASURE-components. Specifies the type of role --> "entity", "count", "time", "geography" or "identity" (only INDENTIFIER-components).
-  dataStructureComponentRole: DataStructureComponentRoleType
   #The data structure component type (identifier, measure or attribute) of the instance variable.
   dataStructureComponentType: DataStructureComponentType!
   #The description of the information object
   description: [MultilingualText!]
   #This attribute describes the data-format of the instance variable. For example a date-format-mask.
   formatMask: String
-  #If the component is a geolocation (dataStructureComponentRole is GEO) then there are different types
+  #If the component is a geolocation then there are different types
   geoType: GeoType
   #The global unique identifier (GUID) of the information object assigned by the owner agency.
   id: String!
-  #For INDENTIFIER-components. Indicates if the key is composite, e.g. person-identifier and date/time.
-  identifierComponentIsComposite: Boolean
-  #For INDENTIFIER-components. Indicates if the key is unique.
-  identifierComponentIsUnique: Boolean
   #Last updated by.
   lastUpdatedBy: String
   #The date on which the object was last updated.
@@ -1020,15 +1014,19 @@ type InstanceVariable implements IdentifiableArtefact @domain {
   name: [MultilingualText!]!
   #Data type of instance variable
   physicalDataType: String
-  population: Population! @link
-  representedVariable: RepresentedVariable! @link
+  population: Population @link
+  representedVariable: RepresentedVariable @link
   sentinelValueDomain: sentinelValueDomain @link
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
+  #Instance variable temporality type
+  temporalityType: TemporalityType
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
   validFrom: DateTime!
   #The date on which the information object is no longer effective or valid.
   validUntil: DateTime
+  #Classification of the value or damage potential of a dataset
+  valuation: ValuationType
   #Formal versioning of the information object. The version designator of the information object assigned by the owner agency. "major.minor.patch", e.g. "1.12.5".
   version: String
   #The reason for making this version of the information object.
@@ -1165,25 +1163,6 @@ type LogicalRecord implements IdentifiableArtefact @domain {
   versionRationale: [MultilingualText!]
   #The date on which the current version of the infomation object is effective or valid.
   versionValidFrom: DateTime!
-}
-
-#Mapping elements from external Raw Data Object Store to Input Data (InstanceVariable).
-type MappingRawDataToInputData @domain {
-  #Global unique identifier (GUID).
-  id: String!
-  #Created or updated by.
-  lastUpdatedBy: String
-  #The date on which the object was created or updated.
-  lastUpdatedDate: DateTime
-  #The name of the raw data source-element/field/variable (e.g. streetName or streetNumber)
-  sourceName: String!
-  #Path to the raw data source-element/field/variable (e.g. Xpath /person/address/)
-  sourcePath: String!
-  targetInstanceVariable: InstanceVariable! @link
-  #The date on which the mapping is effective or valid. Set this date only once (constant).
-  validFrom: DateTime
-  #The date on which the mapping is no longer effective or valid.
-  validUntil: DateTime
 }
 
 #The Measurement Type defines the type of a measure e.g. mass or currency. The Measurement Type groups all Measurement Units, which can be converted into each other. A Measurement Type can have a standard Measurement Unit, which can be used for conversion between different Measurement Units.
@@ -1379,11 +1358,11 @@ type Population implements Concept & IdentifiableArtefact @domain {
   nationalConceptsCatalogURI: String
   parentPopulations: [Population] @link
   #The type og pupulation.
-  populationType: PopulationType!
+  populationType: PopulationType
   #The time period to which the population is associated.
-  referencePeriodEndDate: DateTime!
+  referencePeriodEndDate: DateTime
   #The time period to which the population is associated.
-  referencePeriodStartDate: DateTime!
+  referencePeriodStartDate: DateTime
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
   subjectFields: [SubjectField] @link
@@ -2098,7 +2077,6 @@ type Query {
   InstanceVariableById: [InstanceVariable]
   InstanceVariableRelationshipById: [InstanceVariableRelationship]
   LogicalRecordById: [LogicalRecord]
-  MappingRawDataToInputDataById: [MappingRawDataToInputData]
   MeasurementTypeById: [MeasurementType]
   MeasurementUnitById: [MeasurementUnit]
   MultilingualTextById: [MultilingualText]
@@ -2214,7 +2192,9 @@ type RepresentedVariable implements IdentifiableArtefact @domain {
   name: [MultilingualText!]!
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
+  subjectFields: [SubjectField] @link
   substantiveValueDomain: substantiveValueDomain @link
+  unitType: UnitType @link
   universe: Universe! @link
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
   validFrom: DateTime!
@@ -2531,6 +2511,7 @@ type SubjectField implements IdentifiableArtefact @domain {
   lastUpdatedDate: DateTime
   #A term which designates a concept, in this case an information object. The identifying name will be the preferred designation. There will be many terms to designate the same information object, such as synonyms and terms in other languages.
   name: [MultilingualText!]!
+  parentSubjectField: SubjectField @link
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
@@ -2663,7 +2644,7 @@ type UnitDataSet implements DataSet & IdentifiableArtefact @domain {
   #The date on which the information object is no longer effective or valid.
   validUntil: DateTime
   #Classification of the value or damage potential of a dataset
-  valuation: ValuationType
+  valuation: ValuationType!
   #Formal versioning of the information object. The version designator of the information object assigned by the owner agency. "major.minor.patch", e.g. "1.12.5".
   version: String
   #The reason for making this version of the information object.
@@ -2739,8 +2720,6 @@ type UnitType implements Concept & IdentifiableArtefact @domain {
   #A short technical name. (Avoid special characters not supported as variable names in common programming languages).
   shortName: String
   subjectFields: [SubjectField] @link
-  #Type of unit.
-  typeOfStatisticalUnit: TypeOfStatisticalUnitType!
   #The date on which the information object is effective or valid. Set this date only once (constant). The same date for all versions of this information object.
   validFrom: DateTime!
   #The date on which the information object is no longer effective or valid.
@@ -2886,26 +2865,22 @@ enum DataResourceType {
 }
 
 enum DataSetStateType {
+  ARCHIVED_DATA
   DATA_PRODUCT
   INPUT_DATA
   OTHER_DATA
   OUTPUT_DATA
   PROCESSED_DATA
   RAW_DATA
-}
-
-enum DataStructureComponentRoleType {
-  COUNT
-  ENTITY
-  GEO
-  IDENTITY
-  TIME
+  TEMP
 }
 
 enum DataStructureComponentType {
   ATTRIBUTE
   IDENTIFIER
   MEASURE
+  START_TIME
+  STOP_TIME
 }
 
 enum DataType {
@@ -2935,6 +2910,7 @@ enum FrequencyType {
 }
 
 enum GeoType {
+  ADMINISTRATIVE_LEVEL
   LINE
   POINT
   POLYGON
@@ -2971,6 +2947,7 @@ enum ParentChildMultiplicityType {
 }
 
 enum PopulationType {
+  FRAME
   SURVEY
   TARGET
 }
@@ -3052,21 +3029,8 @@ enum StatisticalSupportProgramStatusType {
 }
 
 enum TemporalityType {
-  ACCUMULATED
   EVENT
-  FIXED
   STATUS
-}
-
-enum TypeOfStatisticalUnitType {
-  ENTERPRISE
-  ESTABLISHMENT
-  FAMILY
-  HOUSEHOLD
-  MUNICIPALITY
-  NOT_APPLICABLE
-  PERSON
-  SHAREHOLDER
 }
 
 enum ValuationType {

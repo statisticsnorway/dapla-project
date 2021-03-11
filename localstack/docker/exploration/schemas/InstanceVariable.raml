@@ -10,12 +10,22 @@ types:
     type: IdentifiableArtefact.IdentifiableArtefact
 
     properties:
-      representedVariable:
+      representedVariable?:
         type: string
         displayName: Represented variable
         (Link.types): [RepresentedVariable]
 
-      population:
+      valuation?:
+        type: string
+        description: Classification of the value or damage potential of a dataset
+        displayName: Valuation
+        enum:  
+          - SENSITIVE  # 1
+          - SHIELDED   # 2
+          - INTERNAL   # 3
+          - OPEN       # 4
+
+      population?:
         type: string
         displayName: Population
         (Link.types): [Population]
@@ -31,6 +41,18 @@ types:
             - IDENTIFIER
             - MEASURE
             - ATTRIBUTE
+            - START_TIME
+            - STOP_TIME
+
+      temporalityType?:
+          type: string
+          description: Instance variable temporality type
+          displayName: Temporality type
+          enum:
+            - EVENT
+            - STATUS
+            - ACCUMULATED
+            - FIXED
 
       sentinelValueDomain?:
         type: string
@@ -42,35 +64,15 @@ types:
         description: This attribute describes the data-format of the instance variable. For example a date-format-mask.
         displayName: Format
 
-      identifierComponentIsUnique?:
-        type: boolean
-        description: For INDENTIFIER-components. Indicates if the key is unique.
-        displayName: Identifier component is unique
-
-      identifierComponentIsComposite?:
-        type: boolean
-        description: For INDENTIFIER-components. Indicates if the key is composite, e.g. person-identifier and date/time.
-        displayName: Identifier component is composite
-
-      dataStructureComponentRole?:
-        type: string
-        description: For INDENTIFIER-components or MEASURE-components. Specifies the type of role --> "entity", "count", "time", "geography" or "identity" (only INDENTIFIER-components).
-        displayName: Data structure component role
-        enum:
-          - ENTITY
-          - IDENTITY
-          - COUNT
-          - TIME
-          - GEO
-
       geoType?:
         type: string
-        description: If the component is a geolocation (dataStructureComponentRole is GEO) then there are different types
+        description: If the component is a geolocation then there are different types
         displayName: Geo type
         enum:
           - POINT
           - POLYGON
           - LINE
+          - ADMINISTRATIVE_LEVEL
 
       mandatory?:
         type: boolean

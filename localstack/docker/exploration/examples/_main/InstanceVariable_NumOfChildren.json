@@ -22,5 +22,6 @@
     "population": "/Population/7ef40579-469d-447f-8955-febb7b254b10",
     "dataStructureComponentType": "MEASURE",
     "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
-    "shortName": "NUM_CHILDREN"
+    "shortName": "NUM_CHILDREN",
+    "temporalityType": "STATUS"
 }

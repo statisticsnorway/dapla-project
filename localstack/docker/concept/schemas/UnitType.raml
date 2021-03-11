@@ -11,21 +11,10 @@ types:
     type: [ IdentifiableArtefact.IdentifiableArtefact, Concept.Concept ]
 
     properties:
-      typeOfStatisticalUnit:
-        type: string
-        description: Type of unit.
-        displayName: Type of statistical unit
-        enum:
-          - ENTERPRISE
-          - ESTABLISHMENT
-          - PERSON
-          - FAMILY
-          - HOUSEHOLD
-          - SHAREHOLDER
-          - MUNICIPALITY
-          - NOT_APPLICABLE  # Used only for AttributeComponents.
 
       parentUnitTypes?:
         type: string[]
         displayName: Parent unit types
         (Link.types): [UnitType]
+
+    example: !include ../examples/_main/UnitType_Municipality.json

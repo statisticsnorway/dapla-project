@@ -18,18 +18,10 @@ types:
           - OUTPUT_DATA
           - DATA_PRODUCT
           - OTHER_DATA
+          - ARCHIVED_DATA
+          - TEMP
 
-      temporalityType?:
-        type: string
-        description: Dataset temporality
-        displayName: Temporality type
-        enum:
-          - EVENT
-          - STATUS
-          - ACCUMULATED
-          - FIXED
-
-      valuation?:
+      valuation:
         type: string
         description: Classification of the value or damage potential of a dataset
         displayName: Valuation
@@ -38,6 +30,14 @@ types:
           - SHIELDED   # 2
           - INTERNAL   # 3
           - OPEN       # 4
+
+      temporalityType?:
+        type: string
+        description: Dataset temporality
+        displayName: Temporality type
+        enum:
+          - EVENT
+          - STATUS
 
       dataExistsFromDate?:
         type: datetime

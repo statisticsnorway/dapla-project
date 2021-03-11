@@ -1,5 +1,6 @@
 ﻿#%RAML 1.0 Library
 uses:
+  Link: ./annotation/Link.raml
   IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
   ValueDomain: ./abstract/ValueDomain.raml
 
@@ -10,6 +11,11 @@ types:
     type: [ IdentifiableArtefact.IdentifiableArtefact, ValueDomain.ValueDomain ]
 
     properties:
+      measurementUnit?:
+        type: string
+        displayName: Measurement unit
+        (Link.types): [MeasurementUnit]
+
       #TODO: Do we need these, or can it be businessrules ?
       minValue?:
         type: number
@@ -35,3 +41,5 @@ types:
         type: number
         description: A Value Domain defined by an expression.
         displayName: Max decimals
+
+    example: !include ../examples/_main/DescribedValueDomain_Amount.json

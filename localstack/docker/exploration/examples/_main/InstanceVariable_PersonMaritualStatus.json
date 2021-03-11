@@ -22,5 +22,6 @@
     "population": "/Population/dfb6eecf-c4f4-4fa6-82a1-8b8684d560f4c",
     "dataStructureComponentType": "MEASURE",
     "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
-    "shortName": "MARITAL_STATUS"
+    "shortName": "MARITAL_STATUS",
+    "temporalityType": "STATUS"
 }

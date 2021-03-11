@@ -1,5 +1,6 @@
 ﻿#%RAML 1.0 Library
 uses:
+  Link: ./annotation/Link.raml
   IdentifiableArtefact: ./abstract/IdentifiableArtefact.raml
 
 types:
@@ -9,3 +10,8 @@ types:
     type: IdentifiableArtefact.IdentifiableArtefact
 
     properties:
+      parentSubjectField?:
+        type: string
+        displayName: Parent subject field
+        (Link.types): [SubjectField]
+    example: !include ../examples/_main/SubjectField_IncomeAndWealth.json

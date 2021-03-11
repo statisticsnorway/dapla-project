@@ -6,7 +6,7 @@ uses:
 types:
   RepresentedVariable:
     description: A combination of a characteristic of a population to be measured and how that measure will be represented.
-    displayName: Represented variable
+    displayName: Represendted variable
     type: IdentifiableArtefact.IdentifiableArtefact
 
     properties:
@@ -20,7 +20,19 @@ types:
         displayName: Universe
         (Link.types): [Universe]
 
+      unitType?:
+        type: string
+        displayName: Unit type
+        (Link.types): [UnitType]
+
+      subjectFields?:
+        type: string[]
+        displayName: Subject fields
+        (Link.types): [SubjectField]
+
       substantiveValueDomain?:
         type: string
         displayName: Substantive value domain
         (Link.types): [EnumeratedValueDomain, DescribedValueDomain]
+
+    example: !include ../examples/_main/RepresentedVariable_PersonIncome.json

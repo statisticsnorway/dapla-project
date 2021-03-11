@@ -21,9 +21,6 @@
     "representedVariable": "/RepresentedVariable/950b417a-0b3c-4909-aa4b-5689a1378b8e",
     "population": "/Population/7ef40579-469d-447f-8955-febb7b254b10",
     "dataStructureComponentType": "IDENTIFIER",
-    "identifierComponentIsUnique": true,
-    "identifierComponentIsComposite": false,
-    "dataStructureComponentRole": "ENTITY",
     "sentinelValueDomain": "/EnumeratedValueDomain/c1a40b5c-f8d4-4ed8-b137-60afc71afa0c",
     "shortName": "FAMILY_ID"
 }
